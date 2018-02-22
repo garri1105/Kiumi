@@ -7,8 +7,16 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  people: string[] = [];
+
   constructor(public navCtrl: NavController) {
 
+  }
+
+  changeColor() {
+    var checkInButton: HTMLElement = document.getElementById('checkIn')
+    checkInButton.style.backgroundColor = 'lightgreen';
+    checkInButton.textContent = 'Checked in';
   }
 
 }
