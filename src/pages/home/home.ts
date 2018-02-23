@@ -24,7 +24,6 @@ export class HomePage {
       document.getElementById("timeEstimate").textContent =
         self.pad(Math.floor(self.seconds / 60), 2) + ":" + self.pad(self.seconds % 60, 2);
     }}, 1000);
-
   }
 
   pad(num, size) {

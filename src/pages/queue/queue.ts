@@ -14,6 +14,5 @@ export class QueuePage {
   removeDiv() {
     var div:HTMLElement =   document.getElementById("Raza");
     div.style.textDecoration="line-through";
-    
   }
 }
