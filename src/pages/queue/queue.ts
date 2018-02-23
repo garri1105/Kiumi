@@ -10,4 +10,8 @@ export class QueuePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+
+  removeDiv() {
+    
+  }
 }

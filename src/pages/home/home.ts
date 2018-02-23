@@ -33,7 +33,6 @@ export class HomePage {
     this.navCtrl.push(QueuePage);
     var queueButton: HTMLElement = document.getElementById('queueIn')
     queueButton.style.backgroundColor = 'lightgreen';
-    // queueButton.textContent = 'Preceptor';
   }
 
 }
