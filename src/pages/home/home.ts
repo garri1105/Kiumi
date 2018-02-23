@@ -8,15 +8,24 @@ import { NavController } from 'ionic-angular';
 export class HomePage {
 
   people: string[] = [];
-
+  clicked: boolean = false;
+  checkInButton: HTMLElement;
   constructor(public navCtrl: NavController) {
 
   }
 
   changeColor() {
-    var checkInButton: HTMLElement = document.getElementById('checkIn')
-    checkInButton.style.backgroundColor = 'lightgreen';
-    checkInButton.textContent = 'Checked in';
+    this.checkInButton = document.getElementById('checkIn');
+    this.clicked = !this.clicked;
+    if (!this.clicked)
+    {
+      this.checkInButton.style.backgroundColor = '#488aff';
+      this.checkInButton.textContent = 'Check in';
+    }
+    else
+    {
+      this.checkInButton.style.backgroundColor = 'lightgreen';
+      this.checkInButton.textContent = 'Checked in';
+    }
   }
-
 }
