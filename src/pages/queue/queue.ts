@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+
 @Component({
   selector: 'page-queue',
   templateUrl: 'queue.html'
@@ -8,7 +9,5 @@ import { NavController } from 'ionic-angular';
 export class QueuePage {
 
   constructor(public navCtrl: NavController) {
-
   }
-
 }
