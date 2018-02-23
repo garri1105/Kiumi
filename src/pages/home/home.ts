@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { QueuePage } from '../queue/queue';
 
 @Component({
@@ -17,12 +17,12 @@ export class HomePage {
 
     var self = this;
 
-    var x = setInterval(function () {
+    setInterval(function () {
       if (self.seconds > 0) {
         self.seconds -= 1;
+        document.getElementById("timeEstimate").textContent =
+          self.pad(Math.floor(self.seconds / 60), 2) + ":" + self.pad(self.seconds % 60, 2);
 
-      document.getElementById("timeEstimate").textContent =
-        self.pad(Math.floor(self.seconds / 60), 2) + ":" + self.pad(self.seconds % 60, 2);
     }}, 1000);
   }
 
@@ -54,8 +54,5 @@ export class HomePage {
   }
   changeQueue() {
     this.navCtrl.push(QueuePage);
-    var queueButton: HTMLElement = document.getElementById('queueIn')
-    queueButton.style.backgroundColor = 'lightgreen';
   }
-
 }
