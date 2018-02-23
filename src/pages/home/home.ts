@@ -27,13 +27,10 @@ export class HomePage {
       this.checkInButton.textContent = 'Checked in';
     }
   }
-<<<<<<< HEAD
   changeQueue() {
     var queueButton: HTMLElement = document.getElementById('queueIn')
     queueButton.style.backgroundColor = 'lightgreen';
     queueButton.textContent = 'Queued';
   }
 
-=======
->>>>>>> 983ae5bff5b16fe8795f0575b9c2967c5c7992ad
 }
