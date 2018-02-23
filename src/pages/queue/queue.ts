@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-queue',
@@ -7,8 +8,12 @@ import { NavController } from 'ionic-angular';
 })
 export class QueuePage {
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  removeDiv() {
+    var div:HTMLElement =   document.getElementById("Raza");
+    div.style.textDecoration="line-through";
+    
+  }
 }

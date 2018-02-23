@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { QueuePage } from '../queue/queue';
 
 @Component({
   selector: 'page-home',
@@ -52,4 +53,10 @@ export class HomePage {
       this.checkInButton.textContent = 'Checked in';
     }
   }
+  changeQueue() {
+    this.navCtrl.push(QueuePage);
+    var queueButton: HTMLElement = document.getElementById('queueIn')
+    queueButton.style.backgroundColor = 'lightgreen';
+  }
+
 }
