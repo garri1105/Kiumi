@@ -7,13 +7,10 @@
 </ion-header>
 
 <ion-content padding>
-  <button id="checkIn" (click)="changeColor()">
+  <button id="checkIn" (click)="changeColor(); increaseEstimate()">
     Check in
   </button>
+  <div>
+    <p class="paragraph">Estimated time: <span id="timeEstimate">00:00</span></p>
+  </div>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    I'm a footer!
-  </ion-toolbar>
-</ion-footer>

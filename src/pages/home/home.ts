@@ -5,13 +5,37 @@ import { NavController } from 'ionic-angular';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
-
-  people: string[] = [];
-  clicked: boolean = false;
+  clicked: boolean;
   checkInButton: HTMLElement;
+  seconds: number;
   constructor(public navCtrl: NavController) {
+    this.clicked = false;
+    this.seconds = 0;
 
+    var self = this;
+
+    var x = setInterval(function () {
+      if (self.seconds > 0) {
+        self.seconds -= 1;
+
+      document.getElementById("timeEstimate").textContent =
+        self.pad(Math.floor(self.seconds / 60), 2) + ":" + self.pad(self.seconds % 60, 2);
+    }}, 1000);
+
+  }
+
+  pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
+  }
+
+  increaseEstimate() {
+    if (this.clicked) {
+      this.seconds += 600;
+    }
   }
 
   changeColor() {

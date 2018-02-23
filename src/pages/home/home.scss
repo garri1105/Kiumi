@@ -9,10 +9,10 @@ button {
   cursor: pointer;
   outline: none;
   color: #fff;
-  background-color: map-get($colors, primary);
+  background-color: color($colors, primary, base);
   border: none;
   border-radius: 15px;
-  box-shadow: 0 9px #999;
+  box-shadow: 4px 4px 3px #999;
 }
 
 button:hover {
@@ -21,6 +21,6 @@ button:hover {
 
 button:active {
   filter: brightness(90%);
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+  box-shadow: 3px 3px 3px #666;
+  -webkit-transform: translateY(2px);
 }
