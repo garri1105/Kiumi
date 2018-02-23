@@ -1,0 +1,29 @@
+
+#header {
+  background-color: blue;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+}
+
+#main{
+  position: fixed;
+  font-size: 30px;
+  font-family: monospace;
+  font-style: bold;
+  left:33%;
+}
+
+#nav{
+  list-style: none;
+  position: fixed;
+  left: 47%;
+  font-size: 30px;
+  color: green;
+}
+
+#button{
+  position: fixed;
+  top: 70%;
+  left: 30%;
+}
