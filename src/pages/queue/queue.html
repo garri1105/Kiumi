@@ -8,29 +8,31 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-    <h2>COMP 124</h2>
-    <p>Students:</p>
-    <li>
-      David Peletz
-    </li>
-    <li>
-      Salman
-    </li>
-    <li>
-      David 
-    </li> 
-    <li>
-      Raza
-    </li>
-    <button ion-button secondary menuToggle="">Helped Already</button>
-    <p>
-      Take a look at the <code>src/pages/</code> directory to add or change tabs,
-      update any existing page or create new pages.
-    </p>      
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <h3>Preceptor Office Hours</h3>
+    <h2 ion-text color="primary">Class: COMP 124</h2>
+    <h4 ion-text color="dark">Students In Line:</h4>
+    <div id ="Raza" class="boxed">
+        <button ion-button secondary (click)="removeDiv()">Check Off</button>
+        Raza
+    </div>
+    <div class="boxed">
+        <button ion-button secondary menuToggle="">Check Off</button>
+        David
+    </div>      
+    <div class="boxed">
+        <button ion-button secondary menuToggle="">Check Off</button>
+        Salman
+    </div> 
+    <div class="boxed">
+        <button ion-button secondary menuToggle="">Check Off</button>
+        David
+    </div>     
+    <br>
+    <br>
+    <br>
+    <br>
+    <button ion-button full secondary menuToggle="">Check for Available Preceptors!</button>
+    <p></p> 
+    <p></p> 
+    <p></p> 
 </ion-content>

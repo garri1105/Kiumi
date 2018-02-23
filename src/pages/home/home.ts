@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { QueuePage } from '../queue/queue';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
 
   people: string[] = [];
@@ -28,9 +30,9 @@ export class HomePage {
     }
   }
   changeQueue() {
+    this.navCtrl.push(QueuePage);
     var queueButton: HTMLElement = document.getElementById('queueIn')
     queueButton.style.backgroundColor = 'lightgreen';
-    queueButton.textContent = 'Queued';
   }
 
 }
