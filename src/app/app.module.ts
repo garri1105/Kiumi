@@ -5,30 +5,30 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { AngularFireModule } from "angularfire2";
-import { AngularFireDatabaseModule } from "angularfire2/database";
-import { FIREBASE_CONFIG } from "./firebase.credentials";
-import {StudentQueueService} from "../services/queue/queue.service";
+import { HomePage } from '../pages/home/home';
+import { QueuePage } from '../pages/queue/queue';
+
 
 @NgModule({
   declarations: [
     MyApp,
+    HomePage, 
+    QueuePage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    HomePage, 
+    QueuePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StudentQueueService
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
