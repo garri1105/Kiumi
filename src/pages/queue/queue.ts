@@ -28,9 +28,7 @@ export class QueuePage {
         }
       )
   }
-
-
-
+  
   removeDiv() {
     document.body.removeChild(document.getElementById("Raza"));
   }
