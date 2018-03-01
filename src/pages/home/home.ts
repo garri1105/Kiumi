@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {IonicPage, NavController} from 'ionic-angular';
 import { QueuePage } from '../queue/queue';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -52,7 +53,8 @@ export class HomePage {
       this.checkInButton.textContent = 'Checked in';
     }
   }
+
   changeQueue() {
-    this.navCtrl.push(QueuePage);
+    this.navCtrl.push('QueuePage');
   }
 }

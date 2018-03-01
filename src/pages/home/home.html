@@ -7,14 +7,14 @@
 </ion-header>
 
 <ion-content padding>
-  <button id="checkIn" (click)="changeColor(); increaseEstimate()">
+  <button ion-button id="checkIn" (click)="changeColor(); increaseEstimate()">
     Check in
   </button>
   <div>
     <p class="paragraph">Estimated time: <span id="timeEstimate">00:00</span></p>
   </div>
 
-  <button id="queueIn" (click)="changeQueue()">
+  <button nav-push="QueuePage" id="queueIn">
     Preceptor
   </button>
 </ion-content>
