@@ -7,6 +7,4 @@ import {IonicPageModule} from "ionic-angular";
   imports: [IonicPageModule.forChild(HomePage)]
 })
 
-export class HomeModule {
-
-}
+export class HomeModule {}
