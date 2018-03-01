@@ -20,9 +20,15 @@ export class StudentCheckInPage {
 
     this.x = setInterval(function () {
       if (self.seconds > 0) {
+        let text = "";
         self.seconds -= 1;
+        if (self.seconds >= 3600) {
+          text += self.pad(Math.floor(self.seconds / 3600), 2) + ":";
+        }
         document.getElementById("timeEstimate").textContent =
-          self.pad(Math.floor(self.seconds / 60), 2) + ":" + self.pad(self.seconds % 60, 2);
+          text +
+          self.pad(Math.floor((self.seconds % 3600) / 60), 2) + ":" +
+          self.pad(self.seconds % 60, 2);
 
       }}, 1000);
   }
@@ -49,7 +55,7 @@ export class StudentCheckInPage {
     }
     else
     {
-      this.checkInButton.style.color = 'lightgreen';
+      this.checkInButton.style.color = '#32db64';
       this.checkInButton.textContent = 'Checked in';
     }
   }
