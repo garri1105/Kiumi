@@ -1,22 +1,25 @@
-import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component, Injectable} from '@angular/core';
 import {StudentQueueService} from "../../services/queue/queue.service";
 import {Observable} from "rxjs/Observable";
 import {Student} from "../../models/student.interface";
 
-@IonicPage()
+/**
+ * Generated class for the StudentQueueComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
 @Component({
-  selector: 'page-queue',
-  templateUrl: 'queue.html'
+  selector: 'student-queue',
+  templateUrl: 'student-queue.html'
 })
-export class QueuePage {
+
+@Injectable()
+export class StudentQueueComponent {
 
   studentQueue$: Observable<Student[]>;
 
-  constructor(private navCtrl: NavController,
-              private navParams: NavParams,
-              private queue: StudentQueueService)
-  {
+  constructor(private queue: StudentQueueService) {
     this.studentQueue$ = this.queue.getMockStudentQueue();
 
     // this.studentQueue$ = this.queue
