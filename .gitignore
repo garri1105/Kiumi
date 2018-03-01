@@ -10,6 +10,8 @@
 log.txt
 *.sublime-project
 *.sublime-workspace
+.firebaserc
+*.ppk
 .vscode/
 npm-debug.log*
 
