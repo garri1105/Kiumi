@@ -31,7 +31,7 @@ export class QueuePage {
     //   )
   }
 
-  removeDiv() {
-    document.body.removeChild(document.getElementById("Raza"));
+  removeMockStudent(student: Student) {
+    this.queue.removeMockStudent(student);
   }
 }

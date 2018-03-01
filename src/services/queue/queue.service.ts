@@ -17,8 +17,11 @@ export class StudentQueueService {
     return Observable.of(STUDENT_QUEUE);
   }
 
+  removeMockStudent(student: Student) {
+    STUDENT_QUEUE.splice(STUDENT_QUEUE.indexOf(student), 1);
+  }
+
   getStudentQueue() {
     return this.studentQueue;
   }
-
 }

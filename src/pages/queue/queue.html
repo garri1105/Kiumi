@@ -12,14 +12,12 @@
     <h2 ion-text color="primary">Class: COMP 124</h2>
     <ion-list>
       <ion-list-header>
-        Students In Line:
+        Students in Line:
       </ion-list-header>
-      <ion-item detail-push *ngFor="let student of studentQueue$ | async">
+      <ion-item *ngFor="let student of studentQueue$ | async">
         {{ student.name }}
+        <button ion-button item-end (click)="removeMockStudent(student)"><ion-icon name="close"></ion-icon></button>
       </ion-item>
     </ion-list>
-    <button ion-button full secondary menuToggle="">Check for Available Preceptors!</button>
-    <p></p>
-    <p></p>
-    <p></p>
+    <button ion-button full secondary>Check for Available Preceptors!</button>
 </ion-content>
