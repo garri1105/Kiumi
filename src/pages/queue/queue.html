@@ -10,29 +10,16 @@
 <ion-content padding>
   <h3>Preceptor Office Hours</h3>
     <h2 ion-text color="primary">Class: COMP 124</h2>
-    <h4 ion-text color="dark">Students In Line:</h4>
-    <div id ="Raza" class="boxed">
-        <button ion-button secondary (click)="removeDiv()">Check Off</button>
-        Raza
-    </div>
-    <div class="boxed">
-        <button ion-button secondary menuToggle="">Check Off</button>
-        David
-    </div>      
-    <div class="boxed">
-        <button ion-button secondary menuToggle="">Check Off</button>
-        Salman
-    </div> 
-    <div class="boxed">
-        <button ion-button secondary menuToggle="">Check Off</button>
-        David
-    </div>     
-    <br>
-    <br>
-    <br>
-    <br>
+    <ion-list>
+      <ion-list-header>
+        Students In Line:
+      </ion-list-header>
+      <ion-item detail-push *ngFor="let student of studentQueue$ | async">
+        {{ student.name }}
+      </ion-item>
+    </ion-list>
     <button ion-button full secondary menuToggle="">Check for Available Preceptors!</button>
-    <p></p> 
-    <p></p> 
-    <p></p> 
+    <p></p>
+    <p></p>
+    <p></p>
 </ion-content>
