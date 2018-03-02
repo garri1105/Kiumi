@@ -5,7 +5,7 @@
   <ion-item *ngFor="let student of studentQueue$ | async">
     {{ student.name }}
     <button ion-button clear color="danger" item-end
-            (click)="removeMockStudent(student)">
+            (click)="removeStudent(student)">
       <ion-icon name="close"></ion-icon>
     </button>
   </ion-item>

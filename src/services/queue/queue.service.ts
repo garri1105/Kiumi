@@ -24,4 +24,13 @@ export class StudentQueueService {
   getStudentQueue() {
     return this.studentQueue;
   }
+
+  addStudent(student: Student) {
+    this.studentQueue.push(student);
+  }
+
+  removeStudent(student: Student) {
+    this.studentQueue.remove(student.key);
+  }
+
 }

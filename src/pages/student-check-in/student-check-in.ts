@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
+import { StudentQueueService } from '../../services/queue/queue.service';
+import {Student} from "../../models/student.interface";
+import { STUDENT_QUEUE } from '../../mocks/student.mocks';
+
 
 @IonicPage()
 @Component({
@@ -8,11 +12,12 @@ import {IonicPage, NavController} from 'ionic-angular';
 })
 
 export class StudentCheckInPage {
+  student: Student;
   clicked: boolean;
   checkInButton: HTMLElement;
   seconds: number;
   x: number;
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private studentQueue: StudentQueueService) {
     this.clicked = false;
     this.seconds = 0;
 
@@ -31,6 +36,16 @@ export class StudentCheckInPage {
           self.pad(self.seconds % 60, 2);
 
       }}, 1000);
+
+      // this.student = STUDENT_QUEUE.pop();
+
+      this.student =
+      {
+        name: 'Brett',
+        studentId: 101068610,
+        email: 'brett@macalester.edu'
+      };
+    
   }
 
   pad(num, size) {
@@ -58,6 +73,10 @@ export class StudentCheckInPage {
       this.checkInButton.style.color = '#32db64';
       this.checkInButton.textContent = 'Checked in';
     }
+  }
+
+  addStudent(student: Student) {
+    this.studentQueue.addStudent(student);
   }
 
   ionViewWillLeave() {
