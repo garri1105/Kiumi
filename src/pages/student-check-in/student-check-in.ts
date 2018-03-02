@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
+import {Course} from "../../models/course.interface";
 
 @IonicPage()
 @Component({
@@ -12,7 +13,8 @@ export class StudentCheckInPage {
   checkInButton: HTMLElement;
   seconds: number;
   x: number;
-  constructor(public navCtrl: NavController) {
+  constructor(private navCtrl: NavController,
+              private course: Course) {
     this.clicked = false;
     this.seconds = 0;
 
@@ -50,7 +52,7 @@ export class StudentCheckInPage {
     this.clicked = !this.clicked;
     if (!this.clicked)
     {
-      this.checkInButton.style.color = '#488aff';
+      this.checkInButton.style.color = '#01426A';
       this.checkInButton.textContent = 'Check in';
     }
     else
