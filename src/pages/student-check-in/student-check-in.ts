@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
-import {Course} from "../../models/course.interface";
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import { StudentQueueService } from '../../services/queue/queue.service';
-import {Student} from "../../models/student.interface";
+import { Student } from "../../models/student.interface";
 import { STUDENT_QUEUE } from '../../mocks/student.mocks';
+import { CourseListService } from "../../services/course-list/course-list.service";
+import {Course} from "../../models/course.interface";
 
 
 @IonicPage()
@@ -13,16 +14,21 @@ import { STUDENT_QUEUE } from '../../mocks/student.mocks';
 })
 
 export class StudentCheckInPage {
+  course: Course;
   student: Student;
+
   clicked: boolean;
   checkInButton: HTMLElement;
   seconds: number;
   x: number;
   constructor(private navCtrl: NavController,
+              private navParams: NavParams,
               private studentQueue: StudentQueueService,
-              private course: Course) {
+              private courseList: CourseListService) {
+
     this.clicked = false;
-    this.seconds = 0;
+    this.course = this.navParams.get('course');
+    this.seconds = this.course.estimatedTime;
 
     var self = this;
 
@@ -40,15 +46,7 @@ export class StudentCheckInPage {
 
       }}, 1000);
 
-      // this.student = STUDENT_QUEUE.pop();
-
-      this.student =
-      {
-        name: 'Brett',
-        studentId: 101068610,
-        email: 'brett@macalester.edu'
-      };
-
+      this.student = STUDENT_QUEUE.pop();
   }
 
   pad(num, size) {

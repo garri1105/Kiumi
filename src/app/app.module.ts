@@ -9,6 +9,7 @@ import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { FIREBASE_CONFIG } from "./firebase.credentials";
 import {StudentQueueService} from "../services/queue/queue.service";
+import {CourseListService} from "../services/course-list/course-list.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {StudentQueueService} from "../services/queue/queue.service";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StudentQueueService
+    StudentQueueService,
+    CourseListService
   ]
 })
 export class AppModule {}

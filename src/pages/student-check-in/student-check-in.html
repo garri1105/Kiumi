@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Check In
+      {{ course.name }}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -12,6 +12,6 @@
     Check in
   </button>
   <ion-item text-center>
-    Estimated time: <span id="timeEstimate">00:00</span>
+    Estimated time: <span id="timeEstimate">{{ this.course.estimatedTime }}</span>
   </ion-item>
 </ion-content>

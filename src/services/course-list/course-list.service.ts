@@ -6,16 +6,17 @@ import {COURSE_LIST} from "../../mocks/course.mocks";
 @Injectable()
 export class CourseListService {
 
-  classList = this.db.list<Course>('class-list');
+  courseList = this.db.list<Course>('class-list');
+
   constructor(private db: AngularFireDatabase) {
 
   }
 
-  getClass() {
-    return this.classList;
+  getCourseList() {
+    return this.courseList;
   }
 
-  getMockCourse() {
-    return COURSE_LIST
+  getMockCourseList() {
+    return COURSE_LIST;
   }
 }
