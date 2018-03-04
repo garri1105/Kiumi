@@ -1,5 +1,6 @@
 export interface Course {
-  //TODO: Complete Interface
+  key?: string;
   name: string;
-  estimatedTime: number;
+  studentsInQueue: string[];
+  times: number[];
 }
