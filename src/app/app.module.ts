@@ -9,7 +9,9 @@ import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { FIREBASE_CONFIG } from "./firebase.credentials";
 import {StudentQueueService} from "../services/queue/queue.service";
-import {CourseListService} from "../services/course-list/course-list.service";
+import {StudentsService} from "../services/students/students.service";
+import {CoursesService} from "../services/courses/courses.service";
+import {StudentLoginService} from "../services/student-login/student-login.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {CourseListService} from "../services/course-list/course-list.service";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StudentQueueService,
-    CourseListService
+    StudentsService,
+    CoursesService,
+    StudentLoginService
   ]
 })
 export class AppModule {}
