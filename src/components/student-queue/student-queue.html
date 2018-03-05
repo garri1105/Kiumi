@@ -1,6 +1,6 @@
 <ion-list>
-  <ion-list-header color='primary'>
-    Students in Line:
+  <ion-list-header>
+    <h2>Students in Line:</h2>
   </ion-list-header>
   <ion-item *ngFor="let student of studentQueue$ | async">
     {{ student.name }}
