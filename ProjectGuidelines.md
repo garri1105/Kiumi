@@ -12,8 +12,9 @@ We'll be meeting all Monday's and Wednesday, we will report our progress, answer
 ## Tasks:
 
 I will be giving you tasks to accomplish. You will be the temporary owner of specific files. All others that I don't 
-list will be out of reach meaning you **shouldn't** touch them. This avoids scary merge conflicts that can screw the 
-whole project up. When you finish the task you will:
+list will be out of reach meaning you **shouldn't** touch them. Even if you think that there is something you could 
+indent or add a new line to, don't touch it. This avoids scary merge conflicts that can screw the whole project up. 
+When you finish the task you will:
 
 1.  Slack the whole team
 2.  Commit
