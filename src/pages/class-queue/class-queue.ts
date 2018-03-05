@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import { Course } from '../../models/course.interface';
 
 @IonicPage()
 @Component({
@@ -7,7 +8,10 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
   templateUrl: 'class-queue.html'
 })
 export class ClassQueuePage {
+  course: Course;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams)  {
+  constructor(private navCtrl: NavController, 
+    private navParams: NavParams)  {
+      this.course = this.navParams.get('course');
   }
 }
