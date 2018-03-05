@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import { StudentQueueService } from '../../services/queue/queue.service';
-import {Student} from "../../models/student.interface";
-import { STUDENT_QUEUE } from '../../mocks/student.mocks';
+import { StudentLoginService } from "../../services/student-login/student-login.service";
+import {Course} from "../../models/course.interface";
 
 
 @IonicPage()
@@ -12,40 +12,44 @@ import { STUDENT_QUEUE } from '../../mocks/student.mocks';
 })
 
 export class StudentCheckInPage {
-  student: Student;
+  course: Course;
+  estimatedTime: string;
   clicked: boolean;
   checkInButton: HTMLElement;
-  seconds: number;
   x: number;
-  constructor(public navCtrl: NavController, private studentQueue: StudentQueueService) {
+
+  constructor(private navCtrl: NavController,
+              private navParams: NavParams,
+              private studentQueue: StudentQueueService,
+              private loggedIn: StudentLoginService) {
+
     this.clicked = false;
-    this.seconds = 0;
+    this.course = this.navParams.get('course');
 
     var self = this;
 
-    this.x = setInterval(function () {
-      if (self.seconds > 0) {
-        let text = "";
-        self.seconds -= 1;
-        if (self.seconds >= 3600) {
-          text += self.pad(Math.floor(self.seconds / 3600), 2) + ":";
-        }
-        document.getElementById("timeEstimate").textContent =
-          text +
-          self.pad(Math.floor((self.seconds % 3600) / 60), 2) + ":" +
-          self.pad(self.seconds % 60, 2);
+    this.x = setInterval(function() {
+      var countDownDate = self.course.times[0];
 
-      }}, 1000);
+      var now = new Date().getTime();
 
-      // this.student = STUDENT_QUEUE.pop();
+      var distance = countDownDate - now;
 
-      this.student =
-      {
-        name: 'Brett',
-        studentId: 101068610,
-        email: 'brett@macalester.edu'
-      };
-    
+      console.log(distance);
+
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      this.estimatedTime = "";
+
+      if (distance >= 3600000) {
+        this.estimatedTime += self.pad(hours, 2) + ":";
+      }
+      document.getElementById("timeEstimate").textContent =
+        this.estimatedTime +
+        self.pad(minutes, 2) + ":" + self.pad(seconds, 2);
+
+    }, 1000);
   }
 
   pad(num, size) {
@@ -55,9 +59,6 @@ export class StudentCheckInPage {
   }
 
   increaseEstimate() {
-    if (this.clicked) {
-      this.seconds += 600;
-    }
   }
 
   changeColor() {
@@ -65,7 +66,7 @@ export class StudentCheckInPage {
     this.clicked = !this.clicked;
     if (!this.clicked)
     {
-      this.checkInButton.style.color = '#488aff';
+      this.checkInButton.style.color = '#01426A';
       this.checkInButton.textContent = 'Check in';
     }
     else
@@ -75,8 +76,8 @@ export class StudentCheckInPage {
     }
   }
 
-  addStudent(student: Student) {
-    this.studentQueue.addStudent(student);
+  addStudent() {
+    this.studentQueue.addStudent(this.loggedIn.student);
   }
 
   ionViewWillLeave() {

@@ -7,7 +7,7 @@ import {STUDENT_QUEUE} from "../../mocks/student.mocks";
 @Injectable()
 export class StudentQueueService {
 
-  private studentQueue = this.db.list<Student>('traffionic');
+  private studentQueue = this.db.list<Student>('student-queue');
 
   constructor(private db: AngularFireDatabase) {
 
