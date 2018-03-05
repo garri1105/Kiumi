@@ -1,10 +1,8 @@
-import {Component, Input} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import { IonicPage, NavParams } from 'ionic-angular';
 import {StudentsService} from "../../services/students/students.service";
 import {CoursesService} from "../../services/courses/courses.service";
 import {Course} from "../../models/course.interface";
-import {COURSE_LIST} from "../../mocks/course.mocks";
-import {Student} from "../../models/student.interface";
 import {StudentLoginService} from "../../services/student-login/student-login.service";
 
 /**
