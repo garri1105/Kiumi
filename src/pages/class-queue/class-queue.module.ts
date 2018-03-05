@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ClassQueuePage } from './class-queue';
 import {StudentQueueComponent} from "../../components/student-queue/student-queue";
+// import {} from '../../components/'
 
 @NgModule({
   declarations: [
