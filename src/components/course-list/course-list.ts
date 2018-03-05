@@ -16,4 +16,5 @@ import {Course} from "../../models/course.interface"
 
 export class CourseListComponent {
   @Input() courses: Course[];
+  @Input() nextPage: string;
 }
