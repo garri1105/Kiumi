@@ -12,8 +12,6 @@ import {StudentQueueService} from "../services/queue/queue.service";
 import {StudentsService} from "../services/students/students.service";
 import {CoursesService} from "../services/courses/courses.service";
 import {StudentLoginService} from "../services/student-login/student-login.service";
-import { ClassesOfPreceptorPage } from '../pages/classes-of-preceptor/classes-of-preceptor';
-
 @NgModule({
   declarations: [
     MyApp,
@@ -35,8 +33,7 @@ import { ClassesOfPreceptorPage } from '../pages/classes-of-preceptor/classes-of
     StudentQueueService,
     StudentsService,
     CoursesService,
-    StudentLoginService, 
-    ClassesOfPreceptorPage
+    StudentLoginService,
   ]
 })
 export class AppModule {}
