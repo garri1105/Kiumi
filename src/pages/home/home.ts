@@ -17,10 +17,25 @@ import {StudentLoginService} from "../../services/student-login/student-login.se
 })
 
 export class HomePage {
-  constructor(private login: StudentLoginService) {
+  constructor(private login: StudentLoginService,
+              private courses: CoursesService) {
     this.login.studentList;
   }
 
   ionViewDidLoad() {
+    this.courses
+      .getCourseList()
+      .snapshotChanges()
+      .map(changes => {
+          return changes.map(c => ({
+            key: c.payload.key,
+            times: [new Date().getTime() + 600000],
+            ...c.payload.val()
+          }))
+        }
+      )
+      .subscribe(courses => {
+        courses.map(course => this.courses.updateCourse(course));
+      });
   }
 }

@@ -29,7 +29,7 @@ export class StudentCheckInPage {
     var self = this;
 
     this.x = setInterval(function() {
-      var countDownDate = self.course.times[0];
+      var countDownDate = self.course.times;
 
       var now = new Date().getTime();
 
