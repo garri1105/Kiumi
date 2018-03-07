@@ -8,6 +8,7 @@ export class StudentsService {
   private studentList = this.db.list<Student>('student-list');
 
   constructor(private db: AngularFireDatabase) {
+
   }
 
   getStudentList() {
@@ -22,4 +23,7 @@ export class StudentsService {
     this.studentList.remove(student.key);
   }
 
+  updateStudent(student: Student) {
+    this.studentList.update(student.key, student);
+  }
 }

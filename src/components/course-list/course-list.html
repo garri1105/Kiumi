@@ -1,6 +1,6 @@
 <ion-list>
   <button ion-item *ngFor="let course of courses"
           [navPush]="nextPage" [navParams] ={course:course}>
-    {{ course.name }}
+    {{ course.number }}
   </button>
 </ion-list>
