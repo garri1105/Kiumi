@@ -7,7 +7,6 @@ import {STUDENT_QUEUE} from "../../mocks/student.mocks";
 import {COURSE_LIST} from "../../mocks/course.mocks";
 import {Course} from "../../models/course.interface";
 import {Observable} from "rxjs/Observable";
-import { File } from "@ionic-native/file";
 import {StudentLoginService} from "../../services/student-login/student-login.service";
 
 @IonicPage()
@@ -19,23 +18,22 @@ import {StudentLoginService} from "../../services/student-login/student-login.se
 export class HomePage {
   constructor(private login: StudentLoginService,
               private courses: CoursesService) {
-    this.login.studentList;
   }
 
   ionViewDidLoad() {
-    this.courses
-      .getCourseList()
-      .snapshotChanges()
-      .map(changes => {
-          return changes.map(c => ({
-            key: c.payload.key,
-            times: [new Date().getTime() + 600000],
-            ...c.payload.val()
-          }))
-        }
-      )
-      .subscribe(courses => {
-        courses.map(course => this.courses.updateCourse(course));
-      });
+    // this.courses
+    //   .getCourseList()
+    //   .snapshotChanges()
+    //   .map(changes => {
+    //       return changes.map(c => ({
+    //         key: c.payload.key,
+    //         times: new Date().getTime() + 600000,
+    //         ...c.payload.val()
+    //       }))
+    //     }
+    //   )
+    //   .subscribe(courses => {
+    //     courses.map(course => this.courses.updateCourse(course));
+    //   });
   }
 }
