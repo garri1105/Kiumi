@@ -5,15 +5,22 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 import { HomePage } from '../pages/home/home';
+import {AuthProvider} from "../providers/auth/auth";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: string = 'HomePage';
+  rootPage: string;
+
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
+              private auth: AuthProvider) {
+
+    this.auth.getAuthenticatedUser().subscribe(auth => {
+      !auth ? this.rootPage = 'LoginPage' : this.rootPage = 'HomePage';
+    });
 
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

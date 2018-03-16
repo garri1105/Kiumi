@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { COURSE_LIST } from '../../mocks/course.mocks';
-import { Course } from '../../models/course.interface';
+import { Course } from '../../models/course/course.interface';
 
 
 /**

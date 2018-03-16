@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Course } from "../../models/course.interface";
+import { Course } from "../../models/course/course.interface";
 
 @Injectable()
-export class CoursesService {
+export class CoursesProvider {
 
   private courseList = this.db.list<Course>('course-list');
 

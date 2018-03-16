@@ -8,10 +8,15 @@ import { MyApp } from './app.component';
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { FIREBASE_CONFIG } from "./firebase.credentials";
-import {StudentQueueService} from "../services/queue/queue.service";
-import {StudentsService} from "../services/students/students.service";
-import {CoursesService} from "../services/courses/courses.service";
-import {StudentLoginService} from "../services/student-login/student-login.service";
+import {StudentQueueProvider} from "../providers/queue/queue";
+import {StudentsProvider} from "../providers/students/students";
+import {CoursesProvider} from "../providers/courses/courses";
+import {StudentLoginProvider} from "../providers/student-login/student-login";
+import {DataProvider} from "../providers/data/data";
+import {AuthProvider} from "../providers/auth/auth";
+import {AngularFireAuthModule} from "angularfire2/auth";
+import {FormsModule} from "@angular/forms";
+
 @NgModule({
   declarations: [
     MyApp,
@@ -20,7 +25,9 @@ import {StudentLoginService} from "../services/student-login/student-login.servi
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,10 +37,12 @@ import {StudentLoginService} from "../services/student-login/student-login.servi
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StudentQueueService,
-    StudentsService,
-    CoursesService,
-    StudentLoginService,
+    StudentQueueProvider,
+    StudentsProvider,
+    CoursesProvider,
+    StudentLoginProvider,
+    DataProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}

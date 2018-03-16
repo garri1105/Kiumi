@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
-import {StudentsService} from "../../services/students/students.service";
-import {CoursesService} from "../../services/courses/courses.service";
-import {Student} from "../../models/student.interface";
+import {StudentsProvider} from "../../providers/students/students";
+import {CoursesProvider} from "../../providers/courses/courses";
+import {Student} from "../../models/student/student.interface";
 import {STUDENT_QUEUE} from "../../mocks/student.mocks";
 import {COURSE_LIST} from "../../mocks/course.mocks";
-import {Course} from "../../models/course.interface";
+import {Course} from "../../models/course/course.interface";
 import {Observable} from "rxjs/Observable";
-import {StudentLoginService} from "../../services/student-login/student-login.service";
+import {StudentLoginProvider} from "../../providers/student-login/student-login";
 
 @IonicPage()
 @Component({
@@ -16,8 +16,8 @@ import {StudentLoginService} from "../../services/student-login/student-login.se
 })
 
 export class HomePage {
-  constructor(private login: StudentLoginService,
-              private courses: CoursesService) {
+  constructor(private login: StudentLoginProvider,
+              private courses: CoursesProvider) {
   }
 
   ionViewDidLoad() {

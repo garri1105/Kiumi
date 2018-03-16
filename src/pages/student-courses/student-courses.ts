@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
-import {StudentsService} from "../../services/students/students.service";
-import {CoursesService} from "../../services/courses/courses.service";
-import {Course} from "../../models/course.interface";
-import {StudentLoginService} from "../../services/student-login/student-login.service";
+import {StudentsProvider} from "../../providers/students/students";
+import {CoursesProvider} from "../../providers/courses/courses";
+import {Course} from "../../models/course/course.interface";
+import {StudentLoginProvider} from "../../providers/student-login/student-login";
 
 /**
  * Generated class for the StudentCoursesPage page.
@@ -21,9 +21,9 @@ export class StudentCoursesPage {
 
   studentCourses: Course[];
   constructor(private navParams: NavParams,
-              private students: StudentsService,
-              private courses: CoursesService,
-              private loggedIn: StudentLoginService) {
+              private students: StudentsProvider,
+              private courses: CoursesProvider,
+              private loggedIn: StudentLoginProvider) {
   }
 
   ionViewDidLoad() {

@@ -1,7 +1,7 @@
 import {Component, Injectable} from '@angular/core';
-import {StudentQueueService} from "../../services/queue/queue.service";
+import {StudentQueueProvider} from "../../providers/queue/queue";
 import {Observable} from "rxjs/Observable";
-import {Student} from "../../models/student.interface";
+import {Student} from "../../models/student/student.interface";
 
 /**
  * Generated class for the StudentQueueComponent component.
@@ -19,7 +19,7 @@ export class StudentQueueComponent {
 
   studentQueue$: Observable<Student[]>;
 
-  constructor(private queue: StudentQueueService) {
+  constructor(private queue: StudentQueueProvider) {
     // this.studentQueue$ = this.queue.getMockStudentQueue();
 
     this.studentQueue$ = this.queue

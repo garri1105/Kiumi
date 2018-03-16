@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import { StudentQueueService } from '../../services/queue/queue.service';
-import { StudentLoginService } from "../../services/student-login/student-login.service";
-import {Course} from "../../models/course.interface";
+import { StudentQueueProvider } from '../../providers/queue/queue';
+import { StudentLoginProvider } from "../../providers/student-login/student-login";
+import {Course} from "../../models/course/course.interface";
 
 
 @IonicPage()
@@ -13,50 +13,16 @@ import {Course} from "../../models/course.interface";
 
 export class StudentCheckInPage {
   course: Course;
-  estimatedTime: string;
   clicked: boolean;
   checkInButton: HTMLElement;
-  x: number;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
-              private studentQueue: StudentQueueService,
-              private loggedIn: StudentLoginService) {
+              private studentQueue: StudentQueueProvider,
+              private loggedIn: StudentLoginProvider) {
 
     this.clicked = false;
     this.course = this.navParams.get('course');
-
-    var self = this;
-
-    this.x = setInterval(function() {
-      var countDownDate = self.course.times[0];
-
-      var now = new Date().getTime();
-
-      var distance = countDownDate - now;
-
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      this.estimatedTime = "";
-
-      if (distance >= 3600000) {
-        this.estimatedTime += self.pad(hours, 2) + ":";
-      }
-      document.getElementById("timeEstimate").textContent =
-        this.estimatedTime +
-        self.pad(minutes, 2) + ":" + self.pad(seconds, 2);
-
-    }, 1000);
-  }
-
-  pad(num, size) {
-    var s = num+"";
-    while (s.length < size) s = "0" + s;
-    return s;
-  }
-
-  increaseEstimate() {
   }
 
   changeColor() {
@@ -76,9 +42,5 @@ export class StudentCheckInPage {
 
   addStudent() {
     this.studentQueue.addStudent(this.loggedIn.student);
-  }
-
-  ionViewWillLeave() {
-    clearInterval(this.x);
   }
 }

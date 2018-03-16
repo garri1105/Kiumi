@@ -1,5 +1,5 @@
 import {Component, Injectable, Input} from '@angular/core';
-import {Course} from "../../models/course.interface"
+import {Course} from "../../models/course/course.interface"
 
 /**
  * Generated class for the CourseListComponent component.
@@ -17,7 +17,4 @@ import {Course} from "../../models/course.interface"
 export class CourseListComponent {
   @Input() courses: Course[];
   @Input() nextPage: string;
-
-  ngOnInit() {
-  }
 }
