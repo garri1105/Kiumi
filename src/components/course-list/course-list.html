@@ -1,5 +1,5 @@
 <ion-list>
-  <button ion-item *ngFor="let course of courses"
+  <button class="courselist" ion-item *ngFor="let course of courses"
           [navPush]="nextPage" [navParams] ={course:course}>
     {{ course.number }}
   </button>
