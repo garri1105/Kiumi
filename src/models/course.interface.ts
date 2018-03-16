@@ -1,6 +1,7 @@
 export interface Course {
   key?: string;
-  name: string;
+  number: string;
+  title: string;
   studentsInQueue: string[];
   times: number[];
 }
