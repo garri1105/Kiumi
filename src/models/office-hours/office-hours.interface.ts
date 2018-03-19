@@ -1,7 +1,7 @@
 export interface OfficeHours {
   key?: string;
-  preceptors: string[];
+  instructors: string[];
   studentQueue: string[];
-  location: string[];
+  location: string;
   times: Date[];
 }
