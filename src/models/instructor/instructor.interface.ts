@@ -1,6 +1,4 @@
-import {Profile} from "../profile/profile.interface";
-
-export interface Instructor extends Profile {
+export interface Instructor {
   courses: string[];
   officeHours: string[];
 }

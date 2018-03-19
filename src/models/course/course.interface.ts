@@ -3,5 +3,7 @@ export interface Course {
   number: string;
   title: string;
   students: string[];
+  instructors: string[];
   officeHours: string[];
+  selection: string;
 }
