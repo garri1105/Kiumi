@@ -1,14 +1,8 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {LoginResponse} from "../../models/login/login-response.interface";
 import {AngularFireAuth} from "angularfire2/auth";
 import {Account} from '../../models/account/account.interface'
-import {NavController, ToastController} from "ionic-angular";
-/*
-  Generated class for the AuthProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class AuthProvider {
 
