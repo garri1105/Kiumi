@@ -1,0 +1,41 @@
+<form #editProfileForm="ngForm" novalidate>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input
+          [(ngModel)]="profile.name"
+          type="text"
+          name="name"
+          #email="ngModel"
+          required></ion-input>
+      </ion-item>
+      <div padding *ngIf="email.invalid && email.dirty">
+        <span class="global__input-error">Please enter your name</span>
+      </div>
+
+      <ion-item item-left>
+        <ion-label>Instructor</ion-label>
+        <ion-checkbox
+          [(ngModel)]="instructorCheck"
+          name="instructorBox"
+          #instructorBox="ngModel"></ion-checkbox>
+      </ion-item>
+      <ion-item item-right>
+        <ion-label>Student</ion-label>
+        <ion-checkbox
+          [(ngModel)]="studentCheck"
+          name="studentBox"
+          #studentBox="ngModel"></ion-checkbox>
+      </ion-item>
+
+
+      <button
+        ion-button
+        (click)="saveProfile()"
+        [disabled]="editProfileForm.invalid || (!studentCheck && !instructorCheck)">Save</button>
+
+    </ion-card-content>
+  </ion-card>
+</form>
+
