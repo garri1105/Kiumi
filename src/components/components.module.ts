@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
-import { StudentQueueComponent } from './student-queue/student-queue';
 import {CourseListComponent} from "./course-list/course-list";
 import {RegisterFormComponent} from "./register-form/register-form";
 import {LoginFormComponent} from "./login-form/login-form";
+import { CourseSearchComponent } from './course-search/course-search';
+import { EditProfileFormComponent } from './edit-profile-form/edit-profile-form';
+import { ProfileViewComponent } from './profile-view/profile-view';
 
 @NgModule({
-	declarations: [StudentQueueComponent,
-    CourseListComponent,
+	declarations: [CourseListComponent,
     LoginFormComponent,
-    RegisterFormComponent],
+    RegisterFormComponent,
+    CourseSearchComponent,
+    EditProfileFormComponent,
+    ProfileViewComponent],
 	imports: [],
-	exports: [StudentQueueComponent,
-    CourseListComponent,
+	exports: [CourseListComponent,
     LoginFormComponent,
-    RegisterFormComponent]
+    RegisterFormComponent,
+    CourseSearchComponent,
+    EditProfileFormComponent,
+    ProfileViewComponent]
 })
 export class ComponentsModule {}

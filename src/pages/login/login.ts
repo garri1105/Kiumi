@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {LoginResponse} from "../../models/login/login-response.interface";
-import {DataProvider} from "../../providers/data/data";
+import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 import {User} from "firebase/app";
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {take} from "rxjs/operators";
 
 @IonicPage()
 @Component({
@@ -21,23 +15,18 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private toast: ToastController,
-              private data: DataProvider) {
+              private profileData: ProfileDataProvider) {
   }
 
   login(event: LoginResponse) {
     if(!event.error) {
-      this.toast.create({
-        message: `Welcome to Beep, ${event.result.email}`,
-        duration: 3000
-      }).present();
-
-      this.data.getProfile(<User>event.result)
+      this.profileData.getProfile(<User>event.result)
         .subscribe(profile => {
-          profile
-            .valueChanges()
+          profile.valueChanges().pipe(take(1))
             .subscribe(value => {
-              console.log(value);
-              value ? this.navCtrl.setRoot('HomePage') : this.navCtrl.setRoot('EditProfilePage')
+              value ?
+                this.navCtrl.setRoot('TabsPage')
+                : this.navCtrl.setRoot('EditProfilePage')
         })});
     }
     else {

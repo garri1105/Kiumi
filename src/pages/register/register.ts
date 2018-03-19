@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, ToastController} from 'ionic-angular';
 import {LoginResponse} from "../../models/login/login-response.interface";
 
 /**
@@ -16,7 +16,8 @@ import {LoginResponse} from "../../models/login/login-response.interface";
 })
 export class RegisterPage {
 
-  constructor(private toast: ToastController) {
+  constructor(private toast: ToastController,
+              private navCtrl: NavController) {
 
   }
 
@@ -26,6 +27,8 @@ export class RegisterPage {
         message: `Account created: ${event.result.email}`,
         duration: 3000
       }).present();
+
+      this.navCtrl.setRoot('EditProfilePage');
     }
     else {
       this.toast.create({
