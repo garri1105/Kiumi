@@ -26,8 +26,14 @@ export class EditProfileFormComponent {
 
     this.profile = this.globalProfile.getProfile();
 
-    this.instructorCheck = !!this.profile.instructor;
-    this.studentCheck = !!this.profile.student;
+    if (this.profile) {
+      this.instructorCheck = !!this.profile.instructor;
+      this.studentCheck = !!this.profile.student;
+    }
+    else {
+      this.instructorCheck = false;
+      this.studentCheck = false;
+    }
 
     this.saveProfileResult = new EventEmitter<Boolean>();
 
