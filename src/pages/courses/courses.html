@@ -1,0 +1,16 @@
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>My Courses</ion-title>
+    <ion-buttons end>
+      <button ion-button [navPush]="'AddCoursesPage'">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <course-list [courseList]="studentCourses"></course-list>
+</ion-content>

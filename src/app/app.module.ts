@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -8,14 +8,13 @@ import { MyApp } from './app.component';
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { FIREBASE_CONFIG } from "./firebase.credentials";
-import {StudentQueueProvider} from "../providers/queue/queue";
-import {StudentsProvider} from "../providers/students/students";
-import {CoursesProvider} from "../providers/courses/courses";
-import {StudentLoginProvider} from "../providers/student-login/student-login";
-import {DataProvider} from "../providers/data/data";
+import {CourseDataProvider} from "../providers/course-data/course-data";
+import {GlobalProfileProvider} from "../providers/global-profile/global-profile";
+import {ProfileDataProvider} from "../providers/profile-data/profile-data";
 import {AuthProvider} from "../providers/auth/auth";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {FormsModule} from "@angular/forms";
+import { UtilitiesProvider } from '../providers/utilities/utilities';
 
 @NgModule({
   declarations: [
@@ -37,12 +36,11 @@ import {FormsModule} from "@angular/forms";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StudentQueueProvider,
-    StudentsProvider,
-    CoursesProvider,
-    StudentLoginProvider,
-    DataProvider,
-    AuthProvider
+    CourseDataProvider,
+    GlobalProfileProvider,
+    ProfileDataProvider,
+    AuthProvider,
+    UtilitiesProvider
   ]
 })
 export class AppModule {}

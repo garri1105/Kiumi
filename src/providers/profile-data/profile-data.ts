@@ -6,12 +6,20 @@ import {take} from "rxjs/operators";
 import {of} from "rxjs/observable/of";
 
 @Injectable()
-export class DataProvider {
+export class ProfileDataProvider {
 
-  profileObject: AngularFireObject<Profile>;
-  profileList: AngularFireList<Profile>;
+  private profileObject: AngularFireObject<Profile>;
+  private profileList: AngularFireList<Profile> = this.database.list<Profile>('profiles');
 
   constructor(private database: AngularFireDatabase) {
+  }
+
+  getProfileList() {
+    return this.profileList;
+  }
+
+  updateProfile(profile: Profile) {
+    this.profileList.update(profile.key, profile);
   }
 
   getProfile(user: User) {
@@ -20,15 +28,14 @@ export class DataProvider {
     return of(this.profileObject).pipe(take(1));
   }
 
-  searchUser(firstName: string) {
-    const query = this.database.list<Profile>('/profiles', ref =>
-      ref.orderByChild('firstName').equalTo(firstName));
-
-    return of(query).pipe(take(1));
+  removeProfile(profile: Profile) {
+    this.profileList.remove(profile.key);
   }
 
   async saveProfile(user: User, profile: Profile) {
     this.profileObject = this.database.object(`/profiles/${user.uid}`);
+    profile.key = user.uid;
+
     try {
       await this.profileObject.set(profile);
       return true;
