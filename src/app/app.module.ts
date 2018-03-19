@@ -15,6 +15,7 @@ import {AuthProvider} from "../providers/auth/auth";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {FormsModule} from "@angular/forms";
 import { UtilitiesProvider } from '../providers/utilities/utilities';
+import { OfficeHoursDataProvider } from '../providers/office-hours-data/office-hours-data';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UtilitiesProvider } from '../providers/utilities/utilities';
     GlobalProfileProvider,
     ProfileDataProvider,
     AuthProvider,
-    UtilitiesProvider
+    UtilitiesProvider,
+    OfficeHoursDataProvider
   ]
 })
 export class AppModule {}
