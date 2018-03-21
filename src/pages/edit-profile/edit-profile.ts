@@ -19,7 +19,7 @@ export class EditProfilePage {
         duration: 3000
       }).present();
 
-      this.navCtrl.setRoot('AddCoursesPage');
+      this.navCtrl.setRoot('StudentCoursesPage');
     }
     else {
       this.toast.create({

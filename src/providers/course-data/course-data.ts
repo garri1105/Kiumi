@@ -17,6 +17,10 @@ export class CourseDataProvider {
     return this.courseList;
   }
 
+  getCourseByKey(key: string) {
+    return this.db.object(`course-list/${key}`);
+  }
+
   addCourse(course: Course) {
     this.courseList.push(course);
   }

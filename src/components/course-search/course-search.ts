@@ -1,10 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Course} from "../../models/course/course.interface";
 import {CourseDataProvider} from "../../providers/course-data/course-data";
-import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 import {Profile} from "../../models/profile/profile.interface";
-import {User} from "firebase/app";
-import {AuthProvider} from "../../providers/auth/auth";
 
 /**
  * Generated class for the CourseSearchComponent component.

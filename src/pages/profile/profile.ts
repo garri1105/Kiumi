@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import {AlertController, IonicPage, NavController} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -8,6 +8,20 @@ import { IonicPage } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor() {
+  constructor(private navCtrl: NavController,
+              private alert: AlertController) {
+  }
+
+  signOutResult(event: Promise<any>) {
+      event
+        .then(result => {
+        this.navCtrl.setRoot("LoginPage");
+      })
+        .catch(error =>
+          this.alert.create({
+            title: 'Failed to sign out',
+            subTitle: error
+          })
+        );
   }
 }
