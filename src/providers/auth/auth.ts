@@ -43,4 +43,14 @@ export class AuthProvider {
     }
   }
 
+  async signOut() {
+      try {
+        await this.afAuth.auth.signOut();
+        return true;
+      }
+      catch(e) {
+        return false;
+      }
+  }
+
 }
