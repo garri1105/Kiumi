@@ -26,19 +26,27 @@ export class AddCoursesPage {
   }
 
   saveCourses() {
-    this.addedCourses.map(course => {
-      course.selection = null;
-      this.courseData.updateCourse(course);
-    });
+    if (this.addedCourses) {
+      this.addedCourses.map(course => {
+        course.selection = null;
+        this.courseData.updateCourse(course);
+      });
 
-    this.profileData.updateProfile(this.profile);
+      this.profileData.updateProfile(this.profile);
 
-    this.toast.create({
-      message: 'Courses saved succesfully',
-      duration: 3000
-    }).present();
+      this.toast.create({
+        message: 'Courses saved succesfully',
+        duration: 3000
+      }).present();
 
-    this.navCtrl.setRoot('TabsPage');
+      this.navCtrl.setRoot('TabsPage');
+    }
+    else {
+      this.toast.create({
+        message: 'No courses to be saved',
+        duration: 3000
+      }).present();
+    }
   }
 
   getSelectedCourses(event: Course[]) {
