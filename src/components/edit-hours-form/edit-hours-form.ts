@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
  * Components.
  */
 @Component({
-  selector: 'edit-hours',
-  templateUrl: 'edit-hours.html'
+  selector: 'edit-hours-form',
+  templateUrl: 'edit-hours-form.html'
 })
 export class EditHoursComponent {
 

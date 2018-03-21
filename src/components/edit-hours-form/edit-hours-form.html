@@ -1,4 +1,50 @@
-<!-- Generated template for the EditHoursComponent component -->
-<div>
-  {{text}}
-</div>
+<form #editOfficeHourForm="ngForm" novalidate>
+  <ion-card>
+    <ion-card-content>
+
+      <h1>Office Hour 1</h1>
+
+      <ion-item>
+        <ion-label>My office hours</ion-label>
+        <ion-toggle></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Location</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-list>
+        <ion-list-header>
+          Time Slot
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Start Time</ion-label>
+          <ion-datetime displayFormat="HH:mm"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>End Time</ion-label>
+          <ion-datetime displayFormat="HH:mm"></ion-datetime>
+        </ion-item>
+      </ion-list>
+
+      <ion-item>
+        <ion-label floating>Day of Week</ion-label>
+        <ion-select>
+          <ion-option>Monday</ion-option>
+          <ion-option>Tuesday</ion-option>
+          <ion-option>Wednesday</ion-option>
+          <ion-option>Thursday</ion-option>
+          <ion-option>Friday</ion-option>
+          <ion-option>Saturday</ion-option>
+          <ion-option>Sunday</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <button ion-button color = "primary">Save</button>
+
+    </ion-card-content>
+  </ion-card>
+</form>
+
+
