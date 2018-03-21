@@ -4,6 +4,7 @@ import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Course} from "../../models/course/course.interface";
 import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
 import {Profile} from "../../models/profile/profile.interface";
+import {UtilitiesProvider} from "../../providers/utilities/utilities";
 
 /**
  * Generated class for the StudentCoursesPage page.
@@ -24,7 +25,8 @@ export class StudentCoursesPage {
 
   constructor(private navParams: NavParams,
               private courseData: CourseDataProvider,
-              private globalProfile: GlobalProfileProvider) {
+              private globalProfile: GlobalProfileProvider,
+              private utilities: UtilitiesProvider) {
 
   }
 
@@ -41,7 +43,7 @@ export class StudentCoursesPage {
       )
       .subscribe(courses => {
         this.studentCourses = courses.filter(course =>
-          ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
+              ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
           (this.profile.student && this.profile.student.courses.indexOf(course.key)) > -1));
       });
   }

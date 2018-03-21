@@ -14,21 +14,22 @@
         <span class="global__input-error">Please enter your name</span>
       </div>
 
-      <ion-item item-left>
+      <ion-item>
         <ion-label>Instructor</ion-label>
         <ion-checkbox
+          (ionChange)="alertUser(instructorBox)"
           [(ngModel)]="instructorCheck"
-          name="instructorBox"
+          name="Instructor"
           #instructorBox="ngModel"></ion-checkbox>
       </ion-item>
-      <ion-item item-right>
+      <ion-item>
         <ion-label>Student</ion-label>
         <ion-checkbox
+          (ionChange)="alertUser(studentBox)"
           [(ngModel)]="studentCheck"
-          name="studentBox"
+          name="Student"
           #studentBox="ngModel"></ion-checkbox>
       </ion-item>
-
 
       <button
         ion-button
