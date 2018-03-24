@@ -1,6 +1,19 @@
 page-student-courses {
   .navBar{
+    //background-color: #428957;
+    //color: #32db64;
+    .backgroundimage{
+      background: url("../../assets/imgs/woodbrown.jpg");
+      background-size: cover;
+
+    }
+
+  }
+
+  .body {
     background-color: #428957;
-    color: #32db64;
+    background: url("../../assets/imgs/chalkboard.png");
+
+
   }
 }
