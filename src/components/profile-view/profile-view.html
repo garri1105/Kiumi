@@ -2,12 +2,12 @@
   <ion-card-content>
     <ion-item>
       <ion-label floating>Name</ion-label>
-      <ion-input [value]="profile.name" [readonly]></ion-input>
+      <ion-input [value]="profile.name" readonly></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Status</ion-label>
-      <ion-input [value]="instructorStatus" [readonly]></ion-input>
-      <ion-input [value]="studentStatus" [readonly]></ion-input>
+      <ion-input *ngIf="this.profile.instructor" readonly [value]="'Instructor'"></ion-input>
+      <ion-input *ngIf="this.profile.student" readonly [value]="'Student'"></ion-input>
     </ion-item>
   </ion-card-content>
 </ion-card>
