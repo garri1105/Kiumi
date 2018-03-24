@@ -3,6 +3,7 @@ import {Course} from "../../models/course/course.interface";
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Profile} from "../../models/profile/profile.interface";
 
+
 /**
  * Generated class for the CourseSearchComponent component.
  *

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, Injectable, Input} from '@angular/core';
+import {Course} from "../../models/course/course.interface"
+import {Profile} from "../../models/profile/profile.interface";
+import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
 
 /**
  * Generated class for the OfficeHourListComponent component.
@@ -6,6 +9,7 @@ import { Component } from '@angular/core';
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
+
 @Component({
   selector: 'office-hour-list',
   templateUrl: 'office-hour-list.html'
