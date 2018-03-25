@@ -7,9 +7,46 @@
 </ion-header>
 
 <ion-content padding>
-  <h2 ion-text align="center" color="primary">Current Office Hour - 1:00 pm to 3:00 pm</h2>
-  <h2 ion-text align="center" color="primary">Upcoming Office Hours</h2>
-  <button ion-button [navPush]="'EditHoursPage'" align="center">
-    Edit Office Hours
-  </button>
+
+  <ion-card>
+    <ion-card-header>
+      Current Office Hours
+    </ion-card-header>
+    <ion-card-content>
+      <button ion-button padding clear small>
+        Ends at 4:30 pm
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      Upcoming Office Hours
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <button ion-button padding clear small>
+          Wednesday at 4:30 pm
+        </button>
+        <button ion-button padding clear small>
+          Thursday at 9:00 am
+        </button>
+        <button ion-button padding clear small>
+          Friday at 6:00 pm
+        </button>
+        <button ion-button padding clear small>
+          Saturday at 1:00 pm
+        </button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header [navPush]="'EditHoursPage'">
+        Edit Office Hours
+    </ion-card-header>
+  </ion-card>
+
 </ion-content>
+
