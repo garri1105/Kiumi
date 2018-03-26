@@ -1,9 +1,9 @@
 <button ion-button align="center" (click)="addOfficeHourSlot()">Add Office Hours</button>
 <form #editOfficeHourForm="ngForm" novalidate>
 
-  <ion-slides pager *ngIf="officeHoursList">
-    <ion-slide *ngFor="let officeHour of officeHoursList">
-      <ion-card>
+  <ion-slides pager *ngIf="officeHoursList.length > 1">
+    <ion-slide *ngFor="let officeHour of officeHoursList; let i = index">
+      <ion-card *ngIf="i > 0">
         <ion-card-content>
           <h1>Office Hour</h1>
 

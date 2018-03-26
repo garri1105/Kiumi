@@ -26,8 +26,8 @@ export class EditHoursComponent {
   // officeHoursDataProvider: OfficeHoursDataProvider;
 
   constructor(private officeHoursDataProvider: OfficeHoursDataProvider) {
-    this.officeHoursList = [];
-    // this.officeHoursList = [this.officeHour];
+    // this.officeHoursList = [];
+    // this.officeHoursList = [officeHoursDataProvider.getOfficeHours(this.courseKey)];
     console.log('Hello EditHoursComponent Component');
     this.text = 'Hello World';
   }
@@ -38,15 +38,13 @@ export class EditHoursComponent {
   }
 
   addOfficeHours(officeHours: OfficeHours) {
-    console.log(this.courseKey);
-    console.log(officeHours);
+    // console.log(this.courseKey);
+    // console.log(officeHours);
     this.officeHoursDataProvider.addOfficeHours(this.courseKey, officeHours);
   }
 
-  // ngOnInit() {
-  //   if (!this.officeHour){
-  //     this.officeHour = {} as OfficeHours;
-  //   }
-  // }
+  ngOnInit() {
+    this.officeHoursList = this.officeHoursDataProvider.getOfficeHours(this.courseKey);
+  }
 
 }
