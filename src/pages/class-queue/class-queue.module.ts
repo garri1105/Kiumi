@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ClassQueuePage } from './class-queue';
-import {StudentQueueComponent} from "../../components/student-queue/student-queue";
+import {CourseOfficeHoursComponent} from "../../components/course-office-hours/course-office-hours";
 
 @NgModule({
   declarations: [
     ClassQueuePage,
-    StudentQueueComponent
+    CourseOfficeHoursComponent
   ],
   imports: [
     IonicPageModule.forChild(ClassQueuePage),
