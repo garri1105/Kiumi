@@ -33,8 +33,9 @@
       <br>
       <ion-row>
         <div>
-          <button ion-button color="light" [navPush]="'RegisterPage'">Register</button>
           <button ion-button (click)="login()" [disabled]="loginForm.invalid">Login</button>
+          <button ion-button color="light" [navPush]="'SignUpPage'">Sign Up</button>
+
         </div>
       </ion-row>
     </ion-card-content>

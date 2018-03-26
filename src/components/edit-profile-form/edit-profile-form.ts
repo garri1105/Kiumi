@@ -122,7 +122,7 @@ export class EditProfileFormComponent {
             text: 'Cancel',
             role: 'cancel',
             handler: () => {
-              checkbox.valueAccessor.writeValue(true);
+              checkbox.valueAccessor.value = true;
             }
           },
           {
