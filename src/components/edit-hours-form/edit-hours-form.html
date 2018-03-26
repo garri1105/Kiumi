@@ -1,7 +1,7 @@
-<button ion-button align="center" (click)="addOfficeHour(officeHour)">Add Office Hours</button>
+<button ion-button align="center" (click)="addOfficeHourSlot()">Add Office Hours</button>
 <form #editOfficeHourForm="ngForm" novalidate>
 
-  <ion-slides pager>
+  <ion-slides pager *ngIf="officeHoursList">
     <ion-slide *ngFor="let officeHour of officeHoursList">
       <ion-card>
         <ion-card-content>
@@ -14,7 +14,7 @@
 
           <ion-item>
             <ion-label floating>Location</ion-label>
-            <ion-input></ion-input>
+            <ion-input [(ngModel)]="officeHour.location" name="first"></ion-input>
           </ion-item>
 
           <ion-list>
@@ -44,12 +44,12 @@
             </ion-select>
           </ion-item>
 
-          <button ion-button color = "primary">Save</button>
+          <button ion-button color = "primary" (click) = "addOfficeHours(officeHour)">Save</button>
 
         </ion-card-content>
       </ion-card>
     </ion-slide>
   </ion-slides>
 
-
 </form>
+

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+
 /**
  * Generated class for the EditHoursPage page.
  *
@@ -14,8 +15,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'edit-hours.html',
 })
 export class EditHoursPage {
+  courseKey: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private navParams: NavParams) {
+    this.courseKey = this.navParams.get("courseKey");
   }
 
   ionViewDidLoad() {
