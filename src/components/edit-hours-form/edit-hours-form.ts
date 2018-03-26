@@ -16,7 +16,7 @@ import { Course } from '../../models/course/course.interface';
 })
 export class EditHoursComponent {
   // @Input() officeHour: OfficeHours;
-  @Input() course: Course;
+  @Input() courseKey: string;
   @Output() updatedOfficeHoursList: OfficeHours[];
 
 
@@ -38,9 +38,9 @@ export class EditHoursComponent {
   }
 
   addOfficeHours(officeHours: OfficeHours) {
-    console.log(this.course.key);
+    console.log(this.courseKey);
     console.log(officeHours);
-    this.officeHoursDataProvider.addOfficeHours(this.course.key, officeHours);
+    this.officeHoursDataProvider.addOfficeHours(this.courseKey, officeHours);
   }
 
   // ngOnInit() {
