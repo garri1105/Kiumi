@@ -23,8 +23,10 @@ export class OfficeHoursDataProvider {
   }
 
   getOfficeHours(courseKey: string) {
+    var officeHoursList : OfficeHours[]; 
     this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) =>
-    {return course.officeHours});
+    {officeHoursList = course.officeHours});
+    return officeHoursList
   }
 
   addOfficeHours(courseKey: string, officeHours: OfficeHours) {
