@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { OfficeHours } from "../../models/office-hours/office-hours.interface";
+import { CourseDataProvider } from '../course-data/course-data';
+import { Course } from '../../models/course/course.interface';
 
 /*
   Generated class for the OfficeHoursDataProvider provider.
@@ -12,26 +14,39 @@ import { OfficeHours } from "../../models/office-hours/office-hours.interface";
 @Injectable()
 export class OfficeHoursDataProvider {
 
+
   private officeHoursList = this.db.list<OfficeHours>('edit-hours-form');
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private courseData: CourseDataProvider) {
     console.log('Hello OfficeHoursDataProvider Provider');
   }
 
-  getOfficeHours() {
-    return this.officeHoursList;
+  getOfficeHours(courseKey: string) {
+    this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) => 
+    {return course.officeHours});
   }
 
-  addOfficeHours(officeHours: OfficeHours) {
-    this.officeHoursList.push(officeHours);
+  addOfficeHours(courseKey: string, officeHours: OfficeHours) {
+    this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) => 
+    {
+      course.officeHours.push(officeHours); 
+      this.courseData.updateCourse(course)
+    });
   }
 
-  removeOfficeHours(officeHours: OfficeHours) {
-    this.officeHoursList.remove(officeHours.key);
+  removeOfficeHours(courseKey: string, officeHours: OfficeHours) {
+    this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) => 
+    {
+      if(course.officeHours.indexOf(officeHours) != -1) {
+        course.officeHours.splice(course.officeHours.indexOf(officeHours), 1); 
+      }
+      this.courseData.updateCourse(course)
+    });
   }
 
-  editOfficeHours(officeHours: OfficeHours) {
-    this.officeHoursList.update(officeHours.key, officeHours);
-  }
+  // editOfficeHours(courseKey: string, officeHours: OfficeHours) {
+  //   this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) => 
+  //   {return course.officeHours});
+  // }
 
 }

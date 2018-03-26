@@ -7,6 +7,11 @@
 </ion-header>
 
 <ion-content padding>
+  <h2 ion-text align="center" color="primary">Current Office Hour - 1:00 pm to 3:00 pm</h2>
+  <h2 ion-text align="center" color="primary">Upcoming Office Hours</h2>
+  <button ion-button [navPush]="'EditHoursPage'" [navParams]="{courseKey: course.key}" align="center">
+    Edit Office Hours
+  </button>
 
   <ion-card>
     <ion-card-header>
