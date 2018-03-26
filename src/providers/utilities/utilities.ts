@@ -32,9 +32,12 @@ export class UtilitiesProvider {
       )
       .subscribe(courses => {
         courses.map(course => {
+          console.log(course);
           this.courseData.updateCourse(course);
         });
       });
+    this.resetStudents();
+    this.resetInstructors();
   }
 
   resetStudents() {

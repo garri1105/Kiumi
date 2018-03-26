@@ -3,6 +3,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { OfficeHours } from "../../models/office-hours/office-hours.interface";
 import { CourseDataProvider } from '../course-data/course-data';
 import { Course } from '../../models/course/course.interface';
+import {take} from "rxjs/operators";
 
 /*
   Generated class for the OfficeHoursDataProvider provider.
@@ -22,30 +23,33 @@ export class OfficeHoursDataProvider {
   }
 
   getOfficeHours(courseKey: string) {
-    this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) => 
+    this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) =>
     {return course.officeHours});
   }
 
   addOfficeHours(courseKey: string, officeHours: OfficeHours) {
-    this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) => 
+    var course$ = this.courseData.getCourseByKey(courseKey).valueChanges().pipe(take(1));
+
+    course$.subscribe((course: Course) =>
     {
-      course.officeHours.push(officeHours); 
+      console.log(officeHours);
+      course.officeHours.push(officeHours);
       this.courseData.updateCourse(course)
     });
   }
 
   removeOfficeHours(courseKey: string, officeHours: OfficeHours) {
-    this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) => 
+    this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) =>
     {
       if(course.officeHours.indexOf(officeHours) != -1) {
-        course.officeHours.splice(course.officeHours.indexOf(officeHours), 1); 
+        course.officeHours.splice(course.officeHours.indexOf(officeHours), 1);
       }
       this.courseData.updateCourse(course)
     });
   }
 
   // editOfficeHours(courseKey: string, officeHours: OfficeHours) {
-  //   this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) => 
+  //   this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) =>
   //   {return course.officeHours});
   // }
 
