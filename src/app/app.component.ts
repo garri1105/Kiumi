@@ -21,7 +21,7 @@ export class MyApp {
 
     this.auth.getAuthenticatedUser().subscribe(auth => {
       if (!auth) {
-        this.rootPage = 'LoginPage';
+        this.rootPage = 'HomePage';
       }
       else {
         this.profileData.getProfile(auth)

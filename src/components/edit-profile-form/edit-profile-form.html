@@ -2,7 +2,7 @@
   <ion-card>
     <ion-card-content>
       <ion-item>
-        <ion-label floating>Name</ion-label>
+        <ion-label floating>Preferred name</ion-label>
         <ion-input
           [(ngModel)]="profile.name"
           type="text"
@@ -11,7 +11,7 @@
           required></ion-input>
       </ion-item>
       <div padding *ngIf="email.invalid && email.dirty">
-        <span class="global__input-error">Please enter your name</span>
+        <span class="global__input-error">Please enter your preferred name</span>
       </div>
 
       <ion-item>

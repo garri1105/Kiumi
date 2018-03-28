@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { RegisterPage } from './register';
-import {RegisterFormComponent} from "../../components/register-form/register-form";
+import { SignUpPage } from './sign-up';
+import {SignUpFormComponent} from "../../components/sign-up-form/sign-up-form";
 import {AngularFireAuthModule} from "angularfire2/auth";
 
 @NgModule({
   declarations: [
-    RegisterPage,
-    RegisterFormComponent
+    SignUpPage,
+    SignUpFormComponent
   ],
   imports: [
-    IonicPageModule.forChild(RegisterPage),
+    IonicPageModule.forChild(SignUpPage),
     AngularFireAuthModule
   ],
 })

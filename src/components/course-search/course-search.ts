@@ -3,12 +3,6 @@ import {Course} from "../../models/course/course.interface";
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Profile} from "../../models/profile/profile.interface";
 
-/**
- * Generated class for the CourseSearchComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'course-search',
   templateUrl: 'course-search.html'

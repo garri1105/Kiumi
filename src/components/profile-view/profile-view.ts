@@ -12,21 +12,11 @@ export class ProfileViewComponent {
 
   profile: Profile;
   @Output() signOutResult: EventEmitter<Promise<any>>;
-  instructorStatus: string;
-  studentStatus: string;
 
   constructor(private globalProfile: GlobalProfileProvider,
               private auth: AuthProvider) {
     this.profile = this.globalProfile.getProfile();
     this.signOutResult = new EventEmitter<Promise<any>>();
-
-    if (this.profile.instructor) {
-      this.instructorStatus = 'Instructor';
-    }
-
-    if (this.profile.student) {
-       this.studentStatus = 'Student';
-    }
   }
 
   signOut() {
