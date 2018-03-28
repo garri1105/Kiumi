@@ -34,7 +34,7 @@
 
 <!--Only if instructor is logged on-->
 <ion-card>
-  <ion-card-header [navPush]="'EditHoursPage'">
+  <ion-card-header [navPush]="'EditHoursPage'" [navParams]="{courseKey: courseKey}">
     Edit Office Hours
   </ion-card-header>
 </ion-card>

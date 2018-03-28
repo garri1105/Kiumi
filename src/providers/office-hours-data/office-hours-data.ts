@@ -19,11 +19,10 @@ export class OfficeHoursDataProvider {
   private officeHoursList = this.db.list<OfficeHours>('edit-hours-form');
 
   constructor(private db: AngularFireDatabase, private courseData: CourseDataProvider) {
-    console.log('Hello OfficeHoursDataProvider Provider');
   }
 
   getOfficeHours(courseKey: string) {
-    var officeHoursList : OfficeHours[]; 
+    var officeHoursList : OfficeHours[] = [];
     this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) =>
     {officeHoursList = course.officeHours});
     return officeHoursList

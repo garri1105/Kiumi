@@ -22,7 +22,6 @@ export class EditHoursPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EditHoursPage');
   }
 
 }
