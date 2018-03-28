@@ -28,8 +28,6 @@ export class EditHoursComponent {
   constructor(private officeHoursDataProvider: OfficeHoursDataProvider) {
     // this.officeHoursList = [];
     // this.officeHoursList = [officeHoursDataProvider.getOfficeHours(this.courseKey)];
-    console.log('Hello EditHoursComponent Component');
-    this.text = 'Hello World';
   }
 
   addOfficeHourSlot() {
@@ -45,6 +43,7 @@ export class EditHoursComponent {
 
   ngOnInit() {
     this.officeHoursList = this.officeHoursDataProvider.getOfficeHours(this.courseKey);
+    console.log(this.officeHoursList);
   }
 
 }
