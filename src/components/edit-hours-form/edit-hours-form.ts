@@ -19,8 +19,6 @@ export class EditHoursComponent {
   @Input() courseKey: string;
   @Output() updatedOfficeHoursList: OfficeHours[];
 
-
-  text: string;
   officeHoursList: OfficeHours[];
   // officeHour: OfficeHours;
   // officeHoursDataProvider: OfficeHoursDataProvider;
@@ -32,7 +30,7 @@ export class EditHoursComponent {
 
   addOfficeHourSlot() {
     // this.officeHoursList.splice(0, 0, officeHour);
-    this.officeHoursList.unshift({} as OfficeHours); 
+    this.officeHoursList.unshift({} as OfficeHours);
   }
 
   addOfficeHours(officeHours: OfficeHours) {

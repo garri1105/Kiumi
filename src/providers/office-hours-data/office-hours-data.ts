@@ -18,32 +18,33 @@ export class OfficeHoursDataProvider {
   private officeHoursList: OfficeHours[];
 
   constructor(private db: AngularFireDatabase, private courseData: CourseDataProvider) {
-    this.officeHoursList = [];
   }
 
   getOfficeHours(courseKey: string) {
-    this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) =>
-    {this.officeHoursList = course.officeHours});
-    console.log(this.officeHoursList);
+    this.officeHoursList = [];
+    this.courseData.getCourseByKey(courseKey)
+      .valueChanges()
+      .subscribe((course: Course) =>
+      { course.officeHours.map(slot => this.officeHoursList.push(slot)) });
+
     return this.officeHoursList;
   }
 
   addOfficeHours(courseKey: string, officeHours: OfficeHours) {
     var course$ = this.courseData.getCourseByKey(courseKey).valueChanges().pipe(take(1));
 
-    course$.subscribe((course: Course) =>
-    {
-      console.log(officeHours);
+    course$.subscribe((course: Course) => {
       course.officeHours.push(officeHours);
       this.courseData.updateCourse(course)
     });
   }
 
   removeOfficeHours(courseKey: string, officeHours: OfficeHours) {
-    this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) =>
-    {
-      if(course.officeHours.indexOf(officeHours) != -1) {
-        course.officeHours.splice(course.officeHours.indexOf(officeHours), 1);
+    this.courseData.getCourseByKey(courseKey)
+      .valueChanges()
+      .subscribe((course: Course) => {
+        if(course.officeHours.indexOf(officeHours) != -1) {
+          course.officeHours.splice(course.officeHours.indexOf(officeHours), 1);
       }
       this.courseData.updateCourse(course)
     });
