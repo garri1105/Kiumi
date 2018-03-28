@@ -23,9 +23,12 @@ export class OfficeHoursDataProvider {
   getOfficeHours(courseKey: string) {
     this.officeHoursList = [];
     this.courseData.getCourseByKey(courseKey)
-      .valueChanges()
-      .subscribe((course: Course) =>
-      { course.officeHours.map(slot => this.officeHoursList.push(slot)) });
+      .valueChanges().pipe(take(1))
+      .subscribe((course: Course) => {
+        course.officeHours.map(slot => {
+          this.officeHoursList.push(slot);
+        });
+      });
 
     return this.officeHoursList;
   }
