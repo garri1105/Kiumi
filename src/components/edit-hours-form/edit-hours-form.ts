@@ -34,10 +34,10 @@ export class EditHoursComponent {
   }
 
   addOfficeHours(officeHours: OfficeHours) {
-    // console.log(this.courseKey);
-    // console.log(officeHours);
     this.officeHoursDataProvider.addOfficeHours(this.courseKey, officeHours);
   }
+
+
 
   ngOnInit() {
     this.officeHoursList = this.officeHoursDataProvider.getOfficeHours(this.courseKey);
