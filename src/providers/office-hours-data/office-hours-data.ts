@@ -15,16 +15,17 @@ import {take} from "rxjs/operators";
 @Injectable()
 export class OfficeHoursDataProvider {
 
-
-  private officeHoursList = this.db.list<OfficeHours>('edit-hours-form');
+  private officeHoursList: OfficeHours[];
 
   constructor(private db: AngularFireDatabase, private courseData: CourseDataProvider) {
-    console.log('Hello OfficeHoursDataProvider Provider');
+    this.officeHoursList = [];
   }
 
   getOfficeHours(courseKey: string) {
     this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) =>
-    {return course.officeHours});
+    {this.officeHoursList = course.officeHours});
+    console.log(this.officeHoursList);
+    return this.officeHoursList;
   }
 
   addOfficeHours(courseKey: string, officeHours: OfficeHours) {

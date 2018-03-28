@@ -6,7 +6,8 @@ import { CourseSearchComponent } from './course-search/course-search';
 import { EditProfileFormComponent } from './edit-profile-form/edit-profile-form';
 import { ProfileViewComponent } from './profile-view/profile-view';
 import { EditHoursComponent } from "./edit-hours-form/edit-hours-form";
-import { StudentQueueComponent } from './student-queue/student-queue';
+import { CourseOfficeHoursComponent } from './course-office-hours/course-office-hours';
+import { QueueForStudentsComponent } from './queue-for-students/queue-for-students';
 
 @NgModule({
 	declarations: [CourseListComponent,
@@ -16,7 +17,8 @@ import { StudentQueueComponent } from './student-queue/student-queue';
     EditProfileFormComponent,
     ProfileViewComponent,
     EditHoursComponent,
-    StudentQueueComponent],
+    CourseOfficeHoursComponent,
+    QueueForStudentsComponent],
 	imports: [],
 	exports: [CourseListComponent,
     LoginFormComponent,
@@ -25,6 +27,7 @@ import { StudentQueueComponent } from './student-queue/student-queue';
     EditProfileFormComponent,
     ProfileViewComponent,
     EditHoursComponent,
-    StudentQueueComponent]
+    CourseOfficeHoursComponent,
+    QueueForStudentsComponent]
 })
 export class ComponentsModule {}
