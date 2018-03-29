@@ -1,8 +1,19 @@
 <ion-row center>
   <ion-col text-center>
-  <button ion-button round (click)="addOfficeHourSlot()">Add Office Hours</button>
+  <!--<button ion-button round (click)="addOfficeHourSlot()">Add Office Hours</button>-->
+    <button item-start ion-button round (click)="addOfficeHourSlot()">
+      Add Office Hours &nbsp;&nbsp;
+      <ion-icon name="add" large></ion-icon>
+    </button>
   </ion-col>
 </ion-row>
+
+<!--<ion-item>-->
+  <!--<button item-start ion-button clear (click)="addOfficeHourSlot()">-->
+    <!--Add Office Hours-->
+    <!--<ion-icon name="add" color="primary" large></ion-icon>-->
+  <!--</button>-->
+<!--</ion-item>-->
 
 <form #editOfficeHourForm="ngForm" novalidate>
   <ion-slides pager>
