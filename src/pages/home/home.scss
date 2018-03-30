@@ -1,63 +1,66 @@
 page-home {
 
-  .app-title {
-    //margin-top: 5%;
+  .nav-bar {
 
-    #title {
-      font-size: 2.0em;
-      font-family: Chalkboard;
-      color: white;
+    .backgroundimage {
+      background: url("../../assets/imgs/woodbrown.jpg") no-repeat center center fixed;
+      background-size: cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      min-height: 100%;
+      min-width: 100%;
+
+      .app-title {
+        #title {
+          font-size: 2.0em;
+          font-family: Chalkboard;
+          color: white;
+        }
+      }
     }
+
   }
 
+  background-color: #428957;
   .body {
-    background-color: #428957;
-    align-items: center;
+    background: url("../../assets/imgs/chalkboard.png") no-repeat center center fixed;
 
-    .background {
-      background: url("../../assets/imgs/homePageBG2.png");
-      background-size: 107%;
+    background-size: cover;
+
+      .button1 {
+        background-color: transparent;
+        color: white;
+        //text-align: center;
+        //display: inline-block;
+        font-size: 180%;
+        cursor: pointer;
+        font-family: Chalkboard;
+        box-shadow: none;
+        //position: absolute;
+        //margin-bottom: 120%;
+
+        position:absolute;
+        bottom: 18%;
 
 
-      background-repeat: no-repeat;
-      //position: fixed;
-      //margin-top: 0%;
+
+      }
+
+      .button2 {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        color: white;
+        text-align: center;
+        font-size: 180%;
+        font-family: Chalkboard;
+
+        position:absolute;
+        bottom:10%;
+      }
     }
-
-    //background: repeating-linear-gradient(to bottom, royalblue 51%, deepskyblue);
-    //background-color: #D44420;
-
-    .button1 {
-      background-color: transparent;
-      border: white 3px double;
-      color: white;
-      text-align: center;
-      display: inline-block;
-      font-size: 180%;
-      cursor: pointer;
-      margin-top: 145%;
-      font-family: Chalkboard;
-      box-shadow: none;
-    }
-
-    .button2 {
-      background-color: #428957; /* Green */
-      border: double white 3px;
-
-      color: white;
-      text-align: center;
-      font-size: 180%;
-      font-family: Chalkboard;
-      box-shadow: none;
-    }
-
-    .button:hover {
-      //background-color: #;
-
-  }
-}
-
-
 
 }
 

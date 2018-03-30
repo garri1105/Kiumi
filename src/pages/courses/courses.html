@@ -2,10 +2,12 @@
 
   <ion-navbar class="navBar" background color="white">
     <div class="backgroundimage image1">
-    <ion-title class="title">My Courses</ion-title>
-    <ion-buttons class="endbutton" end>
-      <button ion-button [navPush]="'AddCoursesPage'">
-        <ion-icon name="add"></ion-icon>
+      <ion-title class="app-title">
+        <div id="title">My Courses</div>
+      </ion-title>
+    <ion-buttons class="addbuttons" end>
+      <button ion-button  [navPush]="'AddCoursesPage'">
+        <ion-icon id="addbutton" name="add"></ion-icon>
       </button>
     </ion-buttons>
     </div>

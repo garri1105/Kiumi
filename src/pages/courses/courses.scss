@@ -1,7 +1,7 @@
 page-student-courses {
   .navBar{
 
-    .backgroundimage{
+    .backgroundimage {
       background: url("../../assets/imgs/woodbrown.jpg") no-repeat center center fixed;
       background-size: cover;
       position: fixed;
@@ -11,14 +11,15 @@ page-student-courses {
       min-width: 100%;
       min-height: 100%;
 
-      .title{
+      #title {
         color: white;
       }
 
-      .endbutton{
+      #addbutton {
         color: white;
         height: 50px;
       }
+
     }
 
 
