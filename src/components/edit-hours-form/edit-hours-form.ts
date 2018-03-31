@@ -1,8 +1,6 @@
-import {Component, Injectable, Input, Output} from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 import {OfficeHoursDataProvider} from "../../providers/office-hours-data/office-hours-data";
 import { OfficeHours } from '../../models/office-hours/office-hours.interface';
-import { Course } from '../../models/course/course.interface';
-
 
 /**
  * Generated class for the EditHoursComponent component.
@@ -30,12 +28,13 @@ export class EditHoursComponent {
 
   addOfficeHourSlot() {
     // this.officeHoursList.splice(0, 0, officeHour);
-    this.officeHoursList.unshift({} as OfficeHours);
+    this.officeHoursList.push({} as OfficeHours);
   }
 
   addOfficeHours(officeHours: OfficeHours) {
     // console.log(this.courseKey);
     // console.log(officeHours);
+    console.log(officeHours);
     this.officeHoursDataProvider.addOfficeHours(this.courseKey, officeHours);
   }
 

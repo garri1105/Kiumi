@@ -12,10 +12,11 @@
               <ion-label>My office hours</ion-label>
               <ion-toggle></ion-toggle>
             </ion-item>
-
+            <p>{{ i }}</p>
             <ion-item>
               <ion-label floating>Location</ion-label>
-              <ion-input [(ngModel)]="officeHour.location" name="first"></ion-input>
+
+              <ion-input [(ngModel)]="officeHoursList[i].location" name="first" [value]="officeHoursList[i].location"></ion-input>
             </ion-item>
 
             <ion-list>
@@ -45,7 +46,7 @@
               </ion-select>
             </ion-item>
 
-            <button ion-button color = "primary" (click) = "addOfficeHours(officeHour)">Save</button>
+            <button ion-button color = "primary" (click) = "addOfficeHours(officeHoursList[i])">Save</button>
 
           </ion-card-content>
         </ion-card>
