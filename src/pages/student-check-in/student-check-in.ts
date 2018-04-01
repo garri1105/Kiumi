@@ -3,6 +3,7 @@ import {IonicPage, NavParams} from 'ionic-angular';
 import {Course} from "../../models/course/course.interface";
 import { StudentQueueDataProvider } from '../../providers/student-queue-data/student-queue-data';
 import { Profile } from '../../models/profile/profile.interface';
+import { OfficeHours } from '../../models/office-hours/office-hours.interface';
 
 @IonicPage()
 @Component({
@@ -37,8 +38,8 @@ export class StudentCheckInPage {
     }
   }
 
-  addStudent(student: Profile) {
-    this.studentQueueDataProvider.addStudent(student);
+  addStudent(student: Profile, officeHours: OfficeHours) {
+    this.studentQueueDataProvider.addStudent(student, officeHours);
   }
 
 

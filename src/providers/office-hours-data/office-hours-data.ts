@@ -25,6 +25,7 @@ export class OfficeHoursDataProvider {
     this.courseData.getCourseByKey(courseKey)
       .valueChanges().pipe(take(1))
       .subscribe((course: Course) => {
+        console.log(course.officeHours);
         course.officeHours.map(slot => {
           this.officeHoursList.push(slot);
         });
@@ -34,9 +35,8 @@ export class OfficeHoursDataProvider {
   }
 
   addOfficeHours(courseKey: string, officeHours: OfficeHours) {
-    var course$ = this.courseData.getCourseByKey(courseKey).valueChanges().pipe(take(1));
-
-    course$.subscribe((course: Course) => {
+    this.courseData.getCourseByKey(courseKey).valueChanges().pipe(take(1))
+      .subscribe((course: Course) => {
       course.officeHours.push(officeHours);
       this.courseData.updateCourse(course)
     });
