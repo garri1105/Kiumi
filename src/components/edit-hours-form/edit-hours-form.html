@@ -17,6 +17,63 @@
 
 <form #editOfficeHourForm="ngForm" novalidate>
   <ion-slides pager>
+    <div *ngFor="let officeHour of newOfficeHoursList; let i = index">
+      <ion-slide>
+        <ion-card>
+          <ion-card-header>
+            Office Hour
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>I'm Instructing!</ion-label>
+                <ion-toggle></ion-toggle>
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>Location</ion-label>
+                <ion-input [(ngModel)]="newOfficeHoursList[i].location"
+                           name="newLocation{{ i }}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>Start Time</ion-label>
+                <ion-datetime [(ngModel)]="newOfficeHoursList[i].startTime"
+                              name="newStartTime{{ i }}"
+                              displayFormat="hh:mm a"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>End Time</ion-label>
+                <ion-datetime [(ngModel)]="newOfficeHoursList[i].endTime"
+                              name="newEndTime{{ i }}"
+                              displayFormat="hh:mm a"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Day</ion-label>
+                <ion-select [(ngModel)]="newOfficeHoursList[i].dayOfWeek"
+                            name="newDayOfWeek{{ i }}">
+                  <ion-option>Monday</ion-option>
+                  <ion-option>Tuesday</ion-option>
+                  <ion-option>Wednesday</ion-option>
+                  <ion-option>Thursday</ion-option>
+                  <ion-option>Friday</ion-option>
+                  <ion-option>Saturday</ion-option>
+                  <ion-option>Sunday</ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-row>
+                <ion-col>
+                  <button ion-button color="dark" clear (click) = "addOfficeHours(officeHour)">Save</button>
+                </ion-col>
+              </ion-row>
+
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </div>
+
     <div *ngFor="let officeHour of officeHoursList; let i = index">
       <ion-slide *ngIf="i > 0">
         <ion-card>
@@ -25,13 +82,6 @@
           </ion-card-header>
           <ion-card-content>
             <ion-list>
-
-              <ion-item>
-                <ion-label>My office hours</ion-label>
-                <ion-toggle></ion-toggle>
-              </ion-item>
-              <p>{{ i }}</p>
-              <p>{{ officeHoursList[i].location }}</p>
               <ion-item>
                 <ion-label>I'm Instructing!</ion-label>
                 <ion-toggle></ion-toggle>
@@ -71,7 +121,7 @@
 
               <ion-row>
                 <ion-col>
-                  <button ion-button color="dark" clear (click) = "saveOfficeHours(officeHour)">Save</button>
+                  <button ion-button color="dark" clear (click)="updateOfficeHours(officeHour, i)">Save</button>
                 </ion-col>
               </ion-row>
 
