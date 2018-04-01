@@ -1,12 +1,19 @@
 <ion-list reorder="true">
-    <ion-item>
+    <ion-item *ngFor="let student of studentQueue">
       <button item-start ion-button clear>
         <ion-icon name="remove-circle" color="primary"></ion-icon>
       </button>
-      <h5>Raza Khalid</h5>
+      <h5>{{ student.name }}</h5>
       <ion-badge item-end>1</ion-badge>
     </ion-item>
     <ion-item>
+    <button item-start ion-button clear>
+        <ion-icon name="remove-circle" color="primary"></ion-icon>
+      </button>
+      <h5>Raza</h5>
+      <ion-badge item-end>1</ion-badge>
+    </ion-item>
+    <!-- <ion-item>
       <button item-start ion-button clear>
         <ion-icon name="remove-circle" color="primary"></ion-icon>
       </button>
@@ -26,5 +33,5 @@
       </button>
       <h5>Salman Ahmed</h5>
       <ion-badge item-end>4</ion-badge>
-    </ion-item>
+    </ion-item> -->
 </ion-list>

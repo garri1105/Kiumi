@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavParams} from 'ionic-angular';
 import {Course} from "../../models/course/course.interface";
+import { StudentQueueDataProvider } from '../../providers/student-queue-data/student-queue-data';
+import { Profile } from '../../models/profile/profile.interface';
 
 @IonicPage()
 @Component({
@@ -12,6 +14,7 @@ export class StudentCheckInPage {
   course: Course;
   clicked: boolean;
   checkInButton: HTMLElement;
+  studentQueueDataProvider: StudentQueueDataProvider;
 
   constructor(private navParams: NavParams) {
 
@@ -33,4 +36,11 @@ export class StudentCheckInPage {
       this.checkInButton.textContent = 'Checked in';
     }
   }
+
+  addStudent(student: Profile) {
+    this.studentQueueDataProvider.addStudent(student);
+  }
+
+
+
 }
