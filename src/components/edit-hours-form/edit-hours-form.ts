@@ -18,20 +18,15 @@ export class EditHoursComponent {
   @Output() updatedOfficeHoursList: OfficeHours[];
 
   officeHoursList: OfficeHours[];
-  // officeHour: OfficeHours;
-  // officeHoursDataProvider: OfficeHoursDataProvider;
 
   constructor(private officeHoursDataProvider: OfficeHoursDataProvider) {
-    // this.officeHoursList = [];
-    // this.officeHoursList = [officeHoursDataProvider.getOfficeHours(this.courseKey)];
   }
 
   addOfficeHourSlot() {
-    // this.officeHoursList.splice(0, 0, officeHour);
     this.officeHoursList.push({} as OfficeHours);
   }
 
-  addOfficeHours(officeHours: OfficeHours) {
+  saveOfficeHours(officeHours: OfficeHours) {
     this.officeHoursDataProvider.addOfficeHours(this.courseKey, officeHours);
   }
 

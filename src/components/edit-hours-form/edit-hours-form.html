@@ -26,16 +26,12 @@
           <ion-card-content>
             <ion-list>
 
-            <ion-item>
-              <ion-label>My office hours</ion-label>
-              <ion-toggle></ion-toggle>
-            </ion-item>
-            <p>{{ i }}</p>
-            <ion-item>
-              <ion-label floating>Location</ion-label>
-
-              <ion-input [(ngModel)]="officeHoursList[i].location" name="first" [value]="officeHoursList[i].location"></ion-input>
-            </ion-item>
+              <ion-item>
+                <ion-label>My office hours</ion-label>
+                <ion-toggle></ion-toggle>
+              </ion-item>
+              <p>{{ i }}</p>
+              <p>{{ officeHoursList[i].location }}</p>
               <ion-item>
                 <ion-label>I'm Instructing!</ion-label>
                 <ion-toggle></ion-toggle>
@@ -43,20 +39,26 @@
 
               <ion-item>
                 <ion-label stacked>Location</ion-label>
-                <ion-input [(ngModel)]="officeHour.location" [value]="officeHour.location" name="first"></ion-input>
+                <ion-input [(ngModel)]="officeHoursList[i].location"
+                           name="location{{ i }}"></ion-input>
               </ion-item>
 
               <ion-item>
                 <ion-label stacked>Start Time</ion-label>
-                <ion-datetime displayFormat="hh:mm a"></ion-datetime>
+                <ion-datetime [(ngModel)]="officeHoursList[i].startTime"
+                              name="startTime{{ i }}"
+                              displayFormat="hh:mm a"></ion-datetime>
               </ion-item>
               <ion-item>
                 <ion-label stacked>End Time</ion-label>
-                <ion-datetime displayFormat="hh:mm a"></ion-datetime>
+                <ion-datetime [(ngModel)]="officeHoursList[i].endTime"
+                              name="endTime{{ i }}"
+                              displayFormat="hh:mm a"></ion-datetime>
               </ion-item>
               <ion-item>
                 <ion-label stacked>Day</ion-label>
-                <ion-select>
+                <ion-select [(ngModel)]="officeHoursList[i].dayOfWeek"
+                            name="dayOfWeek{{ i }}">
                   <ion-option>Monday</ion-option>
                   <ion-option>Tuesday</ion-option>
                   <ion-option>Wednesday</ion-option>
@@ -69,7 +71,7 @@
 
               <ion-row>
                 <ion-col>
-                  <button ion-button color="dark" clear (click) = "addOfficeHours(officeHour)">Save</button>
+                  <button ion-button color="dark" clear (click) = "saveOfficeHours(officeHour)">Save</button>
                 </ion-col>
               </ion-row>
 
