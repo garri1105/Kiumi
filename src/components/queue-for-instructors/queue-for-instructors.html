@@ -1,9 +1,14 @@
+<!--You will need to link "reordering" of the queue (moving around stuff) with actually updating the queue-->
 <ion-list reorder="true">
+    <!--Ion-item for each student in the queue-->
     <ion-item>
+      <!--If instructor presses button, student is removed and queue is updated-->
       <button item-start ion-button clear>
         <ion-icon name="remove-circle" color="primary"></ion-icon>
       </button>
+      <!--Name of student-->
       <h5>Raza Khalid</h5>
+      <!--Instead of 1, position in queue-->
       <ion-badge item-end>1</ion-badge>
     </ion-item>
     <ion-item>
