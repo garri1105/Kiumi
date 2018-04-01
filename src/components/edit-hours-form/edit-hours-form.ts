@@ -32,9 +32,6 @@ export class EditHoursComponent {
   }
 
   addOfficeHours(officeHours: OfficeHours) {
-    // console.log(this.courseKey);
-    // console.log(officeHours);
-    console.log(officeHours);
     this.officeHoursDataProvider.addOfficeHours(this.courseKey, officeHours);
   }
 
