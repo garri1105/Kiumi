@@ -16,6 +16,16 @@ export class UtilitiesProvider {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
 
+  static makeId(length: number) {
+    let text = "";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (let i = 0; i < length; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+
   resetCourses() {
     this.courseData
       .getCourseList()
@@ -32,7 +42,6 @@ export class UtilitiesProvider {
       )
       .subscribe(courses => {
         courses.map(course => {
-          console.log(course);
           this.courseData.updateCourse(course);
         });
       });
@@ -104,7 +113,7 @@ export class UtilitiesProvider {
                   instructor: <Instructor> {
                     courses: ['0'],
                     officeHours: ['0']
-                  },
+                  }
                 }))
               }
             )

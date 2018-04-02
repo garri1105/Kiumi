@@ -23,7 +23,7 @@ export class StudentQueueDataProvider {
   }
 
   addStudent(student: Profile, officeHours: OfficeHours) {
-    officeHours.studentQueue.push(student);
+    officeHours.studentQueue.push(student.key);
   }
 
   // removeStudent(student: Profile, officeHours: OfficeHours) {
@@ -38,7 +38,7 @@ export class StudentQueueDataProvider {
     //   course.officeHours.push(officeHours);
     //   this.courseData.updateCourse(course)
     // });
-  
+
 
 
 

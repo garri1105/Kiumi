@@ -53,20 +53,29 @@ export class OfficeHoursDataProvider {
     this.profileData.updateProfile(this.profile);
   }
 
-  updateOfficeHours(courseKey: string, officeHours: OfficeHours, index: number) {
-    this.courseData.getCourseByKey(courseKey)
-      .valueChanges().pipe(take(1))
-      .subscribe((course: Course) => {
-        course.officeHours[index] = officeHours;
-        this.courseData.updateCourse(course);
-      });
+  updateOfficeHours(courseKey: string, officeHours: OfficeHours) {
+    return new Promise((resolve, reject) => {
+      this.courseData.getCourseByKey(courseKey)
+        .valueChanges().pipe(take(1))
+        .subscribe((course: Course) => {
+          for (let i = 0; i < course.officeHours.length; i++) {
+            if (course.officeHours[i].key === officeHours.key) {
+              if (officeHours.instructors.indexOf(this.profile.key) > - 1) {
+                course.officeHours[i] = officeHours;
+                this.courseData.updateCourse(course);
+              }
+              else {
+                officeHours.instructors.push(this.profile.key);
+                this.profile.instructor.officeHours.push(officeHours.key);
+                this.profileData.updateProfile(this.profile);
+              }
 
-    this.profile.instructor.officeHours.forEach((val, i) => {
-      if (val === officeHours.key) {
-        this.profile.instructor.officeHours[i] = officeHours.key;
-      }
-    });
-    this.profileData.updateProfile(this.profile);
+              resolve('Updated succesfully');
+            }
+          }
+          reject('Couldn\'t update office hours');
+        });
+      });
   }
 
   removeOfficeHours(courseKey: string, officeHours: OfficeHours) {
@@ -79,10 +88,4 @@ export class OfficeHoursDataProvider {
       this.courseData.updateCourse(course)
     });
   }
-
-  // editOfficeHours(courseKey: string, officeHours: OfficeHours) {
-  //   this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) =>
-  //   {return course.officeHours});
-  // }
-
 }

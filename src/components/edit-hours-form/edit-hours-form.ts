@@ -3,6 +3,7 @@ import {OfficeHoursDataProvider} from "../../providers/office-hours-data/office-
 import { OfficeHours } from '../../models/office-hours/office-hours.interface';
 import {Slides, ToastController} from "ionic-angular";
 import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
+import {Profile} from "../../models/profile/profile.interface";
 
 @Component({
   selector: 'edit-hours-form',
@@ -11,6 +12,7 @@ import {GlobalProfileProvider} from "../../providers/global-profile/global-profi
 export class EditHoursComponent {
   @ViewChild(Slides) slides: Slides;
   @Input() courseKey: string;
+  profile: Profile;
   officeHoursList: OfficeHours[] = [];
   newOfficeHoursList: OfficeHours[] = [];
   myOfficeHours: OfficeHours[] = [];
@@ -18,31 +20,43 @@ export class EditHoursComponent {
   constructor(private officeHoursDataProvider: OfficeHoursDataProvider,
               private toast: ToastController,
               private globalProfile: GlobalProfileProvider) {
+    this.profile = this.globalProfile.getProfile();
   }
 
   addOfficeHourSlot() {
     let newOfficeHours = {} as OfficeHours;
     newOfficeHours.instructing = true;
+    newOfficeHours.instructors = ['0'];
+    newOfficeHours.studentQueue = ['0'];
     newOfficeHours.key = EditHoursComponent.makeId(10);
     this.newOfficeHoursList.push(newOfficeHours);
     this.slides.slideTo(0);
   }
 
-  addOfficeHours(officeHours: OfficeHours) {
-    this.myOfficeHours.push(this.newOfficeHoursList.splice(0, 1)[0]);
-    this.officeHoursDataProvider.addOfficeHours(this.courseKey, officeHours);
+  addNewOfficeHours() {
+    let newOfficeHours = this.newOfficeHoursList.pop();
+    newOfficeHours.instructors.push(this.profile.key);
+    this.myOfficeHours.push(newOfficeHours);
+    this.officeHoursDataProvider.addOfficeHours(this.courseKey, newOfficeHours);
     this.toast.create({
       message: 'Saved succesfully',
       duration: 3000
     }).present();
   }
 
-  updateOfficeHours(officeHours: OfficeHours, index: number) {
-    this.officeHoursDataProvider.updateOfficeHours(this.courseKey, officeHours, index);
-    this.toast.create({
-      message: 'Updated succesfully',
-      duration: 3000
-    }).present();
+  updateOfficeHours(officeHours: OfficeHours) {
+    this.officeHoursDataProvider.updateOfficeHours(this.courseKey, officeHours)
+      .then((r: string) => {
+      this.toast.create({
+        message: r,
+        duration: 3000
+      }).present();})
+      .catch(e => {
+      this.toast.create({
+        message: e,
+        duration: 3000
+      }).present();
+    });
   }
 
   ngOnInit() {
@@ -50,7 +64,7 @@ export class EditHoursComponent {
 
     setTimeout(() => {
       for (let i = 1; i < this.officeHoursList.length; i++) {
-        if (this.globalProfile.getProfile().instructor.officeHours.indexOf(this.officeHoursList[i].key) > -1) {
+        if (this.profile.instructor.officeHours.indexOf(this.officeHoursList[i].key) > -1) {
           let myOfficeHours = this.officeHoursList.splice(i, 1, null);
           myOfficeHours[0].instructing = true;
           this.myOfficeHours.push(myOfficeHours[0]);
