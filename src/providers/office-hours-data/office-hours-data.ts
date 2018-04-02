@@ -4,6 +4,9 @@ import { OfficeHours } from "../../models/office-hours/office-hours.interface";
 import { CourseDataProvider } from '../course-data/course-data';
 import { Course } from '../../models/course/course.interface';
 import {take} from "rxjs/operators";
+import {GlobalProfileProvider} from "../global-profile/global-profile";
+import {Profile} from "../../models/profile/profile.interface";
+import {ProfileDataProvider} from "../profile-data/profile-data";
 
 /*
   Generated class for the OfficeHoursDataProvider provider.
@@ -16,8 +19,13 @@ import {take} from "rxjs/operators";
 export class OfficeHoursDataProvider {
 
   private officeHoursList: OfficeHours[];
+  profile: Profile;
 
-  constructor(private db: AngularFireDatabase, private courseData: CourseDataProvider) {
+  constructor(private db: AngularFireDatabase,
+              private courseData: CourseDataProvider,
+              private globalProfile: GlobalProfileProvider,
+              private profileData: ProfileDataProvider) {
+    this.profile = this.globalProfile.getProfile();
   }
 
   getOfficeHours(courseKey: string) {
@@ -34,12 +42,40 @@ export class OfficeHoursDataProvider {
   }
 
   addOfficeHours(courseKey: string, officeHours: OfficeHours) {
-    var course$ = this.courseData.getCourseByKey(courseKey).valueChanges().pipe(take(1));
-
-    course$.subscribe((course: Course) => {
+    this.courseData.getCourseByKey(courseKey)
+      .valueChanges().pipe(take(1))
+      .subscribe((course: Course) => {
       course.officeHours.push(officeHours);
-      this.courseData.updateCourse(course)
+      this.courseData.updateCourse(course);
     });
+
+    this.profile.instructor.officeHours.push(officeHours.key);
+    this.profileData.updateProfile(this.profile);
+  }
+
+  updateOfficeHours(courseKey: string, officeHours: OfficeHours) {
+    return new Promise((resolve, reject) => {
+      this.courseData.getCourseByKey(courseKey)
+        .valueChanges().pipe(take(1))
+        .subscribe((course: Course) => {
+          for (let i = 0; i < course.officeHours.length; i++) {
+            if (course.officeHours[i].key === officeHours.key) {
+              if (officeHours.instructors.indexOf(this.profile.key) > - 1) {
+                course.officeHours[i] = officeHours;
+                this.courseData.updateCourse(course);
+              }
+              else {
+                officeHours.instructors.push(this.profile.key);
+                this.profile.instructor.officeHours.push(officeHours.key);
+                this.profileData.updateProfile(this.profile);
+              }
+
+              resolve('Updated succesfully');
+            }
+          }
+          reject('Couldn\'t update office hours');
+        });
+      });
   }
 
   removeOfficeHours(courseKey: string, officeHours: OfficeHours) {
@@ -52,10 +88,4 @@ export class OfficeHoursDataProvider {
       this.courseData.updateCourse(course)
     });
   }
-
-  // editOfficeHours(courseKey: string, officeHours: OfficeHours) {
-  //   this.courseData.getCourseByKey(courseKey).valueChanges().subscribe((course: Course) =>
-  //   {return course.officeHours});
-  // }
-
 }

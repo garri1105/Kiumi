@@ -5,7 +5,7 @@ import {Account} from '../../models/account/account.interface'
 
 @Injectable()
 export class AuthProvider {
-
+  
   constructor(private afAuth: AngularFireAuth) {
   }
 

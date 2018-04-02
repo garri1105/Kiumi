@@ -1,6 +1,10 @@
 <ion-list>
+  
+  <!--Ion-item for each current student in the queue, but there will be one more item (see last one)-->
   <ion-item>
+    <!--Name of student-->
     <h5 item-start>Raza Khalid</h5>
+    <!--Instead of 1, position in queue-->
     <ion-badge item-end>1</ion-badge>
   </ion-item>
   <ion-item>
@@ -11,18 +15,28 @@
     <h5 item-start>Juan Da</h5>
     <ion-badge item-end>3</ion-badge>
   </ion-item>
+  <!--This item will exist if current student (who's using the app) is not checked in-->
   <ion-item>
+    <!--Pressing button will lead to queue being updates with current student added in the last position-->
+    <!--It will also cause the ion-item under this one to replace this item-->
     <button item-start ion-button clear>
       <ion-icon name="add-circle" color="primary"></ion-icon>
     </button>
+    <!--The current student-->
     <h5>Salman Ahmed</h5>
+    <!--Potential queue position – we need to make sure this keeps updating actively-->
     <ion-badge item-end>4</ion-badge>
   </ion-item>
+  <!--This item will exist if current student (who's using the app) is already checked in-->
   <ion-item>
+    <!--Pressing button will lead to queue being updates with current student removed-->
+    <!--It will also cause the ion-item above this one to replace this item-->
     <button item-start ion-button clear>
       <ion-icon name="remove-circle" color="primary"></ion-icon>
     </button>
+    <!--The current student-->
     <h5>Salman Ahmed</h5>
+    <!--Actual queue position-->
     <ion-badge item-end>4</ion-badge>
   </ion-item>
 </ion-list>

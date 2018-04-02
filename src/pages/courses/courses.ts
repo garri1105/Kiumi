@@ -28,6 +28,7 @@ export class StudentCoursesPage {
               private globalProfile: GlobalProfileProvider,
               private utilities: UtilitiesProvider) {
 
+    // this.utilities.resetCourses();
   }
 
   ionViewDidLoad() {

@@ -1,11 +1,10 @@
-import { Course } from "../course/course.interface";
-
 export interface OfficeHours {
-  course: Course;
+  key?: string;
   instructors: string[];
   studentQueue: string[];
   location: string;
   startTime: string;
   endTime: string;
   dayOfWeek: string;
+  instructing: boolean;
 }
