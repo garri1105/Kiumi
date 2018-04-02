@@ -4,6 +4,9 @@ import { OfficeHours } from "../../models/office-hours/office-hours.interface";
 import { CourseDataProvider } from '../course-data/course-data';
 import { Course } from '../../models/course/course.interface';
 import {take} from "rxjs/operators";
+import {GlobalProfileProvider} from "../global-profile/global-profile";
+import {Profile} from "../../models/profile/profile.interface";
+import {ProfileDataProvider} from "../profile-data/profile-data";
 
 /*
   Generated class for the OfficeHoursDataProvider provider.
@@ -16,8 +19,13 @@ import {take} from "rxjs/operators";
 export class OfficeHoursDataProvider {
 
   private officeHoursList: OfficeHours[];
+  profile: Profile;
 
-  constructor(private db: AngularFireDatabase, private courseData: CourseDataProvider) {
+  constructor(private db: AngularFireDatabase,
+              private courseData: CourseDataProvider,
+              private globalProfile: GlobalProfileProvider,
+              private profileData: ProfileDataProvider) {
+    this.profile = this.globalProfile.getProfile();
   }
 
   getOfficeHours(courseKey: string) {
@@ -25,7 +33,6 @@ export class OfficeHoursDataProvider {
     this.courseData.getCourseByKey(courseKey)
       .valueChanges().pipe(take(1))
       .subscribe((course: Course) => {
-        console.log(course.officeHours);
         course.officeHours.map(slot => {
           this.officeHoursList.push(slot);
         });
@@ -35,11 +42,31 @@ export class OfficeHoursDataProvider {
   }
 
   addOfficeHours(courseKey: string, officeHours: OfficeHours) {
-    this.courseData.getCourseByKey(courseKey).valueChanges().pipe(take(1))
+    this.courseData.getCourseByKey(courseKey)
+      .valueChanges().pipe(take(1))
       .subscribe((course: Course) => {
       course.officeHours.push(officeHours);
-      this.courseData.updateCourse(course)
+      this.courseData.updateCourse(course);
     });
+
+    this.profile.instructor.officeHours.push(officeHours.key);
+    this.profileData.updateProfile(this.profile);
+  }
+
+  updateOfficeHours(courseKey: string, officeHours: OfficeHours, index: number) {
+    this.courseData.getCourseByKey(courseKey)
+      .valueChanges().pipe(take(1))
+      .subscribe((course: Course) => {
+        course.officeHours[index] = officeHours;
+        this.courseData.updateCourse(course);
+      });
+
+    this.profile.instructor.officeHours.forEach((val, i) => {
+      if (val === officeHours.key) {
+        this.profile.instructor.officeHours[i] = officeHours.key;
+      }
+    });
+    this.profileData.updateProfile(this.profile);
   }
 
   removeOfficeHours(courseKey: string, officeHours: OfficeHours) {

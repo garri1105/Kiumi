@@ -15,18 +15,22 @@ export class GlobalProfileProvider {
   loadProfile() {
     return new Promise((resolve, reject) => {
       let user$ = this.auth.getAuthenticatedUser();
-
         if (user$) {
           user$.subscribe(user => {
-            this.profileData.getProfile(user)
-              .subscribe(profile => {
-                profile.valueChanges()
-                  .subscribe(value => {
-                      this.profile = value;
-                      resolve(this.profile);
-                    }
-                  );
-              });
+            let profile$ = this.profileData.getProfile(user);
+            if (profile$) {
+              profile$.subscribe(profile => {
+                  profile.valueChanges()
+                    .subscribe(value => {
+                        this.profile = value;
+                        resolve(this.profile);
+                      }
+                    );
+                });
+            }
+            else {
+              reject("Profile doesn't exist");
+            }
           })
         }
         else {
