@@ -4,6 +4,7 @@ import {Course} from "../../models/course/course.interface";
 import { StudentQueueDataProvider } from '../../providers/student-queue-data/student-queue-data';
 import { Profile } from '../../models/profile/profile.interface';
 import { OfficeHours } from '../../models/office-hours/office-hours.interface';
+import { GlobalProfileProvider } from '../../providers/global-profile/global-profile';
 
 @IonicPage()
 @Component({
@@ -13,12 +14,12 @@ import { OfficeHours } from '../../models/office-hours/office-hours.interface';
 
 export class StudentCheckInPage {
   course: Course;
+  profile: Profile;
   clicked: boolean;
   checkInButton: HTMLElement;
-  studentQueueDataProvider: StudentQueueDataProvider;
 
-  constructor(private navParams: NavParams) {
-
+  constructor(private navParams: NavParams, private studentQueueDataProvider: StudentQueueDataProvider, private globalProfileProvider: GlobalProfileProvider) {
+    this.profile = this.globalProfileProvider.getProfile();
     this.clicked = false;
     this.course = this.navParams.get('course');
   }
@@ -38,9 +39,11 @@ export class StudentCheckInPage {
     }
   }
 
-  addStudent(student: Profile, officeHours: OfficeHours) {
-    this.studentQueueDataProvider.addStudent(student, officeHours);
+  addStudent(student: Profile, indexOfOfficeHour: number, course: Course) {
+    this.studentQueueDataProvider.addStudent(student, indexOfOfficeHour, course);
   }
+
+  
 
 
 

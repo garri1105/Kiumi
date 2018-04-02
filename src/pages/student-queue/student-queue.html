@@ -9,6 +9,9 @@
   <ion-navbar color = "primary">
     <ion-title>Student Queue</ion-title>
   </ion-navbar>
+  <!-- <ion-title>
+      {{ course.number }}
+  </ion-title> -->
 
 </ion-header>
 
@@ -18,4 +21,7 @@
   <queue-for-students></queue-for-students>
   <!--If instructor for the course-->
   <queue-for-instructors></queue-for-instructors>
+  <button ion-button clear block id="checkIn" (click)="changeColor()" (click)="addStudent(profile, 1, course)">
+      Check in
+  </button>
 </ion-content>
