@@ -16,6 +16,7 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 import {FormsModule} from "@angular/forms";
 import { UtilitiesProvider } from '../providers/utilities/utilities';
 import { OfficeHoursDataProvider } from '../providers/office-hours-data/office-hours-data';
+import { StudentQueueDataProvider } from '../providers/student-queue-data/student-queue-data';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { OfficeHoursDataProvider } from '../providers/office-hours-data/office-h
     ProfileDataProvider,
     AuthProvider,
     UtilitiesProvider,
-    OfficeHoursDataProvider
+    OfficeHoursDataProvider,
+    StudentQueueDataProvider
   ]
 })
 export class AppModule {}
