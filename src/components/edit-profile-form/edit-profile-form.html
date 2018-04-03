@@ -31,11 +31,14 @@
           #studentBox="ngModel"></ion-checkbox>
       </ion-item>
 
-      <button
-        ion-button
-        (click)="saveProfile()"
-        [disabled]="editProfileForm.invalid || (!studentCheck && !instructorCheck)">Save</button>
-
+      <ion-row>
+        <ion-col text-end>
+        <button
+          ion-button
+          (click)="saveProfile()"
+          [disabled]="editProfileForm.invalid || (!studentCheck && !instructorCheck)">Save</button>
+        </ion-col>
+      </ion-row>
     </ion-card-content>
   </ion-card>
 </form>
