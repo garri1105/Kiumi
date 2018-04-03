@@ -1,6 +1,6 @@
 <ion-list>
-  <ion-list-header *ngIf="profile.student" no-lines no-padding no-margin>
-    <button class="dropdown-button"
+  <ion-list-header class="dropdown" *ngIf="profile.student" no-lines no-padding>
+    <button
       detail-none
       name="student"
       ion-item
@@ -25,8 +25,8 @@
       </div>
     </ion-list>
   </ion-list-header>
-  <ion-list-header *ngIf="profile.instructor" no-lines no-padding no-margin>
-    <button class="dropdown-button"
+  <ion-list-header class="dropdown" *ngIf="profile.instructor" no-lines no-padding>
+    <button
       detail-none
       name="instructor"
       ion-item

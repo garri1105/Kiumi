@@ -1,3 +1,11 @@
 login-form {
+  .signUp {
+    background: map-get($colors, light);
+
+    .button-inner {
+      color: black;
+    }
+  }
+
 
 }

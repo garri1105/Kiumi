@@ -1,26 +1,21 @@
 <ion-header>
-  <ion-navbar class="nav-bar" background>
-    <div class="backgroundimage image1">
-      <ion-title class="app-title" align="center">
-    <div id="title">TraffIonic</div>
-  </ion-title>
-    </div>
+  <ion-navbar>
+      <ion-title>
+        TraffIonic
+      </ion-title>
   </ion-navbar>
-
-
-
 </ion-header>
 
-
-
-<ion-content padding class="body" background>
-
-  <button ion-button class="button button1" block navPush="LoginPage">
-    Login
-  </button>
-  <button ion-button class="button button2" block navPush="SignUpPage">
-    Sign Up
-  </button>
+<ion-content padding>
+  <div class="homeButtons">
+    <button navPush="LoginPage">
+      Login
+    </button>
+    <br>
+    <button navPush="SignUpPage">
+      Sign Up
+    </button>
+  </div>
 
 </ion-content>
 

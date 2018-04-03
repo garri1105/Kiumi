@@ -1,67 +1,15 @@
 page-home {
-
-  .nav-bar {
-
-    .backgroundimage {
-      background: url("../../assets/imgs/woodbrown.jpg") no-repeat center center fixed;
-      background-size: cover;
-      position: fixed;
-      top: 0;
-      left: 0;
-
-      min-height: 100%;
-      min-width: 100%;
-
-      .app-title {
-        #title {
-          font-size: 2.0em;
-          font-family: Chalkboard;
-          color: white;
-        }
-      }
-    }
-
+  .homeButtons {
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 80%;
   }
 
-  background-color: #428957;
-  .body {
-    background: url("../../assets/imgs/chalkboard.png") no-repeat center center fixed;
-
-    background-size: cover;
-
-      .button1 {
-        background-color: transparent;
-        color: white;
-        //text-align: center;
-        //display: inline-block;
-        font-size: 180%;
-        cursor: pointer;
-        font-family: Chalkboard;
-        box-shadow: none;
-        //position: absolute;
-        //margin-bottom: 120%;
-
-        position:absolute;
-        bottom: 18%;
-
-
-
-      }
-
-      .button2 {
-        background-color: transparent;
-        border: none;
-        box-shadow: none;
-        color: white;
-        text-align: center;
-        font-size: 180%;
-        font-family: Chalkboard;
-
-        position:absolute;
-        bottom:10%;
-      }
-    }
-
+  button {
+    margin: 10px;
+  }
 }
 
 

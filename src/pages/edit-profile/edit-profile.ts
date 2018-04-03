@@ -16,10 +16,10 @@ export class EditProfilePage {
     if (event) {
       this.toast.create({
         message: 'Profile saved succesfully',
-        duration: 3000
+        duration: 1000
       }).present();
 
-      this.navCtrl.setRoot('ProfilePage');
+      this.navCtrl.setRoot('TabsPage');
     }
     else {
       this.toast.create({

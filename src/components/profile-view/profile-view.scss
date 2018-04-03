@@ -1,3 +1,5 @@
 profile-view {
-
+  .signOut {
+    background: map-get($colors, danger);
+  }
 }

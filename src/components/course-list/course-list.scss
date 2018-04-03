@@ -1,19 +1,5 @@
-  .courselist {
-    background: transparent;
-    border-bottom: white 3px solid;
-    //font-family: Chalkboard;
-    color: white;
-    margin: 4px;
+course-list {
+  .dropdown {
+    box-shadow: black 4px 4px 20px;
   }
-
-  .dropdown-button {
-    background-color: transparent;
-    border: white solid 2px;
-    color: white;
-    //font-family: Chalkboard;
-  }
-
-
-
-
-
+}

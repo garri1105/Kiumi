@@ -1,23 +1,18 @@
 <ion-header>
 
-  <ion-navbar class="navBar" background color="white">
-    <div class="backgroundimage image1">
-      <ion-title class="app-title">
-        <div id="title">My Courses</div>
+  <ion-navbar>
+      <ion-title>
+        My Courses
       </ion-title>
-    <ion-buttons class="addbuttons" end>
+    <ion-buttons end>
       <button ion-button  [navPush]="'AddCoursesPage'">
         <ion-icon id="addbutton" name="add"></ion-icon>
       </button>
     </ion-buttons>
-    </div>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding class="body" background>
-  <div class="backgroundimage">
-
-  <course-list [courseList]="studentCourses"></course-list>
-  </div>
+<ion-content padding>
+  <course-list class="transparent" [courseList]="studentCourses"></course-list>
 </ion-content>
