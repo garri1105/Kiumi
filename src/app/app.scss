@@ -14,24 +14,27 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.toolbar {
+//.global__input-error {
+//  color: red;
+//}
+
+.toolbar{
   box-shadow: #000000 5px 5px 20px;
 }
 
-.toolbar-background {
+.toolbar-background{
   background: url("../assets/imgs/woodbrown.jpg");
   background-size: cover;
 }
 
-.toolbar-title {
+.toolbar-title{
   color: white;
-  font-family: Chalkboard sans-serif;
+  font-family: Chalkboard, sans-serif;
 }
 
 .content {
   background: #428957 url("../assets/imgs/chalkboard.png");
   background-size: cover;
-  font-family: Chalkboard sans-serif;
 }
 
 .content * {
@@ -39,8 +42,7 @@
   color: white;
 }
 
-
-.global__input-error {
+global__input-error{
   color: red;
 }
 
@@ -48,11 +50,11 @@
   color: white;
 }
 
-.card {
+.card{
   box-shadow: #000000 5px 5px 20px;
 }
 
-.button {
-  background: map-get($colors, primary);
+.button{
+  background:map-get($colors, primary);
   box-shadow: #000000 4px 4px 10px;
 }

@@ -6,6 +6,7 @@ import { Student } from '../../models/student/student.interface';
 import { Profile } from '../../models/profile/profile.interface';
 import { OfficeHours } from '../../models/office-hours/office-hours.interface';
 import { Course } from '../../models/course/course.interface';
+import { CourseDataProvider } from '../course-data/course-data';
 
 /*
   Generated class for the StudentQueueDataProvider provider.
@@ -18,12 +19,13 @@ export class StudentQueueDataProvider {
   private studentQueue = this.db.list<Profile>('student-queue');
 
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private courseDataProvider: CourseDataProvider) {
     console.log('Hello StudentQueueDataProvider Provider');
   }
 
-  addStudent(student: Profile, officeHours: OfficeHours) {
-    officeHours.studentQueue.push(student.key);
+  addStudent(student: Profile, indexOfOfficeHour: number, course: Course) {
+    course.officeHours[indexOfOfficeHour].studentQueue.push(student.key);
+    this.courseDataProvider.updateCourse(course);
   }
 
   // removeStudent(student: Profile, officeHours: OfficeHours) {
