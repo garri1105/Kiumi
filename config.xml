@@ -96,6 +96,6 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <engine name="ios" spec="~4.5.4" />
     <plugin name="cordova-plugin-googleplus" spec="^5.2.3">
-        <variable name="REVERSED_CLIENT_ID" value="48365895185-ee3unrb93s0hs4mnbkmhe5u7n4fg1gjv" />
+        <variable name="REVERSED_CLIENT_ID" value="48365895185-ee3unrb93s0hs4mnbkmhe5u7n4fg1gjv.apps.googleusercontent.com" />
     </plugin>
 </widget>
