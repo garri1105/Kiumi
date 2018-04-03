@@ -1,9 +1,39 @@
 <ion-searchbar [(ngModel)]="query" (ionChange)="searchCourse(query)"></ion-searchbar>
 
-<ion-list *ngIf="courseList?.length > 0">
+<ion-list class="savedCourses" *ngIf="savedCourses?.length > 0">
+  <ion-list-header class="list-header" text-center no-padding no-margin>Saved</ion-list-header>
+  <ion-item *ngFor="let course of savedCourses">
+    <ion-label>{{ course.number }}<br><h3 class="course-title">{{ course.title }}</h3></ion-label>
+    <ion-select [(ngModel)]="course.selection"
+                [disabled]="course.selection"
+                interface="popover">
+      <ion-option *ngIf="profile.instructor">Instructor</ion-option>
+      <ion-option *ngIf="profile.student">Student</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+<ion-list class="selectedCourses" *ngIf="selectedCourses?.length > 0">
+  <ion-list-header class="list-header" text-center no-padding no-margin>To be saved</ion-list-header>
+  <ion-item *ngFor="let course of selectedCourses">
+    <ion-label>{{ course.number }}<br><h3>{{ course.title }}</h3></ion-label>
+    <ion-select [(ngModel)]="course.selection"
+                (ionChange)="addCourse(course)"
+                interface="popover">
+      <ion-option *ngIf="profile.instructor">Instructor</ion-option>
+      <ion-option *ngIf="profile.student">Student</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+<ion-list class="courseList" *ngIf="courseList?.length > 0">
+  <ion-list-header class="list-header" text-center no-padding no-margin
+                   *ngIf="courseList?.length > 0"></ion-list-header>
   <ion-item *ngFor="let course of courseList">
     <ion-label>{{ course.number }}<br><h3>{{ course.title }}</h3></ion-label>
-    <ion-select [(ngModel)]="course.selection" (ionChange)="addCourse(course)" interface="popover">
+    <ion-select [(ngModel)]="course.selection"
+                (ionChange)="addCourse(course)"
+                interface="popover">
       <ion-option *ngIf="profile.instructor">Instructor</ion-option>
       <ion-option *ngIf="profile.student">Student</ion-option>
     </ion-select>

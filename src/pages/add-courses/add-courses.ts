@@ -28,6 +28,14 @@ export class AddCoursesPage {
   saveCourses() {
     if (this.addedCourses) {
       this.addedCourses.map(course => {
+        if (course.selection === 'Instructor') {
+          this.profile.instructor.courses.push(course.key);
+          course.instructors.push(this.profile.key);
+        }
+        else {
+          this.profile.student.courses.push(course.key);
+          course.students.push(this.profile.key);
+        }
         course.selection = null;
         this.courseData.updateCourse(course);
       });
@@ -36,7 +44,7 @@ export class AddCoursesPage {
 
       this.toast.create({
         message: 'Courses saved succesfully',
-        duration: 3000
+        duration: 1000
       }).present();
 
       this.navCtrl.setRoot('TabsPage');

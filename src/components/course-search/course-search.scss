@@ -1,3 +1,33 @@
 course-search {
+  .button {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .savedCourses * {
+    margin: 0;
+    font-size: 0.99em;
+  }
+
+  .savedCourses ion-item {
+    height: 40px;
+  }
+
+  .course-title {
+    font-size: 0.7em;
+  }
+
+  .item {
+    min-height: 2rem;
+  }
+
+  .list-header {
+    height: 27px;
+    padding-top: 8px;
+  }
+
+  .courseList .list-header {
+    height: 0px;
+  }
 
 }

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
+import {IonicPage, Loading, LoadingController, NavParams} from 'ionic-angular';
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Course} from "../../models/course/course.interface";
 import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
@@ -22,17 +22,26 @@ export class StudentCoursesPage {
 
   studentCourses: Course[];
   profile = {} as Profile;
-
+  loader: Loading;
   constructor(private navParams: NavParams,
               private courseData: CourseDataProvider,
               private globalProfile: GlobalProfileProvider,
+              private loading: LoadingController,
               private utilities: UtilitiesProvider) {
 
     // this.utilities.resetCourses();
+    // this.utilities.resetStudents();
+    // this.utilities.resetInstructors();
+
+    this.loader = this.loading.create({
+      content: 'Loading courses...'
+    });
   }
 
   ionViewDidLoad() {
     this.profile = this.globalProfile.getProfile();
+    this.loader.present();
+
     this.courseData
       .getCourseList()
       .snapshotChanges()
@@ -46,6 +55,7 @@ export class StudentCoursesPage {
         this.studentCourses = courses.filter(course =>
               ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
           (this.profile.student && this.profile.student.courses.indexOf(course.key)) > -1));
+        this.loader.dismiss();
       });
   }
 

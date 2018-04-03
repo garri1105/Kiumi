@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Course} from "../../models/course/course.interface";
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Profile} from "../../models/profile/profile.interface";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'course-search',
@@ -9,7 +10,8 @@ import {Profile} from "../../models/profile/profile.interface";
 })
 export class CourseSearchComponent {
 
-  courseList: Course[];
+  courseList: Course[] = [];
+  savedCourses: Course[] = [];
   selectedCourses: Course[] = [];
 
   @Input() profile: Profile;
@@ -20,8 +22,7 @@ export class CourseSearchComponent {
   }
 
   searchCourse(query: string) {
-    this.courseList = this.selectedCourses;
-
+    this.courseList = [];
     if (query.length > 0) {
       this.courseData.searchCourse(query)
         .subscribe(courses => courses.valueChanges()
@@ -29,22 +30,55 @@ export class CourseSearchComponent {
             this.courseList = this.courseList.concat(list);
           }));
     }
+
+    setTimeout(() => this.savedCourses.forEach(selected => {
+      this.courseList.forEach((course, i) => {
+        if (selected.key === course.key) {
+          this.courseList.splice(i, 1);
+        }
+      })
+    }), 1);
   }
 
-  addCourse(course: Course) {
-    if (course.selection !== null) {
-      if (course.selection === 'Instructor') {
-        this.profile.instructor.courses.push(course.key);
-        course.instructors.push(this.profile.key);
-      }
-      else {
-        this.profile.student.courses.push(course.key);
-        course.students.push(this.profile.key);
-      }
+  addCourse(selected: Course) {
+    if (selected.selection !== null) {
+      this.selectedCourses.forEach((course, i) => {
+        if (course.key === selected.key) {
+          this.selectedCourses.splice(i, 1);
+        }
+      });
 
-      this.selectedCourses.push(course);
+      this.selectedCourses.push(selected);
+
+      this.courseList.splice(this.courseList.indexOf(selected), 1);
 
       this.addedCourses.emit(this.selectedCourses);
     }
+  }
+
+  ngOnInit() {
+    this.profile.instructor.courses.forEach(courseKey => {
+      this.courseData.getCourseByKey(courseKey)
+        .valueChanges()
+        .pipe(take(1))
+        .subscribe((course: Course) => {
+          if (course) {
+            course.selection = 'Instructor';
+            this.savedCourses.push(course);
+          }
+        })
+    });
+
+    this.profile.student.courses.forEach(courseKey => {
+      this.courseData.getCourseByKey(courseKey)
+        .valueChanges()
+        .pipe(take(1))
+        .subscribe((course: Course) => {
+          if (course) {
+            course.selection = 'Student';
+            this.savedCourses.push(course);
+          }
+        })
+    });
   }
 }
