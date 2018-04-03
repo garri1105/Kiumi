@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage} from 'ionic-angular';
+import {AlertController, IonicPage} from 'ionic-angular';
 import {GooglePlus} from "@ionic-native/google-plus";
 import firebase from 'firebase';
 
@@ -13,7 +13,7 @@ export class HomePage {
 
   userProfile: any = null;
 
-  constructor(private googlePlus: GooglePlus) {
+  constructor(private googlePlus: GooglePlus, private alert: AlertController) {
     firebase.auth().onAuthStateChanged( user => {
       if (user){
         this.userProfile = user;
@@ -35,8 +35,14 @@ export class HomePage {
         .then( response => {
           console.log("Firebase success: " + JSON.stringify(response));
     });
+      this.alert.create({
+        message: 'Success'
+      }).present();
   }, err => {
-      console.error("Error: ", err)
+      console.error("Error: ", err);
+      this.alert.create({
+        message: err
+      }).present();
     });
   }
 }
