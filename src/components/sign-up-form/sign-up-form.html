@@ -13,7 +13,7 @@
       </ion-item>
 
       <div padding *ngIf="email.invalid && email.dirty">
-        <span class="global__input-error">Email address is not valid. Only macalester email allowed</span>
+        <span class="global__input-error">Email address is not valid. Only macalester emails allowed</span>
       </div>
 
       <ion-item>
@@ -32,9 +32,9 @@
       </div>
 
       <ion-row>
-        <div>
+        <ion-col text-right>
           <button ion-button (click)="register()" [disabled]="registerForm.invalid">Sign Up</button>
-        </div>
+        </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>

@@ -10,7 +10,9 @@ import {GlobalProfileProvider} from "../../providers/global-profile/global-profi
 })
 export class LoginFormComponent {
 
-  account = {} as Account;
+  account = {
+    email: '@macalester.edu'
+  } as Account;
   @Output() loginStatus: EventEmitter<LoginResponse>;
 
   constructor(private auth: AuthProvider,

@@ -9,7 +9,9 @@ import {LoginResponse} from "../../models/login/login-response.interface";
 })
 export class SignUpFormComponent {
 
-  account = {} as Account;
+  account = {
+    email: '@macalester.edu'
+  } as Account;
 
   @Output() signUpStatus: EventEmitter<LoginResponse>;
 
