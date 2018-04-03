@@ -41,7 +41,7 @@ export class HomePage {
   }, err => {
       console.error("Error: ", err);
       this.alert.create({
-        message: err
+        message: 'Error:' + err
       }).present();
     });
   }
