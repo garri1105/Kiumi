@@ -17,6 +17,10 @@
     </button>
   </div>
 
+  <button ion-button block color="danger" (click)="loginUser()" *ngIf="!userProfile">
+    <ion-icon name="logo-googleplus"></ion-icon>
+    Login with Google
+  </button>
 </ion-content>
 
 <!--<ion-header>-->

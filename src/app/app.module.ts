@@ -17,6 +17,7 @@ import {FormsModule} from "@angular/forms";
 import { UtilitiesProvider } from '../providers/utilities/utilities';
 import { OfficeHoursDataProvider } from '../providers/office-hours-data/office-hours-data';
 import { StudentQueueDataProvider } from '../providers/student-queue-data/student-queue-data';
+import {GooglePlus} from "@ionic-native/google-plus";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { StudentQueueDataProvider } from '../providers/student-queue-data/studen
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,7 +45,8 @@ import { StudentQueueDataProvider } from '../providers/student-queue-data/studen
     AuthProvider,
     UtilitiesProvider,
     OfficeHoursDataProvider,
-    StudentQueueDataProvider
+    StudentQueueDataProvider,
+    GooglePlus
   ]
 })
 export class AppModule {}

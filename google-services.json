@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "48365895185",
+    "firebase_url": "https://traffionic.firebaseio.com",
+    "project_id": "traffionic",
+    "storage_bucket": "traffionic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48365895185:android:995749dbe2314038",
+        "android_client_info": {
+          "package_name": "com.traffionic.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48365895185-oma3cqjpva4n4823ot1b8p60m3hrroi0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.traffionic.android",
+            "certificate_hash": "0b9a1d662497124eca610b3b8ce470a9928433b3"
+          }
+        },
+        {
+          "client_id": "48365895185-7vnbechfbhvgnbp96r02b9m31u5gok4s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC839KqBJtvVziccXcoqRv5MdPwHIwQoUA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48365895185-7vnbechfbhvgnbp96r02b9m31u5gok4s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "48365895185-ee3unrb93s0hs4mnbkmhe5u7n4fg1gjv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.traffionic.ios"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
