@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:48365895185:android:995749dbe2314038",
+        "mobilesdk_app_id": "1:48365895185:android:65fcb268ed679808",
         "android_client_info": {
-          "package_name": "com.traffionic.android"
+          "package_name": "com.traffionic.mac"
         }
       },
       "oauth_client": [
         {
-          "client_id": "48365895185-oma3cqjpva4n4823ot1b8p60m3hrroi0.apps.googleusercontent.com",
+          "client_id": "48365895185-506297m123f97eip097mpl6teumibq18.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.traffionic.android",
+            "package_name": "com.traffionic.mac",
             "certificate_hash": "0b9a1d662497124eca610b3b8ce470a9928433b3"
           }
         },
@@ -44,10 +44,10 @@
               "client_type": 3
             },
             {
-              "client_id": "48365895185-ee3unrb93s0hs4mnbkmhe5u7n4fg1gjv.apps.googleusercontent.com",
+              "client_id": "48365895185-k9pklf1pgdc5cl1v6j2k2ofluhfvvo7k.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.traffionic.ios"
+                "bundle_id": "com.traffionic.mac"
               }
             }
           ]

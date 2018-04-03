@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>48365895185-ee3unrb93s0hs4mnbkmhe5u7n4fg1gjv.apps.googleusercontent.com</string>
+	<string>48365895185-k9pklf1pgdc5cl1v6j2k2ofluhfvvo7k.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.48365895185-ee3unrb93s0hs4mnbkmhe5u7n4fg1gjv</string>
+	<string>com.googleusercontent.apps.48365895185-k9pklf1pgdc5cl1v6j2k2ofluhfvvo7k</string>
 	<key>API_KEY</key>
 	<string>AIzaSyB7ABUpK7YiNex07sLSboLCiiCBUS05xLk</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.traffionic.ios</string>
+	<string>com.traffionic.mac</string>
 	<key>PROJECT_ID</key>
 	<string>traffionic</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:48365895185:ios:059f9739a073f851</string>
+	<string>1:48365895185:ios:65fcb268ed679808</string>
 	<key>DATABASE_URL</key>
 	<string>https://traffionic.firebaseio.com</string>
 </dict>
