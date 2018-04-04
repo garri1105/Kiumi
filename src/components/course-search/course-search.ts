@@ -57,28 +57,32 @@ export class CourseSearchComponent {
   }
 
   ngOnInit() {
-    this.profile.instructor.courses.forEach(courseKey => {
-      this.courseData.getCourseByKey(courseKey)
-        .valueChanges()
-        .pipe(take(1))
-        .subscribe((course: Course) => {
-          if (course) {
-            course.selection = 'Instructor';
-            this.savedCourses.push(course);
-          }
-        })
-    });
+    if (this.profile.instructor) {
+      this.profile.instructor.courses.forEach(courseKey => {
+        this.courseData.getCourseByKey(courseKey)
+          .valueChanges()
+          .pipe(take(1))
+          .subscribe((course: Course) => {
+            if (course) {
+              course.selection = 'Instructor';
+              this.savedCourses.push(course);
+            }
+          })
+      });
+    }
 
-    this.profile.student.courses.forEach(courseKey => {
-      this.courseData.getCourseByKey(courseKey)
-        .valueChanges()
-        .pipe(take(1))
-        .subscribe((course: Course) => {
-          if (course) {
-            course.selection = 'Student';
-            this.savedCourses.push(course);
-          }
-        })
-    });
+    if (this.profile.student) {
+      this.profile.student.courses.forEach(courseKey => {
+        this.courseData.getCourseByKey(courseKey)
+          .valueChanges()
+          .pipe(take(1))
+          .subscribe((course: Course) => {
+            if (course) {
+              course.selection = 'Student';
+              this.savedCourses.push(course);
+            }
+          })
+      });
+    }
   }
 }
