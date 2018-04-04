@@ -1,27 +1,33 @@
 page-home {
+
+  .logoImage{
+    width: 80%;
+    height: 80%;
+    top: 8%;
+    left: 12%;
+    position: absolute;
+    opacity: 0.8;
+  }
+
   .homeButtons {
     text-align: center;
     position: relative;
     left: 50%;
     transform: translate(-50%, -50%);
-    top: 80%;
+    top: 85%;
     font-family: Chalkboard, sans-serif;
 
 
     .log-in {
       padding-bottom: 2%;
       border-bottom: white solid 2px;
-      font-size: 150%;
-      width: 40%;
+      font-size: 125%;
+      width: 30%;
     }
 
     .sign-up {
-      font-size: 150%;
-      width: 40%;
-
-
+      font-size: 125%;
+      width: 30%;
     }
   }
 }
-
-
