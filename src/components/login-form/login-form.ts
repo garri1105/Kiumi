@@ -33,4 +33,14 @@ export class LoginFormComponent {
       await this.globalProfile.loadProfile();
     }
   }
+
+  async sendPasswordResetEmail() {
+    try {
+      const result = await this.auth.sendPasswordResetEmail(this.account.email);
+      console.log(result);
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
 }
