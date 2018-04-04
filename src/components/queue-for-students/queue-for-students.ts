@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { Component, Input } from '@angular/core';
+import { NavParams, NavController } from 'ionic-angular';
 import { StudentQueueDataProvider } from '../../providers/student-queue-data/student-queue-data';
 import { GlobalProfileProvider } from '../../providers/global-profile/global-profile';
 import { Profile } from '../../models/profile/profile.interface';
@@ -17,8 +17,9 @@ import { Course } from '../../models/course/course.interface';
 })
 export class QueueForStudentsComponent {
 
+  @Input() course: Course;
   text: string;
-  course: Course;
+  // course: Course;
   profile: Profile;
   clicked: boolean;
   checkInButton: HTMLElement;
@@ -27,15 +28,15 @@ export class QueueForStudentsComponent {
   constructor(private navParams: NavParams, private studentQueueDataProvider: StudentQueueDataProvider, private globalProfileProvider: GlobalProfileProvider) {
     this.profile = this.globalProfileProvider.getProfile();
     this.clicked = false;
-    this.course = this.navParams.get('course');
+    // this.course = this.navParams.get('course');
     console.log('Hello QueueForStudentsComponent Component');
     this.text = 'Hello World';
 
   }
 
-
-  addStudent(indexOfOfficeHour: number, course: Course) {
-    this.studentQueueDataProvider.addStudent(this.profile, indexOfOfficeHour, course);
+  addStudent(indexOfOfficeHour: number) {
+    console.log(this.course);
+    this.studentQueueDataProvider.addStudent(this.profile, indexOfOfficeHour, this.course);
   }
 
 

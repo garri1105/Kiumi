@@ -1,7 +1,9 @@
+import { Profile } from "../profile/profile.interface";
+
 export interface OfficeHours {
   key?: string;
   instructors: string[];
-  studentQueue: string[];
+  studentQueue: Profile[];
   location: string;
   startTime: string;
   endTime: string;

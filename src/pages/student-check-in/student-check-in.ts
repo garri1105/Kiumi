@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavParams} from 'ionic-angular';
+import {IonicPage, NavParams, NavController} from 'ionic-angular';
 import {Course} from "../../models/course/course.interface";
 import { StudentQueueDataProvider } from '../../providers/student-queue-data/student-queue-data';
 import { Profile } from '../../models/profile/profile.interface';
@@ -18,7 +18,7 @@ export class StudentCheckInPage {
   clicked: boolean;
   checkInButton: HTMLElement;
 
-  constructor(private navParams: NavParams, private studentQueueDataProvider: StudentQueueDataProvider, private globalProfileProvider: GlobalProfileProvider) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, private studentQueueDataProvider: StudentQueueDataProvider, private globalProfileProvider: GlobalProfileProvider) {
     this.profile = this.globalProfileProvider.getProfile();
     this.clicked = false;
     this.course = this.navParams.get('course');
@@ -41,6 +41,7 @@ export class StudentCheckInPage {
 
   addStudent(student: Profile, indexOfOfficeHour: number, course: Course) {
     this.studentQueueDataProvider.addStudent(student, indexOfOfficeHour, course);
+    // this.navCtrl.push(this.course.number);
   }
 
   
