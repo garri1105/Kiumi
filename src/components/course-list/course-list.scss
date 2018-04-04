@@ -1,5 +1,17 @@
 course-list {
   .dropdown {
-    box-shadow: black 4px 4px 20px;
+    border-bottom: white double 2px;
+    //box-shadow: black 4px 4px 20px;
+  }
+
+  .dropdown-toggle {
+    border: solid white 2px;
+
+  }
+
+  .courselist {
+    border-bottom: solid white 2px;
+
   }
 }
+

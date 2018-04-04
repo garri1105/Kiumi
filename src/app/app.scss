@@ -26,7 +26,14 @@
 
 .toolbar-title{
   color: white;
-  font-family: Chalkboard, sans-serif;
+  //font-family: Chalkboard, sans-serif;
+  text-align: center;
+  @font-face {
+    font-family: chalkfont;
+    src: url('../assets/fonts/chalkfont.ttf');
+    //font-weight: bold;
+    }
+
 }
 
 .content {
@@ -48,10 +55,18 @@
 }
 
 .card {
-  box-shadow: #000000 5px 5px 20px;
+  //box-shadow: #000000 5px 5px 20px;
+  //box-shadow: none;
 }
 
 .button{
   background:map-get($colors, primary);
-  box-shadow: #000000 4px 4px 10px;
+  //box-shadow: #000000 4px 4px 10px;
+  //box-shadow: none;
 }
+
+.label {
+  margin: 0;
+}
+
+
