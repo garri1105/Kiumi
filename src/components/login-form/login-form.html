@@ -35,7 +35,9 @@
         <div>
           <button ion-button (click)="login()" [disabled]="loginForm.invalid">Login</button>
           <button ion-button style="color: black" color="light" class="signUp" [navPush]="'SignUpPage'">Sign Up</button>
-
+          <button ion-button (click)="googleLogin()">
+            <ion-icon name="logo-googleplus"></ion-icon>
+          </button>
         </div>
       </ion-row>
     </ion-card-content>

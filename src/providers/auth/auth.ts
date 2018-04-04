@@ -2,11 +2,51 @@ import {Injectable} from '@angular/core';
 import {LoginResponse} from "../../models/login/login-response.interface";
 import {AngularFireAuth} from "angularfire2/auth";
 import {Account} from '../../models/account/account.interface'
+import * as firebase from 'firebase/app'
+import {GooglePlus} from "@ionic-native/google-plus";
+import {Platform} from "ionic-angular";
 
 @Injectable()
 export class AuthProvider {
-  
-  constructor(private afAuth: AngularFireAuth) {
+
+  constructor(private afAuth: AngularFireAuth,
+              private gplus: GooglePlus,
+              private platform: Platform) {
+  }
+
+  googleLogin() {
+    if (this.platform.is('cordova')) {
+      this.nativeGoogleLogin();
+    } else {
+      this.webGoogleLogin();
+    }
+  }
+
+  async nativeGoogleLogin(): Promise<void> {
+    try {
+
+      const gplusUser = await this.gplus.login({
+        'webClientId': '48365895185-7vnbechfbhvgnbp96r02b9m31u5gok4s.apps.googleusercontent.com',
+        'offline': true,
+        'scopes': 'profile email'
+      });
+
+      return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
+
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  async webGoogleLogin(): Promise<void> {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      const credential = await this.afAuth.auth.signInWithPopup(provider);
+
+    } catch(err) {
+      console.log(err)
+    }
+
   }
 
   getAuthenticatedUser() {

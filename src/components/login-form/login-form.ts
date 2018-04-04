@@ -21,6 +21,10 @@ export class LoginFormComponent {
     this.loginStatus = new EventEmitter<LoginResponse>();
   }
 
+  async googleLogin() {
+    this.auth.googleLogin();
+  }
+
   async login() {
     const result = await this.auth.signInWithEmailAndPassword(this.account);
     this.loginStatus.emit(result);
