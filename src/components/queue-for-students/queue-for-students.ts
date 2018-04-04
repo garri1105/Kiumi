@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { NavParams } from 'ionic-angular';
+import { StudentQueueDataProvider } from '../../providers/student-queue-data/student-queue-data';
+import { GlobalProfileProvider } from '../../providers/global-profile/global-profile';
+import { Profile } from '../../models/profile/profile.interface';
+import { Course } from '../../models/course/course.interface';
 
 /**
  * Generated class for the QueueForStudentsComponent component.
@@ -13,10 +18,25 @@ import { Component } from '@angular/core';
 export class QueueForStudentsComponent {
 
   text: string;
+  course: Course;
+  profile: Profile;
+  clicked: boolean;
+  checkInButton: HTMLElement;
+  studentQueue: Profile[];
 
-  constructor() {
+  constructor(private navParams: NavParams, private studentQueueDataProvider: StudentQueueDataProvider, private globalProfileProvider: GlobalProfileProvider) {
+    this.profile = this.globalProfileProvider.getProfile();
+    this.clicked = false;
+    this.course = this.navParams.get('course');
     console.log('Hello QueueForStudentsComponent Component');
     this.text = 'Hello World';
+
   }
+
+
+  addStudent(indexOfOfficeHour: number, course: Course) {
+    this.studentQueueDataProvider.addStudent(this.profile, indexOfOfficeHour, course);
+  }
+
 
 }

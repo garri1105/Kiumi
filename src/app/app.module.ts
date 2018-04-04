@@ -25,7 +25,11 @@ import {GooglePlus} from "@ionic-native/google-plus";
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      config: {
+        clickBlock: false
+      }
+    }),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

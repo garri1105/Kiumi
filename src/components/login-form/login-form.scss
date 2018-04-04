@@ -7,6 +7,20 @@ login-form {
     }
   }
 
+  ion-row {
+    text-align: center;
+  }
+
+  ion-col {
+    text-align: center;
+  }
+
+  .googleLogin{
+    background: transparent;
+    box-shadow: none;
+    border: white solid 2px;
+  }
+
   .passwordReset {
     font-size: 0.8em;
     min-height: 3rem;

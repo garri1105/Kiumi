@@ -5,6 +5,7 @@
       detail-none
       name="student"
       ion-item
+      class="click-block-hide"
       (click)="toggleSection($event)">
       <ion-icon item-left name="arrow-dropright" *ngIf="!studentButton"></ion-icon>
       <ion-icon item-left name="arrow-dropdown" *ngIf="studentButton"></ion-icon>
@@ -12,7 +13,6 @@
     <ion-list *ngIf="studentButton">
       <div *ngFor="let course of courseList">
         <button
-          class="courselist"
           detail-none
           ion-item
           *ngIf="profile.student.courses.indexOf(course.key) > -1"
@@ -32,6 +32,7 @@
       detail-none
       name="instructor"
       ion-item
+      class="click-block-hide"
       (click)="toggleSection($event)">
       <ion-icon item-left name="arrow-dropright" *ngIf="!instructorButton"></ion-icon>
       <ion-icon item-left name="arrow-dropdown" *ngIf="instructorButton"></ion-icon>
@@ -39,7 +40,6 @@
     <ion-list *ngIf="instructorButton">
       <div *ngFor="let course of courseList">
         <button
-          class="courselist"
           detail-none
           ion-item
           *ngIf="profile.instructor.courses.indexOf(course.key) > -1"
