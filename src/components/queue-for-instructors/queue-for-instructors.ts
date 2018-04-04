@@ -20,8 +20,6 @@ export class QueueForInstructorsComponent {
   // private studentQueue = this.db.list<Student>('student-queue');
   studentQueue: Profile[];
 
-
-
   text: string;
 
   constructor(private db: AngularFireDatabase ) {

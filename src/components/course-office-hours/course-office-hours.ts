@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import { Course } from '../../models/course/course.interface';
 
 /**
  * Generated class for the CourseOfficeHoursComponent component.
@@ -13,8 +14,18 @@ import {Component, Input} from '@angular/core';
 export class CourseOfficeHoursComponent {
 
   @Input() courseKey: string;
+  course: Course;
 
   constructor() {
+  }
+
+  officeHoursExist(course: Course) {
+    if(course.officeHours.length > 1) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
 }
