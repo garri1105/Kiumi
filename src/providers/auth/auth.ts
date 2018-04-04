@@ -4,14 +4,15 @@ import {AngularFireAuth} from "angularfire2/auth";
 import {Account} from '../../models/account/account.interface'
 import * as firebase from 'firebase/app'
 import {GooglePlus} from "@ionic-native/google-plus";
-import {Platform} from "ionic-angular";
+import {AlertController, Platform} from "ionic-angular";
 
 @Injectable()
 export class AuthProvider {
 
   constructor(private afAuth: AngularFireAuth,
               private gplus: GooglePlus,
-              private platform: Platform) {
+              private platform: Platform,
+              private alert: AlertController) {
   }
 
   googleLogin() {
@@ -34,7 +35,10 @@ export class AuthProvider {
       return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
 
     } catch(err) {
-      console.log(err)
+      console.log(err);
+      this.alert.create({
+        message: 'Error' + err
+      }).present();
     }
   }
 
@@ -42,11 +46,15 @@ export class AuthProvider {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credential = await this.afAuth.auth.signInWithPopup(provider);
-
+      this.alert.create({
+        message: 'Trying'
+      }).present();
     } catch(err) {
-      console.log(err)
+      console.log(err);
+      this.alert.create({
+        message: 'Error' + err
+      }).present();
     }
-
   }
 
   getAuthenticatedUser() {
