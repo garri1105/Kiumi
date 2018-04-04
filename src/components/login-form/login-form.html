@@ -32,14 +32,17 @@
       </div>
       <br>
       <ion-row>
-        <div>
           <button ion-button (click)="login()" [disabled]="loginForm.invalid">Login</button>
           <button ion-button style="color: black" color="light" class="signUp" [navPush]="'SignUpPage'">Sign Up</button>
-          <button ion-button (click)="googleLogin()">
-            <ion-icon name="logo-googleplus"></ion-icon>
-          </button>
-        </div>
+          <div id="logo" (click)="googleLogin()">
+            <div class="g-line"></div>
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+            <span class="blue"></span>
+          </div>
       </ion-row>
+
     </ion-card-content>
   </ion-card>
 </form>
