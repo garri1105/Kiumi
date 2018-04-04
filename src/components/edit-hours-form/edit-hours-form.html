@@ -37,6 +37,7 @@
                 <ion-label stacked>Start Time</ion-label>
                 <ion-datetime [(ngModel)]="newOfficeHoursList[i].startTime"
                               name="newStartTime{{ i }}"
+                              onchange="setEndTime(i)"
                               displayFormat="hh:mm a"
                               required
                               placeholder="00:00 pm"

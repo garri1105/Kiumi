@@ -40,7 +40,7 @@ export class EditHoursComponent {
     this.officeHoursDataProvider.addOfficeHours(this.courseKey, newOfficeHours);
     this.toast.create({
       message: 'Saved succesfully',
-      duration: 3000
+      duration: 1000
     }).present();
   }
 
@@ -49,7 +49,7 @@ export class EditHoursComponent {
       .then((r: string) => {
       this.toast.create({
         message: r,
-        duration: 3000
+        duration: 1000
       }).present();})
       .catch(e => {
       this.toast.create({
@@ -74,6 +74,11 @@ export class EditHoursComponent {
         }
       }
     }, 1);
+  }
+
+  setEndTime(i: number) {
+    this.newOfficeHoursList[i].endTime = this.officeHoursList[i].startTime;
+    console.log(this.newOfficeHoursList[i].endTime);
   }
 
   static makeId(length: number) {

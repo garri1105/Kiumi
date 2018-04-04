@@ -46,9 +46,6 @@ export class AuthProvider {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credential = await this.afAuth.auth.signInWithPopup(provider);
-      this.alert.create({
-        message: 'Trying'
-      }).present();
     } catch(err) {
       console.log(err);
     }
