@@ -31,6 +31,19 @@
         <span class="global__input-error">Password must be at least 6 characters and have at least one number.</span>
       </div>
       <br>
+
+      <ion-row>
+        <ion-col text-center>
+          <button ion-button
+                  class="passwordReset"
+                  padding
+                  color="danger"
+                  *ngIf="loginResult?.error"
+                  [navPush]="'ResetPasswordPage'">
+            Password reset
+          </button>
+        </ion-col>
+      </ion-row>
       <ion-row>
           <button ion-button (click)="login()" [disabled]="loginForm.invalid">Login</button>
           <button ion-button style="color: black" color="light" class="signUp" [navPush]="'SignUpPage'">Sign Up</button>
@@ -42,7 +55,6 @@
             <span class="blue"></span>
           </div>
       </ion-row>
-
     </ion-card-content>
   </ion-card>
 </form>

@@ -14,6 +14,7 @@ export class LoginFormComponent {
     email: '@macalester.edu'
   } as Account;
   @Output() loginStatus: EventEmitter<LoginResponse>;
+  loginResult: LoginResponse;
 
   constructor(private auth: AuthProvider,
               private globalProfile: GlobalProfileProvider) {
@@ -26,9 +27,9 @@ export class LoginFormComponent {
   }
 
   async login() {
-    const result = await this.auth.signInWithEmailAndPassword(this.account);
-    this.loginStatus.emit(result);
-    if (!result.error) {
+    this.loginResult = await this.auth.signInWithEmailAndPassword(this.account);
+    this.loginStatus.emit(this.loginResult);
+    if (!this.loginResult.error) {
       await this.globalProfile.loadProfile();
     }
   }

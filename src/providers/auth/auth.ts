@@ -15,6 +15,16 @@ export class AuthProvider {
               private alert: AlertController) {
   }
 
+  async sendPasswordResetEmail(email: string) {
+    try {
+      await this.afAuth.auth.sendPasswordResetEmail(email);
+      return true;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
   googleLogin() {
     if (this.platform.is('cordova')) {
       this.nativeGoogleLogin();
@@ -34,7 +44,7 @@ export class AuthProvider {
 
       return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
 
-    } catch(err) {
+    } catch (err) {
       console.log(err);
       this.alert.create({
         message: 'Error1: ' + err
@@ -46,7 +56,7 @@ export class AuthProvider {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credential = await this.afAuth.auth.signInWithPopup(provider);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }
@@ -59,11 +69,11 @@ export class AuthProvider {
     try {
       return <LoginResponse> {
         result: await this.afAuth.auth.createUserWithEmailAndPassword(
-        account.email,
-        account.password)
-       }
+          account.email,
+          account.password)
+      }
     }
-    catch(e) {
+    catch (e) {
       return <LoginResponse> {
         error: e
       }
@@ -86,13 +96,12 @@ export class AuthProvider {
   }
 
   async signOut() {
-      try {
-        await this.afAuth.auth.signOut();
-        return true;
-      }
-      catch(e) {
-        return false;
-      }
+    try {
+      await this.afAuth.auth.signOut();
+      return true;
+    }
+    catch (e) {
+      return false;
+    }
   }
-
 }
