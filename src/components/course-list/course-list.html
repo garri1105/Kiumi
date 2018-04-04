@@ -1,7 +1,7 @@
 <ion-list>
   <ion-list-header class="dropdown" *ngIf="profile.student" no-lines no-padding>
     <button
-      class="dropdown-toggle"
+      class="dropdown-button"
       detail-none
       name="student"
       ion-item
@@ -12,7 +12,7 @@
       Attending</button>
     <ion-list *ngIf="studentButton">
       <div *ngFor="let course of courseList">
-        <button
+        <button class="courselist"
           detail-none
           ion-item
           *ngIf="profile.student.courses.indexOf(course.key) > -1"
@@ -28,7 +28,7 @@
   </ion-list-header>
   <ion-list-header class="dropdown" *ngIf="profile.instructor" no-lines no-padding>
     <button
-      class="dropdown-toggle"
+      class="dropdown-button"
       detail-none
       name="instructor"
       ion-item
@@ -39,7 +39,7 @@
       Instructing</button>
     <ion-list *ngIf="instructorButton">
       <div *ngFor="let course of courseList">
-        <button
+        <button class="courselist"
           detail-none
           ion-item
           *ngIf="profile.instructor.courses.indexOf(course.key) > -1"
