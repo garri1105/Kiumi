@@ -37,7 +37,7 @@ export class AuthProvider {
     } catch(err) {
       console.log(err);
       this.alert.create({
-        message: 'Error' + err
+        message: 'Error1: ' + err
       }).present();
     }
   }
@@ -51,9 +51,6 @@ export class AuthProvider {
       }).present();
     } catch(err) {
       console.log(err);
-      this.alert.create({
-        message: 'Error' + err
-      }).present();
     }
   }
 
