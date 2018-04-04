@@ -5,10 +5,22 @@ page-home {
     left: 50%;
     transform: translate(-50%, -50%);
     top: 80%;
-  }
+    font-family: Chalkboard, sans-serif;
 
-  .button {
-    margin: 10px;
+
+    .log-in {
+      padding-bottom: 2%;
+      border-bottom: white solid 2px;
+      font-size: 150%;
+      width: 40%;
+    }
+
+    .sign-up {
+      font-size: 150%;
+      width: 40%;
+
+
+    }
   }
 }
 
