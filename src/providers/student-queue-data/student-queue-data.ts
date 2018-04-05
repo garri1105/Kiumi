@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-// import {} from '..';
 import { Student } from '../../models/student/student.interface';
 import { Profile } from '../../models/profile/profile.interface';
 import { OfficeHours } from '../../models/office-hours/office-hours.interface';
@@ -24,8 +23,18 @@ export class StudentQueueDataProvider {
   }
 
   addStudent(student: Profile, indexOfOfficeHour: number, course: Course) {
-    course.officeHours[indexOfOfficeHour].studentQueue.push(student.key);
-    this.courseDataProvider.updateCourse(course);
+    // course.officeHours[indexOfOfficeHour].studentQueue.push(student.key);
+    // this.courseDataProvider.updateCourse(course);
+
+    this.courseDataProvider.getCourseByKey(course.key).
+      valueChanges().
+      subscribe((course: Course) => {
+      course.officeHours[indexOfOfficeHour].studentQueue.push(student.key);
+      this.courseDataProvider.updateCourse(course);
+    });
+    // console.log(course.officeHours[indexOfOfficeHour].studentQueue);
+    // this.courseDataProvider.updateCourse(course);
+
   }
 
   // removeStudent(student: Profile, officeHours: OfficeHours) {
