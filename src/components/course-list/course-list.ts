@@ -2,13 +2,9 @@ import {Component, Injectable, Input} from '@angular/core';
 import {Course} from "../../models/course/course.interface"
 import {Profile} from "../../models/profile/profile.interface";
 import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
-
-/**
- * Generated class for the CourseListComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+import {CourseDataProvider} from "../../providers/course-data/course-data";
+import {take} from "rxjs/operators";
+import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 
 @Injectable()
 @Component({
@@ -23,7 +19,10 @@ export class CourseListComponent {
   instructorButton: Boolean;
   @Input() courseList: Course[];
 
-  constructor(private globalProfile: GlobalProfileProvider) {
+  constructor(private globalProfile: GlobalProfileProvider,
+              private courseData: CourseDataProvider,
+              private profileData: ProfileDataProvider) {
+
     this.profile = this.globalProfile.getProfile();
     this.studentButton = false;
     this.instructorButton = false;
@@ -35,6 +34,29 @@ export class CourseListComponent {
     }
     else if (event.target.name === 'instructor') {
       this.instructorButton = !this.instructorButton;
+    }
+  }
+
+  removeCourse(event, course: Course) {
+    if (event.target.name === 'studentCourse') {
+      this.profile.student.courses.splice(this.profile.student.courses.indexOf(course.key), 1);
+      this.courseData.getCourseByKey(course.key)
+        .valueChanges().pipe(take(1))
+        .subscribe((course: Course) => {
+          course.students.splice(course.students.indexOf(this.profile.key), 1);
+          this.courseData.updateCourse(course);
+        });
+      this.profileData.updateProfile(this.profile);
+    }
+    else if (event.target.name === 'instructorCourse') {
+      this.profile.instructor.courses.splice(this.profile.instructor.courses.indexOf(course.key), 1);
+      this.courseData.getCourseByKey(course.key)
+        .valueChanges().pipe(take(1))
+        .subscribe((course: Course) => {
+          course.instructors.splice(course.instructors.indexOf(this.profile.key), 1);
+          this.courseData.updateCourse(course);
+        });
+      this.profileData.updateProfile(this.profile);
     }
   }
 }

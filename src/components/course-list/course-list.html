@@ -10,19 +10,29 @@
       <ion-icon item-left name="arrow-dropdown" *ngIf="studentButton"></ion-icon>
       Attending</button>
     <ion-list *ngIf="studentButton">
-      <div *ngFor="let course of courseList">
-        <button
-          detail-none
-          ion-item
-          *ngIf="profile.student.courses.indexOf(course.key) > -1"
-          [navPush]="'StudentCheckInPage'"
-          [navParams]={course:course}>
-            {{ course.number }}
-            <br>
-            <h3>{{ course.title }}</h3>
-            <ion-icon item-end name="arrow-forward"></ion-icon>
-        </button>
-      </div>
+      <ion-item-sliding *ngFor="let course of courseList">
+        <ion-item detail-none
+                  tappable
+                  name="studentCourse"
+                  *ngIf="profile.student.courses.indexOf(course.key) > -1"
+                  [navPush]="'StudentCheckInPage'"
+                  [navParams]={course:course}>
+          {{ course.number }}
+          <br>
+          <h3>{{ course.title }}</h3>
+          <ion-icon item-end name="arrow-forward"></ion-icon>
+        </ion-item>
+        <ion-item-options side="left">
+          <button ion-button
+                  class="trash"
+                  color="danger"
+                  name="studentCourse"
+                  (click)="removeCourse($event, course)">
+            <ion-icon name="trash"></ion-icon>
+            DELETE
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
   </ion-list-header>
   <ion-list-header class="dropdown" *ngIf="profile.instructor" no-lines no-padding>
@@ -36,19 +46,28 @@
       <ion-icon item-left name="arrow-dropdown" *ngIf="instructorButton"></ion-icon>
       Instructing</button>
     <ion-list *ngIf="instructorButton">
-      <div *ngFor="let course of courseList">
-        <button
-          detail-none
-          ion-item
-          *ngIf="profile.instructor.courses.indexOf(course.key) > -1"
-          [navPush]="'ClassQueuePage'"
-          [navParams]={course:course}>
-            {{ course.number }}
-            <br>
-            <h3>{{ course.title }}</h3>
-            <ion-icon item-end name="arrow-forward"></ion-icon>
-        </button>
-      </div>
+      <ion-item-sliding *ngFor="let course of courseList">
+        <ion-item detail-none
+                  tappable
+                  *ngIf="profile.instructor.courses.indexOf(course.key) > -1"
+                  [navPush]="'ClassQueuePage'"
+                  [navParams]={course:course}>
+          {{ course.number }}
+          <br>
+          <h3>{{ course.title }}</h3>
+          <ion-icon item-end name="arrow-forward"></ion-icon>
+        </ion-item>
+        <ion-item-options side="left">
+          <button ion-button
+                  class="trash"
+                  color="danger"
+                  name="instructorCourse"
+                  (click)="removeCourse($event, course)">
+            <ion-icon name="trash"></ion-icon>
+            DELETE
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
   </ion-list-header>
 </ion-list>
