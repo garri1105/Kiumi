@@ -45,8 +45,6 @@ export class UtilitiesProvider {
           this.courseData.updateCourse(course);
         });
       });
-    this.resetStudents();
-    this.resetInstructors();
   }
 
   resetStudents() {

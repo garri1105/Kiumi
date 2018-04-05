@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {LoginResponse} from "../../models/login/login-response.interface";
 import {AngularFireAuth} from "angularfire2/auth";
-import {Account} from '../../models/account/account.interface'
-import * as firebase from 'firebase/app'
+import {Account} from '../../models/account/account.interface';
+import * as firebase from 'firebase/app';
 import {GooglePlus} from "@ionic-native/google-plus";
 import {AlertController, Platform} from "ionic-angular";
 
@@ -47,7 +47,7 @@ export class AuthProvider {
     } catch (err) {
       console.log(err);
       this.alert.create({
-        message: 'Error1: ' + err
+        message: 'Native error: ' + err
       }).present();
     }
   }
