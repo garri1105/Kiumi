@@ -1,7 +1,7 @@
 <ion-searchbar [(ngModel)]="query" (ionChange)="searchCourse(query)"></ion-searchbar>
 
 <ion-list class="savedCourses" *ngIf="savedCourses?.length > 0">
-  <ion-list-header class="list-header" text-center no-padding no-margin>Saved</ion-list-header>
+  <ion-list-header class="list-header" text-center>Saved</ion-list-header>
   <ion-item *ngFor="let course of savedCourses">
     <ion-label>{{ course.number }}<br><h3 class="course-title">{{ course.title }}</h3></ion-label>
     <ion-select [(ngModel)]="course.selection"
@@ -14,7 +14,7 @@
 </ion-list>
 
 <ion-list class="selectedCourses" *ngIf="selectedCourses?.length > 0">
-  <ion-list-header class="list-header" text-center no-padding no-margin>To be saved</ion-list-header>
+  <ion-list-header class="list-header" text-center>To be saved</ion-list-header>
   <ion-item *ngFor="let course of selectedCourses">
     <ion-label>{{ course.number }}<br><h3>{{ course.title }}</h3></ion-label>
     <ion-select [(ngModel)]="course.selection"

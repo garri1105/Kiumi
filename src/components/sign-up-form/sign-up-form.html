@@ -2,7 +2,7 @@
   <ion-card>
     <ion-card-content>
       <ion-item>
-        <ion-label floating>Email Address</ion-label>
+        <ion-label stacked>Email Address</ion-label>
         <ion-input
           type="email"
           [(ngModel)]="account.email"
@@ -17,7 +17,7 @@
       </div>
 
       <ion-item>
-        <ion-label floating>Password</ion-label>
+        <ion-label stacked>Password</ion-label>
         <ion-input
           type="password"
           [(ngModel)]="account.password"
@@ -32,10 +32,11 @@
       </div>
 
       <ion-row>
-        <ion-col text-right>
+        <ion-col>
           <button ion-button (click)="register()" [disabled]="registerForm.invalid">Sign Up</button>
         </ion-col>
       </ion-row>
+
     </ion-card-content>
   </ion-card>
 </form>

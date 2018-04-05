@@ -9,15 +9,15 @@
 <ion-content padding>
     <ion-card>
         <ion-card-header>
-          Current Office Hours
+          Current Office Hours for {{course.number}}
         </ion-card-header>
         <ion-card-content>
-          <button ion-button padding clear small [navPush]="'StudentQueuePage'">
+          <button ion-button padding clear small [navParams]="{course: course}"[navPush]="'StudentQueuePage'">
             Ends at 4:30 pm
           </button>
-          <button ion-button clear block id="checkIn" (click)="changeColor()" (click)="addStudent(profile, 1, course)">
+          <!-- <button ion-button clear block id="checkIn" (click)="changeColor()" (click)="addStudent(profile, 1, course)">
               Check in
-          </button>        
+          </button>         -->
         </ion-card-content>
       </ion-card>
       

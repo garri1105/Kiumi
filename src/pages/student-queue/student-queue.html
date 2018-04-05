@@ -7,21 +7,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Student Queue</ion-title>
+    <ion-title>Student Queue </ion-title>
   </ion-navbar>
-  <!-- <ion-title>
-      {{ course.number }}
-  </ion-title> -->
 
-</ion-header>
+  <!-- <ion-title>
+          {{ course.number }}  
+  </ion-title> -->
+</ion-header> 
 
 
 <ion-content padding>
   <!--If student for the course-->
-  <queue-for-students></queue-for-students>
+  <queue-for-students [course]="course"></queue-for-students>
+  <!-- <queue-for-students></queue-for-students> -->
   <!--If instructor for the course-->
   <queue-for-instructors></queue-for-instructors>
-  <button ion-button clear block id="checkIn" (click)="changeColor()" (click)="addStudent(profile, 1, course)">
-      Check in
-  </button>
+  <!-- <queue-for-instructors></queue-for-instructors> -->
 </ion-content>

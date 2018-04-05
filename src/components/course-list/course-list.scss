@@ -1,6 +1,16 @@
 course-list {
-  .dropdown {
-    box-shadow: black 4px 4px 20px;
+
+  .dropdown{
+    border: white solid 2px;
+  }
+
+  .dropdown-button {
+    border: white solid 3px;
+  }
+
+
+  .courselist {
+    border-bottom: solid white 2px;
   }
 
   ion-item-sliding.item-wrapper {
@@ -11,3 +21,4 @@ course-list {
     background: map-get($colors, danger);
   }
 }
+

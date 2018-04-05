@@ -2,7 +2,7 @@
   <ion-card>
     <ion-card-content>
       <ion-item>
-        <ion-label floating>Email Address</ion-label>
+        <ion-label stacked>Email Address</ion-label>
         <ion-input
           type="email"
           [(ngModel)]="account.email"
@@ -17,7 +17,7 @@
       </div>
 
       <ion-item>
-        <ion-label floating>Password</ion-label>
+        <ion-label stacked>Password</ion-label>
         <ion-input
           type="password"
           [(ngModel)]="account.password"
@@ -43,17 +43,34 @@
           </button>
         </ion-col>
       </ion-row>
+
       <ion-row>
+        <ion-col>
           <button ion-button (click)="login()" [disabled]="loginForm.invalid">Login</button>
+        </ion-col>
+        <ion-col>
           <button ion-button style="color: black" color="light" class="signUp" [navPush]="'SignUpPage'">Sign Up</button>
-          <div tappable id="logo" (click)="googleLogin()">
-            <div class="g-line"></div>
-            <span class="red"></span>
-            <span class="yellow"></span>
-            <span class="green"></span>
-            <span class="blue"></span>
-          </div>
+        </ion-col>
       </ion-row>
+
     </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-card-header>
+          Google Login
+        </ion-card-header>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button class="googleLogin">
+          <ion-img (click)="googleLogin()" width="35" height="35" src="../assets/imgs/google_login_icon.png"></ion-img>
+        </button>
+      </ion-col>
+    </ion-row>
+    <br>
   </ion-card>
 </form>
