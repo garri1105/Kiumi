@@ -29,11 +29,14 @@
   color: white;
   //font-family: Chalkboard, sans-serif;
   text-align: center;
-  @font-face {
-    font-family: chalkfont;
-    src: url('../assets/fonts/chalkfont.ttf');
-    //font-weight: bold;
-    }
+  font-family: chalkfont;
+  font-size: 300%;
+  letter-spacing: 2px;
+}
+
+@font-face {
+  font-family: "chalkfont";
+  src: url('../assets/fonts/chalkfont.ttf');
 
 }
 
