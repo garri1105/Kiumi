@@ -59,13 +59,8 @@
                             required
                             placeholder="Monday"
                             [disabled]="!instructing.value">
-                  <ion-option>Monday</ion-option>
-                  <ion-option>Tuesday</ion-option>
-                  <ion-option>Wednesday</ion-option>
-                  <ion-option>Thursday</ion-option>
-                  <ion-option>Friday</ion-option>
-                  <ion-option>Saturday</ion-option>
-                  <ion-option>Sunday</ion-option>
+                  {{ daysDict }}
+                  <ion-option *ngFor="let key of ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']" [value]="key">{{ daysDict[key] }}</ion-option>
                 </ion-select>
               </ion-item>
 

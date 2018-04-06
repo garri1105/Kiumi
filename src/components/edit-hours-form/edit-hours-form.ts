@@ -4,6 +4,7 @@ import { OfficeHours } from '../../models/office-hours/office-hours.interface';
 import {Slides, ToastController} from "ionic-angular";
 import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
 import {Profile} from "../../models/profile/profile.interface";
+import * as moment from "moment";
 
 @Component({
   selector: 'edit-hours-form',
@@ -16,6 +17,15 @@ export class EditHoursComponent {
   officeHoursList: OfficeHours[] = [];
   newOfficeHoursList: OfficeHours[] = [];
   myOfficeHours: OfficeHours[] = [];
+  daysDict = {
+    'Mon': 'Monday',
+    'Tue': 'Tuesday',
+    'Wed': 'Wednesday',
+    'Thu': 'Thursday',
+    'Fri': 'Friday',
+    'Sat': 'Saturday',
+    'Sun': 'Sunday',
+  };
 
   constructor(private officeHoursDataProvider: OfficeHoursDataProvider,
               private toast: ToastController,
@@ -37,7 +47,14 @@ export class EditHoursComponent {
     let newOfficeHours = this.newOfficeHoursList.pop();
     newOfficeHours.instructors.push(this.profile.key);
     this.myOfficeHours.push(newOfficeHours);
-    this.officeHoursDataProvider.addOfficeHours(this.courseKey, newOfficeHours);
+    let now = moment();
+
+    let after = moment(`${newOfficeHours.dayOfWeek} 06 Mar 2017 ${newOfficeHours.startTime}`);
+    console.log(after);
+
+    let a = ((2 - 3) + 7) % 7;
+
+    // this.officeHoursDataProvider.addOfficeHours(this.courseKey, newOfficeHours);
     this.toast.create({
       message: 'Saved succesfully',
       duration: 1000
