@@ -7,14 +7,7 @@ import {take} from "rxjs/operators";
 import {GlobalProfileProvider} from "../global-profile/global-profile";
 import {Profile} from "../../models/profile/profile.interface";
 import {ProfileDataProvider} from "../profile-data/profile-data";
-
-/*
-  Generated class for the OfficeHoursDataProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-
+//TODO: Refactor this page
 @Injectable()
 export class OfficeHoursDataProvider {
 
@@ -59,7 +52,13 @@ export class OfficeHoursDataProvider {
     this.profileData.updateProfile(this.profile);
   }
 
-  updateOfficeHours(courseKey: string, officeHours: OfficeHours) {
+  updateOfficeHours(courseKey: string, original: OfficeHours) {
+    let officeHours: OfficeHours = JSON.parse(JSON.stringify(original));
+    officeHours.instructing = null;
+    officeHours.dayOfWeek = null;
+    officeHours.startTime = null;
+    officeHours.endTime = null;
+
     return new Promise((resolve, reject) => {
       this.courseData.getCourseByKey(courseKey)
         .valueChanges().pipe(take(1))
