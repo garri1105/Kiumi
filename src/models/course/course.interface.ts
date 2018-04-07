@@ -7,5 +7,7 @@ export interface Course {
   students: string[];
   instructors: string[];
   officeHours: OfficeHours[];
+
+  // Only used locally. Not added to database
   selection: string;
 }

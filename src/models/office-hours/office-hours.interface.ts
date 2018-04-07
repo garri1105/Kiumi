@@ -5,6 +5,8 @@ export interface OfficeHours {
   location: string;
   date: string;
   duration: number;
+
+  // Only used locally. Not added to database
   startTime: string;
   endTime: string;
   dayOfWeek: string;
