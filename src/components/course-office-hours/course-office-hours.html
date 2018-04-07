@@ -1,4 +1,3 @@
-<!--Only if something is going on at the moment-->
 <ion-card>
   <ion-card-header>
     Current Office Hours
@@ -34,7 +33,7 @@
 
 <!--If instructor for the class-->
 <ion-card>
-  <ion-card-header [navPush]="'EditHoursPage'" [navParams]="{courseKey: courseKey}">
+  <ion-card-header [navPush]="'EditHoursPage'" [navParams]="{course: course}">
     Edit Office Hours
   </ion-card-header>
 </ion-card>

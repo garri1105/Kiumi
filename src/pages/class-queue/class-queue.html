@@ -1,11 +1,9 @@
 <ion-header>
-  <!-- <ion-navbar color="primary"> -->
-    <!-- <ion-title>Class: {{  }} </ion-title> -->
   <ion-navbar>
       <ion-title>{{course.number}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <course-office-hours [courseKey]="course.key" ></course-office-hours>
+  <course-office-hours [course]="course" ></course-office-hours>
 </ion-content>

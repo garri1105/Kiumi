@@ -13,8 +13,7 @@ import { Course } from '../../models/course/course.interface';
 })
 export class CourseOfficeHoursComponent {
 
-  @Input() courseKey: string;
-  course: Course;
+  @Input() course: Course;
 
   constructor() {
   }

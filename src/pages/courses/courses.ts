@@ -6,13 +6,6 @@ import {GlobalProfileProvider} from "../../providers/global-profile/global-profi
 import {Profile} from "../../models/profile/profile.interface";
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
 
-/**
- * Generated class for the StudentCoursesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-student-courses',
