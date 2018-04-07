@@ -17,15 +17,9 @@ export class EditHoursComponent {
   officeHoursList: OfficeHours[] = [];
   newOfficeHoursList: OfficeHours[] = [];
   myOfficeHours: OfficeHours[] = [];
-  daysDict = {
-    'Mon': 'Monday',
-    'Tue': 'Tuesday',
-    'Wed': 'Wednesday',
-    'Thu': 'Thursday',
-    'Fri': 'Friday',
-    'Sat': 'Saturday',
-    'Sun': 'Sunday',
-  };
+  now = moment();
+  timesInvalid: string;
+  days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   constructor(private officeHoursDataProvider: OfficeHoursDataProvider,
               private toast: ToastController,
@@ -43,18 +37,61 @@ export class EditHoursComponent {
     this.slides.slideTo(0);
   }
 
+  static getDayDistance(a: number, b: number) {
+    return ((b - a) + 7) % 7;
+  }
+
+  fillEndTime(i: number) {
+    this.newOfficeHoursList[i].endTime =
+      moment(this.newOfficeHoursList[i].startTime, 'HH:mm')
+      .add(1, 'hours')
+      .format('HH:mm');
+  }
+
+  areTimesInvalid(i) {
+    let start = moment()
+      .hours(parseInt(this.newOfficeHoursList[i].startTime.slice(0, 2)))
+      .minutes(parseInt(this.newOfficeHoursList[i].startTime.slice(3, )));
+
+    let end = moment()
+      .hours(parseInt(this.newOfficeHoursList[i].endTime.slice(0, 2)))
+      .minutes(parseInt(this.newOfficeHoursList[i].endTime.slice(3, )));
+
+    let diff = end.diff(start, 'minutes', true);
+
+    if (this.newOfficeHoursList[i].startTime === this.newOfficeHoursList[i].endTime) {
+      this.timesInvalid = 'Times can\'t be the same';
+    }
+    else if (diff < 0) {
+      this.timesInvalid = 'End time must be after start time';
+    }
+    else if (diff < 60) {
+      this.timesInvalid = 'Office hours must last at least one hour';
+    }
+    else {
+      this.timesInvalid = null;
+      this.newOfficeHoursList[i].duration = diff;
+    }
+  }
+
   addNewOfficeHours() {
     let newOfficeHours = this.newOfficeHoursList.pop();
     newOfficeHours.instructors.push(this.profile.key);
     this.myOfficeHours.push(newOfficeHours);
-    let now = moment();
 
-    let after = moment(`${newOfficeHours.dayOfWeek} 06 Mar 2017 ${newOfficeHours.startTime}`);
-    console.log(after);
+    let dist = EditHoursComponent.getDayDistance(this.now.day(), moment().day(`${newOfficeHours.dayOfWeek}`).day());
 
-    let a = ((2 - 3) + 7) % 7;
+    let newDate = moment().add(dist+1, 'days')
+      .hours(parseInt(newOfficeHours.startTime.slice(0, 2)))
+      .minutes(parseInt(newOfficeHours.startTime.slice(3, )));
 
-    // this.officeHoursDataProvider.addOfficeHours(this.courseKey, newOfficeHours);
+    if (dist === 0 && newDate.diff(this.now) < 0) {
+      newDate.add(7, 'days')
+    }
+
+    newOfficeHours.date = newDate.format('LLLL');
+
+    this.officeHoursDataProvider.addOfficeHours(this.courseKey, newOfficeHours);
     this.toast.create({
       message: 'Saved succesfully',
       duration: 1000
@@ -77,10 +114,17 @@ export class EditHoursComponent {
   }
 
   ngOnInit() {
+
     this.officeHoursList = this.officeHoursDataProvider.getOfficeHours(this.courseKey);
 
     setTimeout(() => {
       for (let i = 1; i < this.officeHoursList.length; i++) {
+        let time = moment(this.officeHoursList[i].date);
+        this.officeHoursList[i].dayOfWeek = time.format('dddd');
+        this.officeHoursList[i].startTime = `${EditHoursComponent.pad(time.hours(), 2)}:${EditHoursComponent.pad(time.minutes(), 2)}`;
+        time.add(this.officeHoursList[i].duration, 'minutes');
+        this.officeHoursList[i].endTime = `${EditHoursComponent.pad(time.hours(), 2)}:${EditHoursComponent.pad(time.minutes(), 2)}`;
+
         if (this.profile.instructor.officeHours.indexOf(this.officeHoursList[i].key) > -1) {
           let myOfficeHours = this.officeHoursList.splice(i, 1, null);
           myOfficeHours[0].instructing = true;
@@ -93,9 +137,10 @@ export class EditHoursComponent {
     }, 1);
   }
 
-  setEndTime(i: number) {
-    this.newOfficeHoursList[i].endTime = this.officeHoursList[i].startTime;
-    console.log(this.newOfficeHoursList[i].endTime);
+  static pad(num, size) {
+    var s = String(num);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
   }
 
   static makeId(length: number) {

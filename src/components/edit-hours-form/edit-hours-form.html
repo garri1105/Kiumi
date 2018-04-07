@@ -36,9 +36,10 @@
               <ion-item>
                 <ion-label stacked>Start Time</ion-label>
                 <ion-datetime [(ngModel)]="newOfficeHoursList[i].startTime"
+                              (ionChange)="fillEndTime(i); areTimesInvalid(i)"
                               name="newStartTime{{ i }}"
-                              onchange="setEndTime(i)"
-                              displayFormat="hh:mm a"
+                              pickerFormat="hh:mm a"
+                              displayFormat="HH:mm"
                               required
                               placeholder="00:00 pm"
                               [disabled]="!instructing.value"></ion-datetime>
@@ -46,12 +47,19 @@
               <ion-item>
                 <ion-label stacked>End Time</ion-label>
                 <ion-datetime [(ngModel)]="newOfficeHoursList[i].endTime"
+                              (ionChange)="areTimesInvalid(i)"
                               name="newEndTime{{ i }}"
-                              displayFormat="hh:mm a"
+                              pickerFormat="hh:mm a"
+                              displayFormat="HH:mm"
                               required
                               placeholder="00:00 pm"
                               [disabled]="!instructing.value"></ion-datetime>
               </ion-item>
+
+              <div padding *ngIf="timesInvalid" text-left>
+                <span class="global__input-error">{{ timesInvalid }}</span>
+              </div>
+
               <ion-item>
                 <ion-label stacked>Day</ion-label>
                 <ion-select [(ngModel)]="newOfficeHoursList[i].dayOfWeek"
@@ -60,14 +68,16 @@
                             placeholder="Monday"
                             [disabled]="!instructing.value">
                   {{ daysDict }}
-                  <ion-option *ngFor="let key of ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']" [value]="key">{{ daysDict[key] }}</ion-option>
+                  <ion-option
+                    *ngFor="let day of days">
+                    {{ day }}</ion-option>
                 </ion-select>
               </ion-item>
 
               <ion-row>
                 <ion-col>
                   <button ion-button
-                          [disabled]="editOfficeHourForm.invalid || !instructing.value"
+                          [disabled]="editOfficeHourForm.invalid || !instructing.value || timesInvalid"
                           (click)="addNewOfficeHours(officeHour)">Save</button>
                 </ion-col>
               </ion-row>

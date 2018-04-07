@@ -41,7 +41,13 @@ export class OfficeHoursDataProvider {
     return this.officeHoursList;
   }
 
-  addOfficeHours(courseKey: string, officeHours: OfficeHours) {
+  addOfficeHours(courseKey: string, original: OfficeHours) {
+    let officeHours: OfficeHours = JSON.parse(JSON.stringify(original));
+    officeHours.instructing = null;
+    officeHours.dayOfWeek = null;
+    officeHours.startTime = null;
+    officeHours.endTime = null;
+
     this.courseData.getCourseByKey(courseKey)
       .valueChanges().pipe(take(1))
       .subscribe((course: Course) => {
