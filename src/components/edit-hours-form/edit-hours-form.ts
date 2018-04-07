@@ -6,6 +6,7 @@ import {GlobalProfileProvider} from "../../providers/global-profile/global-profi
 import {Profile} from "../../models/profile/profile.interface";
 import * as moment from "moment";
 
+//TODO: Refactor this page
 @Component({
   selector: 'edit-hours-form',
   templateUrl: 'edit-hours-form.html',
@@ -17,8 +18,7 @@ export class EditHoursComponent {
   officeHoursList: OfficeHours[] = [];
   newOfficeHoursList: OfficeHours[] = [];
   myOfficeHours: OfficeHours[] = [];
-  now = moment();
-  timesInvalid: string;
+  timesAreInvalid: string;
   days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   constructor(private officeHoursDataProvider: OfficeHoursDataProvider,
@@ -37,59 +37,57 @@ export class EditHoursComponent {
     this.slides.slideTo(0);
   }
 
-  static getDayDistance(a: number, b: number) {
-    return ((b - a) + 7) % 7;
-  }
-
-  fillEndTime(i: number) {
-    this.newOfficeHoursList[i].endTime =
-      moment(this.newOfficeHoursList[i].startTime, 'HH:mm')
+  fillEndTime(officeHours: OfficeHours) {
+    officeHours.endTime =
+      moment(officeHours.startTime, 'HH:mm')
       .add(1, 'hours')
       .format('HH:mm');
   }
 
-  areTimesInvalid(i) {
+  //TODO: Turn startTime and endTime into moment() instead of strings
+  areTimesInvalid(officeHours: OfficeHours) {
     let start = moment()
-      .hours(parseInt(this.newOfficeHoursList[i].startTime.slice(0, 2)))
-      .minutes(parseInt(this.newOfficeHoursList[i].startTime.slice(3, )));
+      .hours(parseInt(officeHours.startTime.slice(0, 2)))
+      .minutes(parseInt(officeHours.startTime.slice(3, )));
 
     let end = moment()
-      .hours(parseInt(this.newOfficeHoursList[i].endTime.slice(0, 2)))
-      .minutes(parseInt(this.newOfficeHoursList[i].endTime.slice(3, )));
+      .hours(parseInt(officeHours.endTime.slice(0, 2)))
+      .minutes(parseInt(officeHours.endTime.slice(3, )));
 
     let diff = end.diff(start, 'minutes', true);
 
-    if (this.newOfficeHoursList[i].startTime === this.newOfficeHoursList[i].endTime) {
-      this.timesInvalid = 'Times can\'t be the same';
+    if (officeHours.startTime === officeHours.endTime) {
+      this.timesAreInvalid = 'Times can\'t be the same';
     }
     else if (diff < 0) {
-      this.timesInvalid = 'End time must be after start time';
+      this.timesAreInvalid = 'End time must be after start time';
     }
     else if (diff < 60) {
-      this.timesInvalid = 'Office hours must last at least one hour';
+      this.timesAreInvalid = 'Office hours must last at least one hour';
     }
     else {
-      this.timesInvalid = null;
-      this.newOfficeHoursList[i].duration = diff;
+      this.timesAreInvalid = null;
+      officeHours.duration = diff;
     }
   }
 
   addNewOfficeHours() {
     let newOfficeHours = this.newOfficeHoursList.pop();
     newOfficeHours.instructors.push(this.profile.key);
-    this.myOfficeHours.push(newOfficeHours);
 
-    let dist = EditHoursComponent.getDayDistance(this.now.day(), moment().day(`${newOfficeHours.dayOfWeek}`).day());
+    let dist = EditHoursComponent.getDayDistance(moment().isoWeekday(), moment().isoWeekday(newOfficeHours.dayOfWeek.trim()).isoWeekday());
 
-    let newDate = moment().add(dist+1, 'days')
+    let newDate = moment().add(dist, 'days')
       .hours(parseInt(newOfficeHours.startTime.slice(0, 2)))
       .minutes(parseInt(newOfficeHours.startTime.slice(3, )));
 
-    if (dist === 0 && newDate.diff(this.now) < 0) {
+    if (dist === 0 && newDate.diff(moment()) < 0) {
       newDate.add(7, 'days')
     }
 
     newOfficeHours.date = newDate.format('LLLL');
+
+    this.myOfficeHours.push(newOfficeHours);
 
     this.officeHoursDataProvider.addOfficeHours(this.courseKey, newOfficeHours);
     this.toast.create({
@@ -137,8 +135,12 @@ export class EditHoursComponent {
     }, 1);
   }
 
+  static getDayDistance(a: number, b: number) {
+    return ((b - a) + 7) % 7;
+  }
+
   static pad(num, size) {
-    var s = String(num);
+    let s = String(num);
     while (s.length < (size || 2)) {s = "0" + s;}
     return s;
   }
