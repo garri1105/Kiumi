@@ -50,9 +50,4 @@ export class StudentQueuePage {
     }
   }
 
-  addStudent(student: Profile, indexOfOfficeHour: number) {
-    this.studentQueueDataProvider.addStudent(student, indexOfOfficeHour, this.course);
-  }
-
-
 }

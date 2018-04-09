@@ -23,32 +23,19 @@ export class StudentQueueDataProvider {
   }
 
   addStudent(student: Profile, indexOfOfficeHour: number, course: Course) {
-    // course.officeHours[indexOfOfficeHour].studentQueue.push(student.key);
-    // this.courseDataProvider.updateCourse(course);
-
-    this.courseDataProvider.getCourseByKey(course.key).
-      valueChanges().
-      subscribe((course: Course) => {
-      course.officeHours[indexOfOfficeHour].studentQueue.push(student.key);
-      this.courseDataProvider.updateCourse(course);
-    });
-    // console.log(course.officeHours[indexOfOfficeHour].studentQueue);
-    // this.courseDataProvider.updateCourse(course);
-
+    if(course.officeHours[indexOfOfficeHour].studentQueue.indexOf(student.key) == -1) {
+      // Can't tell if this if statement is necessary, but tried it out in an effort to fix the overadding to studentQueue issue
+      this.courseDataProvider.getCourseByKey(course.key).
+        valueChanges().
+        subscribe((course: Course) => {
+        course.officeHours[indexOfOfficeHour].studentQueue.push(student.key);
+        this.courseDataProvider.updateCourse(course);
+      });
+    }
   }
+ 
+}
 
-  // removeStudent(student: Profile, officeHours: OfficeHours) {
-  //   officeHours.studentQueue.pop(student);
-  // }
-
-  }
-
-    // var course$ = this.courseData.getCourseByKey(courseKey).valueChanges().pipe(take(1));
-
-    // course$.subscribe((course: Course) => {
-    //   course.officeHours.push(officeHours);
-    //   this.courseData.updateCourse(course)
-    // });
 
 
 
