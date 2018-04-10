@@ -20,15 +20,21 @@ export class CourseOfficeHoursComponent {
   }
 
   getCurrentOfficeHours() {
+    console.log(this.officeHoursList[0]);
     if (this.officeHoursList[0]) {
       let timeDiff = moment().diff(moment(this.officeHoursList[0].date), 'minutes');
+      console.log(timeDiff);
       if (timeDiff >= 0 && timeDiff < this.officeHoursList[0].duration) {
         return this.officeHoursList[0];
       }
+    }
+    else {
+      return null;
     }
   }
 
   ngOnInit() {
     this.currentOfficeHours = this.getCurrentOfficeHours();
+    console.log(this.currentOfficeHours);
   }
 }

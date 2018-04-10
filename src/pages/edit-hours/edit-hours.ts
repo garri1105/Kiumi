@@ -14,15 +14,7 @@ export class EditHoursPage {
   ready: boolean;
 
   constructor(private navParams: NavParams) {
-    this.initNavParams();
-  }
-
-  async initNavParams() {
     this.course = this.navParams.get("course");
-    let promise = new Promise<OfficeHours[]>((resolve) => {
-      resolve(this.navParams.get("officeHoursList"))
-    });
-    this.officeHoursList = await promise;
-    this.ready = true;
+    this.officeHoursList = this.navParams.get("officeHoursList");
   }
 }

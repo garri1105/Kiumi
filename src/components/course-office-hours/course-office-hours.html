@@ -22,7 +22,7 @@
           No upcoming office hours
         </button>
       </ion-item>
-      <ion-item *ngIf="!currentOfficeHours">
+      <ion-item *ngIf="!currentOfficeHours && officeHoursList.length > 0">
         <button ion-button padding clear small [navPush]="'StudentQueuePage'">
           {{ officeHoursList[0].date }}
         </button>
