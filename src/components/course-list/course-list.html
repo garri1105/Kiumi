@@ -4,8 +4,7 @@
       detail-none
       name="student"
       ion-item
-      class="click-block-hide"
-      (click)="toggleSection($event)">
+      (click)="toggleSection('student')">
       <ion-icon item-left name="arrow-dropright" *ngIf="!studentButton"></ion-icon>
       <ion-icon item-left name="arrow-dropdown" *ngIf="studentButton"></ion-icon>
       Attending</button>
@@ -40,8 +39,7 @@
       detail-none
       name="instructor"
       ion-item
-      class="click-block-hide"
-      (click)="toggleSection($event)">
+      (click)="toggleSection('instructor')">
       <ion-icon item-left name="arrow-dropright" *ngIf="!instructorButton"></ion-icon>
       <ion-icon item-left name="arrow-dropdown" *ngIf="instructorButton"></ion-icon>
       Instructing</button>

@@ -29,11 +29,15 @@ export class CourseListComponent {
   }
 
   toggleSection(event) {
-    if (event.target.name === 'student') {
+    if (event === 'student') {
+      console.log('toggleSection student');
       this.studentButton = !this.studentButton;
+      console.log('studentButton: ' + this.studentButton);
     }
-    else if (event.target.name === 'instructor') {
+    else if (event === 'instructor') {
+      console.log('toggleSection instructor');
       this.instructorButton = !this.instructorButton;
+      console.log('instructorButton: ' + this.instructorButton);
     }
   }
 
