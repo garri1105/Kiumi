@@ -9,6 +9,7 @@ import {GlobalProfileProvider} from "../../providers/global-profile/global-profi
 import {AlertController} from "ionic-angular";
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Course} from "../../models/course/course.interface";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'edit-profile-form',
@@ -60,7 +61,6 @@ export class EditProfileFormComponent {
           .map(courseKey =>
             this.courseData
               .getCourseByKey(courseKey)
-              .valueChanges()
               .subscribe((course: Course) => {
                 if (course) {
                   let index = course.instructors.indexOf(this.profile.key);
@@ -90,7 +90,6 @@ export class EditProfileFormComponent {
           .map(courseKey =>
             this.courseData
               .getCourseByKey(courseKey)
-              .valueChanges()
               .subscribe((course: Course) => {
                 if (course) {
                   let index = course.students.indexOf(this.profile.key);

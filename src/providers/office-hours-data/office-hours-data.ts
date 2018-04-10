@@ -27,7 +27,6 @@ export class OfficeHoursDataProvider {
   async getOfficeHours(courseKey: string): Promise<OfficeHours[]> {
     return new Promise<OfficeHours[]>((resolve) => {
       this.courseData.getCourseByKey(courseKey)
-        .valueChanges().pipe(take(1))
         .subscribe((course: Course) => {
           this.officeHoursList = [];
           course.officeHours.map(slot => {
@@ -43,7 +42,6 @@ export class OfficeHoursDataProvider {
   //TODO updateCourse promise
   async addOfficeHours(courseKey: string, officeHours: OfficeHours) {
     this.courseData.getCourseByKey(courseKey)
-      .valueChanges().pipe(take(1))
       .subscribe((course: Course) => {
         course.officeHours.push(this.cleanOfficeHours(officeHours));
         UtilitiesProvider.sortByDate(course.officeHours);
@@ -58,7 +56,6 @@ export class OfficeHoursDataProvider {
   updateOfficeHours(courseKey: string, officeHours: OfficeHours) {
     return new Promise((resolve, reject) => {
       this.courseData.getCourseByKey(courseKey)
-        .valueChanges().pipe(take(1))
         .subscribe((course: Course) => {
           for (let i = 0; i < course.officeHours.length; i++) {
             if (course.officeHours[i].key === officeHours.key) {
@@ -83,7 +80,6 @@ export class OfficeHoursDataProvider {
 
   removeOfficeHours(courseKey: string, officeHours: OfficeHours) {
     this.courseData.getCourseByKey(courseKey)
-      .valueChanges()
       .subscribe((course: Course) => {
         if(course.officeHours.indexOf(officeHours) != -1) {
           course.officeHours.splice(course.officeHours.indexOf(officeHours), 1);

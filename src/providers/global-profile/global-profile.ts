@@ -36,7 +36,7 @@ export class GlobalProfileProvider {
         })
       }
       else {
-        console.log("User not logged in");
+        console.log("");
         reject("User not logged in");
       }
     });
