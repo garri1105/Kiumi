@@ -30,8 +30,8 @@ export class CourseDataProvider {
     this.courseList.remove(course.key);
   }
 
-  updateCourse(course: Course) {
-    this.courseList.update(course.key, course);
+  async updateCourse(course: Course) {
+    return await this.courseList.update(course.key, course);
   }
 
   searchCourse(query: string) {

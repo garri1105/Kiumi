@@ -23,6 +23,7 @@ export class ProfileDataProvider {
   }
 
   getProfile(user: User) {
+    console.log(user.email);
     this.profileObject = this.database.object(`/profiles/${user.uid}`);
 
     return of(this.profileObject).pipe(take(1));

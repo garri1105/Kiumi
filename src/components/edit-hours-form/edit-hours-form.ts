@@ -5,14 +5,14 @@ import {Slides, ToastController} from "ionic-angular";
 import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
 import {Profile} from "../../models/profile/profile.interface";
 import * as moment from "moment";
-import {makeDecorator} from "@angular/core/src/util/decorators";
+import {UtilitiesProvider} from "../../providers/utilities/utilities";
 
 //TODO: Refactor this page
 @Component({
   selector: 'edit-hours-form',
   templateUrl: 'edit-hours-form.html',
 })
-export class EditHoursComponent {
+export class EditHoursFormComponent {
   @ViewChild(Slides) slides: Slides;
   @Input() courseKey: string;
   @Input() officeHoursList: OfficeHours[] = [];
@@ -20,7 +20,7 @@ export class EditHoursComponent {
   newOfficeHours: OfficeHours;
   days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-  constructor(private officeHoursDataProvider: OfficeHoursDataProvider,
+  constructor(private officeHoursData: OfficeHoursDataProvider,
               private toast: ToastController,
               private globalProfile: GlobalProfileProvider) {
     this.profile = this.globalProfile.getProfile();
@@ -31,7 +31,7 @@ export class EditHoursComponent {
       instructing: true,
       instructors: ['0'],
       studentQueue: ['0'],
-      key: EditHoursComponent.makeId(10)
+      key: UtilitiesProvider.makeId(10)
     } as OfficeHours;
 
     this.slides.slideTo(0);
@@ -70,34 +70,12 @@ export class EditHoursComponent {
   }
 
   addNewOfficeHours() {
-    let newOfficeHours: OfficeHours = JSON.parse(JSON.stringify(this.newOfficeHours));
+    this.newOfficeHours.instructors.push(this.profile.key);
 
-    console.log(newOfficeHours);
+    this.officeHoursList.push(this.newOfficeHours);
 
-    newOfficeHours.instructors.push(this.profile.key);
-
-    let dist = EditHoursComponent.getDayDistance(moment().isoWeekday(), moment().isoWeekday(newOfficeHours.dayOfWeek.trim()).isoWeekday());
-
-    let newDate = moment(newOfficeHours.startTime, 'HH:mm');
-    newDate = moment().add(dist, 'days')
-      .hours(newDate.hours())
-      .minutes(newDate.minutes());
-
-    if (dist === 0 && newDate.diff(moment()) < 0) {
-      newDate.add(7, 'days')
-    }
-
-    newOfficeHours.date = newDate.format('ddd, DD MMM YYYY, HH:mm');
-
-    newOfficeHours.instructing = null;
-    newOfficeHours.dayOfWeek = null;
-    newOfficeHours.startTime = null;
-    newOfficeHours.endTime = null;
-
-    this.officeHoursList.push(newOfficeHours);
-
-    this.officeHoursDataProvider
-      .addOfficeHours(this.courseKey, newOfficeHours)
+    this.officeHoursData
+      .addOfficeHours(this.courseKey, this.newOfficeHours)
       .then(r => {
         this.newOfficeHours = null;
         this.toast.create({
@@ -115,7 +93,8 @@ export class EditHoursComponent {
   }
 
   updateOfficeHours(officeHours: OfficeHours) {
-    this.officeHoursDataProvider.updateOfficeHours(this.courseKey, officeHours)
+    this.officeHoursData
+      .updateOfficeHours(this.courseKey, officeHours)
       .then((r: string) => {
       this.toast.create({
         message: r,
@@ -130,35 +109,26 @@ export class EditHoursComponent {
   }
 
   ngOnInit() {
-    this.officeHoursList.sort((a, b) => {
-      if (this.profile.instructor.officeHours.indexOf(b.key) > -1) {
-        b.instructing = true;
+    if (this.officeHoursList.length === 1) {
+      if (this.profile.instructor.officeHours.indexOf(this.officeHoursList[0].key) > -1) {
+        this.officeHoursList[0].instructing = true;
       }
-      if (this.profile.instructor.officeHours.indexOf(a.key) > -1) {
-        a.instructing = true;
-      }
+    }
+    else {
+      this.officeHoursList.sort((a, b) => {
+        let indexA = this.profile.instructor.officeHours.indexOf(a.key);
+        let indexB = this.profile.instructor.officeHours.indexOf(b.key);
 
-      return this.profile.instructor.officeHours.indexOf(b.key) - this.profile.instructor.officeHours.indexOf(a.key);
-    });
-  }
+        if (indexA > -1) {
+          a.instructing = true;
+        }
 
-  static getDayDistance(a: number, b: number) {
-    return ((b - a) + 7) % 7;
-  }
+        if (indexB > -1) {
+          b.instructing = true;
+        }
 
-  static pad(num, size) {
-    let s = String(num);
-    while (s.length < (size || 2)) {s = "0" + s;}
-    return s;
-  }
-
-  static makeId(length: number) {
-    let text = "";
-    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for (let i = 0; i < length; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return text;
+        return indexB - indexA;
+      });
+    }
   }
 }

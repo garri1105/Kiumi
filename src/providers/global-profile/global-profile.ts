@@ -12,30 +12,33 @@ export class GlobalProfileProvider {
               private profileData: ProfileDataProvider) {
   }
 
-  loadProfile() {
+  async loadProfile() {
     return new Promise((resolve, reject) => {
       let user$ = this.auth.getAuthenticatedUser();
-        if (user$) {
-          user$.subscribe(user => {
-            let profile$ = this.profileData.getProfile(user);
-            if (profile$) {
-              profile$.subscribe(profile => {
-                  profile.valueChanges()
-                    .subscribe(value => {
-                        this.profile = value;
-                        resolve(this.profile);
-                      }
-                    );
+      if (user$) {
+        user$.subscribe(user => {
+          console.log('user loadProfile accessed');
+          let profile$ = this.profileData.getProfile(user);
+          if (profile$) {
+            profile$.subscribe(profile => {
+              profile.valueChanges()
+                .subscribe(value => {
+                  console.log('loadProfile accessed');
+                  this.profile = value;
+                  resolve(this.profile);
                 });
-            }
-            else {
-              reject("Profile doesn't exist");
-            }
-          })
-        }
-        else {
-          reject("User not logged in");
-        }
+            });
+          }
+          else {
+            console.log("Profile doesn't exist");
+            reject("Profile doesn't exist");
+          }
+        })
+      }
+      else {
+        console.log("User not logged in");
+        reject("User not logged in");
+      }
     });
   }
 

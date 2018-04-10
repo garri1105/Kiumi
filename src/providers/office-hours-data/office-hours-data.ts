@@ -8,6 +8,7 @@ import {GlobalProfileProvider} from "../global-profile/global-profile";
 import {Profile} from "../../models/profile/profile.interface";
 import {ProfileDataProvider} from "../profile-data/profile-data";
 import * as moment from "moment";
+import {UtilitiesProvider} from "../utilities/utilities";
 
 //TODO: Refactor this page
 @Injectable()
@@ -29,8 +30,8 @@ export class OfficeHoursDataProvider {
         .valueChanges().pipe(take(1))
         .subscribe((course: Course) => {
           this.officeHoursList = [];
-          course.officeHours.map((slot, i) => {
-            if (i > 0) {
+          course.officeHours.map(slot => {
+            if (slot.key !== '0') {
               this.officeHoursList.push(slot);
             }
           });
@@ -44,11 +45,9 @@ export class OfficeHoursDataProvider {
     this.courseData.getCourseByKey(courseKey)
       .valueChanges().pipe(take(1))
       .subscribe((course: Course) => {
-      course.officeHours.push(officeHours);
-      course.officeHours.sort((a, b) => {
-        return moment(a.date).diff(moment(b.date));
-      });
-      this.courseData.updateCourse(course);
+        course.officeHours.push(this.cleanOfficeHours(officeHours));
+        UtilitiesProvider.sortByDate(course.officeHours);
+        this.courseData.updateCourse(course);
     });
 
     this.profile.instructor.officeHours.push(officeHours.key);
@@ -56,13 +55,7 @@ export class OfficeHoursDataProvider {
   }
 
   //TODO update promises
-  updateOfficeHours(courseKey: string, original: OfficeHours) {
-    let officeHours: OfficeHours = JSON.parse(JSON.stringify(original));
-    officeHours.instructing = null;
-    officeHours.dayOfWeek = null;
-    officeHours.startTime = null;
-    officeHours.endTime = null;
-
+  updateOfficeHours(courseKey: string, officeHours: OfficeHours) {
     return new Promise((resolve, reject) => {
       this.courseData.getCourseByKey(courseKey)
         .valueChanges().pipe(take(1))
@@ -70,7 +63,8 @@ export class OfficeHoursDataProvider {
           for (let i = 0; i < course.officeHours.length; i++) {
             if (course.officeHours[i].key === officeHours.key) {
               if (officeHours.instructors.indexOf(this.profile.key) > - 1) {
-                course.officeHours[i] = officeHours;
+                course.officeHours[i] = this.cleanOfficeHours(officeHours);
+                UtilitiesProvider.sortByDate(course.officeHours);
                 this.courseData.updateCourse(course);
               }
               else {
@@ -96,5 +90,29 @@ export class OfficeHoursDataProvider {
       }
       this.courseData.updateCourse(course)
     });
+  }
+
+  cleanOfficeHours(original: OfficeHours) {
+    let officeHours: OfficeHours = JSON.parse(JSON.stringify(original));
+
+    let dist = UtilitiesProvider.getDayDistance(moment().isoWeekday(), moment().isoWeekday(officeHours.dayOfWeek.trim()).isoWeekday());
+
+    let newDate = moment(officeHours.startTime, 'HH:mm');
+    newDate = moment().add(dist, 'days')
+      .hours(newDate.hours())
+      .minutes(newDate.minutes());
+
+    if (dist === 0 && newDate.diff(moment()) < 0) {
+      newDate.add(7, 'days')
+    }
+
+    officeHours.date = newDate.format('ddd, DD MMM YYYY, HH:mm');
+
+    officeHours.instructing = null;
+    officeHours.dayOfWeek = null;
+    officeHours.startTime = null;
+    officeHours.endTime = null;
+
+    return officeHours;
   }
 }
