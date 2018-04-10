@@ -84,7 +84,7 @@ export class EditHoursComponent {
       .minutes(newDate.minutes());
 
     if (dist === 0 && newDate.diff(moment()) < 0) {
-      // newDate.add(7, 'days')
+      newDate.add(7, 'days')
     }
 
     newOfficeHours.date = newDate.format('ddd, DD MMM YYYY, HH:mm');

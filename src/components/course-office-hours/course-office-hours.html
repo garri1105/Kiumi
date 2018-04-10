@@ -23,13 +23,13 @@
         </button>
       </ion-item>
       <ion-item *ngIf="!currentOfficeHours">
-        <button ion-button padding clear small>
+        <button ion-button padding clear small [navPush]="'StudentQueuePage'">
           {{ officeHoursList[0].date }}
         </button>
       </ion-item>
       <ng-container *ngIf="this.officeHoursList.length > 1">
         <ion-item *ngFor="let i of _.range(1, this.officeHoursList.length)">
-          <button ion-button padding clear small>
+          <button ion-button padding clear small [navPush]="'StudentQueuePage'">
             {{ officeHoursList[i].date }}
           </button>
         </ion-item>
