@@ -6,6 +6,8 @@ import { Profile } from '../../models/profile/profile.interface';
 import { OfficeHours } from '../../models/office-hours/office-hours.interface';
 import { Course } from '../../models/course/course.interface';
 import { CourseDataProvider } from '../course-data/course-data';
+import {take} from "rxjs/operators";
+import { ProfileDataProvider } from '../profile-data/profile-data';
 
 /*
   Generated class for the StudentQueueDataProvider provider.
@@ -16,22 +18,27 @@ import { CourseDataProvider } from '../course-data/course-data';
 @Injectable()
 export class StudentQueueDataProvider {
   private studentQueue = this.db.list<Profile>('student-queue');
+  // private profileList = AngularFireLis<Profile>
 
 
-  constructor(private db: AngularFireDatabase, private courseDataProvider: CourseDataProvider) {
+  constructor(private db: AngularFireDatabase, private courseDataProvider: CourseDataProvider, private profileDataProvider: ProfileDataProvider) {
     console.log('Hello StudentQueueDataProvider Provider');
   }
 
   addStudent(student: Profile, indexOfOfficeHour: number, course: Course) {
-    if(course.officeHours[indexOfOfficeHour].studentQueue.indexOf(student.key) == -1) {
+    // if(course.officeHours[indexOfOfficeHour].studentQueue.indexOf(student.key) == -1) {
       // Can't tell if this if statement is necessary, but tried it out in an effort to fix the overadding to studentQueue issue
       this.courseDataProvider.getCourseByKey(course.key).
-        valueChanges().
+        valueChanges().pipe(take(1)).
         subscribe((course: Course) => {
         course.officeHours[indexOfOfficeHour].studentQueue.push(student.key);
         this.courseDataProvider.updateCourse(course);
       });
-    }
+    // }
+  }
+
+  removeStudent(student: Profile, indexOfOfficeHour: number, course: Course ) {
+    
   }
  
 }
