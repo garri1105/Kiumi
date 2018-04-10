@@ -19,8 +19,7 @@ export class QueueForStudentsComponent {
 
   @Input() course: Course;
   text: string;
-  // course: Course;
-  profile: Profile;
+  @Input() profile: Profile;
   clicked: boolean;
   checkInButton: HTMLElement;
   studentQueue: Profile[];
