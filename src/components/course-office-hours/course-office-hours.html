@@ -1,11 +1,13 @@
-<ion-card>
+<ion-card *ngIf="currentOfficeHours">
   <ion-card-header>
-    Current Office Hours
+    Ongoing Office Hours
   </ion-card-header>
   <ion-card-content>
-    <button ion-button padding clear small [navPush]="'StudentQueuePage'">
-      Ends at 4:30 pm
-    </button>
+    <ion-item>
+      <button ion-button padding clear small [navPush]="'StudentQueuePage'">
+        {{ currentOfficeHours.date }}
+      </button>
+    </ion-item>
   </ion-card-content>
 </ion-card>
 
@@ -15,25 +17,30 @@
   </ion-card-header>
   <ion-card-content>
     <ion-list>
-      <button ion-button padding clear small>
-        Wednesday at 4:30 pm
-      </button>
-      <button ion-button padding clear small>
-        Thursday at 9:00 am
-      </button>
-      <button ion-button padding clear small>
-        Friday at 6:00 pm
-      </button>
-      <button ion-button padding clear small>
-        Saturday at 1:00 pm
-      </button>
+      <ion-item *ngIf="officeHoursList.length === 0 || (officeHoursList.length === 1 && currentOfficeHours)">
+        <button ion-button padding clear small>
+          No upcoming office hours
+        </button>
+      </ion-item>
+      <ion-item *ngIf="!currentOfficeHours">
+        <button ion-button padding clear small>
+          {{ officeHoursList[0].date }}
+        </button>
+      </ion-item>
+      <ng-container *ngIf="this.officeHoursList.length > 1">
+        <ion-item *ngFor="let i of _.range(1, this.officeHoursList.length)">
+          <button ion-button padding clear small>
+            {{ officeHoursList[i].date }}
+          </button>
+        </ion-item>
+      </ng-container>
     </ion-list>
   </ion-card-content>
 </ion-card>
 
 <!--If instructor for the class-->
 <ion-card>
-  <ion-card-header [navPush]="'EditHoursPage'" [navParams]="{course: course}">
+  <ion-card-header [navPush]="'EditHoursPage'" [navParams]="{course: course, officeHoursList: officeHoursList}">
     Edit Office Hours
   </ion-card-header>
 </ion-card>

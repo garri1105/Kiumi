@@ -26,6 +26,7 @@ export class UtilitiesProvider {
     return text;
   }
 
+  //TODO Fix initializations
   resetCourses() {
     this.courseData
       .getCourseList()

@@ -11,4 +11,5 @@ export interface OfficeHours {
   endTime: string;
   dayOfWeek: string;
   instructing: boolean;
+  error?: string;
 }

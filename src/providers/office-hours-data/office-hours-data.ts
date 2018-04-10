@@ -7,6 +7,8 @@ import {take} from "rxjs/operators";
 import {GlobalProfileProvider} from "../global-profile/global-profile";
 import {Profile} from "../../models/profile/profile.interface";
 import {ProfileDataProvider} from "../profile-data/profile-data";
+import * as moment from "moment";
+
 //TODO: Refactor this page
 @Injectable()
 export class OfficeHoursDataProvider {
@@ -21,37 +23,39 @@ export class OfficeHoursDataProvider {
     this.profile = this.globalProfile.getProfile();
   }
 
-  getOfficeHours(courseKey: string) {
-    this.officeHoursList = [];
-    this.courseData.getCourseByKey(courseKey)
-      .valueChanges().pipe(take(1))
-      .subscribe((course: Course) => {
-        course.officeHours.map(slot => {
-          this.officeHoursList.push(slot);
-        });
-      });
-
-    return this.officeHoursList;
+  async getOfficeHours(courseKey: string): Promise<OfficeHours[]> {
+    return new Promise<OfficeHours[]>((resolve) => {
+      this.courseData.getCourseByKey(courseKey)
+        .valueChanges().pipe(take(1))
+        .subscribe((course: Course) => {
+          this.officeHoursList = [];
+          course.officeHours.map((slot, i) => {
+            if (i > 0) {
+              this.officeHoursList.push(slot);
+            }
+          });
+          resolve(this.officeHoursList);
+        })
+    });
   }
 
-  addOfficeHours(courseKey: string, original: OfficeHours) {
-    let officeHours: OfficeHours = JSON.parse(JSON.stringify(original));
-    officeHours.instructing = null;
-    officeHours.dayOfWeek = null;
-    officeHours.startTime = null;
-    officeHours.endTime = null;
-
+  //TODO updateCourse promise
+  async addOfficeHours(courseKey: string, officeHours: OfficeHours) {
     this.courseData.getCourseByKey(courseKey)
       .valueChanges().pipe(take(1))
       .subscribe((course: Course) => {
       course.officeHours.push(officeHours);
+      course.officeHours.sort((a, b) => {
+        return moment(a.date).diff(moment(b.date));
+      });
       this.courseData.updateCourse(course);
     });
 
     this.profile.instructor.officeHours.push(officeHours.key);
-    this.profileData.updateProfile(this.profile);
+    return await this.profileData.updateProfile(this.profile);
   }
 
+  //TODO update promises
   updateOfficeHours(courseKey: string, original: OfficeHours) {
     let officeHours: OfficeHours = JSON.parse(JSON.stringify(original));
     officeHours.instructing = null;

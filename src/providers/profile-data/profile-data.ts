@@ -18,8 +18,8 @@ export class ProfileDataProvider {
     return this.profileList;
   }
 
-  updateProfile(profile: Profile) {
-    this.profileList.update(profile.key, profile);
+  async updateProfile(profile: Profile) {
+    return await this.profileList.update(profile.key, profile);
   }
 
   getProfile(user: User) {

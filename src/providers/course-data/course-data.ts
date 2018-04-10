@@ -4,6 +4,7 @@ import { Course } from "../../models/course/course.interface";
 import {of} from "rxjs/observable/of";
 import {concat} from "rxjs/observable/concat";
 
+//TODO Use promises
 @Injectable()
 export class CourseDataProvider {
 

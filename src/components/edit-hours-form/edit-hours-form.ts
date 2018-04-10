@@ -5,6 +5,7 @@ import {Slides, ToastController} from "ionic-angular";
 import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
 import {Profile} from "../../models/profile/profile.interface";
 import * as moment from "moment";
+import {makeDecorator} from "@angular/core/src/util/decorators";
 
 //TODO: Refactor this page
 @Component({
@@ -14,11 +15,9 @@ import * as moment from "moment";
 export class EditHoursComponent {
   @ViewChild(Slides) slides: Slides;
   @Input() courseKey: string;
+  @Input() officeHoursList: OfficeHours[] = [];
   profile: Profile;
-  officeHoursList: OfficeHours[] = [];
-  newOfficeHoursList: OfficeHours[] = [];
-  myOfficeHours: OfficeHours[] = [];
-  timesAreInvalid: string;
+  newOfficeHours: OfficeHours;
   days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   constructor(private officeHoursDataProvider: OfficeHoursDataProvider,
@@ -28,72 +27,91 @@ export class EditHoursComponent {
   }
 
   addOfficeHourSlot() {
-    let newOfficeHours = {} as OfficeHours;
-    newOfficeHours.instructing = true;
-    newOfficeHours.instructors = ['0'];
-    newOfficeHours.studentQueue = ['0'];
-    newOfficeHours.key = EditHoursComponent.makeId(10);
-    this.newOfficeHoursList.push(newOfficeHours);
+    this.newOfficeHours = {
+      instructing: true,
+      instructors: ['0'],
+      studentQueue: ['0'],
+      key: EditHoursComponent.makeId(10)
+    } as OfficeHours;
+
     this.slides.slideTo(0);
   }
 
   fillEndTime(officeHours: OfficeHours) {
-    officeHours.endTime =
-      moment(officeHours.startTime, 'HH:mm')
-      .add(1, 'hours')
-      .format('HH:mm');
+    if (officeHours.startTime) {
+      officeHours.endTime =
+        moment(officeHours.startTime, 'HH:mm')
+          .add(1, 'hours')
+          .format('HH:mm');
+    }
   }
 
-  //TODO: Turn startTime and endTime into moment() instead of strings
-  areTimesInvalid(officeHours: OfficeHours) {
-    let start = moment()
-      .hours(parseInt(officeHours.startTime.slice(0, 2)))
-      .minutes(parseInt(officeHours.startTime.slice(3, )));
+  isValid(officeHours: OfficeHours) {
+    if (officeHours.startTime && officeHours.endTime) {
+      let start = moment(officeHours.startTime, 'HH:mm');
+      let end = moment(officeHours.endTime, 'HH:mm');
 
-    let end = moment()
-      .hours(parseInt(officeHours.endTime.slice(0, 2)))
-      .minutes(parseInt(officeHours.endTime.slice(3, )));
+      let diff = end.diff(start, 'minutes', true);
 
-    let diff = end.diff(start, 'minutes', true);
-
-    if (officeHours.startTime === officeHours.endTime) {
-      this.timesAreInvalid = 'Times can\'t be the same';
-    }
-    else if (diff < 0) {
-      this.timesAreInvalid = 'End time must be after start time';
-    }
-    else if (diff < 60) {
-      this.timesAreInvalid = 'Office hours must last at least one hour';
-    }
-    else {
-      this.timesAreInvalid = null;
-      officeHours.duration = diff;
+      if (diff === 0) {
+        officeHours.error = 'Times can\'t be the same';
+      }
+      else if (diff < 0) {
+        officeHours.error = 'End time must be after start time';
+      }
+      else if (diff < 60) {
+        officeHours.error = 'Office hours must last at least one hour';
+      }
+      else {
+        officeHours.error = null;
+        officeHours.duration = diff;
+      }
     }
   }
 
   addNewOfficeHours() {
-    let newOfficeHours = this.newOfficeHoursList.pop();
+    let newOfficeHours: OfficeHours = JSON.parse(JSON.stringify(this.newOfficeHours));
+
+    console.log(newOfficeHours);
+
     newOfficeHours.instructors.push(this.profile.key);
 
     let dist = EditHoursComponent.getDayDistance(moment().isoWeekday(), moment().isoWeekday(newOfficeHours.dayOfWeek.trim()).isoWeekday());
 
-    let newDate = moment().add(dist, 'days')
-      .hours(parseInt(newOfficeHours.startTime.slice(0, 2)))
-      .minutes(parseInt(newOfficeHours.startTime.slice(3, )));
+    let newDate = moment(newOfficeHours.startTime, 'HH:mm');
+    newDate = moment().add(dist, 'days')
+      .hours(newDate.hours())
+      .minutes(newDate.minutes());
 
     if (dist === 0 && newDate.diff(moment()) < 0) {
-      newDate.add(7, 'days')
+      // newDate.add(7, 'days')
     }
 
-    newOfficeHours.date = newDate.format('LLLL');
+    newOfficeHours.date = newDate.format('ddd, DD MMM YYYY, HH:mm');
 
-    this.myOfficeHours.push(newOfficeHours);
+    newOfficeHours.instructing = null;
+    newOfficeHours.dayOfWeek = null;
+    newOfficeHours.startTime = null;
+    newOfficeHours.endTime = null;
 
-    this.officeHoursDataProvider.addOfficeHours(this.courseKey, newOfficeHours);
-    this.toast.create({
-      message: 'Saved succesfully',
-      duration: 1000
-    }).present();
+    this.officeHoursList.push(newOfficeHours);
+
+    this.officeHoursDataProvider
+      .addOfficeHours(this.courseKey, newOfficeHours)
+      .then(r => {
+        this.newOfficeHours = null;
+        this.toast.create({
+          message: `Saved succesfully`,
+          duration: 1000
+        }).present();
+      })
+      .catch(e => {
+        this.toast.create({
+          message: `Failed to save`,
+          duration: 3000
+        }).present();
+    });
+
   }
 
   updateOfficeHours(officeHours: OfficeHours) {
@@ -112,27 +130,16 @@ export class EditHoursComponent {
   }
 
   ngOnInit() {
-
-    this.officeHoursList = this.officeHoursDataProvider.getOfficeHours(this.courseKey);
-
-    setTimeout(() => {
-      for (let i = 1; i < this.officeHoursList.length; i++) {
-        let time = moment(this.officeHoursList[i].date);
-        this.officeHoursList[i].dayOfWeek = time.format('dddd');
-        this.officeHoursList[i].startTime = `${EditHoursComponent.pad(time.hours(), 2)}:${EditHoursComponent.pad(time.minutes(), 2)}`;
-        time.add(this.officeHoursList[i].duration, 'minutes');
-        this.officeHoursList[i].endTime = `${EditHoursComponent.pad(time.hours(), 2)}:${EditHoursComponent.pad(time.minutes(), 2)}`;
-
-        if (this.profile.instructor.officeHours.indexOf(this.officeHoursList[i].key) > -1) {
-          let myOfficeHours = this.officeHoursList.splice(i, 1, null);
-          myOfficeHours[0].instructing = true;
-          this.myOfficeHours.push(myOfficeHours[0]);
-        }
-        else {
-          this.officeHoursList[i].instructing = false;
-        }
+    this.officeHoursList.sort((a, b) => {
+      if (this.profile.instructor.officeHours.indexOf(b.key) > -1) {
+        b.instructing = true;
       }
-    }, 1);
+      if (this.profile.instructor.officeHours.indexOf(a.key) > -1) {
+        a.instructing = true;
+      }
+
+      return this.profile.instructor.officeHours.indexOf(b.key) - this.profile.instructor.officeHours.indexOf(a.key);
+    });
   }
 
   static getDayDistance(a: number, b: number) {
