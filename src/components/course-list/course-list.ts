@@ -5,6 +5,8 @@ import {GlobalProfileProvider} from "../../providers/global-profile/global-profi
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {take} from "rxjs/operators";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
+import {Student} from "../../models/student/student.interface";
+import {Instructor} from "../../models/instructor/instructor.interface";
 
 @Injectable()
 @Component({
@@ -37,24 +39,25 @@ export class CourseListComponent {
     }
   }
 
-  removeCourse(event, course: Course) {
-    if (event === 'studentCourse') {
-      this.profile.student.courses.splice(this.profile.student.courses.indexOf(course.key), 1);
-      this.courseData.getCourseByKey(course.key)
-        .subscribe((course: Course) => {
-          course.students.splice(course.students.indexOf(this.profile.key), 1);
-          this.courseData.updateCourse(course);
-        });
-      this.profileData.updateProfile(this.profile);
-    }
-    else if (event === 'instructorCourse') {
-      this.profile.instructor.courses.splice(this.profile.instructor.courses.indexOf(course.key), 1);
-      this.courseData.getCourseByKey(course.key)
-        .subscribe((course: Course) => {
+  removeCourse(profile: Instructor | Student, course: Course) {
+    profile.courses.splice(profile.courses.indexOf(course.key), 1);
+
+    this.courseData.getCourseByKey(course.key)
+      .subscribe((course: Course) => {
+        if (this.isInstructor(profile)) {
           course.instructors.splice(course.instructors.indexOf(this.profile.key), 1);
-          this.courseData.updateCourse(course);
-        });
-      this.profileData.updateProfile(this.profile);
-    }
+        }
+        else {
+          course.students.splice(course.students.indexOf(this.profile.key), 1);
+        }
+
+        this.courseData.updateCourse(course);
+      });
+    this.profileData.updateProfile(this.profile);
   }
+
+  isInstructor(profile: Instructor | Student): profile is Instructor {
+    return (<Instructor>profile).officeHours !== undefined;
+  }
+
 }

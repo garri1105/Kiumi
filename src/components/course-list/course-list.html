@@ -26,7 +26,7 @@
                   class="trash"
                   color="danger"
                   name="studentCourse"
-                  (click)="removeCourse('studentCourse', course)">
+                  (click)="removeCourse(profile.student, course)">
             <ion-icon name="trash"></ion-icon>
             DELETE
           </button>
@@ -60,7 +60,7 @@
                   class="trash"
                   color="danger"
                   name="instructorCourse"
-                  (click)="removeCourse('instructorCourse', course)">
+                  (click)="removeCourse(profile.instructor, course)">
             <ion-icon name="trash"></ion-icon>
             DELETE
           </button>
