@@ -11,16 +11,16 @@
   </ion-navbar>
 
   <!-- <ion-title>
-          {{ course.number }}  
+          {{ course.number }}
   </ion-title> -->
-</ion-header> 
+</ion-header>
 
 
 <ion-content padding>
   <!--If student for the course-->
-  <queue-for-students [course]="course"></queue-for-students>
+  <queue-for-students [course]="course" [studentQueue]="studentQueue" [officeHourIndex]="officeHourIndex"></queue-for-students>
   <!-- <queue-for-students></queue-for-students> -->
   <!--If instructor for the course-->
-  <queue-for-instructors [course]="course"></queue-for-instructors>
+  <queue-for-instructors [course]="course" [studentQueue]="studentQueue" [officeHourIndex]="officeHourIndex"></queue-for-instructors>
   <!-- <queue-for-instructors></queue-for-instructors> -->
 </ion-content>

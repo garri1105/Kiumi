@@ -1,7 +1,21 @@
 profile-view {
   .signOut {
+
     //background: map-get($colors, danger);
     background: transparent;
     border: white solid 2px;
+    //font-size: 200%;
+    //height: 360%;
+    //width: 40%;
   }
+
+
+  ion-row {
+    text-align: center;
+  }
+
+  ion-col {
+    text-align: center;
+  }
+
 }
