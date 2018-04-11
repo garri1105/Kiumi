@@ -17,14 +17,16 @@ export class OfficeHoursPage {
   course: Course;
   officeHoursList: OfficeHours[];
   ready: boolean;
+  isInstructing: boolean;
   profile: Profile;
 
   constructor(private navParams: NavParams,
               private officeHoursData: OfficeHoursDataProvider,
               private globalProfile: GlobalProfileProvider)  {
 
-      this.profile = this.globalProfile.getProfile();
-      this.course = this.navParams.get('course');
+    this.profile = this.globalProfile.getProfile();
+    this.course = this.navParams.get('course');
+    this.isInstructor();
   }
 
   async getOfficeHours() {
@@ -49,10 +51,10 @@ export class OfficeHoursPage {
     }
   }
 
-  isInstructing() {
+  isInstructor() {
     this.profile.instructor.courses.forEach(courseKey => {
       if (courseKey === this.course.key) {
-        return true;
+        this.isInstructing = true;
       }
     });
   }

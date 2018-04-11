@@ -8,7 +8,7 @@
   <office-hours-list *ngIf="ready" [officeHoursList]="officeHoursList"></office-hours-list>
 
   <!--If instructor for the class-->
-  <ion-card *ngIf="isInstructing()">
+  <ion-card *ngIf="isInstructing">
     <ion-card-header [navPush]="'EditHoursPage'" [navParams]="{course: course, officeHoursList: officeHoursList}">
       Edit Office Hours
     </ion-card-header>
