@@ -44,14 +44,10 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <button ion-button (click)="login()" [disabled]="loginForm.invalid">Login</button>
-        </ion-col>
-        <ion-col>
-          <button ion-button style="color: black" color="light" class="signUp" [navPush]="'SignUpPage'">Sign Up</button>
-        </ion-col>
-      </ion-row>
+      <ion-item>
+        <button ion-button item-start (click)="login()" [disabled]="loginForm.invalid">Login</button>
+        <button ion-button item-end class="signUp" [navPush]="'SignUpPage'">Sign Up</button>
+      </ion-item>
 
     </ion-card-content>
   </ion-card>
@@ -67,7 +63,6 @@
     <ion-row>
       <ion-col>
         <button ion-button class="googleLogin" (click)="googleLogin()">
-        <!-- TODO: Get google login icon -->
           <ion-img width="35" height="35" src="../assets/imgs/google_login_icon.png"></ion-img>
         </button>
       </ion-col>
