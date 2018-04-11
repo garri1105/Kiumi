@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireObject} from 'angularfire2/database';
 import { OfficeHours } from "../../models/office-hours/office-hours.interface";
 import { CourseDataProvider } from '../course-data/course-data';
 import { Course } from '../../models/course/course.interface';
@@ -16,12 +16,19 @@ export class OfficeHoursDataProvider {
 
   private officeHoursList: OfficeHours[];
   profile: Profile;
+  officeHours: AngularFireObject<OfficeHours>;
 
   constructor(private db: AngularFireDatabase,
               private courseData: CourseDataProvider,
               private globalProfile: GlobalProfileProvider,
               private profileData: ProfileDataProvider) {
     this.profile = this.globalProfile.getProfile();
+  }
+
+  getOfficeHoursByKey(courseKey, officeHoursIndex) {
+    this.officeHours = this.db.object(`course-list/${courseKey}/officeHours/${officeHoursIndex}`);
+    console.log(this.officeHours.valueChanges().pipe(take(1)).subscribe(r => console.log(r)));
+    return this.officeHours.valueChanges().pipe(take(1));
   }
 
   async getOfficeHours(courseKey: string): Promise<OfficeHours[]> {

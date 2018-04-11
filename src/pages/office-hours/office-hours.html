@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <office-hours-list *ngIf="ready" [officeHoursList]="officeHoursList"></office-hours-list>
+  <office-hours-list *ngIf="ready" [officeHoursList]="officeHoursList" [course]="course"></office-hours-list>
 
   <!--If instructor for the class-->
   <ion-card *ngIf="isInstructing">

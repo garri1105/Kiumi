@@ -12,6 +12,7 @@ import * as _ from "lodash"
 export class OfficeHoursListComponent {
 
   @Input() officeHoursList: OfficeHours[];
+  @Input() course: Course;
   _: any = _;
   currentOfficeHours: OfficeHours;
 
