@@ -14,7 +14,7 @@
                   tappable
                   name="studentCourse"
                   *ngIf="profile.student.courses.indexOf(course.key) > -1"
-                  [navPush]="'StudentCheckInPage'"
+                  [navPush]="'OfficeHoursPage'"
                   [navParams]={course:course}>
           {{ course.number }}
           <br>
@@ -48,7 +48,7 @@
         <ion-item detail-none
                   tappable
                   *ngIf="profile.instructor.courses.indexOf(course.key) > -1"
-                  [navPush]="'ClassQueuePage'"
+                  [navPush]="'OfficeHoursPage'"
                   [navParams]={course:course}>
           {{ course.number }}
           <br>

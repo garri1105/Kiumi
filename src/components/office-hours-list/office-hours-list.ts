@@ -6,12 +6,11 @@ import * as _ from "lodash"
 
 //TODO Update officehours realtime
 @Component({
-  selector: 'course-office-hours',
-  templateUrl: 'course-office-hours.html'
+  selector: 'office-hours-list',
+  templateUrl: 'office-hours-list.html'
 })
-export class CourseOfficeHoursComponent {
+export class OfficeHoursListComponent {
 
-  @Input() course: Course;
   @Input() officeHoursList: OfficeHours[];
   _: any = _;
   currentOfficeHours: OfficeHours;
