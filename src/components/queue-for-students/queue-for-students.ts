@@ -34,8 +34,6 @@ export class QueueForStudentsComponent {
   }
 
   addStudent(indexOfOfficeHour: number) {
-    // console.log(this.course);
-    // console.log(this.profile);
     this.studentQueueDataProvider.addStudent(this.profile, indexOfOfficeHour, this.course);
   }
 
