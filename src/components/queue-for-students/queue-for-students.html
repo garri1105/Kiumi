@@ -21,7 +21,7 @@
     <!--Pressing button will lead to queue being updates with current student added in the last position-->
     <!--It will also cause the ion-item under this one to replace this item-->
     <button item-start ion-button clear >
-      <ion-icon name="add-circle" color="primary" (click)="addStudent(1)"></ion-icon>
+      <ion-icon name="add-circle" color="primary" (click)="addStudent(officeHourIndex)"></ion-icon>
     </button>
     <!--The current student-->
     <h5>{{ profile.name }}</h5>
@@ -29,15 +29,15 @@
     <ion-badge item-end>4</ion-badge>
   </ion-item>
   <!--This item will exist if current student (who's using the app) is already checked in-->
-  <ion-item>
+  <!-- <ion-item>
     <!--Pressing button will lead to queue being updates with current student removed-->
     <!--It will also cause the ion-item above this one to replace this item-->
-    <button item-start ion-button clear>
-      <ion-icon name="remove-circle" color="primary" (click)="removeStudent(profile.key, 1)"></ion-icon>
+<!--     <button item-start ion-button clear>
+      <ion-icon name="remove-circle" color="primary" (click)="removeStudent(profile.key, officeHourIndex)"></ion-icon>
     </button>
     <!--The current student-->
-    <h5>Salman Ahmed</h5>
+<!--     <h5>Salman Ahmed</h5>
     <!--Actual queue position-->
-    <ion-badge item-end>4</ion-badge>
-  </ion-item>
-</ion-list>
+    <!-- <ion-badge item-end>4</ion-badge> -->
+  <!-- </ion-item>  -->
+ </ion-list>

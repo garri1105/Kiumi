@@ -19,9 +19,11 @@ import { ProfileDataProvider } from '../../providers/profile-data/profile-data';
 })
 export class QueueForInstructorsComponent {
   @Input() profile: Profile;
+  @Input() officeHourIndex: number;
   @Input() course: Course;
+  @Input() studentQueue: string[];
   // studentQueue: AngularFireObject<string[]>;
-  studentQueue: string[];
+  // studentQueue: string[];
   text: string;
 
   constructor(private db: AngularFireDatabase, public profileDataProvider: ProfileDataProvider, private studentQueueDataProvider: StudentQueueDataProvider) {
@@ -29,6 +31,7 @@ export class QueueForInstructorsComponent {
     // console.log(this.studentQueue);
     // console.log(this.course);
 
+    console.log(this.studentQueue);
     console.log('Hello QueueForInstructorsComponent Component');
     this.text = 'Hello World';
   }
@@ -36,7 +39,7 @@ export class QueueForInstructorsComponent {
  
   ngOnInit() {
     console.log(this.course);
-    this.studentQueue = this.course.officeHours[1].studentQueue;
+    // this.studentQueue = this.studentQueueDataProvider.getStudentQueue(this.course, 1);
     // this.studentQueue.valueChanges();
     console.log(this.studentQueue);
   }
@@ -44,6 +47,5 @@ export class QueueForInstructorsComponent {
   removeStudent(studentKey: string, indexOfOfficeHour: number) {
     this.studentQueueDataProvider.removeStudent(studentKey, indexOfOfficeHour, this.course);
   }
-
 
 }

@@ -4,6 +4,7 @@ import { StudentQueueDataProvider } from '../../providers/student-queue-data/stu
 import { GlobalProfileProvider } from '../../providers/global-profile/global-profile';
 import { Profile } from '../../models/profile/profile.interface';
 import { Course } from '../../models/course/course.interface';
+import { AngularFireList } from 'angularfire2/database';
 
 /**
  * Generated class for the StudentQueuePage page.
@@ -21,13 +22,19 @@ export class StudentQueuePage {
 
   course: Course;
   profile: Profile;
+  officeHourIndex: number;
   clicked: boolean;
   checkInButton: HTMLElement;
+  studentQueue: string[];
 
   constructor(private navParams: NavParams, private studentQueueDataProvider: StudentQueueDataProvider, private globalProfileProvider: GlobalProfileProvider) {
     this.profile = this.globalProfileProvider.getProfile();
     this.clicked = false;
     this.course = this.navParams.get('course');
+    this.officeHourIndex = this.navParams.get('i') + 1;
+    console.log(this.officeHourIndex);
+    // console.log(this.course.officeHours[this.officeHourIndex]);
+    this.getStudentQueue(this.course, this.officeHourIndex);
   }
 
 
@@ -48,6 +55,14 @@ export class StudentQueuePage {
       this.checkInButton.style.color = '#32db64';
       this.checkInButton.textContent = 'Checked in';
     }
+  }
+
+  getStudentQueue(course: Course, officeHourIndex: number) {
+    this.studentQueueDataProvider.getStudentQueue(course, officeHourIndex).valueChanges().subscribe(queue => {
+      this.studentQueue = queue
+      console.log(queue)
+    });
+    console.log(this.studentQueue);
   }
 
 }

@@ -18,11 +18,13 @@ import { Course } from '../../models/course/course.interface';
 export class QueueForStudentsComponent {
 
   @Input() course: Course;
+  @Input() officeHourIndex: number;
   text: string;
   @Input() profile: Profile;
+  @Input() studentQueue: string[];
   clicked: boolean;
   checkInButton: HTMLElement;
-  studentQueue: Profile[];
+  // studentQueue: Profile[];
 
   constructor(private navParams: NavParams, private studentQueueDataProvider: StudentQueueDataProvider, private globalProfileProvider: GlobalProfileProvider) {
     this.profile = this.globalProfileProvider.getProfile();
@@ -41,6 +43,7 @@ export class QueueForStudentsComponent {
 
   removeStudent(studentKey: string, indexOfOfficeHour: number) {
     this.studentQueueDataProvider.removeStudent(studentKey, indexOfOfficeHour, this.course);
-
   }
+
+
 }

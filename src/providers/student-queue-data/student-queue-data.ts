@@ -9,6 +9,8 @@ import { CourseDataProvider } from '../course-data/course-data';
 import {take} from "rxjs/operators";
 import { ProfileDataProvider } from '../profile-data/profile-data';
 import { NavController } from 'ionic-angular';
+import { OfficeHoursDataProvider } from '../office-hours-data/office-hours-data';
+import { AngularFireList } from 'angularfire2/database';
 
 
 /*
@@ -19,13 +21,13 @@ import { NavController } from 'ionic-angular';
 */
 @Injectable()
 export class StudentQueueDataProvider {
-  private studentQueue = this.db.list<Profile>('student-queue');
+  private studentQueue : AngularFireList<string>;
   courseObject: AngularFireObject<Course>;
   // private navCtrl = NavController;
   // private profileList = AngularFireLis<Profile>
 
 
-  constructor(private db: AngularFireDatabase, private courseDataProvider: CourseDataProvider, private profileDataProvider: ProfileDataProvider) {
+  constructor(private db: AngularFireDatabase, private courseDataProvider: CourseDataProvider, private profileDataProvider: ProfileDataProvider, private officeHoursDataProvider: OfficeHoursDataProvider) {
     console.log('Hello StudentQueueDataProvider Provider');
   }
 
@@ -39,6 +41,12 @@ export class StudentQueueDataProvider {
       });
 
     // }
+  }
+
+    
+  getStudentQueue(course: Course, indexOfOfficeHour: number) {
+    this.studentQueue = this.db.list(`course-list/${course.key}/officeHours/${indexOfOfficeHour}/studentQueue`);
+    return this.studentQueue;
   }
 
   removeStudent(studentKey: string, indexOfOfficeHour: number, course: Course ) {
