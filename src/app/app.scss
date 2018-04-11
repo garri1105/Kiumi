@@ -27,7 +27,7 @@
 .toolbar-title{
   color: white;
   font-family: chalkfont;
-  font-size: 300%;
+  font-size: 260%;
   letter-spacing: 2px;
 }
 
@@ -40,6 +40,7 @@
 .content {
   background: #428957 url("../assets/imgs/chalkboard.png");
   background-size: cover;
+  font-family: chalkfont;
 
   .label{
     color: white;
@@ -76,7 +77,7 @@
 
 .button {
   background: transparent;
-
+  font-size: 200%;
 }
 
 .label {
@@ -113,5 +114,9 @@
 //}
 
 .select{
+  background: transparent;
+}
+
+.searchbar-md-background-color {
   background: transparent;
 }
