@@ -12,13 +12,13 @@
 </ion-card>
 
 <ion-card>
-  <ion-card-header>
+  <ion-card-header class="header">
     Upcoming Office Hours
   </ion-card-header>
   <ion-card-content>
     <ion-list>
       <ion-item *ngIf="officeHoursList.length === 0 || (officeHoursList.length === 1 && currentOfficeHours)">
-        <button ion-button padding clear small>
+        <button class="sub-header" ion-button padding clear small>
           No upcoming office hours
         </button>
       </ion-item>
