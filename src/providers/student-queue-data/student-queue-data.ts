@@ -38,7 +38,12 @@ export class StudentQueueDataProvider {
   }
 
   removeStudent(student: Profile, indexOfOfficeHour: number, course: Course ) {
-    
+    this.courseDataProvider.getCourseByKey(course.key).
+      valueChanges().pipe(take(1)).
+      subscribe((course: Course) => {
+        course.officeHours[indexOfOfficeHour].studentQueue.splice(course.officeHours[indexOfOfficeHour].studentQueue.indexOf(student.key), 1);
+        this.courseDataProvider.updateCourse(course);
+      });
   }
  
 }
