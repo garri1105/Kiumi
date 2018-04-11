@@ -27,15 +27,15 @@ export class CourseDataProvider {
   }
 
   addCourse(course: Course) {
-    this.courseList.push(course);
+    return this.courseList.push(course);
   }
 
   removeCourse(course: Course) {
-    this.courseList.remove(course.key);
+    return this.courseList.remove(course.key);
   }
 
-  async updateCourse(course: Course) {
-    return await this.courseList.update(course.key, course);
+  updateCourse(course: Course) {
+    return this.courseList.update(course.key, course);
   }
 
   searchCourse(query: string) {

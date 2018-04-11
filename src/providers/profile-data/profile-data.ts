@@ -18,20 +18,18 @@ export class ProfileDataProvider {
     return this.profileList;
   }
 
-  async updateProfile(profile: Profile) {
-    return await this.profileList.update(profile.key, profile);
+  updateProfile(profile: Profile) {
+    return this.profileList.update(profile.key, profile);
   }
 
   getProfile(user: User) {
-    console.log(user.email);
     this.profileObject = this.database.object(`/profiles/${user.uid}`);
-    console.log(this.profileObject);
 
     return of(this.profileObject).pipe(take(1));
   }
 
   removeProfile(profile: Profile) {
-    this.profileList.remove(profile.key);
+    return this.profileList.remove(profile.key);
   }
 
   async saveProfile(user: User, profile: Profile) {

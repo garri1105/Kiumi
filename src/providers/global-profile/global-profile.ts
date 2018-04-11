@@ -43,7 +43,19 @@ export class GlobalProfileProvider {
   }
 
   getProfile() {
-    return this.profile;
+    if (this.profile) {
+      return this.profile;
+    }
+    else {
+      console.log('Error loading profile');
+      return this.loadProfile()
+        .then(() => {
+          return this.getProfile()
+        })
+        .catch(e => {
+          this.auth.signOut();
+        });
+    }
   }
 }
 
