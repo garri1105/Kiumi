@@ -2,7 +2,7 @@
 <ion-list reorder="true">
     <ion-item *ngFor="let student of studentQueue">
       <button item-start ion-button clear>
-        <ion-icon name="remove-circle" color="primary"></ion-icon>
+        <ion-icon name="remove-circle" color="primary" (click)="removeStudent(student, 1)"></ion-icon>
       </button>
       <h5 > {{student}}</h5>
       <!-- <h5 *ngIf="studentQueue.indexOf(student) > 0"> {{profileDataProvider.getProfileByKey(student)}}</h5> -->

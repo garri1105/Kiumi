@@ -38,4 +38,9 @@ export class QueueForStudentsComponent {
     // console.log(this.profile);
     this.studentQueueDataProvider.addStudent(this.profile, indexOfOfficeHour, this.course);
   }
+
+  removeStudent(studentKey: string, indexOfOfficeHour: number) {
+    this.studentQueueDataProvider.removeStudent(studentKey, indexOfOfficeHour, this.course);
+
+  }
 }
