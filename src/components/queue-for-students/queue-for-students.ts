@@ -37,8 +37,8 @@ export class QueueForStudentsComponent {
     this.studentQueueDataProvider.addStudent(this.profile, indexOfOfficeHour, this.course);
   }
 
-  removeStudent(indexOfOfficeHour: number) {
-    this.studentQueueDataProvider.removeStudent(this.profile, indexOfOfficeHour, this.course);
+  removeStudent(studentKey: string, indexOfOfficeHour: number) {
+    this.studentQueueDataProvider.removeStudent(studentKey, indexOfOfficeHour, this.course);
 
   }
 }
