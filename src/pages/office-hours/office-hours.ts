@@ -5,20 +5,28 @@ import * as moment from "moment";
 import {OfficeHours} from "../../models/office-hours/office-hours.interface";
 import {OfficeHoursDataProvider} from "../../providers/office-hours-data/office-hours-data";
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
+import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
+import {Profile} from "../../models/profile/profile.interface";
 
 @IonicPage()
 @Component({
-  selector: 'page-class-queue',
-  templateUrl: 'class-queue.html'
+  selector: 'page-office-hours',
+  templateUrl: 'office-hours.html'
 })
-export class ClassQueuePage {
+export class OfficeHoursPage {
   course: Course;
   officeHoursList: OfficeHours[];
   ready: boolean;
+  isInstructing: boolean;
+  profile: Profile;
 
   constructor(private navParams: NavParams,
-              private officeHoursData: OfficeHoursDataProvider)  {
-      this.course = this.navParams.get('course');
+              private officeHoursData: OfficeHoursDataProvider,
+              private globalProfile: GlobalProfileProvider)  {
+
+    this.profile = this.globalProfile.getProfile();
+    this.course = this.navParams.get('course');
+    this.isInstructor();
   }
 
   async getOfficeHours() {
@@ -41,6 +49,14 @@ export class ClassQueuePage {
 
       }
     }
+  }
+
+  isInstructor() {
+    this.profile.instructor.courses.forEach(courseKey => {
+      if (courseKey === this.course.key) {
+        this.isInstructing = true;
+      }
+    });
   }
 
   ionViewWillEnter() {

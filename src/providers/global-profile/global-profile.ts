@@ -36,14 +36,26 @@ export class GlobalProfileProvider {
         })
       }
       else {
-        console.log("User not logged in");
+        console.log("");
         reject("User not logged in");
       }
     });
   }
 
   getProfile() {
-    return this.profile;
+    if (this.profile) {
+      return this.profile;
+    }
+    else {
+      console.log('Error loading profile');
+      return this.loadProfile()
+        .then(() => {
+          return this.getProfile()
+        })
+        .catch(e => {
+          this.auth.signOut();
+        });
+    }
   }
 }
 

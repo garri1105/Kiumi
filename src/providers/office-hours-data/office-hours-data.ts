@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireObject} from 'angularfire2/database';
 import { OfficeHours } from "../../models/office-hours/office-hours.interface";
 import { CourseDataProvider } from '../course-data/course-data';
 import { Course } from '../../models/course/course.interface';
@@ -16,6 +16,7 @@ export class OfficeHoursDataProvider {
 
   private officeHoursList: OfficeHours[];
   profile: Profile;
+  officeHours: AngularFireObject<OfficeHours>;
 
   constructor(private db: AngularFireDatabase,
               private courseData: CourseDataProvider,
@@ -24,10 +25,15 @@ export class OfficeHoursDataProvider {
     this.profile = this.globalProfile.getProfile();
   }
 
+  getOfficeHoursByKey(courseKey, officeHoursIndex) {
+    this.officeHours = this.db.object(`course-list/${courseKey}/officeHours/${officeHoursIndex}`);
+    console.log(this.officeHours.valueChanges().pipe(take(1)).subscribe(r => console.log(r)));
+    return this.officeHours.valueChanges().pipe(take(1));
+  }
+
   async getOfficeHours(courseKey: string): Promise<OfficeHours[]> {
     return new Promise<OfficeHours[]>((resolve) => {
       this.courseData.getCourseByKey(courseKey)
-        .valueChanges().pipe(take(1))
         .subscribe((course: Course) => {
           this.officeHoursList = [];
           course.officeHours.map(slot => {
@@ -43,7 +49,6 @@ export class OfficeHoursDataProvider {
   //TODO updateCourse promise
   async addOfficeHours(courseKey: string, officeHours: OfficeHours) {
     this.courseData.getCourseByKey(courseKey)
-      .valueChanges().pipe(take(1))
       .subscribe((course: Course) => {
         course.officeHours.push(this.cleanOfficeHours(officeHours));
         UtilitiesProvider.sortByDate(course.officeHours);
@@ -58,7 +63,6 @@ export class OfficeHoursDataProvider {
   updateOfficeHours(courseKey: string, officeHours: OfficeHours) {
     return new Promise((resolve, reject) => {
       this.courseData.getCourseByKey(courseKey)
-        .valueChanges().pipe(take(1))
         .subscribe((course: Course) => {
           for (let i = 0; i < course.officeHours.length; i++) {
             if (course.officeHours[i].key === officeHours.key) {
@@ -83,7 +87,6 @@ export class OfficeHoursDataProvider {
 
   removeOfficeHours(courseKey: string, officeHours: OfficeHours) {
     this.courseData.getCourseByKey(courseKey)
-      .valueChanges()
       .subscribe((course: Course) => {
         if(course.officeHours.indexOf(officeHours) != -1) {
           course.officeHours.splice(course.officeHours.indexOf(officeHours), 1);

@@ -60,8 +60,6 @@ export class CourseSearchComponent {
     if (this.profile.instructor) {
       this.profile.instructor.courses.forEach(courseKey => {
         this.courseData.getCourseByKey(courseKey)
-          .valueChanges()
-          .pipe(take(1))
           .subscribe((course: Course) => {
             if (course) {
               course.selection = 'Instructor';
@@ -74,8 +72,6 @@ export class CourseSearchComponent {
     if (this.profile.student) {
       this.profile.student.courses.forEach(courseKey => {
         this.courseData.getCourseByKey(courseKey)
-          .valueChanges()
-          .pipe(take(1))
           .subscribe((course: Course) => {
             if (course) {
               course.selection = 'Student';

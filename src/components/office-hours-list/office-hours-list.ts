@@ -6,13 +6,13 @@ import * as _ from "lodash"
 
 //TODO Update officehours realtime
 @Component({
-  selector: 'course-office-hours',
-  templateUrl: 'course-office-hours.html'
+  selector: 'office-hours-list',
+  templateUrl: 'office-hours-list.html'
 })
-export class CourseOfficeHoursComponent {
+export class OfficeHoursListComponent {
 
-  @Input() course: Course;
   @Input() officeHoursList: OfficeHours[];
+  @Input() course: Course;
   _: any = _;
   currentOfficeHours: OfficeHours;
 
@@ -20,10 +20,8 @@ export class CourseOfficeHoursComponent {
   }
 
   getCurrentOfficeHours() {
-    console.log(this.officeHoursList[0]);
     if (this.officeHoursList[0]) {
       let timeDiff = moment().diff(moment(this.officeHoursList[0].date), 'minutes');
-      console.log(timeDiff);
       if (timeDiff >= 0 && timeDiff < this.officeHoursList[0].duration) {
         return this.officeHoursList[0];
       }
@@ -35,6 +33,5 @@ export class CourseOfficeHoursComponent {
 
   ngOnInit() {
     this.currentOfficeHours = this.getCurrentOfficeHours();
-    console.log(this.currentOfficeHours);
   }
 }

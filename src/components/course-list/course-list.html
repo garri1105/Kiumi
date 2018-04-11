@@ -14,7 +14,7 @@
                   tappable
                   name="studentCourse"
                   *ngIf="profile.student.courses.indexOf(course.key) > -1"
-                  [navPush]="'StudentCheckInPage'"
+                  [navPush]="'OfficeHoursPage'"
                   [navParams]={course:course}>
           {{ course.number }}
           <br>
@@ -26,7 +26,7 @@
                   class="trash"
                   color="danger"
                   name="studentCourse"
-                  (click)="removeCourse($event, course)">
+                  (click)="removeCourse(profile.student, course)">
             <ion-icon name="trash"></ion-icon>
             DELETE
           </button>
@@ -48,7 +48,7 @@
         <ion-item detail-none
                   tappable
                   *ngIf="profile.instructor.courses.indexOf(course.key) > -1"
-                  [navPush]="'ClassQueuePage'"
+                  [navPush]="'OfficeHoursPage'"
                   [navParams]={course:course}>
           {{ course.number }}
           <br>
@@ -60,7 +60,7 @@
                   class="trash"
                   color="danger"
                   name="instructorCourse"
-                  (click)="removeCourse($event, course)">
+                  (click)="removeCourse(profile.instructor, course)">
             <ion-icon name="trash"></ion-icon>
             DELETE
           </button>
