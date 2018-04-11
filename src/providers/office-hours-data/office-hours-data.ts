@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase, AngularFireObject} from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
 import { OfficeHours } from "../../models/office-hours/office-hours.interface";
 import { CourseDataProvider } from '../course-data/course-data';
 import { Course } from '../../models/course/course.interface';
-import {take} from "rxjs/operators";
 import {GlobalProfileProvider} from "../global-profile/global-profile";
 import {Profile} from "../../models/profile/profile.interface";
 import {ProfileDataProvider} from "../profile-data/profile-data";
 import * as moment from "moment";
 import {UtilitiesProvider} from "../utilities/utilities";
+import {take} from "rxjs/operators";
 
 //TODO: Refactor this page
 @Injectable()
@@ -27,7 +27,6 @@ export class OfficeHoursDataProvider {
 
   getOfficeHoursByKey(courseKey, officeHoursIndex) {
     this.officeHours = this.db.object(`course-list/${courseKey}/officeHours/${officeHoursIndex}`);
-    console.log(this.officeHours.valueChanges().pipe(take(1)).subscribe(r => console.log(r)));
     return this.officeHours.valueChanges().pipe(take(1));
   }
 
@@ -46,38 +45,52 @@ export class OfficeHoursDataProvider {
     });
   }
 
-  //TODO updateCourse promise
-  async addOfficeHours(courseKey: string, officeHours: OfficeHours) {
-    this.courseData.getCourseByKey(courseKey)
-      .subscribe((course: Course) => {
-        course.officeHours.push(this.cleanOfficeHours(officeHours));
-        UtilitiesProvider.sortByDate(course.officeHours);
-        this.courseData.updateCourse(course);
-    });
+  addOfficeHours(courseKey: string, officeHours: OfficeHours) {
+    return new Promise((resolve, reject) => {
+      this.courseData.getCourseByKey(courseKey)
+        .subscribe((course: Course) => {
+          course.officeHours.push(this.cleanOfficeHours(officeHours));
+          UtilitiesProvider.sortByDate(course.officeHours);
+          this.courseData.updateCourse(course).catch(e => reject(`Update course error: ${e}`));
+        });
 
-    this.profile.instructor.officeHours.push(officeHours.key);
-    return await this.profileData.updateProfile(this.profile);
+      this.profile.instructor.officeHours.push(officeHours.key);
+      this.profileData.updateProfile(this.profile)
+        .then(r => resolve('Added succesfully'))
+        .catch(e => reject(`Update profile error: ${e}`));
+    });
   }
 
-  //TODO update promises
   updateOfficeHours(courseKey: string, officeHours: OfficeHours) {
     return new Promise((resolve, reject) => {
       this.courseData.getCourseByKey(courseKey)
         .subscribe((course: Course) => {
+          console.log(course.officeHours.length);
           for (let i = 0; i < course.officeHours.length; i++) {
             if (course.officeHours[i].key === officeHours.key) {
-              if (officeHours.instructors.indexOf(this.profile.key) > - 1) {
+              if (officeHours.instructors.indexOf(this.profile.key) > -1) {
+
                 course.officeHours[i] = this.cleanOfficeHours(officeHours);
                 UtilitiesProvider.sortByDate(course.officeHours);
-                this.courseData.updateCourse(course);
+                try {
+                  this.courseData.updateCourse(course);
+                  resolve('Updated succesfully');
+                }
+                catch(e) {
+                  reject(`Update course error: ${e}`);
+                }
               }
               else {
                 officeHours.instructors.push(this.profile.key);
                 this.profile.instructor.officeHours.push(officeHours.key);
-                this.profileData.updateProfile(this.profile);
+                this.profileData.updateProfile(this.profile)
+                  .then(r => {
+                    resolve('Added to your office hours');
+                  })
+                  .catch(e => {
+                    reject(`Update profile error: ${e}`);
+                  });
               }
-
-              resolve('Updated succesfully');
             }
           }
           reject('Couldn\'t update office hours');
@@ -86,12 +99,19 @@ export class OfficeHoursDataProvider {
   }
 
   removeOfficeHours(courseKey: string, officeHours: OfficeHours) {
-    this.courseData.getCourseByKey(courseKey)
-      .subscribe((course: Course) => {
-        if(course.officeHours.indexOf(officeHours) != -1) {
-          course.officeHours.splice(course.officeHours.indexOf(officeHours), 1);
-      }
-      this.courseData.updateCourse(course)
+    return new Promise((resolve, reject) => {
+      this.courseData.getCourseByKey(courseKey)
+        .subscribe((course: Course) => {
+          if(course.officeHours.indexOf(officeHours) !== -1) {
+            course.officeHours.splice(course.officeHours.indexOf(officeHours), 1);
+          }
+          this.courseData.updateCourse(course).catch(e => reject(`Update course error: ${e}`));
+        });
+
+      this.profile.instructor.officeHours.splice(this.profile.instructor.officeHours.indexOf(officeHours.key));
+      this.profileData.updateProfile(this.profile)
+        .then(r => resolve('Removed succesfully'))
+        .catch(e => reject(`Update profile error: ${e}`));
     });
   }
 
