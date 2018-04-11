@@ -28,9 +28,8 @@ export class StudentQueueDataProvider {
   addStudent(student: Profile, indexOfOfficeHour: number, course: Course) {
     // if(course.officeHours[indexOfOfficeHour].studentQueue.indexOf(student.key) == -1) {
       // Can't tell if this if statement is necessary, but tried it out in an effort to fix the overadding to studentQueue issue
-      this.courseDataProvider.getCourseByKey(course.key).
-        valueChanges().pipe(take(1)).
-        subscribe((course: Course) => {
+      this.courseDataProvider.getCourseByKey(course.key)
+        .subscribe((course: Course) => {
         course.officeHours[indexOfOfficeHour].studentQueue.push(student.key);
         this.courseDataProvider.updateCourse(course);
       });
