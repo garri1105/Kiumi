@@ -5,8 +5,8 @@ import {LoginFormComponent} from "./login-form/login-form";
 import { CourseSearchComponent } from './course-search/course-search';
 import { EditProfileFormComponent } from './edit-profile-form/edit-profile-form';
 import { ProfileViewComponent } from './profile-view/profile-view';
-import { EditHoursComponent } from "./edit-hours-form/edit-hours-form";
-import { CourseOfficeHoursComponent } from './course-office-hours/course-office-hours';
+import { EditHoursFormComponent } from "./edit-hours-form/edit-hours-form";
+import { OfficeHoursListComponent } from './office-hours-list/office-hours-list';
 import { QueueForStudentsComponent } from './queue-for-students/queue-for-students';
 import { QueueForInstructorsComponent } from './queue-for-instructors/queue-for-instructors';
 
@@ -17,8 +17,8 @@ import { QueueForInstructorsComponent } from './queue-for-instructors/queue-for-
     CourseSearchComponent,
     EditProfileFormComponent,
     ProfileViewComponent,
-    EditHoursComponent,
-    CourseOfficeHoursComponent,
+    EditHoursFormComponent,
+    OfficeHoursListComponent,
     QueueForStudentsComponent,
     QueueForInstructorsComponent],
 	imports: [],
@@ -28,8 +28,8 @@ import { QueueForInstructorsComponent } from './queue-for-instructors/queue-for-
     CourseSearchComponent,
     EditProfileFormComponent,
     ProfileViewComponent,
-    EditHoursComponent,
-    CourseOfficeHoursComponent,
+    EditHoursFormComponent,
+    OfficeHoursListComponent,
     QueueForStudentsComponent,
     QueueForInstructorsComponent]
 })

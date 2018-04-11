@@ -19,7 +19,7 @@ export class ProfileDataProvider {
   }
 
   updateProfile(profile: Profile) {
-    this.profileList.update(profile.key, profile);
+    return this.profileList.update(profile.key, profile);
   }
 
   getProfile(user: User) {
@@ -29,7 +29,7 @@ export class ProfileDataProvider {
   }
 
   removeProfile(profile: Profile) {
-    this.profileList.remove(profile.key);
+    return this.profileList.remove(profile.key);
   }
 
   async saveProfile(user: User, profile: Profile) {

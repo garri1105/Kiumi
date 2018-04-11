@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-
-/**
- * Generated class for the EditHoursPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavParams } from 'ionic-angular';
+import {Course} from "../../models/course/course.interface";
+import {OfficeHours} from "../../models/office-hours/office-hours.interface";
 
 @IonicPage()
 @Component({
@@ -15,13 +9,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'edit-hours.html',
 })
 export class EditHoursPage {
-  courseKey: string;
+  course: Course;
+  officeHoursList: OfficeHours[];
+  ready: boolean;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams) {
-    this.courseKey = this.navParams.get("courseKey");
+  constructor(private navParams: NavParams) {
+    this.course = this.navParams.get("course");
+    this.officeHoursList = this.navParams.get("officeHoursList");
   }
-
-  ionViewDidLoad() {
-  }
-
 }

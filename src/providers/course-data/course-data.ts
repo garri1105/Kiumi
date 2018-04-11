@@ -1,13 +1,16 @@
 import { Injectable } from "@angular/core";
-import { AngularFireDatabase } from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
 import { Course } from "../../models/course/course.interface";
 import {of} from "rxjs/observable/of";
 import {concat} from "rxjs/observable/concat";
+import {take} from "rxjs/operators";
 
+//TODO Use promises
 @Injectable()
 export class CourseDataProvider {
 
-  private courseList = this.db.list<Course>('course-list');
+  private courseObject: AngularFireObject<Course>;
+  private courseList: AngularFireList<Course> = this.db.list<Course>('course-list');
 
   constructor(private db: AngularFireDatabase) {
 
@@ -17,20 +20,22 @@ export class CourseDataProvider {
     return this.courseList;
   }
 
-  getCourseByKey(key: string) {
-    return this.db.object(`course-list/${key}`);
+  getCourseByKey(key: string){
+    this.courseObject = this.db.object(`course-list/${key}`);
+
+    return this.courseObject.valueChanges().pipe(take(1));
   }
 
   addCourse(course: Course) {
-    this.courseList.push(course);
+    return this.courseList.push(course);
   }
 
   removeCourse(course: Course) {
-    this.courseList.remove(course.key);
+    return this.courseList.remove(course.key);
   }
 
   updateCourse(course: Course) {
-    this.courseList.update(course.key, course);
+    return this.courseList.update(course.key, course);
   }
 
   searchCourse(query: string) {

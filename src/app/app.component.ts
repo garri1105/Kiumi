@@ -32,7 +32,10 @@ export class MyApp {
                   : this.rootPage = 'EditProfilePage';
               });
           });
-        this.globalProfile.loadProfile();
+        
+        this.globalProfile.loadProfile()
+          .then(r => console.log(r))
+          .catch(e => console.log(e));
       }
     });
 

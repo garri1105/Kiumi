@@ -6,13 +6,6 @@ import {GlobalProfileProvider} from "../../providers/global-profile/global-profi
 import {Profile} from "../../models/profile/profile.interface";
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
 
-/**
- * Generated class for the StudentCoursesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-student-courses',
@@ -22,25 +15,34 @@ export class StudentCoursesPage {
 
   studentCourses: Course[];
   profile = {} as Profile;
-  loader: Loading;
+
   constructor(private navParams: NavParams,
               private courseData: CourseDataProvider,
               private globalProfile: GlobalProfileProvider,
               private loading: LoadingController,
               private utilities: UtilitiesProvider) {
 
-    // this.utilities.resetCourses();
-    // this.utilities.resetStudents();
-    // this.utilities.resetInstructors();
+    // this.resetDatabase();
+    this.loadCourses();
+  }
 
-    this.loader = this.loading.create({
-      content: 'Loading courses...'
+  resetDatabase() {
+    let deleter = this.loading.create({
+      content: 'Reseting database...'
+    });
+    deleter.present();
+    this.utilities.resetDatabase(false).then(() => {
+      deleter.dismiss();
     });
   }
 
-  ionViewDidLoad() {
+  loadCourses() {
+    let loader = this.loading.create({
+      content: 'Loading courses...'
+    });
+
     this.profile = this.globalProfile.getProfile();
-    this.loader.present();
+    loader.present();
 
     this.courseData
       .getCourseList()
@@ -55,11 +57,7 @@ export class StudentCoursesPage {
         this.studentCourses = courses.filter(course =>
               ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
           (this.profile.student && this.profile.student.courses.indexOf(course.key)) > -1));
-        this.loader.dismiss();
+        loader.dismiss();
       });
-  }
-
-  ionViewCanEnter(): boolean {
-    return !!this.profile;
   }
 }

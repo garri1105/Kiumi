@@ -35,7 +35,6 @@ export class AuthProvider {
 
   async nativeGoogleLogin(): Promise<void> {
     try {
-
       const gplusUser = await this.gplus.login({
         'webClientId': '48365895185-7vnbechfbhvgnbp96r02b9m31u5gok4s.apps.googleusercontent.com',
         'offline': true,
@@ -55,6 +54,8 @@ export class AuthProvider {
   async webGoogleLogin(): Promise<void> {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
       const credential = await this.afAuth.auth.signInWithPopup(provider);
     } catch (err) {
       console.log(err);
@@ -80,6 +81,7 @@ export class AuthProvider {
     }
   }
 
+  //TODO: Change error messages "Password is wrong" -> "Email or password are wrong"
   async signInWithEmailAndPassword(account: Account) {
     try {
       return <LoginResponse> {

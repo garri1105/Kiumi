@@ -30,7 +30,7 @@ export class LoginFormComponent {
     this.loginResult = await this.auth.signInWithEmailAndPassword(this.account);
     this.loginStatus.emit(this.loginResult);
     if (!this.loginResult.error) {
-      await this.globalProfile.loadProfile();
+      console.log(await this.globalProfile.loadProfile());
     }
   }
 

@@ -3,6 +3,9 @@ import {CourseDataProvider} from "../course-data/course-data";
 import {ProfileDataProvider} from "../profile-data/profile-data";
 import {Student} from "../../models/student/student.interface";
 import {Instructor} from "../../models/instructor/instructor.interface";
+import {OfficeHours} from "../../models/office-hours/office-hours.interface";
+import {take} from "rxjs/operators";
+import * as moment from "moment";
 
 @Injectable()
 export class UtilitiesProvider {
@@ -12,8 +15,24 @@ export class UtilitiesProvider {
 
   }
 
+  static sortByDate(officeHours: OfficeHours[]) {
+    officeHours.sort((a, b) => {
+      return moment(a.date).diff(moment(b.date));
+    });
+  }
+
+  static getDayDistance(a: number, b: number) {
+    return ((b - a) + 7) % 7;
+  }
+
   static toTitleCase(str): string {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+
+  static pad(num, size) {
+    let s = String(num);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
   }
 
   static makeId(length: number) {
@@ -26,20 +45,30 @@ export class UtilitiesProvider {
     return text;
   }
 
-  resetCourses() {
-    this.courseData
+  async resetDatabase(active: boolean) {
+    if (active) {
+      await this.resetCourses();
+      await this.resetStudents();
+      await this.resetInstructors();
+    }
+  }
+
+  //TODO Fix initializations
+  async resetCourses() {
+    return await this.courseData
       .getCourseList()
-      .snapshotChanges()
+      .snapshotChanges().pipe(take(1))
       .map(changes => {
           return changes.map(c => ({
             key: c.payload.key,
             ...c.payload.val(),
-            officeHours: ['0'],
+            officeHours: [{key: '0'} as OfficeHours],
             instructors: ['0'],
             students: ['0']
           }))
         }
       )
+      .pipe(take(1))
       .subscribe(courses => {
         courses.map(course => {
           this.courseData.updateCourse(course);
@@ -47,79 +76,47 @@ export class UtilitiesProvider {
       });
   }
 
-  resetStudents() {
-    this.courseData
-      .getCourseList()
-      .snapshotChanges()
+  async resetStudents() {
+    return await this.profileData
+      .getProfileList()
+      .snapshotChanges().pipe(take(1))
       .map(changes => {
           return changes.map(c => ({
             key: c.payload.key,
             ...c.payload.val(),
-            students: ['0'],
+            student: <Student> {
+              courses: ['0']
+            },
           }))
         }
       )
-      .subscribe(courses => {
-        courses.map(course => {
-          this.courseData.updateCourse(course);
-
-          this.profileData
-            .getProfileList()
-            .snapshotChanges()
-            .map(changes => {
-                return changes.map(c => ({
-                  key: c.payload.key,
-                  ...c.payload.val(),
-                  student: <Student> {
-                    courses: ['0']
-                  },
-                }))
-              }
-            )
-            .subscribe(profiles => {
-              profiles.map(profile => {
-                this.profileData.updateProfile(profile);
-              });
-            });
+      .pipe(take(1))
+      .subscribe(profiles => {
+        profiles.map(profile => {
+          this.profileData.updateProfile(profile);
         });
       });
   }
 
-  resetInstructors() {
-    this.courseData
-      .getCourseList()
-      .snapshotChanges()
+  async resetInstructors() {
+    return await this.profileData
+      .getProfileList()
+      .snapshotChanges().pipe(take(1))
       .map(changes => {
           return changes.map(c => ({
             key: c.payload.key,
             ...c.payload.val(),
-            instructors: ['0'],
+            instructor: <Instructor> {
+              courses: ['0'],
+              officeHours: ['0']
+            }
           }))
         }
       )
-      .subscribe(courses => {
-        courses.map(course => {
-          this.courseData.updateCourse(course);
-
-          this.profileData
-            .getProfileList()
-            .snapshotChanges()
-            .map(changes => {
-                return changes.map(c => ({
-                  key: c.payload.key,
-                  ...c.payload.val(),
-                  instructor: <Instructor> {
-                    courses: ['0'],
-                    officeHours: ['0']
-                  }
-                }))
-              }
-            )
-            .subscribe(profiles => {
-              profiles.map(profile => {
-                this.profileData.updateProfile(profile);
-              });
-            });
+      .pipe(take(1))
+      .subscribe(profiles => {
+        profiles.map(profile => {
+          this.profileData.updateProfile(profile);
         });
       });
   }

@@ -25,6 +25,9 @@ export class AddCoursesPage {
     this.profile = this.globalProfile.getProfile();
   }
 
+  loadProfile() {
+  }
+
   saveCourses() {
     if (this.addedCourses) {
       this.addedCourses.map(course => {
