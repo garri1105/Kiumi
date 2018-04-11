@@ -38,7 +38,8 @@
                   padding
                   color="danger"
                   *ngIf="loginResult?.error?.code === 'auth/wrong-password'"
-                  (click)="sendPasswordResetEmail()">
+                  [navPush]="'PasswordResetPage'"
+                  [navParams]="{account: account}">
             Password reset
           </button>
         </ion-col>
