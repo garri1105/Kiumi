@@ -19,7 +19,6 @@ export class OfficeHoursPage {
   course: Course;
   officeHoursList: OfficeHours[];
   officeHoursList$: Subscription;
-  ready: boolean;
   isInstructing: boolean;
   profile: Profile;
 
@@ -29,11 +28,11 @@ export class OfficeHoursPage {
 
     this.profile = this.profileData.getProfile();
     this.course = this.navParams.get('course');
-    this.getOfficeHours();
+    this.initOfficeHours();
     this.isInstructor();
   }
 
-  getOfficeHours() {
+  initOfficeHours() {
     this.officeHoursList$ = this.officeHoursData.getOfficeHoursListRef(this.course.key)
       .valueChanges().subscribe(officeHoursList => {
         for (let i = 1; i < officeHoursList.length; i++) {
@@ -49,18 +48,16 @@ export class OfficeHoursPage {
             this.officeHoursData.updateOfficeHours(officeHoursList[i]);
             officeHoursList.push(officeHoursList.splice(i, 1)[0]);
           }
+
+          if (this.profile.instructor) {
+            if (this.profile.instructor.officeHours.indexOf(officeHoursList[i].key) > -1) {
+              officeHoursList[i].instructing = true;
+            }
+          }
         }
 
         officeHoursList.splice(0, 1);
         UtilitiesProvider.sortByDate(officeHoursList);
-
-        if (this.profile.instructor) {
-          officeHoursList.forEach(officeHours => {
-            if (this.profile.instructor.officeHours.indexOf(officeHours.key) > -1) {
-              officeHours.instructing = true;
-            }
-          });
-        }
 
         this.officeHoursList = officeHoursList;
       });

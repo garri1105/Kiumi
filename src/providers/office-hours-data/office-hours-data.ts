@@ -35,12 +35,12 @@ export class OfficeHoursDataProvider {
   }
 
   addOfficeHours(officeHours: OfficeHours) {
-    let cleanOfficeHours = this.cleanOfficeHours(officeHours);
+    let cleanOfficeHours = this.prepareOfficeHours(officeHours);
     return this.officeHoursList$.set(cleanOfficeHours.key, cleanOfficeHours);
   }
 
   updateOfficeHours(officeHours: OfficeHours) {
-    let cleanOfficeHours = this.cleanOfficeHours(officeHours);
+    let cleanOfficeHours = this.prepareOfficeHours(officeHours);
     return this.officeHoursList$.update(cleanOfficeHours.key, cleanOfficeHours);
   }
 
@@ -48,7 +48,7 @@ export class OfficeHoursDataProvider {
     return this.officeHoursList$.remove(officeHours.key);
   }
 
-  cleanOfficeHours(original: OfficeHours) {
+  prepareOfficeHours(original: OfficeHours) {
     let officeHours: OfficeHours = JSON.parse(JSON.stringify(original));
 
     let dist = UtilitiesProvider.getDayDistance(moment().isoWeekday(), moment().isoWeekday(officeHours.dayOfWeek.trim()).isoWeekday());
