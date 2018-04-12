@@ -2,7 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import { Account } from '../../models/account/account.interface';
 import {LoginResponse} from "../../models/login/login-response.interface";
 import {AuthProvider} from "../../providers/auth/auth";
-import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
+import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 
 @Component({
   selector: 'login-form',
@@ -17,7 +17,7 @@ export class LoginFormComponent {
   loginResult: LoginResponse;
 
   constructor(private auth: AuthProvider,
-              private globalProfile: GlobalProfileProvider) {
+              private profileData: ProfileDataProvider) {
 
     this.loginStatus = new EventEmitter<LoginResponse>();
   }
@@ -30,7 +30,7 @@ export class LoginFormComponent {
     this.loginResult = await this.auth.signInWithEmailAndPassword(this.account);
     this.loginStatus.emit(this.loginResult);
     if (!this.loginResult.error) {
-      console.log(await this.globalProfile.loadProfile());
+      console.log(await this.profileData.loadProfile());
     }
   }
 }

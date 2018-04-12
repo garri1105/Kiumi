@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
 import {Profile} from "../../models/profile/profile.interface";
 import {AuthProvider} from "../../providers/auth/auth";
-import {AlertController} from "ionic-angular";
+import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 
 @Component({
   selector: 'profile-view',
@@ -13,9 +12,10 @@ export class ProfileViewComponent {
   profile: Profile;
   @Output() signOutResult: EventEmitter<Promise<any>>;
 
-  constructor(private globalProfile: GlobalProfileProvider,
+  constructor(private profileData: ProfileDataProvider,
               private auth: AuthProvider) {
-    this.profile = this.globalProfile.getProfile();
+
+    this.profile = this.profileData.getProfile();
     this.signOutResult = new EventEmitter<Promise<any>>();
   }
 

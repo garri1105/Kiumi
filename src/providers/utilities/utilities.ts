@@ -56,7 +56,7 @@ export class UtilitiesProvider {
   //TODO Fix initializations
   async resetCourses() {
     return await this.courseData
-      .getCourseList()
+      .getCourseListRef()
       .snapshotChanges().pipe(take(1))
       .map(changes => {
           return changes.map(c => ({
@@ -78,7 +78,7 @@ export class UtilitiesProvider {
 
   async resetStudents() {
     return await this.profileData
-      .getProfileList()
+      .getProfileListRef()
       .snapshotChanges().pipe(take(1))
       .map(changes => {
           return changes.map(c => ({
@@ -100,7 +100,7 @@ export class UtilitiesProvider {
 
   async resetInstructors() {
     return await this.profileData
-      .getProfileList()
+      .getProfileListRef()
       .snapshotChanges().pipe(take(1))
       .map(changes => {
           return changes.map(c => ({
@@ -161,7 +161,7 @@ export class UtilitiesProvider {
 
   resetProfiles() {
     this.profileData
-      .getProfileList()
+      .getProfileListRef()
       .snapshotChanges()
       .map(changes => {
           return changes.map(c => ({

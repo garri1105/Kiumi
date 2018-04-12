@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {IonicPage, Loading, LoadingController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, NavParams} from 'ionic-angular';
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Course} from "../../models/course/course.interface";
-import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
 import {Profile} from "../../models/profile/profile.interface";
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
+import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 
 @IonicPage()
 @Component({
@@ -18,7 +18,7 @@ export class StudentCoursesPage {
 
   constructor(private navParams: NavParams,
               private courseData: CourseDataProvider,
-              private globalProfile: GlobalProfileProvider,
+              private profileData: ProfileDataProvider,
               private loading: LoadingController,
               private utilities: UtilitiesProvider) {
 
@@ -41,18 +41,12 @@ export class StudentCoursesPage {
       content: 'Loading courses...'
     });
 
-    this.profile = this.globalProfile.getProfile();
+    this.profile = this.profileData.getProfile();
     loader.present();
 
     this.courseData
-      .getCourseList()
-      .snapshotChanges()
-      .map(changes => {
-          return changes.map(c => ({
-            key: c.payload.key, ...c.payload.val()
-          }))
-        }
-      )
+      .getCourseListRef()
+      .valueChanges()
       .subscribe(courses => {
         this.studentCourses = courses.filter(course =>
               ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||

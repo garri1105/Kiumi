@@ -1,29 +1,34 @@
 import {Component, Input, ViewChild} from '@angular/core';
 import {OfficeHoursDataProvider} from "../../providers/office-hours-data/office-hours-data";
 import { OfficeHours } from '../../models/office-hours/office-hours.interface';
-import {Slides, ToastController} from "ionic-angular";
-import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
+import {Slides, Toast, ToastController} from "ionic-angular";
 import {Profile} from "../../models/profile/profile.interface";
 import * as moment from "moment";
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
+import {Course} from "../../models/course/course.interface";
+import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 
-//TODO: Refactor this page
 @Component({
   selector: 'edit-hours-form',
   templateUrl: 'edit-hours-form.html',
 })
 export class EditHoursFormComponent {
   @ViewChild(Slides) slides: Slides;
-  @Input() courseKey: string;
+  @Input() course: Course;
   @Input() officeHoursList: OfficeHours[] = [];
   profile: Profile;
   newOfficeHours: OfficeHours;
   days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  errorToast: Toast;
+  successToast: Toast;
 
   constructor(private officeHoursData: OfficeHoursDataProvider,
               private toast: ToastController,
-              private globalProfile: GlobalProfileProvider) {
-    this.profile = this.globalProfile.getProfile();
+              private profileData: ProfileDataProvider) {
+
+    this.profile = this.profileData.getProfile();
+    this.errorToast = this.toast.create({duration: 3000});
+    this.successToast = this.toast.create({duration: 1000});
   }
 
   addOfficeHourSlot() {
@@ -71,41 +76,49 @@ export class EditHoursFormComponent {
 
   addNewOfficeHours() {
     this.newOfficeHours.instructors.push(this.profile.key);
-
     this.officeHoursList.push(this.newOfficeHours);
+    this.profile.instructor.officeHours.push(this.newOfficeHours.key);
+    this.profileData.updateProfile(this.profile)
+      .catch(e => this.errorToast.setMessage(e).present());
 
     this.officeHoursData
-      .addOfficeHours(this.courseKey, this.newOfficeHours)
-      .then(r => {
+      .addOfficeHours(this.newOfficeHours)
+      .then(() => {
         this.newOfficeHours = null;
-        this.toast.create({
-          message: `Saved succesfully`,
-          duration: 1000
-        }).present();
+        this.successToast.setMessage('Added successfully').present();
       })
-      .catch(e => {
-        this.toast.create({
-          message: `Failed to save`,
-          duration: 3000
-        }).present();
-    });
-
   }
 
   updateOfficeHours(officeHours: OfficeHours) {
+    let message = '';
+
+    if (officeHours.instructors.indexOf(this.profile.key) < 0) {
+      officeHours.instructors.push(this.profile.key);
+      this.profile.instructor.officeHours.push(officeHours.key);
+      this.profileData.updateProfile(this.profile)
+        .then(() => message = 'Added and')
+        .catch(e => this.errorToast.setMessage(e).present());
+    }
+
     this.officeHoursData
-      .updateOfficeHours(this.courseKey, officeHours)
-      .then((r: string) => {
-      this.toast.create({
-        message: r,
-        duration: 1000
-      }).present();})
-      .catch(e => {
-      this.toast.create({
-        message: e,
-        duration: 3000
-      }).present();
-    });
+      .updateOfficeHours(officeHours)
+      .then(r => {
+        this.successToast.setMessage(`${message} Updated successfully`).present();
+      })
+      .catch(e => this.errorToast.setMessage(e).present());
+  }
+
+  removeOfficeHours(officeHours) {
+    this.profile.instructor.officeHours.splice(this.profile.instructor.officeHours.indexOf(officeHours.key));
+    this.profileData.updateProfile(this.profile)
+      .catch(e => this.errorToast.setMessage(e).present());
+
+    this.officeHoursData
+      .removeOfficeHours(officeHours)
+      .then(r => {
+        this.successToast.setMessage(`Removed successfully`).present();
+      })
+      .catch(e => this.errorToast.setMessage(e).present());
   }
 
   ngOnInit() {

@@ -9,7 +9,6 @@ import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { FIREBASE_CONFIG } from "./firebase.credentials";
 import {CourseDataProvider} from "../providers/course-data/course-data";
-import {GlobalProfileProvider} from "../providers/global-profile/global-profile";
 import {ProfileDataProvider} from "../providers/profile-data/profile-data";
 import {AuthProvider} from "../providers/auth/auth";
 import {AngularFireAuthModule} from "angularfire2/auth";
@@ -44,7 +43,6 @@ import {GooglePlus} from "@ionic-native/google-plus";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CourseDataProvider,
-    GlobalProfileProvider,
     ProfileDataProvider,
     AuthProvider,
     UtilitiesProvider,

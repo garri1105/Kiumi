@@ -20,7 +20,7 @@ export class LoginPage {
 
   login(event: LoginResponse) {
     if(!event.error) {
-      this.profileData.getProfile(<User>event.result)
+      this.profileData.getProfileRef(<User>event.result)
         .subscribe(profile => {
           profile.valueChanges().pipe(take(1))
             .subscribe(value => {

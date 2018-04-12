@@ -5,19 +5,18 @@ import {of} from "rxjs/observable/of";
 import {concat} from "rxjs/observable/concat";
 import {take} from "rxjs/operators";
 
-//TODO Use promises
 @Injectable()
 export class CourseDataProvider {
 
   private courseObject: AngularFireObject<Course>;
-  private courseList: AngularFireList<Course> = this.db.list<Course>('course-list');
+  private courseList$: AngularFireList<Course> = this.db.list<Course>('course-list');
 
   constructor(private db: AngularFireDatabase) {
 
   }
 
-  getCourseList() {
-    return this.courseList;
+  getCourseListRef() {
+    return this.courseList$;
   }
 
   getCourseByKey(key: string){
@@ -27,15 +26,15 @@ export class CourseDataProvider {
   }
 
   addCourse(course: Course) {
-    return this.courseList.push(course);
+    return this.courseList$.push(course);
   }
 
   removeCourse(course: Course) {
-    return this.courseList.remove(course.key);
+    return this.courseList$.remove(course.key);
   }
 
   updateCourse(course: Course) {
-    return this.courseList.update(course.key, course);
+    return this.courseList$.update(course.key, course);
   }
 
   searchCourse(query: string) {

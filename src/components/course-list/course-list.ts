@@ -1,9 +1,7 @@
 import {Component, Injectable, Input} from '@angular/core';
 import {Course} from "../../models/course/course.interface"
 import {Profile} from "../../models/profile/profile.interface";
-import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
 import {CourseDataProvider} from "../../providers/course-data/course-data";
-import {take} from "rxjs/operators";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 import {Student} from "../../models/student/student.interface";
 import {Instructor} from "../../models/instructor/instructor.interface";
@@ -21,11 +19,10 @@ export class CourseListComponent {
   instructorButton: Boolean;
   @Input() courseList: Course[];
 
-  constructor(private globalProfile: GlobalProfileProvider,
-              private courseData: CourseDataProvider,
+  constructor(private courseData: CourseDataProvider,
               private profileData: ProfileDataProvider) {
 
-    this.profile = this.globalProfile.getProfile();
+    this.profile = this.profileData.getProfile();
     this.studentButton = false;
     this.instructorButton = false;
   }

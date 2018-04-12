@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage} from 'ionic-angular';
-import {GooglePlus} from "@ionic-native/google-plus";
-import firebase from 'firebase';
+import {IonicPage} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -13,6 +11,5 @@ export class HomePage {
 
   constructor() {
   }
-
 
 }

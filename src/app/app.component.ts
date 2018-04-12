@@ -3,7 +3,6 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from "../providers/auth/auth";
-import {GlobalProfileProvider} from "../providers/global-profile/global-profile";
 import {ProfileDataProvider} from "../providers/profile-data/profile-data";
 import {take} from "rxjs/operators";
 
@@ -16,15 +15,14 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
               private auth: AuthProvider,
-              private profileData: ProfileDataProvider,
-              private globalProfile: GlobalProfileProvider) {
+              private profileData: ProfileDataProvider) {
 
     this.auth.getAuthenticatedUser().subscribe(auth => {
       if (!auth) {
         this.rootPage = 'HomePage';
       }
       else {
-        this.profileData.getProfile(auth)
+        this.profileData.getProfileRef(auth)
           .subscribe(profile => {
             profile.valueChanges().pipe(take(1))
               .subscribe(value => {
@@ -32,8 +30,8 @@ export class MyApp {
                   : this.rootPage = 'EditProfilePage';
               });
           });
-        
-        this.globalProfile.loadProfile()
+
+        this.profileData.loadProfile()
           .then(r => console.log(r))
           .catch(e => console.log(e));
       }

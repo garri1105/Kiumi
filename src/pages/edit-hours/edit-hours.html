@@ -1,9 +1,9 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ course?.number }}</ion-title>
+    <ion-title>Edit {{ course.number }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <edit-hours-form [courseKey]="course.key" [officeHoursList]="officeHoursList"></edit-hours-form>
+  <edit-hours-form [course]="course" [officeHoursList]="officeHoursList"></edit-hours-form>
 </ion-content>

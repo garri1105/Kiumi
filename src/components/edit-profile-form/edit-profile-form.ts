@@ -5,11 +5,9 @@ import {AuthProvider} from "../../providers/auth/auth";
 import {User} from "firebase/app";
 import {Instructor} from "../../models/instructor/instructor.interface";
 import {Student} from "../../models/student/student.interface";
-import {GlobalProfileProvider} from "../../providers/global-profile/global-profile";
 import {AlertController} from "ionic-angular";
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Course} from "../../models/course/course.interface";
-import {take} from "rxjs/operators";
 
 @Component({
   selector: 'edit-profile-form',
@@ -26,10 +24,9 @@ export class EditProfileFormComponent {
   constructor(private profileData: ProfileDataProvider,
               private courseData: CourseDataProvider,
               private auth: AuthProvider,
-              private globalProfile: GlobalProfileProvider,
               private alert: AlertController) {
 
-    this.profile = this.globalProfile.getProfile();
+    this.profile = this.profileData.getProfile();
 
     if (this.profile) {
       this.instructorCheck = !!this.profile.instructor;

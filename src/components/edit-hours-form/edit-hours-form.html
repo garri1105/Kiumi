@@ -12,9 +12,10 @@
     <div *ngIf="newOfficeHours">
       <ion-slide>
         <ion-card>
-          <ion-card-header>
-            Office Hour
-          </ion-card-header>
+          <ion-card-header float-start>New office hours</ion-card-header>
+          <button ion-button float-end class="no-box-shadow" (click)="removeOfficeHours(newOfficeHours)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
           <ion-card-content>
             <ion-list>
               <ion-item>
@@ -48,7 +49,7 @@
                 <ion-label stacked>End Time</ion-label>
                 <ion-datetime [(ngModel)]="newOfficeHours.endTime"
                               (ionChange)="isValid(newOfficeHours)"
-                              name="newEndTime{{ i }}"
+                              name="newEndTime"
                               pickerFormat="hh:mm a"
                               displayFormat="HH:mm"
                               required
@@ -63,7 +64,7 @@
               <ion-item>
                 <ion-label stacked>Day</ion-label>
                 <ion-select [(ngModel)]="newOfficeHours.dayOfWeek"
-                            name="newDayOfWeek{{ i }}"
+                            name="newDayOfWeek"
                             required
                             placeholder="Monday"
                             [disabled]="!instructing.value">
@@ -85,30 +86,35 @@
       </ion-slide>
     </div>
 
-    <ion-slide *ngFor="let officeHour of officeHoursList; let i = index">
+    <ion-slide *ngFor="let officeHours of officeHoursList; let i = index">
       <ion-card>
-        <ion-card-header>
-          Office Hour
-        </ion-card-header>
+        <ion-card-header float-start *ngIf="officeHours.instructing">My office hours</ion-card-header>
+        <button ion-button
+                float-end
+                class="no-box-shadow"
+                (click)="removeOfficeHours(officeHours)"
+                [disabled]="!officeHours.instructing">
+          <ion-icon name="trash"></ion-icon>
+        </button>
         <ion-card-content>
           <ion-list>
             <ion-item>
               <ion-label>I'm Instructing!</ion-label>
-              <ion-toggle [(ngModel)]="officeHoursList[i].instructing"
+              <ion-toggle [(ngModel)]="officeHours.instructing"
                           name="instructing{{ i }}"
                           #instructing="ngModel"></ion-toggle>
             </ion-item>
             <ion-item>
               <ion-label stacked>Location</ion-label>
-              <ion-input [(ngModel)]="officeHoursList[i].location"
+              <ion-input [(ngModel)]="officeHours.location"
                          name="location{{ i }}"
                          required
                          [disabled]="!instructing.value"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label stacked>Start Time</ion-label>
-              <ion-datetime [(ngModel)]="officeHoursList[i].startTime"
-                            (ionChange)="fillEndTime(officeHour); isValid(officeHour)"
+              <ion-datetime [(ngModel)]="officeHours.startTime"
+                            (ionChange)="fillEndTime(officeHours); isValid(officeHours)"
                             name="startTime{{ i }}"
                             pickerFormat="hh:mm a"
                             displayFormat="HH:mm"
@@ -117,8 +123,8 @@
             </ion-item>
             <ion-item>
               <ion-label stacked>End Time</ion-label>
-              <ion-datetime [(ngModel)]="officeHoursList[i].endTime"
-                            (ionChange)="isValid(officeHour)"
+              <ion-datetime [(ngModel)]="officeHours.endTime"
+                            (ionChange)="isValid(officeHours)"
                             name="endTime{{ i }}"
                             pickerFormat="hh:mm a"
                             displayFormat="HH:mm"
@@ -126,13 +132,13 @@
                             [disabled]="!instructing.value"></ion-datetime>
             </ion-item>
 
-            <div padding *ngIf="officeHour.error" text-left>
+            <div padding *ngIf="officeHours.error" text-left>
               <span class="global__input-error">{{ officeHour.error }}</span>
             </div>
 
             <ion-item>
               <ion-label stacked>Day</ion-label>
-              <ion-select [(ngModel)]="officeHoursList[i].dayOfWeek"
+              <ion-select [(ngModel)]="officeHours.dayOfWeek"
                           name="dayOfWeek{{ i }}"
                           required
                           [disabled]="!instructing.value">
@@ -143,8 +149,8 @@
             <ion-row>
               <ion-col>
                 <button ion-button
-                        [disabled]="editOfficeHourForm.invalid || !instructing.value || !editOfficeHourForm.dirty || officeHour.error"
-                        (click)="updateOfficeHours(officeHour)">Save</button>
+                        [disabled]="editOfficeHourForm.invalid || !instructing.value || !editOfficeHourForm.dirty || officeHours.error"
+                        (click)="updateOfficeHours(officeHours)">Save</button>
               </ion-col>
             </ion-row>
 

@@ -1,17 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 import { StudentQueueDataProvider } from '../../providers/student-queue-data/student-queue-data';
-import { GlobalProfileProvider } from '../../providers/global-profile/global-profile';
 import { Profile } from '../../models/profile/profile.interface';
 import { Course } from '../../models/course/course.interface';
-import { AngularFireList } from 'angularfire2/database';
-
-/**
- * Generated class for the StudentQueuePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 
 @IonicPage()
 @Component({
@@ -27,8 +19,10 @@ export class StudentQueuePage {
   checkInButton: HTMLElement;
   studentQueue: string[];
 
-  constructor(private navParams: NavParams, private studentQueueDataProvider: StudentQueueDataProvider, private globalProfileProvider: GlobalProfileProvider) {
-    this.profile = this.globalProfileProvider.getProfile();
+  constructor(private navParams: NavParams,
+              private studentQueueData: StudentQueueDataProvider,
+              private profileData: ProfileDataProvider) {
+    this.profile = this.profileData.getProfile();
     this.clicked = false;
     this.course = this.navParams.get('course');
     this.officeHourIndex = this.navParams.get('i') + 1;
@@ -58,7 +52,7 @@ export class StudentQueuePage {
   }
 
   getStudentQueue(course: Course, officeHourIndex: number) {
-    this.studentQueueDataProvider.getStudentQueue(course, officeHourIndex).valueChanges().subscribe(queue => {
+    this.studentQueueData.getStudentQueue(officeHourIndex, course).valueChanges().subscribe(queue => {
       this.studentQueue = queue
       console.log(queue)
     });
