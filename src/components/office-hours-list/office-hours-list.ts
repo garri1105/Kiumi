@@ -12,7 +12,6 @@ export class OfficeHoursListComponent {
 
   @Input() officeHoursList: OfficeHours[];
   @Input() course: Course;
-  @Input() instructing: number;
 
   _: any = _;
   currentOfficeHours: OfficeHours;
@@ -21,7 +20,7 @@ export class OfficeHoursListComponent {
   }
 
   getCurrentOfficeHours() {
-    if (this.officeHoursList[0] && this.instructing !== -1) {
+    if (this.officeHoursList[0]) {
       let timeDiff = moment().diff(moment(this.officeHoursList[0].date), 'minutes');
       if (timeDiff >= 0 && timeDiff < this.officeHoursList[0].duration) {
         return this.officeHoursList[0];

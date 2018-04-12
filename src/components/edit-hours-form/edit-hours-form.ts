@@ -109,8 +109,8 @@ export class EditHoursFormComponent {
   }
 
   removeOfficeHours(officeHours) {
-    this.officeHoursList.splice(this.officeHoursList.indexOf(officeHours.key));
-    this.profile.instructor.officeHours.splice(this.profile.instructor.officeHours.indexOf(officeHours.key));
+    this.officeHoursList.splice(this.officeHoursList.indexOf(officeHours), 1);
+    this.profile.instructor.officeHours.splice(this.profile.instructor.officeHours.indexOf(officeHours.key), 1);
     this.profileData.updateProfile(this.profile)
       .catch(e => this.errorToast.setMessage(e).present());
 
