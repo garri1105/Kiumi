@@ -4,7 +4,6 @@ import {OfficeHours} from "../../models/office-hours/office-hours.interface";
 import * as moment from "moment";
 import * as _ from "lodash"
 
-//TODO Update officehours realtime
 @Component({
   selector: 'office-hours-list',
   templateUrl: 'office-hours-list.html'
@@ -13,6 +12,8 @@ export class OfficeHoursListComponent {
 
   @Input() officeHoursList: OfficeHours[];
   @Input() course: Course;
+  @Input() instructing: number;
+
   _: any = _;
   currentOfficeHours: OfficeHours;
 
@@ -20,7 +21,7 @@ export class OfficeHoursListComponent {
   }
 
   getCurrentOfficeHours() {
-    if (this.officeHoursList[0]) {
+    if (this.officeHoursList[0] && this.instructing !== -1) {
       let timeDiff = moment().diff(moment(this.officeHoursList[0].date), 'minutes');
       if (timeDiff >= 0 && timeDiff < this.officeHoursList[0].duration) {
         return this.officeHoursList[0];

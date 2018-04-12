@@ -45,12 +45,9 @@ export class UtilitiesProvider {
     return text;
   }
 
-  async resetDatabase(active: boolean) {
-    if (active) {
-      await this.resetCourses();
-      await this.resetStudents();
-      await this.resetInstructors();
-    }
+  async resetDatabase() {
+    await this.resetCourses();
+    await this.resetProfiles();
   }
 
   //TODO Fix initializations
@@ -68,7 +65,6 @@ export class UtilitiesProvider {
           }))
         }
       )
-      .pipe(take(1))
       .subscribe(courses => {
         courses.map(course => {
           this.courseData.updateCourse(course);
@@ -76,46 +72,24 @@ export class UtilitiesProvider {
       });
   }
 
-  async resetStudents() {
+  async resetProfiles() {
     return await this.profileData
       .getProfileListRef()
       .snapshotChanges().pipe(take(1))
       .map(changes => {
           return changes.map(c => ({
             key: c.payload.key,
-            ...c.payload.val(),
-            student: <Student> {
-              courses: ['0']
-            },
-          }))
-        }
-      )
-      .pipe(take(1))
-      .subscribe(profiles => {
-        profiles.map(profile => {
-          this.profileData.updateProfile(profile);
-        });
-      });
-  }
-
-  async resetInstructors() {
-    return await this.profileData
-      .getProfileListRef()
-      .snapshotChanges().pipe(take(1))
-      .map(changes => {
-          return changes.map(c => ({
-            key: c.payload.key,
-            ...c.payload.val(),
-            instructor: <Instructor> {
-              courses: ['0'],
+            name: c.payload.val().name,
+            instructor: {courses: ['0'],
               officeHours: ['0']
-            }
+            } as Instructor,
+            student: {courses: ['0']} as Student,
           }))
         }
       )
-      .pipe(take(1))
       .subscribe(profiles => {
         profiles.map(profile => {
+          console.log(profile);
           this.profileData.updateProfile(profile);
         });
       });
@@ -159,7 +133,7 @@ export class UtilitiesProvider {
   //     });
   // }
 
-  resetProfiles() {
+  resetAccounts() {
     this.profileData
       .getProfileListRef()
       .snapshotChanges()

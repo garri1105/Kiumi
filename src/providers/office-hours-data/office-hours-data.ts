@@ -34,21 +34,6 @@ export class OfficeHoursDataProvider {
     return this.officeHoursList$;
   }
 
-  async getOfficeHours(courseKey: string): Promise<OfficeHours[]> {
-    return new Promise<OfficeHours[]>((resolve) => {
-      this.courseData.getCourseByKey(courseKey)
-        .subscribe((course: Course) => {
-          this.officeHoursList = [];
-          course.officeHours.map(slot => {
-            if (slot.key !== '0') {
-              this.officeHoursList.push(slot);
-            }
-          });
-          resolve(this.officeHoursList);
-        })
-    });
-  }
-
   addOfficeHours(officeHours: OfficeHours) {
     let cleanOfficeHours = this.cleanOfficeHours(officeHours);
     return this.officeHoursList$.set(cleanOfficeHours.key, cleanOfficeHours);

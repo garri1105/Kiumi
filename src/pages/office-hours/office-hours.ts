@@ -7,6 +7,8 @@ import {OfficeHoursDataProvider} from "../../providers/office-hours-data/office-
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
 import {Profile} from "../../models/profile/profile.interface";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
+import {take} from "rxjs/operators";
+import {Subscription} from "rxjs/Subscription";
 
 @IonicPage()
 @Component({
@@ -16,6 +18,7 @@ import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 export class OfficeHoursPage {
   course: Course;
   officeHoursList: OfficeHours[];
+  officeHoursList$: Subscription;
   ready: boolean;
   isInstructing: boolean;
   profile: Profile;
@@ -26,29 +29,41 @@ export class OfficeHoursPage {
 
     this.profile = this.profileData.getProfile();
     this.course = this.navParams.get('course');
+    this.getOfficeHours();
     this.isInstructor();
   }
 
-  async getOfficeHours() {
-    this.officeHoursList = await this.officeHoursData.getOfficeHours(this.course.key);
+  getOfficeHours() {
+    this.officeHoursList$ = this.officeHoursData.getOfficeHoursListRef(this.course.key)
+      .valueChanges().subscribe(officeHoursList => {
+        for (let i = 1; i < officeHoursList.length; i++) {
+          let time = moment(officeHoursList[i].date);
+          officeHoursList[i].dayOfWeek = time.format('dddd');
+          officeHoursList[i].startTime = `${UtilitiesProvider.pad(time.hours(), 2)}:${UtilitiesProvider.pad(time.minutes(), 2)}`;
+          time.add(officeHoursList[i].duration, 'minutes');
+          officeHoursList[i].endTime = `${UtilitiesProvider.pad(time.hours(), 2)}:${UtilitiesProvider.pad(time.minutes(), 2)}`;
 
-    for (let i = 0; i < this.officeHoursList.length; i++) {
-      let time = moment(this.officeHoursList[i].date);
-      this.officeHoursList[i].dayOfWeek = time.format('dddd');
-      this.officeHoursList[i].startTime = `${UtilitiesProvider.pad(time.hours(), 2)}:${UtilitiesProvider.pad(time.minutes(), 2)}`;
-      time.add(this.officeHoursList[i].duration, 'minutes');
-      this.officeHoursList[i].endTime = `${UtilitiesProvider.pad(time.hours(), 2)}:${UtilitiesProvider.pad(time.minutes(), 2)}`;
+          if (moment().diff(time) > 0) {
+            time.add(7, 'days');
+            officeHoursList[i].date = time.format('ddd, DD MMM YYYY, HH:mm');
+            this.officeHoursData.updateOfficeHours(officeHoursList[i]);
+            officeHoursList.push(officeHoursList.splice(i, 1)[0]);
+          }
+        }
 
-      if (moment().diff(time) > 0) {
-        time.add(7, 'days');
-        this.officeHoursList[i].date = time.format('ddd, DD MMM YYYY, HH:mm');
-        this.officeHoursData.updateOfficeHours(this.officeHoursList[i]);
-        this.officeHoursList.push(this.officeHoursList.splice(i, 1)[0]);
-      }
-      else {
+        officeHoursList.splice(0, 1);
+        UtilitiesProvider.sortByDate(officeHoursList);
 
-      }
-    }
+        if (this.profile.instructor) {
+          officeHoursList.forEach(officeHours => {
+            if (this.profile.instructor.officeHours.indexOf(officeHours.key) > -1) {
+              officeHours.instructing = true;
+            }
+          });
+        }
+
+        this.officeHoursList = officeHoursList;
+      });
   }
 
   isInstructor() {
@@ -59,7 +74,7 @@ export class OfficeHoursPage {
     });
   }
 
-  ionViewWillEnter() {
-    this.getOfficeHours().then(() => this.ready = true);
+  ionViewWillUnload() {
+    this.officeHoursList$.unsubscribe();
   }
 }

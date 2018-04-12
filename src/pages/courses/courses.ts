@@ -22,18 +22,20 @@ export class StudentCoursesPage {
               private loading: LoadingController,
               private utilities: UtilitiesProvider) {
 
-    // this.resetDatabase();
+    this.resetDatabase(false);
     this.loadCourses();
   }
 
-  resetDatabase() {
-    let deleter = this.loading.create({
-      content: 'Reseting database...'
-    });
-    deleter.present();
-    this.utilities.resetDatabase(false).then(() => {
-      deleter.dismiss();
-    });
+  resetDatabase(active) {
+    if (active) {
+      let deleter = this.loading.create({
+        content: 'Reseting database...'
+      });
+      deleter.present();
+      this.utilities.resetDatabase().then(() => {
+        deleter.dismiss();
+      });
+    }
   }
 
   loadCourses() {

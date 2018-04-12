@@ -109,6 +109,7 @@ export class EditHoursFormComponent {
   }
 
   removeOfficeHours(officeHours) {
+    this.officeHoursList.splice(this.officeHoursList.indexOf(officeHours.key));
     this.profile.instructor.officeHours.splice(this.profile.instructor.officeHours.indexOf(officeHours.key));
     this.profileData.updateProfile(this.profile)
       .catch(e => this.errorToast.setMessage(e).present());
@@ -117,31 +118,22 @@ export class EditHoursFormComponent {
       .removeOfficeHours(officeHours)
       .then(r => {
         this.successToast.setMessage(`Removed successfully`).present();
+        if (this.slides) {
+          this.slides.slidePrev();
+          this.slides.slideNext();
+        }
       })
       .catch(e => this.errorToast.setMessage(e).present());
   }
 
   ngOnInit() {
-    if (this.officeHoursList.length === 1) {
-      if (this.profile.instructor.officeHours.indexOf(this.officeHoursList[0].key) > -1) {
-        this.officeHoursList[0].instructing = true;
-      }
-    }
-    else {
+    if (this.officeHoursList.length > 1) {
       this.officeHoursList.sort((a, b) => {
         let indexA = this.profile.instructor.officeHours.indexOf(a.key);
         let indexB = this.profile.instructor.officeHours.indexOf(b.key);
-
-        if (indexA > -1) {
-          a.instructing = true;
-        }
-
-        if (indexB > -1) {
-          b.instructing = true;
-        }
-
         return indexB - indexA;
       });
     }
   }
+
 }

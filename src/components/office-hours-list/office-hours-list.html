@@ -4,7 +4,7 @@
   </ion-card-header>
   <ion-card-content>
     <ion-item>
-      <button ion-button padding clear small [navPush]="'StudentQueuePage'" [navParams]="{course: course}">
+      <button ion-button padding clear small [navPush]="'StudentQueuePage'" [navParams]="{course: course, officeHours: currentOfficeHours}">
         {{ currentOfficeHours.date }}
       </button>
     </ion-item>
@@ -23,13 +23,19 @@
         </button>
       </ion-item>
       <ion-item *ngIf="!currentOfficeHours && officeHoursList.length > 0">
-        <button ion-button padding clear small [navPush]="'StudentQueuePage'" [navParams]="{course: course, i: 0}">
+        <button ion-button
+                padding clear small
+                [navPush]="'StudentQueuePage'"
+                [navParams]="{course: course, officeHours: officeHoursList[0]}">
           {{ officeHoursList[0].date }}
         </button>
       </ion-item>
-      <ng-container *ngIf="this.officeHoursList.length > 1">
-        <ion-item *ngFor="let i of _.range(1, this.officeHoursList.length)">
-          <button ion-button padding clear small [navPush]="'StudentQueuePage'" [navParams]="{course: course, i: i}">
+      <ng-container *ngIf="officeHoursList.length > 1">
+        <ion-item *ngFor="let i of _.range(1, officeHoursList.length)">
+          <button ion-button
+                  padding clear small
+                  [navPush]="'StudentQueuePage'"
+                  [navParams]="{course: course, officeHours: officeHoursList[i]}">
             {{ officeHoursList[i].date }}
           </button>
         </ion-item>

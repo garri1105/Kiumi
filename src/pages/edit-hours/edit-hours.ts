@@ -11,7 +11,6 @@ import {OfficeHours} from "../../models/office-hours/office-hours.interface";
 export class EditHoursPage {
   course: Course;
   officeHoursList: OfficeHours[];
-  ready: boolean;
 
   constructor(private navParams: NavParams) {
     this.course = this.navParams.get("course");
