@@ -5,6 +5,7 @@ import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 import {Student} from "../../models/student/student.interface";
 import {Instructor} from "../../models/instructor/instructor.interface";
+import {Toast, ToastController} from "ionic-angular";
 
 @Injectable()
 @Component({
@@ -18,13 +19,17 @@ export class CourseListComponent {
   studentButton: Boolean;
   instructorButton: Boolean;
   @Input() courseList: Course[];
+  errorToast: Toast;
 
   constructor(private courseData: CourseDataProvider,
-              private profileData: ProfileDataProvider) {
+              private profileData: ProfileDataProvider,
+              private toast: ToastController) {
 
     this.profile = this.profileData.getProfile();
     this.studentButton = false;
     this.instructorButton = false;
+
+    this.errorToast = this.toast.create({duration: 3000});
   }
 
   toggleSection(event) {
@@ -48,9 +53,12 @@ export class CourseListComponent {
           course.students.splice(course.students.indexOf(this.profile.key), 1);
         }
 
-        this.courseData.updateCourse(course);
+        this.courseData.updateCourse(course)
+          .catch(e => this.errorToast.setMessage(e).present());
       });
-    this.profileData.updateProfile(this.profile);
+
+    this.profileData.updateProfile(this.profile)
+      .catch(e => this.errorToast.setMessage(e).present());
   }
 
   isInstructor(profile: Instructor | Student): profile is Instructor {

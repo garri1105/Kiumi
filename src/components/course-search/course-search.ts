@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Course} from "../../models/course/course.interface";
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Profile} from "../../models/profile/profile.interface";
-import {take} from "rxjs/operators";
 
 @Component({
   selector: 'course-search',
@@ -37,7 +36,7 @@ export class CourseSearchComponent {
           this.courseList.splice(i, 1);
         }
       })
-    }), 1);
+    }), 10);
   }
 
   addCourse(selected: Course) {

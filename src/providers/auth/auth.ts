@@ -56,7 +56,7 @@ export class AuthProvider {
       const provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
-      const credential = await this.afAuth.auth.signInWithPopup(provider);
+      return await this.afAuth.auth.signInWithPopup(provider);
     } catch (err) {
       console.log(err);
     }
@@ -81,16 +81,16 @@ export class AuthProvider {
     }
   }
 
-  //TODO: Change error messages "Password is wrong" -> "Email or password are wrong"
   async signInWithEmailAndPassword(account: Account) {
     try {
       return <LoginResponse> {
-        result: await this.afAuth
-          .auth
-          .signInWithEmailAndPassword(account.email, account.password)
+        result: await this.afAuth.auth.signInWithEmailAndPassword(account.email, account.password)
       };
     }
     catch (e) {
+      if (e.code === 'auth/wrong-password') {
+        e.message = 'Invalid email or password combination'
+      }
       return <LoginResponse> {
         error: e,
       };

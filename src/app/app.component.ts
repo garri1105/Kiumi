@@ -24,13 +24,11 @@ export class MyApp {
       else {
         this.profileData.getProfileRef(auth)
           .subscribe(profile => {
-            profile.valueChanges().pipe(take(1))
-              .subscribe(value => {
-                value ? this.rootPage = 'TabsPage'
+                profile ? this.rootPage = 'TabsPage'
                   : this.rootPage = 'EditProfilePage';
-              });
           });
 
+        console.log('app loadProfile');
         this.profileData.loadProfile()
           .then(r => console.log(r))
           .catch(e => console.log(e));

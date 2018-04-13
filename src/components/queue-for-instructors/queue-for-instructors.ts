@@ -2,39 +2,37 @@ import { Component, Input } from '@angular/core';
 import { StudentQueueDataProvider } from '../../providers/student-queue-data/student-queue-data';
 import {AngularFireDatabase} from "angularfire2/database";
 import { Profile } from '../../models/profile/profile.interface';
-import { Course } from '../../models/course/course.interface';
 import { ProfileDataProvider } from '../../providers/profile-data/profile-data';
+import {reorderArray} from "ionic-angular";
 
 @Component({
   selector: 'queue-for-instructors',
   templateUrl: 'queue-for-instructors.html'
 })
 export class QueueForInstructorsComponent {
-  @Input() officeHourIndex: number;
-  @Input() course: Course;
-  @Input() studentQueue: string[];
+  @Input() studentQueue: Profile[];
 
   profile: Profile;
 
-  // studentQueue: AngularFireObject<string[]>;
-  // studentQueue: string[];
-
   constructor(private db: AngularFireDatabase,
               private profileData: ProfileDataProvider,
-              private studentQueueDataProvider: StudentQueueDataProvider) {
+              private studentQueueData: StudentQueueDataProvider) {
 
     this.profile = this.profileData.getProfile();
-    // this.studentQueue = this.course.officeHours[1].studentQueue;
   }
 
+  removeStudent(profile: Profile) {
+    this.studentQueue.forEach((student, i) => {
+      if (student.key === profile.key) {
+        this.studentQueue.splice(i, 1);
+      }
+    });
 
-  ngOnInit() {
-    // this.studentQueue = this.studentQueueDataProvider.getStudentQueue(this.course, 1);
-    // this.studentQueue.valueChanges();
+    return this.studentQueueData.updateQueue(this.studentQueue);
   }
 
-  removeStudent(studentKey: string, indexOfOfficeHour: number) {
-    this.studentQueueDataProvider.removeStudent(this.profile, indexOfOfficeHour, this.course);
+  reorderQueue(indexes) {
+    this.studentQueue = reorderArray(this.studentQueue, indexes);
+    return this.studentQueueData.updateQueue(this.studentQueue);
   }
-
 }

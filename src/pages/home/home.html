@@ -9,11 +9,11 @@
 <ion-content padding>
   <ion-img class="logoImage" src="../assets/imgs/homePageLogo.png"></ion-img>
   <div class="homeButtons">
-    <button class="log-in" navPush="LoginPage">
+    <button class="log-in" [navPush]="'LoginPage'">
       Login
     </button>
     <br>
-    <button class="sign-up" navPush="SignUpPage">
+    <button class="sign-up" [navPush]="'SignUpPage'">
       Sign Up
     </button>
   </div>

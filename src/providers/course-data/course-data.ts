@@ -16,10 +16,11 @@ export class CourseDataProvider {
   }
 
   getCourseListRef() {
+    console.log('getCourseListRef');
     return this.courseList$;
   }
 
-  getCourseByKey(key: string){
+  getCourseByKey(key: string) {
     this.courseObject = this.db.object(`course-list/${key}`);
 
     return this.courseObject.valueChanges().pipe(take(1));
@@ -48,7 +49,7 @@ export class CourseDataProvider {
         .startAt(CourseDataProvider.toTitleCase(query))
         .endAt(CourseDataProvider.toTitleCase(query) + "\uf8ff"));
 
-    return concat(of(numberQuery), of(titleQuery));
+    return concat(of(numberQuery), of(titleQuery)).pipe(take(1));
   }
 
   static toTitleCase(str): string {

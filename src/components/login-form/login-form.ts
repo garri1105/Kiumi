@@ -23,7 +23,7 @@ export class LoginFormComponent {
   }
 
   async googleLogin() {
-    this.auth.googleLogin();
+    return this.auth.googleLogin();
   }
 
   async login() {

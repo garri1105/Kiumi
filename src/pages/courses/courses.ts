@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
-import {IonicPage, LoadingController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController} from 'ionic-angular';
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Course} from "../../models/course/course.interface";
 import {Profile} from "../../models/profile/profile.interface";
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
+import {Subscription} from "rxjs/Subscription";
 
 @IonicPage()
 @Component({
@@ -13,17 +14,31 @@ import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 })
 export class StudentCoursesPage {
 
-  studentCourses: Course[];
+  courseList: Course[];
+  courseList$: Subscription;
   profile = {} as Profile;
 
-  constructor(private navParams: NavParams,
-              private courseData: CourseDataProvider,
+  constructor(private courseData: CourseDataProvider,
               private profileData: ProfileDataProvider,
               private loading: LoadingController,
               private utilities: UtilitiesProvider) {
 
     this.resetDatabase(false);
+  }
+
+  ionViewCanEnter() {
+    return this.courseList;
+  }
+
+  ionViewDidLoad() {
+    console.log('loading');
+    this.courseList = [];
+    this.profile = this.profileData.getProfile();
     this.loadCourses();
+  }
+
+  ionViewWillUnload() {
+    console.log('courseList unloaded');
   }
 
   resetDatabase(active) {
@@ -43,17 +58,15 @@ export class StudentCoursesPage {
       content: 'Loading courses...'
     });
 
-    this.profile = this.profileData.getProfile();
     loader.present();
 
-    this.courseData
+    this.courseList$ = this.courseData
       .getCourseListRef()
-      .valueChanges()
-      .subscribe(courses => {
-        this.studentCourses = courses.filter(course =>
+      .valueChanges().subscribe(courses => {
+        this.courseList = courses.filter(course =>
               ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
           (this.profile.student && this.profile.student.courses.indexOf(course.key)) > -1));
-        loader.dismiss();
+        loader.dismiss().catch(e => console.log(e));
       });
   }
 }

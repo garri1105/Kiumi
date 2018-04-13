@@ -1,18 +1,12 @@
 <ion-list>
   <ion-list-header class="dropdown" *ngIf="profile.student" no-lines no-padding>
-    <button
-      detail-none
-      name="student"
-      ion-item
-      (click)="toggleSection('student')">
+    <button detail-none ion-item (click)="toggleSection('student')">
       <ion-icon item-left name="arrow-dropright" *ngIf="!studentButton"></ion-icon>
       <ion-icon item-left name="arrow-dropdown" *ngIf="studentButton"></ion-icon>
       Attending</button>
     <ion-list *ngIf="studentButton">
       <ion-item-sliding *ngFor="let course of courseList">
         <ion-item detail-none
-                  tappable
-                  name="studentCourse"
                   *ngIf="profile.student.courses.indexOf(course.key) > -1"
                   [navPush]="'OfficeHoursPage'"
                   [navParams]={course:course}>
@@ -22,11 +16,7 @@
           <ion-icon item-end name="arrow-forward"></ion-icon>
         </ion-item>
         <ion-item-options side="left">
-          <button ion-button
-                  class="trash"
-                  color="danger"
-                  name="studentCourse"
-                  (click)="removeCourse(profile.student, course)">
+          <button ion-button class="trash" color="danger" (click)="removeCourse(profile.student, course)">
             <ion-icon name="trash"></ion-icon>
             DELETE
           </button>
@@ -35,18 +25,13 @@
     </ion-list>
   </ion-list-header>
   <ion-list-header class="dropdown" *ngIf="profile.instructor" no-lines no-padding>
-    <button
-      detail-none
-      name="instructor"
-      ion-item
-      (click)="toggleSection('instructor')">
+    <button detail-none ion-item (click)="toggleSection('instructor')">
       <ion-icon item-left name="arrow-dropright" *ngIf="!instructorButton"></ion-icon>
       <ion-icon item-left name="arrow-dropdown" *ngIf="instructorButton"></ion-icon>
       Instructing</button>
     <ion-list *ngIf="instructorButton">
       <ion-item-sliding *ngFor="let course of courseList">
         <ion-item detail-none
-                  tappable
                   *ngIf="profile.instructor.courses.indexOf(course.key) > -1"
                   [navPush]="'OfficeHoursPage'"
                   [navParams]={course:course}>
@@ -59,7 +44,6 @@
           <button ion-button
                   class="trash"
                   color="danger"
-                  name="instructorCourse"
                   (click)="removeCourse(profile.instructor, course)">
             <ion-icon name="trash"></ion-icon>
             DELETE

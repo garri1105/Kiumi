@@ -20,14 +20,12 @@ export class LoginPage {
 
   login(event: LoginResponse) {
     if(!event.error) {
-      this.profileData.getProfileRef(<User>event.result)
+      this.profileData.getProfileRef(<User>event.result).pipe(take(1))
         .subscribe(profile => {
-          profile.valueChanges().pipe(take(1))
-            .subscribe(value => {
-              value ?
+          profile ?
                 this.navCtrl.setRoot('TabsPage')
                 : this.navCtrl.setRoot('EditProfilePage')
-        })});
+        });
     }
     else {
       this.toast.create({

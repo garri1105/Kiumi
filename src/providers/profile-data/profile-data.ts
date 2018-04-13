@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from "angularfire2/database";
 import {User} from "firebase/app";
 import {Profile} from "../../models/profile/profile.interface";
-import {take} from "rxjs/operators";
-import {of} from "rxjs/observable/of";
 import {AuthProvider} from "../auth/auth";
 
 @Injectable()
@@ -26,9 +24,10 @@ export class ProfileDataProvider {
   }
 
   getProfileRef(user: User) {
-    this.profileObject = this.database.object(`/profiles/${user.uid}`);
-
-    return of(this.profileObject).pipe(take(1));
+    if (user) {
+      this.profileObject = this.database.object(`/profiles/${user.uid}`);
+      return this.profileObject.valueChanges();
+    }
   }
 
   removeProfile(profile: Profile) {
@@ -50,33 +49,27 @@ export class ProfileDataProvider {
   }
 
   async loadProfile() {
-    return new Promise((resolve, reject) => {
-      let user$ = this.auth.getAuthenticatedUser();
-      if (user$) {
-        user$.subscribe(user => {
-          console.log('user loadProfile accessed');
-          let profile$ = this.getProfileRef(user);
-          if (profile$) {
-            profile$.subscribe(profile => {
-              profile.valueChanges()
-                .subscribe(value => {
-                  console.log('loadProfile accessed');
-                  this.profile = value;
-                  resolve(this.profile);
-                });
-            });
-          }
-          else {
-            console.log("Profile doesn't exist");
-            reject("Profile doesn't exist");
-          }
-        })
-      }
-      else {
-        console.log("");
-        reject("User not logged in");
-      }
-    });
+    let user$ = this.auth.getAuthenticatedUser();
+    if (user$) {
+      await user$.subscribe(user => {
+        let profile$ = this.getProfileRef(user);
+        if (profile$) {
+          profile$.subscribe(profile => {
+            console.log('loadProfile accessed');
+            this.profile = profile;
+            return 'Success';
+          });
+        }
+        else {
+          return "Profile doesn't exist";
+        }
+      });
+
+      return 'User authenticated'
+    }
+    else {
+      return "User not logged in";
+    }
   }
 
   getProfile() {
