@@ -17,6 +17,7 @@
 
 .toolbar{
   box-shadow: #000000 5px 5px 20px;
+  text-align: center;
 }
 
 .toolbar-background{
@@ -46,7 +47,7 @@
     color: white;
     font-weight: bold;
     font-family: Chalkboard, sans-serif;
-    font-size: 140%;
+    font-size: 125%;
   }
 
   .input{
@@ -55,6 +56,10 @@
     padding-left: 3%;
   }
 
+}
+
+.text-input {
+  font-size: 140%;
 }
 
 .content * {
