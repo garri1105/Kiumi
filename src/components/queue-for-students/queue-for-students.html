@@ -5,9 +5,12 @@
     <ion-badge item-end>{{ i + 1 }}</ion-badge>
   </ion-item>
 </ion-list>
-<ion-item>
-  <button item-start ion-button clear (click)="toggleCheckIn()">
-    <span *ngIf="checkedIn">Checked In</span>
-    <span *ngIf="!checkedIn">Check In</span>
-  </button>
-</ion-item>
+
+<ion-row>
+  <ion-col>
+    <button item-start ion-button class="queue-Check-In" clear (click)="toggleCheckIn()">
+      <span *ngIf="checkedIn">Check Out</span>
+      <span *ngIf="!checkedIn">Check In</span>
+    </button>
+  </ion-col>
+</ion-row>
