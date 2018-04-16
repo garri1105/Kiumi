@@ -43,19 +43,18 @@
   background-size: cover;
   font-family: chalkfont;
 
-  .label{
+  .label {
     color: white;
     font-weight: bold;
     font-family: Chalkboard, sans-serif;
     font-size: 125%;
   }
 
-  .input{
+  .input {
     border: white solid 1px;
     background: transparentize(grey, 0.8);
     padding-left: 3%;
   }
-
 }
 
 .text-input {
@@ -83,6 +82,7 @@
 .button {
   background: transparent;
   font-size: 200%;
+  border: solid white 2px;
 }
 
 .label {
