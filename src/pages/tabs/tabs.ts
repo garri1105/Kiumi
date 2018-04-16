@@ -12,7 +12,7 @@ export class TabsPage {
   tab2: string;
 
   constructor() {
-    this.tab1 = 'StudentCoursesPage';
+    this.tab1 = 'CoursesPage';
     this.tab2 = 'ProfilePage'
   }
 }

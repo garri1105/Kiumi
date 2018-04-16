@@ -11,9 +11,10 @@ export class ProfileDataProvider {
   private profileObject: AngularFireObject<Profile>;
   private profileList: AngularFireList<Profile> = this.database.list<Profile>('profiles');
   private profile: Profile;
+  private user: User;
 
-  constructor(private database: AngularFireDatabase,
-              private auth: AuthProvider) {
+  constructor(private database: AngularFireDatabase) {
+
   }
 
   getProfileListRef() {
@@ -25,6 +26,7 @@ export class ProfileDataProvider {
   }
 
   getProfileRef(user: User) {
+    this.user = user;
     if (user) {
       this.profileObject = this.database.object(`/profiles/${user.uid}`);
       return this.profileObject.valueChanges();
@@ -52,26 +54,28 @@ export class ProfileDataProvider {
   async loadProfile(user: User) {
     console.log(user);
     let profile$ = this.getProfileRef(user);
+    console.log(profile$);
     if (profile$) {
       profile$.subscribe(profile => {
         console.log('Second subscription. Profile Data. Getting Profile');
         this.profile = profile;
         console.log(this.profile);
       });
-      return 'Profile loaded';
     }
-    else {
-      throw "Profile not created yet";
-    }
+
+    return profile$;
   }
 
   getProfile() {
     if (this.profile) {
       return this.profile;
     }
+    else if (this.getProfileRef(this.user)) {
+      return null;
+    }
     else {
       console.log('Error loading profile');
-      return null;
+      return {} as Profile;
     }
   }
 }

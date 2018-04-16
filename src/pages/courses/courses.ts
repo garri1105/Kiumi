@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, LoadingController} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController} from 'ionic-angular';
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Course} from "../../models/course/course.interface";
 import {Profile} from "../../models/profile/profile.interface";
@@ -12,11 +12,12 @@ import {Subscription} from "rxjs/Subscription";
   selector: 'page-student-courses',
   templateUrl: 'courses.html',
 })
-export class StudentCoursesPage {
+export class CoursesPage {
 
   courseList: Course[];
   courseList$: Subscription;
   profile: Profile;
+  overlayHidden: boolean = false;
 
   constructor(private courseData: CourseDataProvider,
               private profileData: ProfileDataProvider,

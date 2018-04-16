@@ -15,4 +15,5 @@
 
 <ion-content padding>
   <course-list class="transparent" *ngIf="courseList?.length > 0" [courseList]="courseList"></course-list>
+  <p *ngIf="courseList?.length === 0" class="overlay-text">Hit the + to start adding courses!</p>
 </ion-content>
