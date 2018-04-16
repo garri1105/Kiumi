@@ -49,26 +49,19 @@ export class ProfileDataProvider {
     }
   }
 
-  async loadProfile() {
-    let user$ = this.auth.getAuthenticatedUser();
-    if (user$) {
-      await user$.subscribe(user => {
-        let profile$ = this.getProfileRef(user);
-        if (profile$) {
-          profile$.pipe(take(1)).subscribe(profile => {
-            console.log('loadProfile accessed');
-            this.profile = profile;
-          });
-        }
-        else {
-          throw "Profile doesn't exist";
-        }
+  async loadProfile(user: User) {
+    console.log(user);
+    let profile$ = this.getProfileRef(user);
+    if (profile$) {
+      profile$.subscribe(profile => {
+        console.log('Second subscription. Profile Data. Getting Profile');
+        this.profile = profile;
+        console.log(this.profile);
       });
-
-      return 'User authenticated'
+      return 'Profile loaded';
     }
     else {
-      throw "User not logged in";
+      throw "Profile not created yet";
     }
   }
 

@@ -16,8 +16,7 @@ export class LoginFormComponent {
   @Output() loginStatus: EventEmitter<LoginResponse>;
   loginResult: LoginResponse;
 
-  constructor(private auth: AuthProvider,
-              private profileData: ProfileDataProvider) {
+  constructor(private auth: AuthProvider) {
 
     this.loginStatus = new EventEmitter<LoginResponse>();
   }
@@ -29,8 +28,5 @@ export class LoginFormComponent {
   async login() {
     this.loginResult = await this.auth.signInWithEmailAndPassword(this.account);
     this.loginStatus.emit(this.loginResult);
-    if (!this.loginResult.error) {
-      console.log(await this.profileData.loadProfile());
-    }
   }
 }

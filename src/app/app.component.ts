@@ -27,23 +27,23 @@ export class MyApp {
   }
 
   getUserCacheAndRedirect() {
-    this.auth.getAuthenticatedUser().subscribe(auth => {
+    this.auth.getAuthenticatedUser().subscribe(user => {
       console.log('First subscription. App Component. Authenticated User');
-      if (!auth) {
+      if (!user) {
         this.rootPage = 'HomePage';
       }
       else {
-        this.profileData.getProfileRef(auth)
-          .subscribe(profile => {
-            console.log('Second subscription. App Component. Getting Profile');
-            profile ? this.rootPage = 'TabsPage'
-              : this.rootPage = 'EditProfilePage';
-          });
-
         console.log('app loadProfile');
-        this.profileData.loadProfile()
-          .then(r => console.log(r))
-          .catch(e => console.log(e));
+        console.log(user);
+        this.profileData.loadProfile(user)
+          .then(r => {
+            console.log(r);
+            this.rootPage = 'TabsPage'
+          })
+          .catch(e => {
+            console.log(e);
+            this.rootPage = 'EditProfilePage'
+          });
       }
     });
   }

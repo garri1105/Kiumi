@@ -16,7 +16,7 @@ export class StudentCoursesPage {
 
   courseList: Course[];
   courseList$: Subscription;
-  profile = {} as Profile;
+  profile: Profile;
 
   constructor(private courseData: CourseDataProvider,
               private profileData: ProfileDataProvider,
