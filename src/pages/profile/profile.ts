@@ -15,8 +15,7 @@ export class ProfilePage {
   signOutResult(event: Promise<any>) {
       event
         .then(result => {
-          this.navCtrl.setRoot("HomePage");
-          this.navCtrl.setRoot("HomePage");
+          console.log('Sign out succesful');
       })
         .catch(error =>
           this.alert.create({

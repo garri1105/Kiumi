@@ -30,8 +30,8 @@ export class StudentCoursesPage {
     return this.courseList;
   }
 
-  ionViewDidLoad() {
-    console.log('loading');
+  ionViewWillEnter() {
+    console.log('loading courses page');
     this.courseList = [];
     this.profile = this.profileData.getProfile();
     this.loadCourses();
@@ -54,19 +54,12 @@ export class StudentCoursesPage {
   }
 
   loadCourses() {
-    let loader = this.loading.create({
-      content: 'Loading courses...'
-    });
-
-    loader.present();
-
     this.courseList$ = this.courseData
       .getCourseListRef()
       .valueChanges().subscribe(courses => {
         this.courseList = courses.filter(course =>
               ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
           (this.profile.student && this.profile.student.courses.indexOf(course.key)) > -1));
-        loader.dismiss().catch(e => console.log(e));
       });
   }
 }

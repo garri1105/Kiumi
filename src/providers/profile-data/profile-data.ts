@@ -3,6 +3,7 @@ import {AngularFireDatabase, AngularFireList, AngularFireObject} from "angularfi
 import {User} from "firebase/app";
 import {Profile} from "../../models/profile/profile.interface";
 import {AuthProvider} from "../auth/auth";
+import {take} from "rxjs/operators";
 
 @Injectable()
 export class ProfileDataProvider {
@@ -54,21 +55,20 @@ export class ProfileDataProvider {
       await user$.subscribe(user => {
         let profile$ = this.getProfileRef(user);
         if (profile$) {
-          profile$.subscribe(profile => {
+          profile$.pipe(take(1)).subscribe(profile => {
             console.log('loadProfile accessed');
             this.profile = profile;
-            return 'Success';
           });
         }
         else {
-          return "Profile doesn't exist";
+          throw "Profile doesn't exist";
         }
       });
 
       return 'User authenticated'
     }
     else {
-      return "User not logged in";
+      throw "User not logged in";
     }
   }
 
@@ -78,13 +78,7 @@ export class ProfileDataProvider {
     }
     else {
       console.log('Error loading profile');
-      return this.loadProfile()
-        .then(() => {
-          return this.getProfile()
-        })
-        .catch(e => {
-          this.auth.signOut();
-        });
+      return null;
     }
   }
 }
