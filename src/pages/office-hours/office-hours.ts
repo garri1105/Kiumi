@@ -64,11 +64,13 @@ export class OfficeHoursPage {
   }
 
   isInstructor() {
-    this.profile.instructor.courses.forEach(courseKey => {
-      if (courseKey === this.course.key) {
-        this.isInstructing = true;
-      }
-    });
+    if (this.profile.instructor) {
+      this.profile.instructor.courses.forEach(courseKey => {
+        if (courseKey === this.course.key) {
+          this.isInstructing = true;
+        }
+      });
+    }
   }
 
   ionViewWillUnload() {
