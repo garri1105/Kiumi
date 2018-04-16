@@ -17,7 +17,6 @@ export class CoursesPage {
   courseList: Course[];
   courseList$: Subscription;
   profile: Profile;
-  overlayHidden: boolean = false;
 
   constructor(private courseData: CourseDataProvider,
               private profileData: ProfileDataProvider,

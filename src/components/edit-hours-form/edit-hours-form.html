@@ -13,7 +13,12 @@
       <ion-slide>
         <ion-card>
           <ion-card-header float-start>New office hours</ion-card-header>
-          <button ion-button float-end class="no-box-shadow" (click)="removeOfficeHours(newOfficeHours)">
+          <button
+            ion-button
+            float-end
+            class="no-box-shadow"
+            (click)="removeOfficeHours(newOfficeHours)"
+            [disabled]>
             <ion-icon name="trash"></ion-icon>
           </button>
           <ion-card-content>

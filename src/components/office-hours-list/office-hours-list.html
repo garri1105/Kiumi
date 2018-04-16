@@ -4,7 +4,14 @@
   </ion-card-header>
   <ion-card-content>
     <ion-item>
-      <button class="sub-header"ion-button padding clear small [navPush]="'StudentQueuePage'" [navParams]="{course: course, officeHours: currentOfficeHours}">
+      <button
+        class="sub-header"
+        ion-button
+        padding
+        clear
+        small
+        [navPush]="'StudentQueuePage'"
+        [navParams]="{course: course, officeHours: currentOfficeHours}">
         {{ currentOfficeHours.date }}
       </button>
     </ion-item>

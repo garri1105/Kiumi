@@ -48,6 +48,7 @@ export class UtilitiesProvider {
   async resetDatabase() {
     await this.resetCourses();
     await this.resetProfiles();
+    await this.resetAccounts();
   }
 
   //TODO Fix initializations
@@ -147,7 +148,6 @@ export class UtilitiesProvider {
       .subscribe(profiles => {
         profiles.map(profile => {
           this.profileData.removeProfile(profile);
-          this.resetCourses();
         });
       });
   }
