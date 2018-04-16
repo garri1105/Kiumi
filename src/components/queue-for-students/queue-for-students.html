@@ -1,4 +1,4 @@
-<h4 padding *ngIf="studentQueue?.length === 0">Queue is empty</h4>
+<h2 padding *ngIf="studentQueue?.length === 0">Queue is empty</h2>
 <ion-list>
   <ion-item *ngFor="let student of studentQueue; let i = index">
     <h4 item-start>{{ student.name }}</h4>
