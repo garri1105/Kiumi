@@ -14,7 +14,6 @@ export class CourseDataProvider {
   }
 
   getCourseListRef() {
-    console.log('getCourseListRef');
     return this.courseList$;
   }
 

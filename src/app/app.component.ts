@@ -36,7 +36,6 @@ export class MyApp {
       else {
         this.profileData.loadProfile(user)
           .then(r => {
-            console.log(r);
             r.pipe(take(1)).subscribe(val => {
               val ? this.rootPage = 'TabsPage' : this.rootPage = 'EditProfilePage'
             })

@@ -44,16 +44,19 @@ export class EditProfileFormComponent {
       .subscribe(user => {
         this.user = user;
         console.log(user);
-        if (this.user.displayName) {
+        if (!this.profile.name && this.user.displayName) {
           this.profile.name = this.user.displayName;
         }
 
-        if (this.user.photoURL) {
-          this.profile.avatarURL = this.user.photoURL;
+        if (!this.profile.avatarURL) {
+          if (this.user.photoURL) {
+            this.profile.avatarURL = this.user.photoURL;
+          }
+          else {
+            this.profile.avatarURL = 'https://www.raterfox.com/images/default-avatar.jpg'
+          }
         }
-        else {
-          this.profile.avatarURL = 'https://www.raterfox.com/images/default-avatar.jpg'
-        }
+
       });
   }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from "angularfire2/database";
 import {User} from "firebase/app";
 import {Profile} from "../../models/profile/profile.interface";
+import {take} from "rxjs/operators";
 
 @Injectable()
 export class ProfileDataProvider {
@@ -57,7 +58,7 @@ export class ProfileDataProvider {
   async loadProfile(user: User) {
     let profile$ = this.getProfileRef(user);
     if (profile$) {
-      profile$.subscribe(profile => {
+      profile$.pipe(take(1)).subscribe(profile => {
         console.log('Second subscription. Profile Data. Getting Profile');
         this.profile = profile;
       });
