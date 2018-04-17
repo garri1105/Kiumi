@@ -122,6 +122,8 @@ export class EditProfileFormComponent {
     if (this.user) {
       this.profileData.saveProfile(this.user, this.profile)
         .then(value => this.saveProfileResult.emit(value));
+
+      this.profileData.loadProfile(this.user);
     }
   }
 
