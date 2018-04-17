@@ -34,13 +34,10 @@ export class MyApp {
         this.rootPage = 'HomePage';
       }
       else {
-        console.log('app loadProfile');
-        console.log(user);
         this.profileData.loadProfile(user)
           .then(r => {
             console.log(r);
             r.pipe(take(1)).subscribe(val => {
-              console.log(val);
               val ? this.rootPage = 'TabsPage' : this.rootPage = 'EditProfilePage'
             })
           })

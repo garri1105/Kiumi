@@ -52,14 +52,11 @@ export class ProfileDataProvider {
   }
 
   async loadProfile(user: User) {
-    console.log(user);
     let profile$ = this.getProfileRef(user);
-    console.log(profile$);
     if (profile$) {
       profile$.subscribe(profile => {
         console.log('Second subscription. Profile Data. Getting Profile');
         this.profile = profile;
-        console.log(this.profile);
       });
     }
 
