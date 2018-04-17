@@ -15,7 +15,7 @@ import {Course} from "../../models/course/course.interface";
 })
 export class EditProfileFormComponent {
 
-  authenticatedUser: User;
+  user: User;
   profile: Profile;
   @Output() saveProfileResult: EventEmitter<Boolean>;
   instructorCheck: boolean;
@@ -33,6 +33,7 @@ export class EditProfileFormComponent {
       this.studentCheck = !!this.profile.student;
     }
     else {
+      this.profile = {} as Profile;
       this.instructorCheck = false;
       this.studentCheck = false;
     }
@@ -40,7 +41,20 @@ export class EditProfileFormComponent {
     this.saveProfileResult = new EventEmitter<Boolean>();
 
     this.auth.getAuthenticatedUser()
-      .subscribe(user => this.authenticatedUser = user);
+      .subscribe(user => {
+        this.user = user;
+        console.log(user);
+        if (this.user.displayName) {
+          this.profile.name = this.user.displayName;
+        }
+
+        if (this.user.photoURL) {
+          this.profile.avatarURL = this.user.photoURL;
+        }
+        else {
+          this.profile.avatarURL = 'https://www.raterfox.com/images/default-avatar.jpg'
+        }
+      });
   }
 
   saveProfile() {
@@ -102,8 +116,8 @@ export class EditProfileFormComponent {
       }
     }
 
-    if (this.authenticatedUser) {
-      this.profileData.saveProfile(this.authenticatedUser, this.profile)
+    if (this.user) {
+      this.profileData.saveProfile(this.user, this.profile)
         .then(value => this.saveProfileResult.emit(value));
     }
   }
@@ -126,12 +140,6 @@ export class EditProfileFormComponent {
           }
         ]
       }).present();
-    }
-  }
-
-  ngOnInit() {
-    if (!this.profile) {
-      this.profile = {} as Profile;
     }
   }
 }

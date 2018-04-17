@@ -5,7 +5,10 @@
       <button item-start ion-button clear>
         <ion-icon name="remove-circle" color="primary" (click)="removeStudent(student)"></ion-icon>
       </button>
-      <h5 > {{student.name}}</h5>
+
+      <ion-avatar item-start><img [src]="student.avatarURL"></ion-avatar>
+
+      <span item-start>{{student.name}}</span>
 
       <ion-badge item-end>{{ i + 1 }}</ion-badge>
     </ion-item>
