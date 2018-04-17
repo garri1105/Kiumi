@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from "angularfire2/database";
 import {User} from "firebase/app";
 import {Profile} from "../../models/profile/profile.interface";
-import {AuthProvider} from "../auth/auth";
-import {take} from "rxjs/operators";
 
 @Injectable()
 export class ProfileDataProvider {

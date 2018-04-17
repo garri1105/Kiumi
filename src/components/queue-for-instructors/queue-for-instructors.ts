@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { StudentQueueDataProvider } from '../../providers/student-queue-data/student-queue-data';
-import {AngularFireDatabase} from "angularfire2/database";
 import { Profile } from '../../models/profile/profile.interface';
 import { ProfileDataProvider } from '../../providers/profile-data/profile-data';
 import {reorderArray} from "ionic-angular";
@@ -14,8 +13,7 @@ export class QueueForInstructorsComponent {
 
   profile: Profile;
 
-  constructor(private db: AngularFireDatabase,
-              private profileData: ProfileDataProvider,
+  constructor(private profileData: ProfileDataProvider,
               private studentQueueData: StudentQueueDataProvider) {
 
     this.profile = this.profileData.getProfile();

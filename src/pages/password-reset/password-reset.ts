@@ -20,7 +20,7 @@ export class PasswordResetPage {
 
   async sendPasswordResetEmail() {
     try {
-      const result = await this.auth.sendPasswordResetEmail(this.account.email);
+      await this.auth.sendPasswordResetEmail(this.account.email);
       this.alert.create({
         title: 'Success!',
         message: 'Check your email to reset your passoword',

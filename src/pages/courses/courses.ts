@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, LoadingController, NavController} from 'ionic-angular';
+import {IonicPage, LoadingController} from 'ionic-angular';
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Course} from "../../models/course/course.interface";
 import {Profile} from "../../models/profile/profile.interface";

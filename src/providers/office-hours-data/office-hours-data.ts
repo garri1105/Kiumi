@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
 import { OfficeHours } from "../../models/office-hours/office-hours.interface";
-import { CourseDataProvider } from '../course-data/course-data';
-import { Course } from '../../models/course/course.interface';
 import {Profile} from "../../models/profile/profile.interface";
 import {ProfileDataProvider} from "../profile-data/profile-data";
 import * as moment from "moment";
@@ -12,13 +10,11 @@ import {take} from "rxjs/operators";
 @Injectable()
 export class OfficeHoursDataProvider {
 
-  private officeHoursList: OfficeHours[];
   officeHoursList$: AngularFireList<OfficeHours>;
   profile: Profile;
   officeHours: AngularFireObject<OfficeHours>;
 
   constructor(private db: AngularFireDatabase,
-              private courseData: CourseDataProvider,
               private profileData: ProfileDataProvider) {
 
     this.profile = this.profileData.getProfile();

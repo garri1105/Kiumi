@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController} from 'ionic-angular';
+import {AlertController, IonicPage} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -8,14 +8,13 @@ import {AlertController, IonicPage, NavController} from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(private navCtrl: NavController,
-              private alert: AlertController) {
+  constructor(private alert: AlertController) {
   }
 
   signOutResult(event: Promise<any>) {
       event
-        .then(result => {
-          console.log('Sign out succesful');
+        .then(r => {
+          console.log('Sign out succesful: ' + r);
       })
         .catch(error =>
           this.alert.create({

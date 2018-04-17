@@ -2,7 +2,6 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import { Account } from '../../models/account/account.interface';
 import {LoginResponse} from "../../models/login/login-response.interface";
 import {AuthProvider} from "../../providers/auth/auth";
-import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 
 @Component({
   selector: 'login-form',
