@@ -14,7 +14,7 @@ export class ProfilePage {
   signOutResult(event: Promise<any>) {
       event
         .then(r => {
-          console.log('Sign out succesful: ' + r);
+          console.log('Sign out successful: ' + r);
       })
         .catch(error =>
           this.alert.create({

@@ -18,7 +18,6 @@ import {Subscription} from "rxjs/Subscription";
 export class OfficeHoursPage {
   course: Course;
   officeHoursList: OfficeHours[];
-  officeHoursList$: Subscription;
   isInstructing: boolean;
   profile: Profile;
 
@@ -28,13 +27,16 @@ export class OfficeHoursPage {
 
     this.profile = this.profileData.getProfile();
     this.course = this.navParams.get('course');
+  }
+
+  ionViewWillEnter() {
     this.initOfficeHours();
     this.isInstructor();
   }
 
   initOfficeHours() {
-    this.officeHoursList$ = this.officeHoursData.getOfficeHoursListRef(this.course.key)
-      .valueChanges().subscribe(officeHoursList => {
+    this.officeHoursData.getOfficeHoursListRef(this.course.key)
+      .valueChanges().pipe(take(1)).subscribe(officeHoursList => {
         for (let i = 1; i < officeHoursList.length; i++) {
           let time = moment(officeHoursList[i].date);
           officeHoursList[i].dayOfWeek = time.format('dddd');
@@ -72,9 +74,5 @@ export class OfficeHoursPage {
         }
       });
     }
-  }
-
-  ionViewWillUnload() {
-    this.officeHoursList$.unsubscribe();
   }
 }
