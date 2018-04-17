@@ -7,6 +7,16 @@
 
 
 <ion-content padding>
+  <ion-list-header>At {{ officeHours.location }}</ion-list-header>
+  <ion-list>
+    <ion-list-header>Instructors</ion-list-header>
+    <ion-item *ngFor="let instructor of instructors">
+      <ion-avatar item-start><img [src]="instructor.avatarURL"></ion-avatar>
+      <span item-start>{{ instructor.name }}</span>
+    </ion-item>
+  </ion-list>
+
+  <ion-list-header>Queue</ion-list-header>
   <queue-for-students *ngIf="studentQueue && !officeHours.instructing && course" [course]="course" [studentQueue]="studentQueue"></queue-for-students>
   <queue-for-instructors *ngIf="studentQueue  && officeHours.instructing" [studentQueue]="studentQueue"></queue-for-instructors>
 </ion-content>

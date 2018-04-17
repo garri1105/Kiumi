@@ -17,6 +17,11 @@ export class ProfileDataProvider {
 
   }
 
+  getProfileById(userId: string) {
+    this.profileObject = this.database.object(`/profiles/${userId}`);
+    return this.profileObject.valueChanges();
+  }
+
   getProfileListRef() {
     return this.profileList;
   }

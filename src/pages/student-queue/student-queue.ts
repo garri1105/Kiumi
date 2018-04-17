@@ -17,6 +17,7 @@ export class StudentQueuePage {
 
   course: Course;
   officeHours: OfficeHours;
+  instructors: Profile[] = [];
   studentQueue: Profile[];
   studentQueue$: Subscription;
   ready: boolean;
@@ -27,6 +28,8 @@ export class StudentQueuePage {
 
     this.course = this.navParams.get('course');
     this.officeHours = this.navParams.get('officeHours');
+    console.log(this.officeHours);
+    this.getInstructors();
     this.initStudentQueue();
   }
 
@@ -52,6 +55,18 @@ export class StudentQueuePage {
   }
 
   ionViewWillUnload() {
+    console.log('unloading QueuePage');
     this.studentQueue$.unsubscribe();
+  }
+
+  getInstructors() {
+    this.officeHours.instructors.forEach(instructorId => {
+      this.profileData.getProfileById(instructorId)
+        .pipe(take(1)).subscribe(instructor => {
+          if (instructor) {
+            this.instructors.push(instructor);
+          }
+      });
+    })
   }
 }
