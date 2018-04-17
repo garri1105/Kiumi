@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavParams} from 'ionic-angular';
 import {AuthProvider} from "../../providers/auth/auth";
 import {Account} from "../../models/account/account.interface";
 
@@ -11,17 +11,26 @@ import {Account} from "../../models/account/account.interface";
 export class PasswordResetPage {
 
   account: Account;
-  constructor(private auth: AuthProvider, private navParams: NavParams) {
+  constructor(private auth: AuthProvider,
+              private navParams: NavParams,
+              private alert: AlertController) {
+
     this.account = this.navParams.get('account');
   }
 
   async sendPasswordResetEmail() {
     try {
       const result = await this.auth.sendPasswordResetEmail(this.account.email);
-      console.log(result);
+      this.alert.create({
+        title: 'Success!',
+        message: 'Check your email to reset your passoword',
+      }).present();
     }
     catch (e) {
-      console.log(e);
+      this.alert.create({
+        title: 'Oops',
+        message: e
+      }).present();
     }
   }
 }
