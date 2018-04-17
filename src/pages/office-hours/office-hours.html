@@ -7,9 +7,11 @@
 <ion-content>
   <office-hours-list *ngIf="officeHoursList" [officeHoursList]="officeHoursList" [course]="course"></office-hours-list>
 
-  <ion-card *ngIf="isInstructing">
-    <ion-card-header [navPush]="'EditHoursPage'" [navParams]="{course: course, officeHoursList: officeHoursList}">
-      Edit Office Hours
-    </ion-card-header>
-  </ion-card>
+  <ion-row *ngIf="isInstructing">
+    <ion-col>
+      <button ion-button class="editHoursButton" [navPush]="'EditHoursPage'" [navParams]="{course: course, officeHoursList: officeHoursList}">
+        Edit Office Hours
+      </button>
+    </ion-col>
+  </ion-row>
 </ion-content>

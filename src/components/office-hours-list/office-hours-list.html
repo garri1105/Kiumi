@@ -1,5 +1,5 @@
 <ion-card *ngIf="currentOfficeHours">
-  <ion-card-header>
+  <ion-card-header class="header">
     Ongoing Office Hours
   </ion-card-header>
   <ion-card-content>
@@ -23,30 +23,28 @@
     Upcoming Office Hours
   </ion-card-header>
   <ion-card-content>
-    <ion-list>
-      <ion-item *ngIf="officeHoursList.length === 0 || (officeHoursList.length === 1 && currentOfficeHours)">
-        <button class="sub-header" ion-button padding clear small>
-          No upcoming office hours
-        </button>
-      </ion-item>
-      <ion-item *ngIf="!currentOfficeHours && officeHoursList.length > 0">
+    <ion-item *ngIf="officeHoursList.length === 0 || (officeHoursList.length === 1 && currentOfficeHours)">
+      <button class="sub-header" ion-button padding clear small>
+        No upcoming office hours
+      </button>
+    </ion-item>
+    <ion-item *ngIf="!currentOfficeHours && officeHoursList.length > 0">
+      <button class="sub-header" ion-button
+              padding clear small
+              [navPush]="'StudentQueuePage'"
+              [navParams]="{course: course, officeHours: officeHoursList[0]}">
+        {{ officeHoursList[0].date }}
+      </button>
+    </ion-item>
+    <ng-container *ngIf="officeHoursList.length > 1">
+      <ion-item *ngFor="let i of _.range(1, officeHoursList.length)">
         <button class="sub-header" ion-button
                 padding clear small
                 [navPush]="'StudentQueuePage'"
-                [navParams]="{course: course, officeHours: officeHoursList[0]}">
-          {{ officeHoursList[0].date }}
+                [navParams]="{course: course, officeHours: officeHoursList[i]}">
+          {{ officeHoursList[i].date }}
         </button>
       </ion-item>
-      <ng-container *ngIf="officeHoursList.length > 1">
-        <ion-item *ngFor="let i of _.range(1, officeHoursList.length)">
-          <button class="sub-header" ion-button
-                  padding clear small
-                  [navPush]="'StudentQueuePage'"
-                  [navParams]="{course: course, officeHours: officeHoursList[i]}">
-            {{ officeHoursList[i].date }}
-          </button>
-        </ion-item>
-      </ng-container>
-    </ion-list>
+    </ng-container>
   </ion-card-content>
 </ion-card>

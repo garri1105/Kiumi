@@ -3,7 +3,7 @@
   <ion-card>
     <ion-card-content>
       <ion-item>
-        <ion-label stacked>Preferred name</ion-label>
+        <ion-label floating>Preferred Name</ion-label>
         <ion-input
           [(ngModel)]="profile.name"
           type="text"
@@ -33,7 +33,7 @@
       </ion-item>
 
       <ion-row>
-        <ion-col text-end>
+        <ion-col>
         <button class="save-button"
           ion-button
           (click)="saveProfile()"
