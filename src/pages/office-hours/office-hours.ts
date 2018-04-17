@@ -7,7 +7,6 @@ import {OfficeHoursDataProvider} from "../../providers/office-hours-data/office-
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
 import {Profile} from "../../models/profile/profile.interface";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
-import {take} from "rxjs/operators";
 import {Subscription} from "rxjs/Subscription";
 
 @IonicPage()
@@ -18,6 +17,7 @@ import {Subscription} from "rxjs/Subscription";
 export class OfficeHoursPage {
   course: Course;
   officeHoursList: OfficeHours[];
+  officeHoursList$: Subscription;
   isInstructing: boolean;
   profile: Profile;
 
@@ -30,40 +30,49 @@ export class OfficeHoursPage {
   }
 
   ionViewWillEnter() {
-    this.initOfficeHours();
+    console.log('Entering office-hours page');
+
+    this.officeHoursList$ = this.officeHoursData.getOfficeHoursListRef(this.course.key)
+      .valueChanges().subscribe(officeHoursList => {
+        this.initOfficeHours(officeHoursList);
+      });
+
     this.isInstructor();
   }
 
-  initOfficeHours() {
-    this.officeHoursData.getOfficeHoursListRef(this.course.key)
-      .valueChanges().pipe(take(1)).subscribe(officeHoursList => {
-        for (let i = 1; i < officeHoursList.length; i++) {
-          let time = moment(officeHoursList[i].date);
-          officeHoursList[i].dayOfWeek = time.format('dddd');
-          officeHoursList[i].startTime = `${UtilitiesProvider.pad(time.hours(), 2)}:${UtilitiesProvider.pad(time.minutes(), 2)}`;
-          time.add(officeHoursList[i].duration, 'minutes');
-          officeHoursList[i].endTime = `${UtilitiesProvider.pad(time.hours(), 2)}:${UtilitiesProvider.pad(time.minutes(), 2)}`;
+  ionViewWillLeave() {
+    console.log('Leaving office-hours page');
 
-          if (moment().diff(time) > 0) {
-            time.add(7, 'days');
-            officeHoursList[i].date = time.format('ddd, DD MMM YYYY, HH:mm');
-            officeHoursList[i].studentQueue = ['0'];
-            this.officeHoursData.updateOfficeHours(officeHoursList[i]);
-            officeHoursList.push(officeHoursList.splice(i, 1)[0]);
-          }
+    this.officeHoursList$.unsubscribe();
+  }
 
-          if (this.profile.instructor) {
-            if (this.profile.instructor.officeHours.indexOf(officeHoursList[i].key) > -1) {
-              officeHoursList[i].instructing = true;
-            }
-          }
+  initOfficeHours(officeHoursList: OfficeHours[]) {
+    for (let i = 1; i < officeHoursList.length; i++) {
+      let time = moment(officeHoursList[i].date);
+      officeHoursList[i].dayOfWeek = time.format('dddd');
+      officeHoursList[i].startTime = `${UtilitiesProvider.pad(time.hours(), 2)}:${UtilitiesProvider.pad(time.minutes(), 2)}`;
+      time.add(officeHoursList[i].duration, 'minutes');
+      officeHoursList[i].endTime = `${UtilitiesProvider.pad(time.hours(), 2)}:${UtilitiesProvider.pad(time.minutes(), 2)}`;
+
+      if (moment().diff(time) > 0) {
+        time.add(7, 'days');
+        officeHoursList[i].date = time.format('ddd, DD MMM YYYY, HH:mm');
+        officeHoursList[i].studentQueue = ['0'];
+        this.officeHoursData.updateOfficeHours(officeHoursList[i]);
+        officeHoursList.push(officeHoursList.splice(i, 1)[0]);
+      }
+
+      if (this.profile.instructor) {
+        if (this.profile.instructor.officeHours.indexOf(officeHoursList[i].key) > -1) {
+          officeHoursList[i].instructing = true;
         }
+      }
+    }
 
-        officeHoursList.splice(0, 1);
-        UtilitiesProvider.sortByDate(officeHoursList);
+    officeHoursList.splice(0, 1);
+    UtilitiesProvider.sortByDate(officeHoursList);
 
-        this.officeHoursList = officeHoursList;
-      });
+    this.officeHoursList = officeHoursList;
   }
 
   isInstructor() {

@@ -31,15 +31,29 @@ export class CoursesPage {
   }
 
   ionViewWillEnter() {
-    console.log('loading courses page');
+    console.log('Entering courses page');
+
     this.courseList = [];
     this.profile = this.profileData.getProfile();
-    this.loadCourses();
+    this.courseList$ = this.courseData
+      .getCourseListRef()
+      .valueChanges().subscribe(courses => {
+        this.loadCourses(courses);
+      });
   }
 
-  ionViewWillUnload() {
-    console.log('courseList unloaded');
+  ionViewWillLeave() {
+    console.log('Leaving courses page');
+
+    this.courseList$.unsubscribe();
   }
+
+  loadCourses(courses: Course[]) {
+    this.courseList = courses.filter(course =>
+          ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
+      (this.profile.student && this.profile.student.courses.indexOf(course.key)) > -1));
+  }
+
 
   resetDatabase(active) {
     if (active) {
@@ -53,13 +67,4 @@ export class CoursesPage {
     }
   }
 
-  loadCourses() {
-    this.courseList$ = this.courseData
-      .getCourseListRef()
-      .valueChanges().subscribe(courses => {
-        this.courseList = courses.filter(course =>
-              ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
-          (this.profile.student && this.profile.student.courses.indexOf(course.key)) > -1));
-      });
-  }
 }

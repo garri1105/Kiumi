@@ -17,10 +17,9 @@ export class StudentQueuePage {
 
   course: Course;
   officeHours: OfficeHours;
-  instructors: Profile[] = [];
+  instructors: Profile[];
   studentQueue: Profile[];
   studentQueue$: Subscription;
-  ready: boolean;
 
   constructor(private navParams: NavParams,
               private studentQueueData: StudentQueueDataProvider,
@@ -28,45 +27,55 @@ export class StudentQueuePage {
 
     this.course = this.navParams.get('course');
     this.officeHours = this.navParams.get('officeHours');
-    console.log(this.officeHours);
-    this.getInstructors();
-    this.initStudentQueue();
   }
 
-  initStudentQueue() {
+  ionViewWillEnter() {
+    console.log('Entering student-queue page');
+
+    this.instructors = this.getInstructors();
+
     this.studentQueue$ =  this.studentQueueData.getStudentQueueRef(this.officeHours, this.course)
       .valueChanges().subscribe(studentQueue => {
-      this.profileData.getProfileListRef()
-        .valueChanges().pipe(take(1))
-        .subscribe(profiles => {
-          let queue = [];
-          if (studentQueue) {
-            studentQueue.forEach(studentKey => {
-              profiles.forEach(profile => {
-                if (profile.key === studentKey) {
-                  queue.push(profile);
-                }
-              })
-            });
-          }
-          this.studentQueue = queue;
-        });
-    });
+        this.initStudentQueue(studentQueue);
+      })
+
   }
 
-  ionViewWillUnload() {
-    console.log('unloading QueuePage');
+  ionViewWillLeave() {
+    console.log('Leaving student-queue page');
     this.studentQueue$.unsubscribe();
   }
 
+  initStudentQueue(studentQueue: string[]) {
+    this.profileData.getProfileListRef()
+      .valueChanges().pipe(take(1))
+      .subscribe(profiles => {
+        let queue = [];
+        if (studentQueue) {
+          studentQueue.forEach(studentKey => {
+            profiles.forEach(profile => {
+              if (profile.key === studentKey) {
+                queue.push(profile);
+              }
+            })
+          });
+        }
+        this.studentQueue = queue;
+      });
+  }
+
   getInstructors() {
+    let instructors: Profile[] = [];
+
     this.officeHours.instructors.forEach(instructorId => {
       this.profileData.getProfileById(instructorId)
         .pipe(take(1)).subscribe(instructor => {
           if (instructor) {
-            this.instructors.push(instructor);
+            instructors.push(instructor);
           }
       });
-    })
+    });
+
+    return instructors;
   }
 }
