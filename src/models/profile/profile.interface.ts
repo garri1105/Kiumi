@@ -4,7 +4,7 @@ import {Instructor} from "../instructor/instructor.interface";
 export interface Profile {
   key?: string;
   name: string;
-  avatarURL?: string;
+  avatarURL: string;
   student?: Student;
   instructor?: Instructor;
 }
