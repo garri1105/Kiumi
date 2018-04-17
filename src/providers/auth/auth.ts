@@ -15,18 +15,15 @@ export class AuthProvider {
               private alert: AlertController) {
   }
 
-  async sendPasswordResetEmail(email: string) {
-      return await this.afAuth.auth.sendPasswordResetEmail(email);
+  sendPasswordResetEmail(email: string) {
+      return this.afAuth.auth.sendPasswordResetEmail(email);
   }
 
   googleLogin() {
     if (this.platform.is('cordova')) {
       this.nativeGoogleLogin();
     } else {
-      this.webGoogleLogin().then(r => {
-        console.log('hi');
-        console.log(r)
-      });
+      return this.webGoogleLogin()
     }
   }
 
@@ -85,6 +82,9 @@ export class AuthProvider {
       };
     }
     catch (e) {
+      console.log(e);
+      console.log(e.code);
+      console.log(e.message);
       if (e.code === 'auth/wrong-password') {
         e.message = 'Invalid email or password combination'
       }
