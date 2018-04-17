@@ -80,6 +80,7 @@ export class UtilitiesProvider {
       .map(changes => {
           return changes.map(c => ({
             key: c.payload.key,
+            ...c.payload.val(),
             name: c.payload.val().name,
             instructor: {courses: ['0'],
               officeHours: ['0']

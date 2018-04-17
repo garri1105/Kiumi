@@ -45,6 +45,7 @@ export class OfficeHoursPage {
           if (moment().diff(time) > 0) {
             time.add(7, 'days');
             officeHoursList[i].date = time.format('ddd, DD MMM YYYY, HH:mm');
+            officeHoursList[i].studentQueue = ['0'];
             this.officeHoursData.updateOfficeHours(officeHoursList[i]);
             officeHoursList.push(officeHoursList.splice(i, 1)[0]);
           }

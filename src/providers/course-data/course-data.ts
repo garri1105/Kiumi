@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
 import { Course } from "../../models/course/course.interface";
-import {of} from "rxjs/observable/of";
-import {concat} from "rxjs/observable/concat";
 import {take} from "rxjs/operators";
 
 @Injectable()
@@ -38,18 +36,26 @@ export class CourseDataProvider {
     return this.courseList$.update(course.key, course);
   }
 
-  searchCourse(query: string) {
+  async searchCourse(query: string) {
+    let courseList = [];
+
     const numberQuery = this.db.list<Course>('course-list', ref =>
       ref.orderByChild('number')
         .startAt(query.toUpperCase())
-        .endAt(query.toUpperCase() + "\uf8ff"));
+        .endAt(query.toUpperCase() + "\uf8ff")).valueChanges().pipe(take(1));
 
     const titleQuery = this.db.list<Course>('course-list', ref =>
       ref.orderByChild('title')
         .startAt(CourseDataProvider.toTitleCase(query))
-        .endAt(CourseDataProvider.toTitleCase(query) + "\uf8ff"));
+        .endAt(CourseDataProvider.toTitleCase(query) + "\uf8ff")).valueChanges().pipe(take(1));
 
-    return concat(of(numberQuery), of(titleQuery)).pipe(take(1));
+    numberQuery.subscribe(r => courseList = courseList.concat(r));
+    titleQuery.subscribe(r => courseList = courseList.concat(r));
+
+    await numberQuery.toPromise();
+    await titleQuery.toPromise();
+
+    return courseList;
   }
 
   static toTitleCase(str): string {

@@ -1,4 +1,4 @@
-<h5 *ngIf="studentQueue?.length === 0">Queue is empty</h5>
+<h2 padding *ngIf="studentQueue?.length === 0">Is empty</h2>
 <ion-list>
   <ion-item-group reorder="true" (ionItemReorder)="reorderQueue($event)">
     <ion-item *ngFor="let student of studentQueue; let i = index">

@@ -24,19 +24,17 @@ export class CourseSearchComponent {
     this.courseList = [];
     if (query.length > 0) {
       this.courseData.searchCourse(query)
-        .subscribe(courses => courses.valueChanges()
-          .subscribe(list => {
-            this.courseList = this.courseList.concat(list);
-          }));
-    }
-
-    setTimeout(() => this.savedCourses.forEach(selected => {
-      this.courseList.forEach((course, i) => {
-        if (selected.key === course.key) {
-          this.courseList.splice(i, 1);
-        }
+        .then(courseList => {
+          this.courseList = courseList;
+          this.savedCourses.forEach(selected => {
+            this.courseList.forEach((course, i) => {
+              if (selected.key === course.key) {
+                this.courseList.splice(i, 1);
+              }
+            })
+          });
       })
-    }), 10);
+    }
   }
 
   addCourse(selected: Course) {
