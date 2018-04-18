@@ -8,6 +8,7 @@ import {Student} from "../../models/student/student.interface";
 import {AlertController} from "ionic-angular";
 import {CourseDataProvider} from "../../providers/course-data/course-data";
 import {Course} from "../../models/course/course.interface";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'edit-profile-form',
@@ -40,7 +41,7 @@ export class EditProfileFormComponent {
 
     this.saveProfileResult = new EventEmitter<Boolean>();
 
-    this.auth.getAuthenticatedUser()
+    this.auth.getAuthenticatedUser().pipe(take(1))
       .subscribe(user => {
         this.user = user;
         console.log(user);
@@ -53,7 +54,7 @@ export class EditProfileFormComponent {
             this.profile.avatarURL = this.user.photoURL;
           }
           else {
-            this.profile.avatarURL = 'https://www.raterfox.com/images/default-avatar.jpg'
+            this.profile.avatarURL = 'assets/imgs/googleDefaultProfile.jpg'
           }
         }
 
