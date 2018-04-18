@@ -31,9 +31,10 @@
         <span class="global__input-error">Password must be at least 6 characters and have at least one number.</span>
       </div>
 
+      <br>
       <ion-row>
         <ion-col>
-          <button ion-button (click)="register()" [disabled]="registerForm.invalid">Sign Up</button>
+          <button ion-button class="sign-up-button" (click)="register()" [disabled]="registerForm.invalid">Sign Up</button>
         </ion-col>
       </ion-row>
 
