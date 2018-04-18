@@ -17,6 +17,7 @@ export class CoursesPage {
   courseList: Course[];
   courseList$: Subscription;
   profile: Profile;
+  ready: boolean;
 
   constructor(private courseData: CourseDataProvider,
               private profileData: ProfileDataProvider,
@@ -44,7 +45,7 @@ export class CoursesPage {
 
   ionViewWillLeave() {
     console.log('Leaving courses page');
-
+    this.ready = false;
     this.courseList$.unsubscribe();
   }
 
@@ -52,6 +53,7 @@ export class CoursesPage {
     this.courseList = courses.filter(course =>
           ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
       (this.profile.student && this.profile.student.courses.indexOf(course.key)) > -1));
+    this.ready = true;
   }
 
 
