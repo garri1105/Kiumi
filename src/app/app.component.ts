@@ -30,6 +30,7 @@ export class MyApp {
   getUserCacheAndRedirect() {
     this.auth.getAuthenticatedUser().subscribe(user => {
       console.log('First subscription. App Component. Authenticated User');
+      console.log(user);
       if (!user) {
         this.rootPage = 'HomePage';
       }

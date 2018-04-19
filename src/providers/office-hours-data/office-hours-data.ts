@@ -64,7 +64,7 @@ export class OfficeHoursDataProvider {
     officeHours.dayOfWeek = null;
     officeHours.startTime = null;
     officeHours.endTime = null;
-    officeHours.instructors$ = null;
+    officeHours.instructorsO = null;
 
     return officeHours;
   }

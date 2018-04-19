@@ -1,13 +1,12 @@
 import {Component, Input, ViewChild} from '@angular/core';
 import {OfficeHoursDataProvider} from "../../providers/office-hours-data/office-hours-data";
 import { OfficeHours } from '../../models/office-hours/office-hours.interface';
-import {Slides, Toast, ToastController} from "ionic-angular";
+import {AlertController, Slides, ToastController} from "ionic-angular";
 import {Profile} from "../../models/profile/profile.interface";
 import * as moment from "moment";
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
 import {Course} from "../../models/course/course.interface";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
-import {take} from "rxjs/operators";
 
 @Component({
   selector: 'edit-hours-form',
@@ -20,23 +19,34 @@ export class EditHoursFormComponent {
   profile: Profile;
   newOfficeHours: OfficeHours;
   days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  errorToast: Toast;
-  successToast: Toast;
 
   constructor(private officeHoursData: OfficeHoursDataProvider,
               private toast: ToastController,
+              private alert: AlertController,
               private profileData: ProfileDataProvider) {
 
     this.profile = this.profileData.getProfile();
-    this.errorToast = this.toast.create({duration: 3000});
-    this.successToast = this.toast.create({duration: 1000});
+  }
+
+  displaySuccessToast(message: string) {
+    this.toast.create({
+      message: message,
+      duration: 1000
+    }).present();
+  }
+
+  displayErrorToast(message: string) {
+    this.toast.create({
+      message: message,
+      duration: 3000
+    }).present();
   }
 
   addOfficeHourSlot() {
     this.newOfficeHours = {
       instructing: true,
       instructors: ['0'],
-      instructors$: [this.profile],
+      instructorsO: [this.profile],
       studentQueue: ['0'],
       key: UtilitiesProvider.makeId(10)
     } as OfficeHours;
@@ -66,8 +76,8 @@ export class EditHoursFormComponent {
       else if (diff < 0) {
         officeHours.error = 'End time must be after start time';
       }
-      else if (diff < 60) {
-        officeHours.error = 'Office hours must last at least one hour';
+      else if (diff < 30) {
+        officeHours.error = 'Office hours must be at least 30 minutes';
       }
       else {
         officeHours.error = null;
@@ -81,61 +91,79 @@ export class EditHoursFormComponent {
     this.officeHoursList.push(this.newOfficeHours);
     this.profile.instructor.officeHours.push(this.newOfficeHours.key);
     this.profileData.updateProfile(this.profile)
-      .catch(e => this.errorToast.setMessage(e).present());
+      .catch(e => this.displayErrorToast(e));
 
     this.officeHoursData
       .addOfficeHours(this.newOfficeHours)
       .then(() => {
         this.newOfficeHours = null;
-        this.successToast.setMessage('Added successfully').present();
+        this.displaySuccessToast('Added successfully');
       })
   }
 
   updateOfficeHours(officeHours: OfficeHours) {
     let message = '';
 
-    if (officeHours.instructors.indexOf(this.profile.key) < 0) {
+    let instructorIndex = officeHours.instructors.indexOf(this.profile.key);
+
+    if (officeHours.instructing && instructorIndex === -1) {
       officeHours.instructors.push(this.profile.key);
       this.profile.instructor.officeHours.push(officeHours.key);
       this.profileData.updateProfile(this.profile)
         .then(() => message = 'Added and')
-        .catch(e => this.errorToast.setMessage(e).present());
+        .catch(e => this.displayErrorToast(e));
+    }
+    else if (!officeHours.instructing && instructorIndex > -1) {
+      officeHours.instructors.splice(instructorIndex, 1);
+      this.profile.instructor.officeHours.splice(this.profile.instructor.officeHours.indexOf(officeHours.key), 1);
+      console.log(this.profile);
+      this.profileData.updateProfile(this.profile)
+        .then(() => message = 'Removed and')
+        .catch(e => this.displayErrorToast(e));
     }
 
     this.officeHoursData
       .updateOfficeHours(officeHours)
       .then(r => {
-        this.successToast.setMessage(`${message} Updated successfully`).present();
+        this.displaySuccessToast(`${message} Updated successfully`);
       })
-      .catch(e => this.errorToast.setMessage(e).present());
+      .catch(e => this.displayErrorToast(e));
   }
 
-  removeOfficeHours(officeHours) {
-    this.officeHoursList.splice(this.officeHoursList.indexOf(officeHours), 1);
-    this.profile.instructor.officeHours.splice(this.profile.instructor.officeHours.indexOf(officeHours.key), 1);
-    this.profileData.updateProfile(this.profile)
-      .catch(e => this.errorToast.setMessage(e).present());
+  removeOfficeHours(officeHours: OfficeHours) {
+    if (officeHours.instructors.length <= 2) {
+      this.officeHoursList.splice(this.officeHoursList.indexOf(officeHours), 1);
+      this.profile.instructor.officeHours.splice(this.profile.instructor.officeHours.indexOf(officeHours.key), 1);
+      this.profileData.updateProfile(this.profile)
+        .catch(e => this.displayErrorToast(e));
 
-    this.officeHoursData
-      .removeOfficeHours(officeHours)
-      .then(r => {
-        this.successToast.setMessage(`Removed successfully`).present();
-        if (this.slides) {
-          this.slides.slidePrev();
-          this.slides.slideNext();
-        }
-      })
-      .catch(e => this.errorToast.setMessage(e).present());
+      this.officeHoursData
+        .removeOfficeHours(officeHours)
+        .then(r => {
+          this.displaySuccessToast(`Removed successfully`);
+          if (this.slides) {
+            this.slides.slidePrev();
+            this.slides.slideNext();
+          }
+        })
+        .catch(e => this.displayErrorToast(e));
+    }
+    else {
+      this.alert.create({
+        title: 'Wait!',
+        message: 'You can\'t delete office hours with other instructors in them!'
+      }).present()
+    }
   }
 
   toggleInstructing(officeHours: OfficeHours) {
     if (officeHours.instructing) {
-      officeHours.instructors$.push(this.profile);
+      officeHours.instructorsO.push(this.profile);
     }
     else {
-      for (let i = 0; officeHours.instructors$.length; i++) {
-        if (officeHours.instructors$[i].key === this.profile.key) {
-          officeHours.instructors$.splice(i, 1);
+      for (let i = 0; officeHours.instructorsO.length; i++) {
+        if (officeHours.instructorsO[i].key === this.profile.key) {
+          officeHours.instructorsO.splice(i, 1);
           break;
         }
       }

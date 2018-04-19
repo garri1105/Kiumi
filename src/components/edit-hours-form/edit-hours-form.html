@@ -7,96 +7,100 @@
   </ion-col>
 </ion-row>
 
-<form #editOfficeHourForm="ngForm" novalidate>
-  <ion-slides pager>
-    <div *ngIf="newOfficeHours">
-      <ion-slide>
-        <ion-card>
-          <ion-card-header float-start padding-left>New office hours</ion-card-header>
-          <button
-            ion-button
-            float-end
-            class="no-box-shadow"
-            (click)="removeOfficeHours(newOfficeHours)"
-            disabled>
-            <ion-icon name="trash"></ion-icon>
-          </button>
-          <ion-card-content>
-            <ion-item>
-              <ion-label>I'm Instructing!</ion-label>
-              <ion-toggle [(ngModel)]="newOfficeHours.instructing"
-                          (ionChange)="toggleInstructing(newOfficeHours)"
-                          name="newInstructing"
+<ion-slides pager>
+  <ion-slide *ngIf="newOfficeHours">
+    <form #newOfficeHoursForm="ngForm" novalidate>
+      <ion-card>
+        <ion-card-header float-start padding-left>New office hours</ion-card-header>
+        <button
+          ion-button
+          float-end
+          class="no-box-shadow"
+          (click)="newOfficeHours = null"
+          [disabled]="!newOfficeHours.instructing">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+        <ion-card-content>
+          <ion-item>
+            <ion-label>I'm Instructing!</ion-label>
+            <ion-toggle [(ngModel)]="newOfficeHours.instructing"
+                        (ionChange)="toggleInstructing(newOfficeHours)"
+                        name="newInstructing"
+                        required
+                        #instructing="ngModel"></ion-toggle>
+          </ion-item>
+
+          <ion-list>
+            <ion-list-header no-margin>Instructors</ion-list-header>
+            <ion-item *ngFor="let instructor of newOfficeHours.instructorsO">
+              <ion-avatar item-start><img [src]="instructor.avatarURL"></ion-avatar>
+              <span item-start>{{ instructor.name }}</span>
+            </ion-item>
+          </ion-list>
+
+          <div *ngIf="newOfficeHours.instructorsO.length === 0">
+            <span class="global__input-error">You must instruct the office hours you create!</span>
+          </div>
+
+          <ion-item padding-top>
+            <ion-label stacked>Location</ion-label>
+            <ion-input [(ngModel)]="newOfficeHours.location"
+                       name="newLocation"
+                       required
+                       placeholder="e.g. OLRI"
+                       [disabled]="!instructing.value"></ion-input>
+          </ion-item>
+
+          <ion-item padding-top>
+            <ion-label stacked>Day</ion-label>
+            <ion-select [(ngModel)]="newOfficeHours.dayOfWeek"
+                        name="newDayOfWeek"
+                        required
+                        placeholder="Monday"
+                        [disabled]="!instructing.value">
+              <ion-option *ngFor="let day of days" [value]="day">{{ day }}</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item class="OHTime" float-start padding-top>
+            <ion-label stacked>Start Time</ion-label>
+            <ion-datetime [(ngModel)]="newOfficeHours.startTime"
+                          (ionChange)="fillEndTime(newOfficeHours); isValid(newOfficeHours)"
+                          name="newStartTime"
+                          pickerFormat="hh:mm a"
+                          displayFormat="HH:mm"
                           required
-                          #instructing="ngModel"></ion-toggle>
-            </ion-item>
+                          placeholder="00:00 pm"
+                          [disabled]="!instructing.value"></ion-datetime>
+          </ion-item>
 
-            <ion-list>
-              <ion-list-header no-margin>Instructors</ion-list-header>
-              <h2 class="global__input-error" *ngIf="newOfficeHours.instructors$.length === 0">You must instruct the office hours you create!</h2>
-              <ion-item *ngFor="let instructor of newOfficeHours.instructors$">
-                <ion-avatar item-start><img [src]="instructor.avatarURL"></ion-avatar>
-                <span item-start>{{ instructor.name }}</span>
-              </ion-item>
-            </ion-list>
-
-            <ion-item padding-top>
-              <ion-label stacked>Location</ion-label>
-              <ion-input [(ngModel)]="newOfficeHours.location"
-                         name="newLocation"
-                         required
-                         placeholder="e.g. OLRI"
-                         [disabled]="!instructing.value"></ion-input>
-            </ion-item>
-
-            <ion-item padding-top>
-              <ion-label stacked>Day</ion-label>
-              <ion-select [(ngModel)]="newOfficeHours.dayOfWeek"
-                          name="newDayOfWeek"
+          <ion-item class="OHTime" float-end padding-top>
+            <ion-label stacked>End Time</ion-label>
+            <ion-datetime [(ngModel)]="newOfficeHours.endTime"
+                          (ionChange)="isValid(newOfficeHours)"
+                          name="newEndTime"
+                          pickerFormat="hh:mm a"
+                          displayFormat="HH:mm"
                           required
-                          placeholder="Monday"
-                          [disabled]="!instructing.value">
-                <ion-option *ngFor="let day of days" [value]="day">{{ day }}</ion-option>
-              </ion-select>
-            </ion-item>
+                          placeholder="00:00 pm"
+                          [disabled]="!instructing.value"></ion-datetime>
+          </ion-item>
 
-            <ion-item class="OHTime" float-start padding-top>
-              <ion-label stacked>Start Time</ion-label>
-              <ion-datetime [(ngModel)]="newOfficeHours.startTime"
-                            (ionChange)="fillEndTime(newOfficeHours); isValid(newOfficeHours)"
-                            name="newStartTime"
-                            pickerFormat="hh:mm a"
-                            displayFormat="HH:mm"
-                            required
-                            placeholder="00:00 pm"
-                            [disabled]="!instructing.value"></ion-datetime>
-            </ion-item>
+          <div padding *ngIf="newOfficeHours.error" text-left>
+            <span class="global__input-error">{{ newOfficeHours.error }}</span>
+          </div>
 
-            <ion-item class="OHTime" float-end padding-top>
-              <ion-label stacked>End Time</ion-label>
-              <ion-datetime [(ngModel)]="newOfficeHours.endTime"
-                            (ionChange)="isValid(newOfficeHours)"
-                            name="newEndTime"
-                            pickerFormat="hh:mm a"
-                            displayFormat="HH:mm"
-                            required
-                            placeholder="00:00 pm"
-                            [disabled]="!instructing.value"></ion-datetime>
-            </ion-item>
+          <button ion-button
+                  [disabled]="newOfficeHoursForm.invalid || !instructing.value || newOfficeHours.error"
+                  (click)="addNewOfficeHours()">Save</button>
+        </ion-card-content>
+      </ion-card>
+    </form>
+  </ion-slide>
 
-            <div padding *ngIf="newOfficeHours.error" text-left>
-              <span class="global__input-error">{{ newOfficeHours.error }}</span>
-            </div>
 
-            <button ion-button
-                    [disabled]="editOfficeHourForm.invalid || !instructing.value || newOfficeHours.error"
-                    (click)="addNewOfficeHours()">Save</button>
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-    </div>
-
-    <ion-slide *ngFor="let officeHours of officeHoursList; let i = index">
+  <ion-slide *ngFor="let officeHours of officeHoursList; let i = index">
+    <form #editOfficeHoursForm="ngForm" novalidate>
       <ion-card>
         <ion-card-header float-start *ngIf="officeHours.instructing">My office hours</ion-card-header>
         <ion-card-header float-start *ngIf="!officeHours.instructing">Office hours</ion-card-header>
@@ -118,12 +122,15 @@
 
           <ion-list>
             <ion-list-header no-margin>Instructors</ion-list-header>
-            <h2 class="global__input-error" *ngIf="officeHours.instructors$.length === 0">No one is instructing. Take this shift!</h2>
-            <ion-item *ngFor="let instructor of officeHours.instructors$">
+            <ion-item *ngFor="let instructor of officeHours.instructorsO">
               <ion-avatar item-start><img [src]="instructor.avatarURL"></ion-avatar>
               <span item-start>{{ instructor.name }}</span>
             </ion-item>
           </ion-list>
+
+          <div *ngIf="officeHours.instructorsO.length === 0">
+            <span class="global__input-error">No one is instructing. Take this shift!</span>
+          </div>
 
           <ion-item padding-top>
             <ion-label stacked>Location</ion-label>
@@ -146,7 +153,7 @@
           <ion-item class="OHTime" float-start padding-top>
             <ion-label stacked>Start Time</ion-label>
             <ion-datetime [(ngModel)]="officeHours.startTime"
-                          (ionChange)="fillEndTime(officeHours); isValid(officeHours)"
+                          (ionChange)="fillEndTime(officeHours)"
                           name="startTime{{ i }}"
                           pickerFormat="hh:mm a"
                           displayFormat="HH:mm"
@@ -166,15 +173,15 @@
           </ion-item>
 
           <div padding *ngIf="officeHours.error" text-left>
-            <span class="global__input-error">{{ officeHour.error }}</span>
+            <span class="global__input-error">{{ officeHours.error }}</span>
           </div>
 
           <button ion-button
-                  [disabled]="editOfficeHourForm.invalid || !instructing.value || !editOfficeHourForm.dirty || officeHours.error"
-                  (click)="updateOfficeHours(officeHours)">Save</button>
+                  [disabled]="editOfficeHoursForm.invalid || !editOfficeHoursForm.dirty || officeHours.error"
+                  (click)="updateOfficeHours(officeHours); editOfficeHoursForm.dirty = !editOfficeHoursForm.dirty">Save</button>
 
         </ion-card-content>
       </ion-card>
-    </ion-slide>
-  </ion-slides>
-</form>
+    </form>
+  </ion-slide>
+</ion-slides>

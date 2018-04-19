@@ -34,7 +34,7 @@ export class LoginFormComponent {
         this.profile = this.profileData.getProfile();
         this.profile.avatarURL = gUser.additionalUserInfo.profile.picture;
         this.profileData.updateProfile(this.profile);
-      }, 10);
+      }, 100);
     }
   }
 

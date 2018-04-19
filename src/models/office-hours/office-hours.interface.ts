@@ -14,5 +14,5 @@ export interface OfficeHours {
   dayOfWeek: string;
   instructing: boolean;
   error?: string;
-  instructors$: Profile[];
+  instructorsO: Profile[];
 }

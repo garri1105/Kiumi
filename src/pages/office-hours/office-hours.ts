@@ -89,15 +89,14 @@ export class OfficeHoursPage {
   }
 
   getInstructors(officeHours: OfficeHours) {
-    officeHours.instructors$ = [];
+    officeHours.instructorsO = [];
     officeHours.instructors.forEach(instructorId => {
       console.log(instructorId);
       this.profileData.getProfileById(instructorId)
         .pipe(take(1)).subscribe((instructor: Profile) => {
-          console.log(officeHours);
           console.log(instructor);
           if (instructor) {
-            officeHours.instructors$.push(instructor);
+            officeHours.instructorsO.push(instructor);
           }
       });
     });
