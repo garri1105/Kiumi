@@ -23,7 +23,7 @@ export class PasswordResetPage {
       await this.auth.sendPasswordResetEmail(this.account.email);
       this.alert.create({
         title: 'Success!',
-        message: 'Check your email to reset your passoword',
+        message: 'Check your email to reset your password',
       }).present();
     }
     catch (e) {

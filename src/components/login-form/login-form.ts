@@ -28,7 +28,7 @@ export class LoginFormComponent {
   async googleLogin() {
     const gUser: any = await this.auth.googleLogin();
     console.log(gUser);
-    if (!gUser.additionalUserInfo.isNewUser) {
+    if (gUser && !gUser.additionalUserInfo.isNewUser) {
       await this.profileData.loadProfile(gUser.user);
       setTimeout(() => {
         this.profile = this.profileData.getProfile();
