@@ -7,6 +7,7 @@ import * as moment from "moment";
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
 import {Course} from "../../models/course/course.interface";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'edit-hours-form',
@@ -35,6 +36,7 @@ export class EditHoursFormComponent {
     this.newOfficeHours = {
       instructing: true,
       instructors: ['0'],
+      instructors$: [this.profile],
       studentQueue: ['0'],
       key: UtilitiesProvider.makeId(10)
     } as OfficeHours;
@@ -124,6 +126,20 @@ export class EditHoursFormComponent {
         }
       })
       .catch(e => this.errorToast.setMessage(e).present());
+  }
+
+  toggleInstructing(officeHours: OfficeHours) {
+    if (officeHours.instructing) {
+      officeHours.instructors$.push(this.profile);
+    }
+    else {
+      for (let i = 0; officeHours.instructors$.length; i++) {
+        if (officeHours.instructors$[i].key === this.profile.key) {
+          officeHours.instructors$.splice(i, 1);
+          break;
+        }
+      }
+    }
   }
 
   ngOnInit() {

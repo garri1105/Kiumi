@@ -8,6 +8,7 @@ import {UtilitiesProvider} from "../../providers/utilities/utilities";
 import {Profile} from "../../models/profile/profile.interface";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 import {Subscription} from "rxjs/Subscription";
+import {take} from "rxjs/operators";
 
 @IonicPage()
 @Component({
@@ -62,6 +63,8 @@ export class OfficeHoursPage {
         officeHoursList.push(officeHoursList.splice(i, 1)[0]);
       }
 
+      this.getInstructors(officeHoursList[i]);
+
       if (this.profile.instructor) {
         if (this.profile.instructor.officeHours.indexOf(officeHoursList[i].key) > -1) {
           officeHoursList[i].instructing = true;
@@ -83,5 +86,20 @@ export class OfficeHoursPage {
         }
       });
     }
+  }
+
+  getInstructors(officeHours: OfficeHours) {
+    officeHours.instructors$ = [];
+    officeHours.instructors.forEach(instructorId => {
+      console.log(instructorId);
+      this.profileData.getProfileById(instructorId)
+        .pipe(take(1)).subscribe((instructor: Profile) => {
+          console.log(officeHours);
+          console.log(instructor);
+          if (instructor) {
+            officeHours.instructors$.push(instructor);
+          }
+      });
+    });
   }
 }

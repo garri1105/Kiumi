@@ -12,7 +12,7 @@
     <div *ngIf="newOfficeHours">
       <ion-slide>
         <ion-card>
-          <ion-card-header float-start>New office hours</ion-card-header>
+          <ion-card-header float-start padding-left>New office hours</ion-card-header>
           <button
             ion-button
             float-end
@@ -22,62 +22,71 @@
             <ion-icon name="trash"></ion-icon>
           </button>
           <ion-card-content>
+            <ion-item>
+              <ion-label>I'm Instructing!</ion-label>
+              <ion-toggle [(ngModel)]="newOfficeHours.instructing"
+                          (ionChange)="toggleInstructing(newOfficeHours)"
+                          name="newInstructing"
+                          required
+                          #instructing="ngModel"></ion-toggle>
+            </ion-item>
+
             <ion-list>
-              <ion-item>
-                <ion-label>I'm Instructing!</ion-label>
-                <ion-toggle [(ngModel)]="newOfficeHours.instructing"
-                            name="newInstructing"
-                            required
-                            #instructing="ngModel"></ion-toggle>
+              <ion-list-header no-margin>Instructors</ion-list-header>
+              <h2 class="global__input-error" *ngIf="newOfficeHours.instructors$.length === 0">You must instruct the office hours you create!</h2>
+              <ion-item *ngFor="let instructor of newOfficeHours.instructors$">
+                <ion-avatar item-start><img [src]="instructor.avatarURL"></ion-avatar>
+                <span item-start>{{ instructor.name }}</span>
               </ion-item>
-              <ion-item>
-                <ion-label stacked>Location</ion-label>
-                <ion-input [(ngModel)]="newOfficeHours.location"
-                           name="newLocation"
-                           required
-                           placeholder="e.g. OLRI"
-                           [disabled]="!instructing.value"></ion-input>
-              </ion-item>
-
-              <ion-item padding-top>
-                <ion-label stacked>Day</ion-label>
-                <ion-select [(ngModel)]="newOfficeHours.dayOfWeek"
-                            name="newDayOfWeek"
-                            required
-                            placeholder="Monday"
-                            [disabled]="!instructing.value">
-                  <ion-option *ngFor="let day of days" [value]="day">{{ day }}</ion-option>
-                </ion-select>
-              </ion-item>
-
-              <ion-item class="OHTime" float-start padding-top>
-                <ion-label stacked>Start Time</ion-label>
-                <ion-datetime [(ngModel)]="newOfficeHours.startTime"
-                              (ionChange)="fillEndTime(newOfficeHours); isValid(newOfficeHours)"
-                              name="newStartTime"
-                              pickerFormat="hh:mm a"
-                              displayFormat="HH:mm"
-                              required
-                              placeholder="00:00 pm"
-                              [disabled]="!instructing.value"></ion-datetime>
-              </ion-item>
-              <ion-item class="OHTime" float-end padding-top>
-                <ion-label stacked>End Time</ion-label>
-                <ion-datetime [(ngModel)]="newOfficeHours.endTime"
-                              (ionChange)="isValid(newOfficeHours)"
-                              name="newEndTime"
-                              pickerFormat="hh:mm a"
-                              displayFormat="HH:mm"
-                              required
-                              placeholder="00:00 pm"
-                              [disabled]="!instructing.value"></ion-datetime>
-              </ion-item>
-
-              <div padding *ngIf="newOfficeHours.error" text-left>
-                <span class="global__input-error">{{ newOfficeHours.error }}</span>
-              </div>
-
             </ion-list>
+
+            <ion-item padding-top>
+              <ion-label stacked>Location</ion-label>
+              <ion-input [(ngModel)]="newOfficeHours.location"
+                         name="newLocation"
+                         required
+                         placeholder="e.g. OLRI"
+                         [disabled]="!instructing.value"></ion-input>
+            </ion-item>
+
+            <ion-item padding-top>
+              <ion-label stacked>Day</ion-label>
+              <ion-select [(ngModel)]="newOfficeHours.dayOfWeek"
+                          name="newDayOfWeek"
+                          required
+                          placeholder="Monday"
+                          [disabled]="!instructing.value">
+                <ion-option *ngFor="let day of days" [value]="day">{{ day }}</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item class="OHTime" float-start padding-top>
+              <ion-label stacked>Start Time</ion-label>
+              <ion-datetime [(ngModel)]="newOfficeHours.startTime"
+                            (ionChange)="fillEndTime(newOfficeHours); isValid(newOfficeHours)"
+                            name="newStartTime"
+                            pickerFormat="hh:mm a"
+                            displayFormat="HH:mm"
+                            required
+                            placeholder="00:00 pm"
+                            [disabled]="!instructing.value"></ion-datetime>
+            </ion-item>
+
+            <ion-item class="OHTime" float-end padding-top>
+              <ion-label stacked>End Time</ion-label>
+              <ion-datetime [(ngModel)]="newOfficeHours.endTime"
+                            (ionChange)="isValid(newOfficeHours)"
+                            name="newEndTime"
+                            pickerFormat="hh:mm a"
+                            displayFormat="HH:mm"
+                            required
+                            placeholder="00:00 pm"
+                            [disabled]="!instructing.value"></ion-datetime>
+            </ion-item>
+
+            <div padding *ngIf="newOfficeHours.error" text-left>
+              <span class="global__input-error">{{ newOfficeHours.error }}</span>
+            </div>
 
             <button ion-button
                     [disabled]="editOfficeHourForm.invalid || !instructing.value || newOfficeHours.error"
@@ -90,6 +99,7 @@
     <ion-slide *ngFor="let officeHours of officeHoursList; let i = index">
       <ion-card>
         <ion-card-header float-start *ngIf="officeHours.instructing">My office hours</ion-card-header>
+        <ion-card-header float-start *ngIf="!officeHours.instructing">Office hours</ion-card-header>
         <button ion-button
                 float-end
                 class="no-box-shadow"
@@ -98,59 +108,66 @@
           <ion-icon name="trash"></ion-icon>
         </button>
         <ion-card-content>
+          <ion-item>
+            <ion-label>I'm Instructing!</ion-label>
+            <ion-toggle [(ngModel)]="officeHours.instructing"
+                        (ionChange)="toggleInstructing(officeHours)"
+                        name="instructing{{ i }}"
+                        #instructing="ngModel"></ion-toggle>
+          </ion-item>
+
           <ion-list>
-            <ion-item>
-              <ion-label>I'm Instructing!</ion-label>
-              <ion-toggle [(ngModel)]="officeHours.instructing"
-                          name="instructing{{ i }}"
-                          #instructing="ngModel"></ion-toggle>
+            <ion-list-header no-margin>Instructors</ion-list-header>
+            <h2 class="global__input-error" *ngIf="officeHours.instructors$.length === 0">No one is instructing. Take this shift!</h2>
+            <ion-item *ngFor="let instructor of officeHours.instructors$">
+              <ion-avatar item-start><img [src]="instructor.avatarURL"></ion-avatar>
+              <span item-start>{{ instructor.name }}</span>
             </ion-item>
-
-            <ion-item>
-              <ion-label stacked>Location</ion-label>
-              <ion-input [(ngModel)]="officeHours.location"
-                         name="location{{ i }}"
-                         required
-                         [disabled]="!instructing.value"></ion-input>
-            </ion-item>
-
-            <ion-item padding-top>
-              <ion-label stacked>Day</ion-label>
-              <ion-select [(ngModel)]="officeHours.dayOfWeek"
-                          name="dayOfWeek{{ i }}"
-                          required
-                          [disabled]="!instructing.value">
-                <ion-option *ngFor="let day of days" [value]="day">{{ day }}</ion-option>
-              </ion-select>
-            </ion-item>
-
-            <ion-item class="OHTime" float-start padding-top>
-              <ion-label stacked>Start Time</ion-label>
-              <ion-datetime [(ngModel)]="officeHours.startTime"
-                            (ionChange)="fillEndTime(officeHours); isValid(officeHours)"
-                            name="startTime{{ i }}"
-                            pickerFormat="hh:mm a"
-                            displayFormat="HH:mm"
-                            required
-                            [disabled]="!instructing.value"></ion-datetime>
-            </ion-item>
-
-            <ion-item class="OHTime" float-end padding-top>
-              <ion-label stacked>End Time</ion-label>
-              <ion-datetime [(ngModel)]="officeHours.endTime"
-                            (ionChange)="isValid(officeHours)"
-                            name="endTime{{ i }}"
-                            pickerFormat="hh:mm a"
-                            displayFormat="HH:mm"
-                            required
-                            [disabled]="!instructing.value"></ion-datetime>
-            </ion-item>
-
-            <div padding *ngIf="officeHours.error" text-left>
-              <span class="global__input-error">{{ officeHour.error }}</span>
-            </div>
-
           </ion-list>
+
+          <ion-item padding-top>
+            <ion-label stacked>Location</ion-label>
+            <ion-input [(ngModel)]="officeHours.location"
+                       name="location{{ i }}"
+                       required
+                       [disabled]="!instructing.value"></ion-input>
+          </ion-item>
+
+          <ion-item padding-top>
+            <ion-label stacked>Day</ion-label>
+            <ion-select [(ngModel)]="officeHours.dayOfWeek"
+                        name="dayOfWeek{{ i }}"
+                        required
+                        [disabled]="!instructing.value">
+              <ion-option *ngFor="let day of days" [value]="day">{{ day }}</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item class="OHTime" float-start padding-top>
+            <ion-label stacked>Start Time</ion-label>
+            <ion-datetime [(ngModel)]="officeHours.startTime"
+                          (ionChange)="fillEndTime(officeHours); isValid(officeHours)"
+                          name="startTime{{ i }}"
+                          pickerFormat="hh:mm a"
+                          displayFormat="HH:mm"
+                          required
+                          [disabled]="!instructing.value"></ion-datetime>
+          </ion-item>
+
+          <ion-item class="OHTime" float-end padding-top>
+            <ion-label stacked>End Time</ion-label>
+            <ion-datetime [(ngModel)]="officeHours.endTime"
+                          (ionChange)="isValid(officeHours)"
+                          name="endTime{{ i }}"
+                          pickerFormat="hh:mm a"
+                          displayFormat="HH:mm"
+                          required
+                          [disabled]="!instructing.value"></ion-datetime>
+          </ion-item>
+
+          <div padding *ngIf="officeHours.error" text-left>
+            <span class="global__input-error">{{ officeHour.error }}</span>
+          </div>
 
           <button ion-button
                   [disabled]="editOfficeHourForm.invalid || !instructing.value || !editOfficeHourForm.dirty || officeHours.error"

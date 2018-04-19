@@ -1,3 +1,5 @@
+import {Profile} from "../profile/profile.interface";
+
 export interface OfficeHours {
   key?: string;
   instructors: string[];
@@ -12,4 +14,5 @@ export interface OfficeHours {
   dayOfWeek: string;
   instructing: boolean;
   error?: string;
+  instructors$: Profile[];
 }
