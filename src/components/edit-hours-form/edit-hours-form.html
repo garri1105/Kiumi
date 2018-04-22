@@ -1,8 +1,8 @@
 <ion-row center>
   <ion-col text-center>
-    <button ion-button round class="addButton" (click)="addOfficeHourSlot()" [disabled]="newOfficeHours">
-      Add Office Hours
-      <ion-icon name="add" large></ion-icon>
+    <button ion-button small round class="addButton" (click)="addOfficeHourSlot()" [disabled]="newOfficeHours">
+      Add Office Hours &#160;
+      <ion-icon name="add"></ion-icon>
     </button>
   </ion-col>
 </ion-row>
@@ -11,18 +11,24 @@
   <ion-slide *ngIf="newOfficeHours">
     <form #newOfficeHoursForm="ngForm" novalidate>
       <ion-card>
-        <ion-card-header float-start padding-left>New office hours</ion-card-header>
-        <button
-          ion-button
-          float-end
-          class="no-box-shadow"
-          (click)="newOfficeHours = null"
-          [disabled]="!newOfficeHours.instructing">
-          <ion-icon name="trash"></ion-icon>
-        </button>
+        <ion-item>
+          <button item-start ion-button
+                  [disabled]="newOfficeHoursForm.invalid || !instructing.value || newOfficeHours.error"
+                  (click)="addNewOfficeHours()">
+            Save
+          </button>
+          <button item-end
+            ion-button
+            float-end
+            class="no-box-shadow"
+            (click)="newOfficeHours = null"
+            [disabled]="!newOfficeHours.instructing">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-item>
         <ion-card-content>
           <ion-item>
-            <ion-label>I'm Instructing!</ion-label>
+            <ion-label><h3 class="instructing">I'm Instructing!</h3></ion-label>
             <ion-toggle [(ngModel)]="newOfficeHours.instructing"
                         (ionChange)="toggleInstructing(newOfficeHours)"
                         name="newInstructing"
@@ -30,7 +36,7 @@
                         #instructing="ngModel"></ion-toggle>
           </ion-item>
 
-          <ion-list>
+          <ion-list class="instructor-list">
             <ion-list-header no-margin>Instructors</ion-list-header>
             <ion-item *ngFor="let instructor of newOfficeHours.instructorsO">
               <ion-avatar item-start><img [src]="instructor.avatarURL"></ion-avatar>
@@ -89,10 +95,6 @@
           <div padding *ngIf="newOfficeHours.error" text-left>
             <span class="global__input-error">{{ newOfficeHours.error }}</span>
           </div>
-
-          <button ion-button
-                  [disabled]="newOfficeHoursForm.invalid || !instructing.value || newOfficeHours.error"
-                  (click)="addNewOfficeHours()">Save</button>
         </ion-card-content>
       </ion-card>
     </form>

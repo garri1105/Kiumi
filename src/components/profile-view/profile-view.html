@@ -1,15 +1,29 @@
 <img class="myAvatar" [src]="profile.avatarURL">
 <ion-card>
   <ion-card-content>
-    <ion-item>
-      <ion-label floating>Preferred Name</ion-label>
-      <ion-input [value]="profile.name" readonly></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Status</ion-label>
-      <ion-input *ngIf="this.profile.instructor" readonly [value]="'Instructor'"></ion-input>
-      <ion-input *ngIf="this.profile.student" readonly [value]="'Student'"></ion-input>
-    </ion-item>
+    <!--<ion-item>-->
+      <!--<ion-label floating>Preferred Name</ion-label>-->
+      <!--<ion-input [value]="profile.name" readonly></ion-input>-->
+    <!--</ion-item>-->
+    <!--<ion-item>-->
+      <!--<ion-label floating>Status</ion-label>-->
+      <!--<ion-input *ngIf="this.profile.instructor" readonly [value]="'Instructor'"></ion-input>-->
+      <!--<ion-input *ngIf="this.profile.student" readonly [value]="'Student'"></ion-input>-->
+    <!--</ion-item>-->
+    <ion-list>
+      <ion-list-header>
+        PREFERRED NAME
+      </ion-list-header>
+      <ion-item><h6 class="profile-list-item">{{ profile.name }}</h6></ion-item>
+    </ion-list>
+    <br>
+    <ion-list>
+      <ion-list-header>
+        STATUS
+      </ion-list-header>
+      <ion-item *ngIf="this.profile.instructor"><h6 class="profile-list-item">Instructor</h6></ion-item>
+      <ion-item *ngIf="this.profile.student"><h6 class="profile-list-item">Student</h6></ion-item>
+    </ion-list>
   </ion-card-content>
 </ion-card>
 
