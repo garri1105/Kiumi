@@ -3,7 +3,6 @@ import { StudentQueueDataProvider } from '../../providers/student-queue-data/stu
 import { Profile } from '../../models/profile/profile.interface';
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 import {Course} from "../../models/course/course.interface";
-import {AlertController} from "ionic-angular";
 
 @Component({
   selector: 'queue-for-students',
@@ -18,28 +17,14 @@ export class QueueForStudentsComponent {
   checkedIn: boolean;
 
   constructor(private studentQueueData: StudentQueueDataProvider,
-              private profileData: ProfileDataProvider,
-              private alert: AlertController) {
+              private profileData: ProfileDataProvider) {
 
     this.profile = this.profileData.getProfile();
   }
 
   toggleCheckIn() {
-    if (!this.isInstructing) {
-      this.checkedIn = !this.checkedIn;
-      this.checkedIn ?
-        this.addStudent().catch(e => this.alert.create({message: e}).present())
-        : this.removeStudent().catch(e => this.alert.create({message: e}).present());
-    }
-    else {
-     this.alert.create({
-       title: 'Not allowed!',
-       message: 'You can\'t check in if you are an instructor for the class',
-       buttons: [
-         {text: 'Ok', role: 'cancel',}
-         ]
-     }).present();
-    }
+    this.checkedIn = !this.checkedIn;
+    this.checkedIn ? this.addStudent() : this.removeStudent();
   }
 
   addStudent() {

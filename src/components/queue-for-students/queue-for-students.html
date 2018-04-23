@@ -9,9 +9,10 @@
 
 <ion-row>
   <ion-col>
-    <button item-start ion-button class="queue-Check-In" clear (click)="toggleCheckIn()">
+    <button *ngIf="!isInstructing" item-start ion-button class="queue-Check-In" clear (click)="toggleCheckIn()">
       <span *ngIf="checkedIn">Check Out</span>
       <span *ngIf="!checkedIn">Check In</span>
     </button>
+    <p *ngIf="isInstructing">You are not instructing at this time</p>
   </ion-col>
 </ion-row>
