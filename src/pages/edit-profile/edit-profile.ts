@@ -12,6 +12,8 @@ export class EditProfilePage {
               private navCtrl: NavController) {
   }
 
+  // This saveProfileResult function takes in an event input that's a boolean and then successfully saves the 
+  // profile if that boolean is true. If it's not true, then the user sees that the profile failed to save. 
   saveProfileResult(event: Boolean) {
     if (event) {
       this.toast.create({

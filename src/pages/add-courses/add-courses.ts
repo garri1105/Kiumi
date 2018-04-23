@@ -23,6 +23,8 @@ export class AddCoursesPage {
     this.profile = this.profileData.getProfile();
   }
 
+  // This saveCourses function takes in no inputs and saves a student or instructor's courses. It interacts with 
+  // the database and adds courses to the user's profile. 
   saveCourses() {
     if (this.addedCourses) {
       this.addedCourses.map(course => {
@@ -55,6 +57,8 @@ export class AddCoursesPage {
     }
   }
 
+  // This getSelectedCourses function takes in an array of courses and gets the courses that are selected
+  // by updating the variable addedCourses to be the array of courses that is passed as an input. 
   getSelectedCourses(event: Course[]) {
     this.addedCourses = event;
   }

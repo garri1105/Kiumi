@@ -47,6 +47,8 @@ export class OfficeHoursPage {
     this.officeHoursList$.unsubscribe();
   }
 
+  // The initOfficeHours function takes in an array of OfficeHours and initializes the list to make sure that 
+  // the upcoming office hours will be accurately displayed.  
   initOfficeHours(officeHoursList: OfficeHours[]) {
     for (let i = 1; i < officeHoursList.length; i++) {
       let time = moment(officeHoursList[i].date);
@@ -78,6 +80,8 @@ export class OfficeHoursPage {
     this.officeHoursList = officeHoursList;
   }
 
+  // This isInstructor function takes in no parameters and sets the boolean variable isInstructing to true 
+  // if the user is an instructor of the course. 
   isInstructor() {
     if (this.profile.instructor) {
       this.profile.instructor.courses.forEach(courseKey => {
@@ -88,6 +92,8 @@ export class OfficeHoursPage {
     }
   }
 
+  // This getInstructors function takes in an OfficeHours appointment as an input and pushes the instructor onto 
+  // the list of instructors for that individual OfficeHours appointment. 
   getInstructors(officeHours: OfficeHours) {
     officeHours.instructorsO = [];
     officeHours.instructors.forEach(instructorId => {
