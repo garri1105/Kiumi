@@ -20,6 +20,7 @@ export class CourseSearchComponent {
     this.addedCourses = new EventEmitter<Course[]>();
   }
 
+  // This function takes in a string as a parameter and then searches the list of courses for a matching string. 
   searchCourse(query: string) {
     this.courseList = [];
     if (query.length > 0) {
@@ -37,6 +38,8 @@ export class CourseSearchComponent {
     }
   }
 
+  // This function takes in a Course as a parameter and then adds it to the user's courses by pushing it onto an array
+  // of selected courses. 
   addCourse(selected: Course) {
     if (selected.selection !== null) {
       this.selectedCourses.forEach((course, i) => {

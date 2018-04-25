@@ -32,6 +32,8 @@ export class CourseListComponent {
     this.errorToast = this.toast.create({duration: 3000});
   }
 
+  // This function takes in an event and then displays the courses that a user is attending and/or instructing. 
+  // It uses the user's information to determine whether he or she is a student or instructor. 
   toggleSection(event) {
     if (event === 'student') {
       this.studentButton = !this.studentButton;
@@ -41,6 +43,8 @@ export class CourseListComponent {
     }
   }
 
+  // This function takes an either an Instructor or Student as well as a Course to be removed. 
+  // It updates the user's profile and removes the class from their list of classes. 
   removeCourse(profile: Instructor | Student, course: Course) {
     profile.courses.splice(profile.courses.indexOf(course.key), 1);
 
@@ -61,6 +65,8 @@ export class CourseListComponent {
       .catch(e => this.errorToast.setMessage(e).present());
   }
 
+  // This function takes in an Instructor or Student and returns a boolean that represents whether or not the 
+  // user is an instructor for the given office hours.  
   isInstructor(profile: Instructor | Student): profile is Instructor {
     return (<Instructor>profile).officeHours !== undefined;
   }

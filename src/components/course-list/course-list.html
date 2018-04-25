@@ -1,3 +1,7 @@
+<!-- The CourseListComponent displays the courses that a user is attending and/or instructing. It uses a toggle button 
+to display the attending/instructing courses. It also allows users to slide and remove courses that they may not 
+want to be attending/instructing.  -->
+
 <ion-list>
   <ion-list-header class="dropdown" *ngIf="profile.student" no-lines no-padding>
     <button detail-none ion-item (click)="toggleSection('student')">
