@@ -22,16 +22,21 @@ export class QueueForStudentsComponent {
     this.profile = this.profileData.getProfile();
   }
 
+  // This function allows a user to check into or out of an office hours. If a student is already checked in, 
+  // this toggle will check them out and remove them from the queue. If they aren't checked in yet, then this toggle 
+  // will check them in and add them to the student queue.  
   toggleCheckIn() {
     this.checkedIn = !this.checkedIn;
     this.checkedIn ? this.addStudent() : this.removeStudent();
   }
 
+  // This function adds the student's profile to the student queue. 
   addStudent() {
     this.studentQueue.push(this.profile);
     return this.studentQueueData.updateQueue(this.studentQueue);
   }
 
+  // This function removes the student's profile from the student queue. 
   removeStudent() {
     this.studentQueue.forEach((student, i) => {
       if (student.key === this.profile.key) {

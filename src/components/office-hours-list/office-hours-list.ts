@@ -19,6 +19,7 @@ export class OfficeHoursListComponent {
   constructor() {
   }
 
+  // This function gets the current and upcoming office hours for a course. 
   getCurrentOfficeHours() {
     if (this.officeHoursList[0]) {
       let timeDiff = moment().diff(moment(this.officeHoursList[0].date), 'minutes');

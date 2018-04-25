@@ -46,6 +46,7 @@ export class StudentQueuePage {
     this.studentQueue$.unsubscribe();
   }
 
+  // This function initializes the student queue using the parameter of an array of strings. 
   initStudentQueue(studentQueue: string[]) {
     this.profileData.getProfileListRef()
       .valueChanges().pipe(take(1))

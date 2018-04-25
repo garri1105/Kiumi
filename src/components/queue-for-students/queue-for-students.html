@@ -1,3 +1,6 @@
+<!-- The QueueForStudentsComponent displays the student queue and allows the user to check in if he is not an instructor 
+for the given office hours.  -->
+
 <h2 padding *ngIf="studentQueue?.length === 0">Is empty</h2>
 <ion-list>
   <ion-item *ngFor="let student of studentQueue; let i = index">

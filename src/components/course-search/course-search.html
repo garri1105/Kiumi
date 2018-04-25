@@ -1,3 +1,7 @@
+<!-- The CourseSearchComponent allows a user to search for and add courses. When a user adds a course, they can
+add it as a course they're instructing or attending, depending on their profile credentials. After adding courses, 
+a user can save them and then the course will be added and displayed as a saved course. 
+ -->
 <ion-searchbar [(ngModel)]="query" (ionChange)="searchCourse(query)"></ion-searchbar>
 
 <ion-list class="savedCourses" *ngIf="savedCourses?.length > 0">
