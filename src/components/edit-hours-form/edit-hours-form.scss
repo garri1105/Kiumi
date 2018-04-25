@@ -6,17 +6,33 @@ edit-hours-form {
 
   .instructing{
     color: white;
+    margin: 0;
   }
 
   ion-toggle {
     zoom: 0.75;
   }
 
-  .instructor-list{
-    border-bottom: 2px white;
+  .item-inner {
+    border-bottom-color: transparent !important;
+    box-shadow: none !important;
   }
 
-  .no-box-shadow {
+  .input {
+    border-bottom: white solid 1px !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    background: transparentize(white,1.0) !important;
+    padding-left: 0% !important;
+    font-size: 80%;
+  }
+
+  .OHType {
+    font-size: 65%;
+  }
+
+    .no-box-shadow {
     box-shadow: none;
   }
 

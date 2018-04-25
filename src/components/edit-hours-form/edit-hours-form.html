@@ -12,20 +12,22 @@
     <form #newOfficeHoursForm="ngForm" novalidate>
       <ion-card>
         <ion-item>
-          <button item-start ion-button
+          <ion-card-header float-start padding-left class="OHType">New Office Hours</ion-card-header>
+          <button item-end ion-button
                   [disabled]="newOfficeHoursForm.invalid || !instructing.value || newOfficeHours.error"
                   (click)="addNewOfficeHours()">
             Save
           </button>
           <button item-end
-            ion-button
-            float-end
-            class="no-box-shadow"
-            (click)="newOfficeHours = null"
-            [disabled]="!newOfficeHours.instructing">
+                  ion-button
+                  float-end
+                  class="no-box-shadow"
+                  (click)="newOfficeHours = null"
+                  [disabled]="!newOfficeHours.instructing">
             <ion-icon name="trash"></ion-icon>
           </button>
         </ion-item>
+
         <ion-card-content>
           <ion-item>
             <ion-label><h3 class="instructing">I'm Instructing!</h3></ion-label>
@@ -36,7 +38,7 @@
                         #instructing="ngModel"></ion-toggle>
           </ion-item>
 
-          <ion-list class="instructor-list">
+          <ion-list>
             <ion-list-header no-margin>Instructors</ion-list-header>
             <ion-item *ngFor="let instructor of newOfficeHours.instructorsO">
               <ion-avatar item-start><img [src]="instructor.avatarURL"></ion-avatar>
@@ -49,11 +51,12 @@
           </div>
 
           <ion-item padding-top>
-            <ion-label stacked>Location</ion-label>
+            <ion-label>Location &#160;</ion-label>
             <ion-input [(ngModel)]="newOfficeHours.location"
                        name="newLocation"
+                       no-padding
                        required
-                       placeholder="e.g. OLRI"
+                       placeholder="e.g. OLRI 100"
                        [disabled]="!instructing.value"></ion-input>
           </ion-item>
 
