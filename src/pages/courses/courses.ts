@@ -24,7 +24,7 @@ export class CoursesPage {
               private loading: LoadingController,
               private utilities: UtilitiesProvider) {
 
-    this.resetDatabase(true);
+    this.resetDatabase(false);
   }
 
   ionViewCanEnter() {

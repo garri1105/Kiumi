@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.kiumi.mac" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Traffionic</name>
+    <name>Kiumi</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
@@ -92,7 +92,7 @@
     <plugin name="cordova-plugin-googleplus" spec="^5.2.3">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.48365895185-k9pklf1pgdc5cl1v6j2k2ofluhfvvo7k" />
     </plugin>
-    <engine name="android" spec="7.0.0" />
     <engine name="browser" spec="5.0.3" />
-    <engine name="ios" spec="^4.5.4" />
+    <engine name="ios" spec="4.5.4" />
+    <engine name="android" spec="7.0.0" />
 </widget>
