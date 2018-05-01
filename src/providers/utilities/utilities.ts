@@ -51,7 +51,6 @@ export class UtilitiesProvider {
     await this.resetAccounts();
   }
 
-  //TODO Fix initializations
   async resetCourses() {
     return await this.courseData
       .getCourseListRef()

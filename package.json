@@ -1,5 +1,5 @@
 {
-  "name": "TraffIonic",
+  "name": "Kiumi",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
@@ -74,7 +74,7 @@
       "cordova-plugin-file": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.48365895185-k9pklf1pgdc5cl1v6j2k2ofluhfvvo7k"
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.982195056157-kurp0vd9cm3gj2olg0hrklekvlo8v3ai"
       }
     },
     "platforms": [

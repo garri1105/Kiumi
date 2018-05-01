@@ -1,8 +1,8 @@
 export const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBnL7vJC0XmK99CUMo2q1AzqldkvFX0114",
-  authDomain: "traffionic.firebaseapp.com",
-  databaseURL: "https://traffionic.firebaseio.com",
-  projectId: "traffionic",
+  apiKey: "AIzaSyBoOJavFqay-4pCCJ6hM0srH8lWdLTTCQk",
+  authDomain: "kiumi1105.firebaseapp.com",
+  databaseURL: "https://kiumi1105.firebaseio.com",
+  projectId: "kiumi1105",
   storageBucket: "",
-  messagingSenderId: "48365895185"
+  messagingSenderId: "982195056157"
 };

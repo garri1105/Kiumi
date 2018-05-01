@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>48365895185-k9pklf1pgdc5cl1v6j2k2ofluhfvvo7k.apps.googleusercontent.com</string>
+	<string>982195056157-kurp0vd9cm3gj2olg0hrklekvlo8v3ai.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.48365895185-k9pklf1pgdc5cl1v6j2k2ofluhfvvo7k</string>
+	<string>com.googleusercontent.apps.982195056157-kurp0vd9cm3gj2olg0hrklekvlo8v3ai</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB7ABUpK7YiNex07sLSboLCiiCBUS05xLk</string>
+	<string>AIzaSyAhv4b-N40XrLhvf0laEePtV3YkC0_517k</string>
 	<key>GCM_SENDER_ID</key>
-	<string>48365895185</string>
+	<string>982195056157</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.traffionic.mac</string>
+	<string>com.kiumi.mac</string>
 	<key>PROJECT_ID</key>
-	<string>traffionic</string>
+	<string>kiumi1105</string>
 	<key>STORAGE_BUCKET</key>
-	<string>traffionic.appspot.com</string>
+	<string>kiumi1105.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:48365895185:ios:65fcb268ed679808</string>
+	<string>1:982195056157:ios:fef1c14a25756e25</string>
 	<key>DATABASE_URL</key>
-	<string>https://traffionic.firebaseio.com</string>
+	<string>https://kiumi1105.firebaseio.com</string>
 </dict>
 </plist>

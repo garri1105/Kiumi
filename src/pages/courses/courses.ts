@@ -6,6 +6,7 @@ import {Profile} from "../../models/profile/profile.interface";
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 import {Subscription} from "rxjs/Subscription";
+import {OfficeHours} from "../../models/office-hours/office-hours.interface";
 
 @IonicPage()
 @Component({
@@ -50,7 +51,7 @@ export class CoursesPage {
   }
 
   // The loadCourses function takes in an array of courses and validates that an instructor is in a given course or that a student
-  // is in a given course. We use a filter of the course array to make sure that the course is listed in the user's courses. 
+  // is in a given course. We use a filter of the course array to make sure that the course is listed in the user's courses.
   loadCourses(courses: Course[]) {
     this.courseList = courses.filter(course =>
           ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
@@ -69,5 +70,4 @@ export class CoursesPage {
       });
     }
   }
-
 }
