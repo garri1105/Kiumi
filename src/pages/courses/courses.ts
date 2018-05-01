@@ -6,7 +6,6 @@ import {Profile} from "../../models/profile/profile.interface";
 import {UtilitiesProvider} from "../../providers/utilities/utilities";
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 import {Subscription} from "rxjs/Subscription";
-import {OfficeHours} from "../../models/office-hours/office-hours.interface";
 
 @IonicPage()
 @Component({
@@ -25,7 +24,7 @@ export class CoursesPage {
               private loading: LoadingController,
               private utilities: UtilitiesProvider) {
 
-    this.resetDatabase(false);
+    this.resetDatabase(true);
   }
 
   ionViewCanEnter() {

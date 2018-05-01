@@ -37,7 +37,6 @@ export class CourseDataProvider {
 
   async searchCourse(query: string) {
     let courseList = [];
-
     const numberQuery = this.db.list<Course>('course-list', ref =>
       ref.orderByChild('number')
         .startAt(query.toUpperCase())
