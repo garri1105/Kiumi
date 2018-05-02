@@ -1,13 +1,17 @@
+<!-- This is the home page that displays our logo and allows a user to login to their account or sign up. After the
+user has already logged in, they will not be seeing this page every time that the app is opened. This page will only
+be displayed if a user signs out or isn't logged in already. We used buttons to push to the LoginPage or the SignUpPage
+depending on if the user already has an account or not. -->
 <ion-header>
   <ion-navbar>
       <ion-title>
-        TraffIonic
+        Kiumi
       </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-img class="logoImage" src="../assets/imgs/homePageLogo.png"></ion-img>
+<ion-content no-padding>
+  <ion-img class="logoImage" width="300" height="400" src="../assets/imgs/Kiumi_Logo.png"></ion-img>
   <div class="homeButtons">
     <button class="log-in" [navPush]="'LoginPage'">
       Login

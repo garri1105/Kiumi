@@ -3,7 +3,6 @@ import { StudentQueueDataProvider } from '../../providers/student-queue-data/stu
 import { Profile } from '../../models/profile/profile.interface';
 import {ProfileDataProvider} from "../../providers/profile-data/profile-data";
 import {Course} from "../../models/course/course.interface";
-import {AlertController} from "ionic-angular";
 
 @Component({
   selector: 'queue-for-students',
@@ -18,35 +17,26 @@ export class QueueForStudentsComponent {
   checkedIn: boolean;
 
   constructor(private studentQueueData: StudentQueueDataProvider,
-              private profileData: ProfileDataProvider,
-              private alert: AlertController) {
+              private profileData: ProfileDataProvider) {
 
     this.profile = this.profileData.getProfile();
   }
 
+  // This function allows a user to check into or out of an office hours. If a student is already checked in, 
+  // this toggle will check them out and remove them from the queue. If they aren't checked in yet, then this toggle 
+  // will check them in and add them to the student queue.  
   toggleCheckIn() {
-    if (!this.isInstructing) {
-      this.checkedIn = !this.checkedIn;
-      this.checkedIn ?
-        this.addStudent().catch(e => this.alert.create({message: e}).present())
-        : this.removeStudent().catch(e => this.alert.create({message: e}).present());
-    }
-    else {
-     this.alert.create({
-       title: 'Not allowed!',
-       message: 'You can\'t check in if you are an instructor for the class',
-       buttons: [
-         {text: 'Ok', role: 'cancel',}
-         ]
-     }).present();
-    }
+    this.checkedIn = !this.checkedIn;
+    this.checkedIn ? this.addStudent() : this.removeStudent();
   }
 
+  // This function adds the student's profile to the student queue. 
   addStudent() {
     this.studentQueue.push(this.profile);
     return this.studentQueueData.updateQueue(this.studentQueue);
   }
 
+  // This function removes the student's profile from the student queue. 
   removeStudent() {
     this.studentQueue.forEach((student, i) => {
       if (student.key === this.profile.key) {

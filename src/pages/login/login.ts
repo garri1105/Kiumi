@@ -18,6 +18,9 @@ export class LoginPage {
               private profileData: ProfileDataProvider) {
   }
 
+  // This login function takes a LoginResponse input and then sets the user's root page to the TabsPage that displays
+  // their courses if the login was successful. If the login was not successful, then an error message is displayed 
+  // and the root page is not changed for the user. 
   login(event: LoginResponse) {
     if(!event.error) {
       this.profileData.getProfileRef(<User>event.result).pipe(take(1))

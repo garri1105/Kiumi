@@ -49,13 +49,14 @@ export class CoursesPage {
     this.courseList$.unsubscribe();
   }
 
+  // The loadCourses function takes in an array of courses and validates that an instructor is in a given course or that a student
+  // is in a given course. We use a filter of the course array to make sure that the course is listed in the user's courses.
   loadCourses(courses: Course[]) {
     this.courseList = courses.filter(course =>
           ((this.profile.instructor && this.profile.instructor.courses.indexOf(course.key) > -1) ||
       (this.profile.student && this.profile.student.courses.indexOf(course.key)) > -1));
     this.ready = true;
   }
-
 
   resetDatabase(active) {
     if (active) {
@@ -68,5 +69,4 @@ export class CoursesPage {
       });
     }
   }
-
 }

@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "48365895185",
-    "firebase_url": "https://traffionic.firebaseio.com",
-    "project_id": "traffionic",
-    "storage_bucket": "traffionic.appspot.com"
+    "project_number": "982195056157",
+    "firebase_url": "https://kiumi1105.firebaseio.com",
+    "project_id": "kiumi1105",
+    "storage_bucket": "kiumi1105.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:48365895185:android:65fcb268ed679808",
+        "mobilesdk_app_id": "1:982195056157:android:fef1c14a25756e25",
         "android_client_info": {
-          "package_name": "com.traffionic.mac"
+          "package_name": "com.kiumi.mac"
         }
       },
       "oauth_client": [
         {
-          "client_id": "48365895185-506297m123f97eip097mpl6teumibq18.apps.googleusercontent.com",
+          "client_id": "982195056157-fkt1de2tm7jlq5n7ii1fe36755dvd77k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.traffionic.mac",
+            "package_name": "com.kiumi.mac",
             "certificate_hash": "0b9a1d662497124eca610b3b8ce470a9928433b3"
           }
         },
         {
-          "client_id": "48365895185-7vnbechfbhvgnbp96r02b9m31u5gok4s.apps.googleusercontent.com",
+          "client_id": "982195056157-5iouf3jhdbn7kbrqq2f5msot7ih5q1d8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC839KqBJtvVziccXcoqRv5MdPwHIwQoUA"
+          "current_key": "AIzaSyAUBV5wErm3Cv4Jpoud4G0sc6msdxQUMxQ"
         }
       ],
       "services": {
@@ -40,14 +40,14 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "48365895185-7vnbechfbhvgnbp96r02b9m31u5gok4s.apps.googleusercontent.com",
+              "client_id": "982195056157-5iouf3jhdbn7kbrqq2f5msot7ih5q1d8.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "48365895185-k9pklf1pgdc5cl1v6j2k2ofluhfvvo7k.apps.googleusercontent.com",
+              "client_id": "982195056157-kurp0vd9cm3gj2olg0hrklekvlo8v3ai.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.traffionic.mac"
+                "bundle_id": "com.kiumi.mac"
               }
             }
           ]

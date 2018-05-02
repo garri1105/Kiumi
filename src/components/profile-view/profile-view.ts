@@ -19,6 +19,7 @@ export class ProfileViewComponent {
     this.signOutResult = new EventEmitter<Promise<any>>();
   }
 
+  // This function signs a user out of their account. 
   signOut() {
       this.signOutResult.emit(this.auth.signOut());
   }

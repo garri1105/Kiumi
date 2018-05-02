@@ -61,6 +61,7 @@ export class EditProfileFormComponent {
       });
   }
 
+  // This function saves a user's roles as an instructor and/or student. 
   saveProfile() {
     if (this.instructorCheck) {
       if (!this.profile.instructor) {
@@ -128,6 +129,8 @@ export class EditProfileFormComponent {
     }
   }
 
+  // This function alerts a user when they uncheck the instructor or student checkbox. It assures that the user doesn't
+  // accidentally remove their credential as an instructor or student. 
   alertUser(checkbox) {
     if (!checkbox.valueAccessor.value) {
       this.alert.create({

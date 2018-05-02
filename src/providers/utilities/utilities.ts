@@ -51,7 +51,6 @@ export class UtilitiesProvider {
     await this.resetAccounts();
   }
 
-  //TODO Fix initializations
   async resetCourses() {
     return await this.courseData
       .getCourseListRef()
@@ -60,6 +59,7 @@ export class UtilitiesProvider {
           return changes.map(c => ({
             key: c.payload.key,
             ...c.payload.val(),
+            number: c.payload.val().number.replace(/\u00a0/g, ' '),
             officeHours: [{key: '0'} as OfficeHours],
             instructors: ['0'],
             students: ['0']

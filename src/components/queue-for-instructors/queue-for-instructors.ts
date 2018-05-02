@@ -19,6 +19,9 @@ export class QueueForInstructorsComponent {
     this.profile = this.profileData.getProfile();
   }
 
+  // This function allows an instructor to remove a student from the queue if they aren't at the office hours, 
+  // have already been assisted, or have left. It takes in a Profile parameter and then removes that profile from the 
+  // student queue. 
   removeStudent(profile: Profile) {
     this.studentQueue.forEach((student, i) => {
       if (student.key === profile.key) {
@@ -29,6 +32,8 @@ export class QueueForInstructorsComponent {
     return this.studentQueueData.updateQueue(this.studentQueue);
   }
 
+// This function allows an instructor to move students up or down in the queue. If someone shows up late, the instructor
+// can use this function to move them down in the queue if other students are ready to be assisted. 
   reorderQueue(indexes) {
     this.studentQueue = reorderArray(this.studentQueue, indexes);
     return this.studentQueueData.updateQueue(this.studentQueue);

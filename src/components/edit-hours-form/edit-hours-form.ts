@@ -42,6 +42,8 @@ export class EditHoursFormComponent {
     }).present();
   }
 
+  // This function creates an office hour, allowing an instructor to enter in details for the office hour. It is 
+  // displayed as the first tab in the list of office hours. 
   addOfficeHourSlot() {
     this.newOfficeHours = {
       instructing: true,
@@ -54,6 +56,8 @@ export class EditHoursFormComponent {
     this.slides.slideTo(0);
   }
 
+  // This function automatically fills in the end time by adding one hour to the start time. It takes in an OfficeHours 
+  // parameter and then fills in the end time. 
   fillEndTime(officeHours: OfficeHours) {
     if (officeHours.startTime) {
       officeHours.endTime =
@@ -63,6 +67,8 @@ export class EditHoursFormComponent {
     }
   }
 
+  // This function validates office hours. It takes an OfficeHours parameter and makes sure that the start and end time
+  // aren't the same, the start time isn't after the end time, and that the office hours last at least 30 minutes. 
   isValid(officeHours: OfficeHours) {
     if (officeHours.startTime && officeHours.endTime) {
       let start = moment(officeHours.startTime, 'HH:mm');
@@ -86,6 +92,8 @@ export class EditHoursFormComponent {
     }
   }
 
+  // This function adds a new office hours by pushing an instructor of an office hour onto the instructors list for a 
+  // given office hour and then pushing this office hour onto a list of the course's office hours. 
   addNewOfficeHours() {
     this.newOfficeHours.instructors.push(this.profile.key);
     this.officeHoursList.push(this.newOfficeHours);
@@ -101,6 +109,8 @@ export class EditHoursFormComponent {
       })
   }
 
+  // This function takes in an OfficeHours parameter and allows an instructor to update an office hours by adjusting
+  // or adding details. They can change their role as an instructor, the location, the day, and the start and end times. 
   updateOfficeHours(officeHours: OfficeHours) {
     let message = '';
 
@@ -130,6 +140,8 @@ export class EditHoursFormComponent {
       .catch(e => this.displayErrorToast(e));
   }
 
+  // This function removes an OfficeHours instance. It takes in an OfficeHours parameter and then uses the 
+  // OfficeHoursDataProvider to remove this OfficeHours instance from the list of office hours for a course. 
   removeOfficeHours(officeHours: OfficeHours) {
     if (officeHours.instructors.length <= 2) {
       this.officeHoursList.splice(this.officeHoursList.indexOf(officeHours), 1);
@@ -156,6 +168,9 @@ export class EditHoursFormComponent {
     }
   }
 
+  // This function allows an instructor to toggle whether or not they're instructing a given office hour. 
+  // It takes an OfficeHours parameter and then updates this parameter to display whether or not the user is 
+  // the instructing this office hour. 
   toggleInstructing(officeHours: OfficeHours) {
     if (officeHours.instructing) {
       officeHours.instructorsO.push(this.profile);

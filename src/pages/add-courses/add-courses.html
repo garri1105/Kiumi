@@ -1,5 +1,7 @@
+<!-- This add courses page allows a user to add courses and then save them. When they are saved, the user's profile
+will be updated to contain their added courses. We call the course search component which allows a user to look at 
+all the current courses, search through them, and add the ones that they are taking or instructing.   -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Add Courses</ion-title>
     <ion-buttons end>
@@ -13,5 +15,4 @@
 
 <ion-content padding>
   <course-search [profile]="profile" (addedCourses)="getSelectedCourses($event)"></course-search>
-
 </ion-content>

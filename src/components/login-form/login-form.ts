@@ -25,6 +25,7 @@ export class LoginFormComponent {
     this.loginStatus = new EventEmitter<LoginResponse>();
   }
 
+  // This function allows for Google login with a Macalester email account. 
   async googleLogin() {
     const gUser: any = await this.auth.googleLogin();
     console.log(gUser);
@@ -38,6 +39,7 @@ export class LoginFormComponent {
     }
   }
 
+  // This function allows for login with an account that isn't stored through Google. 
   async login() {
     this.loginResult = await this.auth.signInWithEmailAndPassword(this.account);
     this.loginStatus.emit(this.loginResult);

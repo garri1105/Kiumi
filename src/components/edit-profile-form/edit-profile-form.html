@@ -1,3 +1,7 @@
+<!-- The EditProfileFormComponent allows a user to edit their credentials. They can change their role as an instructor and/or student
+as well as their preferred name. For the instructor/student credentials, an ion-checkbox is used. The Save button 
+then calls saveProfile() function, which updates a user's profile. 
+ -->
 <img class="myAvatar" [src]="profile.avatarURL">
 <form #editProfileForm="ngForm" novalidate>
   <ion-card>
