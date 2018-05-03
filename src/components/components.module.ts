@@ -9,6 +9,7 @@ import { EditHoursFormComponent } from "./edit-hours-form/edit-hours-form";
 import { OfficeHoursListComponent } from './office-hours-list/office-hours-list';
 import { QueueForStudentsComponent } from './queue-for-students/queue-for-students';
 import { QueueForInstructorsComponent } from './queue-for-instructors/queue-for-instructors';
+import {IonicModule} from "ionic-angular";
 
 @NgModule({
 	declarations: [CourseListComponent,
@@ -21,7 +22,7 @@ import { QueueForInstructorsComponent } from './queue-for-instructors/queue-for-
     OfficeHoursListComponent,
     QueueForStudentsComponent,
     QueueForInstructorsComponent],
-	imports: [],
+	imports: [IonicModule],
 	exports: [CourseListComponent,
     LoginFormComponent,
     SignUpFormComponent,
