@@ -1,928 +1,928 @@
-AMST 101
+AMSTÂ 101
 Explorations of Race and Racism
-AMST 194
+AMSTÂ 194
 Introduction to American Studies
-AMST 200
+AMSTÂ 200
 Critical Methods for American Studies Research
-AMST 203
+AMSTÂ 203
 Politics and Inequality
-AMST 219
+AMSTÂ 219
 In Motion: African Americans in the United States
-AMST 225
+AMSTÂ 225
 American Indian History to 1871
-AMST 229
+AMSTÂ 229
 Narrating Black Women's Resistance
-AMST 240
+AMSTÂ 240
 Race, Culture and Ethnicity in Education
-AMST 263
+AMSTÂ 263
 African-American Theatre
-AMST 275
+AMSTÂ 275
 African American Literature to 1900
-AMST 294
+AMSTÂ 294
 Martin and Malcolm: Racial Terror and Black Freedom Struggle
-AMST 301
+AMSTÂ 301
 Critical Prison Studies
-AMST 308
+AMSTÂ 308
 Introduction to U.S. Latino/a Studies
-AMST 334
+AMSTÂ 334
 Cultural Studies and the Media
-AMST 354
+AMSTÂ 354
 Blackness in the Media
-AMST 400
+AMSTÂ 400
 Senior Seminar
-ANTH 101
+ANTHÂ 101
 General Anthropology
-ANTH 111
+ANTHÂ 111
 Cultural Anthropology
-ANTH 194
+ANTHÂ 194
 The Anthropology of Medicine: An Introduction to the Discipline
-ANTH 206
+ANTHÂ 206
 Endangered/Minority Languages
-ANTH 230
+ANTHÂ 230
 Ethnographic Interviewing
-ANTH 239
+ANTHÂ 239
 Medical Anthropology
-ANTH 253
+ANTHÂ 253
 Comparative Muslim Cultures
-ANTH 259
+ANTHÂ 259
 Indigenous Peoples of the Arctic
-ANTH 294
+ANTHÂ 294
 Museum Anthropology
-ANTH 394
+ANTHÂ 394
 Anthropocene/Human Prospect
-ANTH 487
+ANTHÂ 487
 Theory in Anthropology
-ART 130
+ARTÂ 130
 Drawing I
-ART 131
+ARTÂ 131
 Ceramics I
-ART 149
+ARTÂ 149
 Introduction to Visual Culture
-ART 160
+ARTÂ 160
 Art of the West I
-ART 170
+ARTÂ 170
 Art of the East I: China
-ART 233
+ARTÂ 233
 Photography I
-ART 234
+ARTÂ 234
 Painting I
-ART 235
+ARTÂ 235
 Sculpture I: Basic Sculpture with a Dose of Hot Metal
-ART 236
+ARTÂ 236
 Printmaking I
-ART 239
+ARTÂ 239
 2-D Design
-ART 280
+ARTÂ 280
 Art and Architecture of Ancient Egypt
-ART 282
+ARTÂ 282
 Art and Architecture of the Islamic World
-ART 294
+ARTÂ 294
 Race, Ethnicity, Class and Gender in American Photography
-ART 330
+ARTÂ 330
 Figure Drawing
-ART 371
+ARTÂ 371
 Painting II
-ART 373
+ARTÂ 373
 Printmaking II
-ART 394
+ARTÂ 394
 By Hand
-ASIA 140
+ASIAÂ 140
 Introduction to East Asian Civilization
-ASIA 150
+ASIAÂ 150
 Language and Gender in Japanese Society
-ASIA 170
+ASIAÂ 170
 Art of the East I: China
-ASIA 254
+ASIAÂ 254
 Japanese Film and Animation: From the Salaryman to the Shojo
-ASIA 275
+ASIAÂ 275
 The Rise of Modern China
-ASIA 277
+ASIAÂ 277
 The Rise of Modern Japan
-ASIA 281
+ASIAÂ 281
 Dialects, Multilingualism, and the Politics of Speaking Japanese
-ASIA 294
+ASIAÂ 294
 Literature and Social Change in Modern China
-ASIA 353
+ASIAÂ 353
 Cyber China: Internet and Contemporary Culture
-BIOL 101
+BIOLÂ 101
 Creatures and Curiosities
-BIOL 118
+BIOLÂ 118
 The Heart and Soul Biology
-BIOL 144
+BIOLÂ 144
 Lakes, Streams and Rivers
-BIOL 194
+BIOLÂ 194
 Health in the Anthropocene
-BIOL 255
+BIOLÂ 255
 Cell Biology and Genetics Laboratory Methods
-BIOL 260
+BIOLÂ 260
 Genetics
-BIOL 265
+BIOLÂ 265
 Cell Biology
-BIOL 270
+BIOLÂ 270
 Biodiversity and Evolution
-BIOL 285
+BIOLÂ 285
 Ecology
-BIOL 344
+BIOLÂ 344
 Aquatic Ecology
-BIOL 346
+BIOLÂ 346
 Soil Ecology
-BIOL 351
+BIOLÂ 351
 Biochemistry I
-BIOL 354
+BIOLÂ 354
 Chemical Biology
-BIOL 356
+BIOLÂ 356
 Cellular and Molecular Neuroscience
-BIOL 357
+BIOLÂ 357
 Immunology
-BIOL 358
+BIOLÂ 358
 Microbiology
-BIOL 360
+BIOLÂ 360
 Neuroanatomy
-BIOL 361
+BIOLÂ 361
 Invertebrate Animal Diversity
-BIOL 368
+BIOLÂ 368
 Plant Ecophysiology
-BIOL 394
+BIOLÂ 394
 Cellular Signaling in the Nervous System: Old and New Players
-BIOL 494
+BIOLÂ 494
 Seminar in Genome Modification and Gene Therapy
-CHEM 111
+CHEMÂ 111
 General Chemistry I: Structure and Equilibrium
-CHEM 115
+CHEMÂ 115
 Accelerated General Chemistry
-CHEM 211
+CHEMÂ 211
 Organic Chemistry I
-CHEM 300
+CHEMÂ 300
 Chemistry Seminar
-CHEM 311
+CHEMÂ 311
 Thermodynamics and Kinetics
-CHEM 351
+CHEMÂ 351
 Biochemistry I
-CHEM 354
+CHEMÂ 354
 Chemical Biology
-CHEM 411
+CHEMÂ 411
 Advanced Inorganic Chemistry
-CHIN 101
+CHINÂ 101
 First Year Chinese I
-CHIN 203
+CHINÂ 203
 Second Year Chinese I
-CHIN 294
+CHINÂ 294
 Literature and Social Change in Modern China
-CHIN 305
+CHINÂ 305
 Third Year Chinese I
-CHIN 353
+CHINÂ 353
 Cyber China: Internet and Contemporary Culture
-CHIN 407
+CHINÂ 407
 Fourth Year Chinese I
-CLAS 111
+CLASÂ 111
 Elementary Latin I
-CLAS 113
+CLASÂ 113
 Elementary Arabic I
-CLAS 117
+CLASÂ 117
 Elementary Hebrew I
-CLAS 121
+CLASÂ 121
 The Greek World
-CLAS 145
+CLASÂ 145
 Pagans, Christians and Jews in Classical Antiquity: Cultures in Conflict
-CLAS 194
+CLASÂ 194
 Sex, Satire and Slavery: Life and Literature in the Roman Empire
-CLAS 231
+CLASÂ 231
 Intermediate Latin I: Prose
-CLAS 241
+CLASÂ 241
 Intermediate Arabic I
-CLAS 260
+CLASÂ 260
 Introduction to Ancient/Medieval Art
-CLAS 261
+CLASÂ 261
 Intermediate Greek: Prose
-CLAS 294
+CLASÂ 294
 Songs of Lament and Resistance: Crisis Poetry of the Ancient Mediterranean
-CLAS 483
+CLASÂ 483
 Advanced Reading in Latin
-CLAS 490
+CLASÂ 490
 Senior Seminar
-COMP 112
+COMPÂ 112
 Introduction to Data Science
-COMP 123
+COMPÂ 123
 Core Concepts in Computer Science
-COMP 124
+COMPÂ 124
 Object-Oriented Programming and Data Structures
-COMP 221
+COMPÂ 221
 Algorithm Design and Analysis
-COMP 225
+COMPÂ 225
 Software Design and Development
-COMP 240
+COMPÂ 240
 Computer Systems Organization
-COMP 261
+COMPÂ 261
 Theory of Computation
-COMP 302
+COMPÂ 302
 Introduction to Database Management Systems
-COMP 320
+COMPÂ 320
 Computational Biology
-COMP 346
+COMPÂ 346
 Internet Computing
-COMP 465
+COMPÂ 465
 Interactive Computer Graphics
-COMP 484
+COMPÂ 484
 Introduction to Artificial Intelligence
-COMP 494
+COMPÂ 494
 Software in Production
-ECON 113
+ECONÂ 113
 Financial Accounting
-ECON 119
+ECONÂ 119
 Principles of Economics
-ECON 194
+ECONÂ 194
 Calculus-Based Principles of Economics
-ECON 221
+ECONÂ 221
 Introduction to International Economics
-ECON 233
+ECONÂ 233
 Health Economics
-ECON 235
+ECONÂ 235
 Climate Change: Science, Economics, and Policy
-ECON 353
+ECONÂ 353
 Managerial Accounting
-ECON 354
+ECONÂ 354
 Deals
-ECON 361
+ECONÂ 361
 Intermediate Microeconomic Analysis
-ECON 371
+ECONÂ 371
 Intermediate Macroeconomic Analysis
-ECON 381
+ECONÂ 381
 Introduction to Econometrics
-ECON 420
+ECONÂ 420
 Applied Dynamic Macroeconomics
-ECON 426
+ECONÂ 426
 International Economic Development
-ECON 444
+ECONÂ 444
 Honors Seminar
-ECON 457
+ECONÂ 457
 Finance
-ECON 481
+ECONÂ 481
 Advanced Econometrics
-EDUC 220
+EDUCÂ 220
 Educational Psychology
-EDUC 240
+EDUCÂ 240
 Race, Culture, and Ethnicity in Education
-EDUC 250
+EDUCÂ 250
 Building Trust: Education in Global Perspective
-EDUC 275
+EDUCÂ 275
 Outdoor Environmental Education in Theory, Policy and Practice
-EDUC 390
+EDUCÂ 390
 Teaching and Learning in Urban Schools
-EDUC 460
+EDUCÂ 460
 Education and Social Change
-ENGL 101
+ENGLÂ 101
 College Writing
-ENGL 105
+ENGLÂ 105
 American Voices
-ENGL 125
+ENGLÂ 125
 Studies in Literature: Travel Narratives
-ENGL 135
+ENGLÂ 135
 Poetry
-ENGL 137
+ENGLÂ 137
 Novel: On Beauty
-ENGL 150
+ENGLÂ 150
 Introduction to Creative Writing
-ENGL 200
+ENGLÂ 200
 Major British Writers: Chaucer, Medieval Contexts/Modern Adaptations
-ENGL 208
+ENGLÂ 208
 Literary Publishing
-ENGL 212
+ENGLÂ 212
 Introduction to Literary Theory
-ENGL 275
+ENGLÂ 275
 African American Literature to 1900
-ENGL 277
+ENGLÂ 277
 Angels and Demons of the American Renaissance (1835-1880)
-ENGL 280
+ENGLÂ 280
 Crafts of Writing: Poetry
-ENGL 281
+ENGLÂ 281
 Crafts of Writing: Fiction (Visual Storytelling)
-ENGL 282
+ENGLÂ 282
 Crafts of Writing: Creative Non-Fiction (How to Tell a True Story)
-ENGL 294
+ENGLÂ 294
 Charlottesville: Texts and Contexts
-ENGL 341
+ENGLÂ 341
 20th C British Novel: The British Multicultural Novel
-ENGL 362
+ENGLÂ 362
 Gendered, Feminist, Womanist Writings: Feminist Utopias/Dystopias
-ENGL 386
+ENGLÂ 386
 From Literature to Film: Jane Austen and Adaptation
-ENGL 394
+ENGLÂ 394
 1859: Sensations, Scandals, and Science
-ENGL 401
+ENGLÂ 401
 Projects in Literary Research
-ENGL 494
+ENGLÂ 494
 Adv Workshop: Fiction (Fifteen Weeks to the Novel)
-ENVI 104
+ENVIÂ 104
 Soil: Science and Sustainability
-ENVI 144
+ENVIÂ 144
 Lakes, Streams and Rivers
-ENVI 160
+ENVIÂ 160
 Dynamic Earth/Global Change
-ENVI 194
+ENVIÂ 194
 Environmental Sociology
-ENVI 232
+ENVIÂ 232
 People, Agriculture and the Environment
-ENVI 234
+ENVIÂ 234
 U.S. Environmental History
-ENVI 235
+ENVIÂ 235
 Climate Change: Science, Economics, and Policy
-ENVI 259
+ENVIÂ 259
 Indigenous Peoples of Arctic
-ENVI 270
+ENVIÂ 270
 Psychology of Sustainable Behavior
-ENVI 275
+ENVIÂ 275
 Outdoor Environmental Education in Theory, Policy and Practice
-ENVI 280
+ENVIÂ 280
 Environmental Classics
-ENVI 281
+ENVIÂ 281
 The Andes: Landscape and Power
-ENVI 285
+ENVIÂ 285
 Ecology
-ENVI 294
+ENVIÂ 294
 Oceanography
-ENVI 340
+ENVIÂ 340
 US Urban Environmental History
-ENVI 344
+ENVIÂ 344
 Aquatic Ecology
-ENVI 478
+ENVIÂ 478
 Cities of the 21st Century: The Political Economy of Urban Sustainability
-ENVI 489
+ENVIÂ 489
 Environmental Leadership Practicum
-ENVI 490
+ENVIÂ 490
 Envi St Leadership Seminar
-FREN 101
+FRENÂ 101
 French I
-FREN 102
+FRENÂ 102
 French II
-FREN 111
+FRENÂ 111
 Accelerated French I-II
-FREN 203
+FRENÂ 203
 French III
-FREN 204
+FRENÂ 204
 Text, Film and Media
-FREN 305
+FRENÂ 305
 Advanced Expression: Communication Tools
-FREN 306
+FRENÂ 306
 Introduction to Literary Analysis
-FREN 308
+FRENÂ 308
 From Lascaux to 1789: The Evolution of French Civilization
-FREN 446
+FRENÂ 446
 The Animal and the Human in the French Enlightenment
-FREN 494
+FRENÂ 494
 Banned Books and Films: the Francophone Context
-GEOG 111
+GEOGÂ 111
 Human Geography of Global Issues
-GEOG 225
+GEOGÂ 225
 Introduction to Geographic Information Systems
-GEOG 232
+GEOGÂ 232
 People, Agriculture and the Environment
-GEOG 241
+GEOGÂ 241
 Urban Geography
-GEOG 242
+GEOGÂ 242
 Regional Geography of the US and Canada
-GEOG 243
+GEOGÂ 243
 Geography of Africa: Local Resources and Livelihoods in a Global Context
-GEOG 256
+GEOGÂ 256
 Medical Geography: The Geography of Health and Health Care
-GEOG 365
+GEOGÂ 365
 Urban GIS
-GEOG 368
+GEOGÂ 368
 Health GIS
-GEOG 370
+GEOGÂ 370
 Advanced Cartography and Geovisualization
-GEOG 394
+GEOGÂ 394
 Political Geography of Urban Public Spaces
-GEOG 478
+GEOGÂ 478
 Cities of the 21st Century: The Political Economy of Urban Sustainability
-GEOL 104
+GEOLÂ 104
 Soil: Science and Sustainability
-GEOL 160
+GEOLÂ 160
 Dynamic Earth/Global Change
-GEOL 194
+GEOLÂ 194
 Flying Dinosaurs and Walking Whales
-GEOL 240
+GEOLÂ 240
 Field Methods
-GEOL 250
+GEOLÂ 250
 Mineralogy
-GEOL 255
+GEOLÂ 255
 Structural Geology
-GEOL 300
+GEOLÂ 300
 Paleobiology
-GEOL 303
+GEOLÂ 303
 Surface/Groundwater Hydrology
-GERM 101
+GERMÂ 101
 Elementary German I
-GERM 110
+GERMÂ 110
 Accelerated Elementary German
-GERM 203
+GERMÂ 203
 Intermediate German I
-GERM 204
+GERMÂ 204
 Intermediate German II
-GERM 255
+GERMÂ 255
 German Cinema Studies
-GERM 305
+GERMÂ 305
 Advanced German
-GERM 308
+GERMÂ 308
 German Cultural History I
-GERM 337
+GERMÂ 337
 Dead White Men
-GERM 363
+GERMÂ 363
 Crime and the Fantastic
-GERM 394
+GERMÂ 394
 Power of Words
-HIST 114
+HISTÂ 114
 History of Africa to 1800
-HIST 121
+HISTÂ 121
 The Greek World
-HIST 137
+HISTÂ 137
 From Confederation to Confederacy: US History from Independence to Civil War
-HIST 140
+HISTÂ 140
 Introduction to East Asian Civilization
-HIST 164
+HISTÂ 164
 Governing the Body: Health/Eugenics/Population Control in Global Perspective
-HIST 181
+HISTÂ 181
 Introduction to Latin America and the Caribbean
-HIST 219
+HISTÂ 219
 In Motion: African Americans in the United States
-HIST 225
+HISTÂ 225
 American Indian History to 1871
-HIST 229
+HISTÂ 229
 Narrating Black Women's Resistance
-HIST 234
+HISTÂ 234
 U.S. Environmental History
-HIST 244
+HISTÂ 244
 US Since 1945
-HIST 251
+HISTÂ 251
 Pirates, Translators, and Missionaries
-HIST 275
+HISTÂ 275
 The Rise of Modern China
-HIST 277
+HISTÂ 277
 The Rise of Modern Japan
-HIST 281
+HISTÂ 281
 The Andes: Landscape and Power
-HIST 294
+HISTÂ 294
 First Encounters
-HIST 340
+HISTÂ 340
 US Urban Environmental History
-HIST 381
+HISTÂ 381
 Transnational Latin Americas
-HIST 394
+HISTÂ 394
 The Holocaust
-HIST 490
+HISTÂ 490
 Senior Seminar
-INTD 292
+INTDÂ 292
 Intellectual Property
-INTD 330
+INTDÂ 330
 Mellon Seminar: Exploring Academia
-INTD 401
+INTDÂ 401
 Urban Studies Colloquium
-INTD 421
+INTDÂ 421
 Human Rights and Humanitarianism Colloquium
-INTL 110
+INTLÂ 110
 Introduction to Intl Studies: Globalization - Homogeneity and Heterogeneity
-INTL 111
+INTLÂ 111
 Intro to International Studies: Literature and Global Culture
-INTL 202
+INTLÂ 202
 Global Media Industries
-INTL 232
+INTLÂ 232
 Introduction to Social Entrepreneurship
-INTL 245
+INTLÂ 245
 Intro to Intl Human Rights
-INTL 253
+INTLÂ 253
 Comparative Muslim Cultures
-INTL 272
+INTLÂ 272
 The Post-Soviet Sphere
-INTL 282
+INTLÂ 282
 Introduction to International Public Health
-INTL 294
+INTLÂ 294
 Art Against the State in the Communist and Post-Communist World
-INTL 381
+INTLÂ 381
 Transnational Latin Americas
-INTL 394
+INTLÂ 394
 Global Public Heath Ethics
-INTL 485
+INTLÂ 485
 Senior Seminar: Confronting Global Hatred
-INTL 489
+INTLÂ 489
 Senior Seminar: Capitalism and World (Dis)Order
-JAPA 101
+JAPAÂ 101
 First Year Japanese I
-JAPA 150
+JAPAÂ 150
 Language and Gender in Japanese Society
-JAPA 203
+JAPAÂ 203
 Second Year Japanese I
-JAPA 254
+JAPAÂ 254
 Japanese Film and Animation: From the Salaryman to the Shojo
-JAPA 281
+JAPAÂ 281
 Dialects, Multilingualism, and the Politics of Speaking Japanese
-JAPA 305
+JAPAÂ 305
 Third Year Japanese I
-JAPA 407
+JAPAÂ 407
 Fourth Year Japanese I
-LATI 141
+LATIÂ 141
 Latin America Through Women's Eyes
-LATI 181
+LATIÂ 181
 Introduction to Latin America and the Caribbean
-LATI 246
+LATIÂ 246
 Comparative Democratization
-LATI 281
+LATIÂ 281
 The Andes: Landscape and Power
-LATI 294
+LATIÂ 294
 Immigrant Voices
-LATI 307
+LATIÂ 307
 Introduction to the Analysis of Hispanic Texts
-LATI 308
+LATIÂ 308
 Introduction to U.S. Latino/a Studies
-LATI 381
+LATIÂ 381
 Transnational Latin Americas
-LATI 386
+LATIÂ 386
 Constructions of a Female Killer
-LATI 488
+LATIÂ 488
 Senior Seminar
-LING 150
+LINGÂ 150
 Language and Gender in Japanese Society
-LING 194
+LINGÂ 194
 Being Human: An Introduction to Language
-LING 204
+LINGÂ 204
 Experimental Linguistics
-LING 205
+LINGÂ 205
 Phonology
-LING 206
+LINGÂ 206
 Endangered/Minority Languages
-LING 281
+LINGÂ 281
 Dialects, Multilingualism, and the Politics of Speaking Japanese
-LING 294
+LINGÂ 294
 Language and Music
-LING 300
+LINGÂ 300
 Linguistic Analysis
-LING 309
+LINGÂ 309
 Intro to Hispanic Linguistics
-LING 394
+LINGÂ 394
 Power of Word
-MATH 112
+MATHÂ 112
 Introduction to Data Science
-MATH 125
+MATHÂ 125
 Epidemiology
-MATH 135
+MATHÂ 135
 Applied Multivariable Calculus I
-MATH 137
+MATHÂ 137
 Applied Multivariable Calculus II
-MATH 155
+MATHÂ 155
 Intro to Statistical Modeling
-MATH 236
+MATHÂ 236
 Linear Algebra
-MATH 237
+MATHÂ 237
 Applied Multivariable Calculus III
-MATH 253
+MATHÂ 253
 Statistical Computing and Machine Learning
-MATH 279
+MATHÂ 279
 Discrete Mathematics
-MATH 312
+MATHÂ 312
 Differential Equations
-MATH 354
+MATHÂ 354
 Probability
-MATH 361
+MATHÂ 361
 Theory of Computation
-MATH 377
+MATHÂ 377
 Real Analysis
-MATH 379
+MATHÂ 379
 Combinatorics
-MATH 437
+MATHÂ 437
 Topics in Applied Math
-MATH 453
+MATHÂ 453
 Survival Analysis
-MCST 110
+MCSTÂ 110
 Texts and Power: Foundations of Media and Cultural Studies
-MCST 114
+MCSTÂ 114
 News Reporting and Writing
-MCST 128
+MCSTÂ 128
 Film Analysis/Visual Culture
-MCST 202
+MCSTÂ 202
 Global Media Industries
-MCST 248
+MCSTÂ 248
 History of Film 1893-1941
-MCST 294
+MCSTÂ 294
 Visual Culture and 1968: The Style and Substance of Revolt
-MCST 323
+MCSTÂ 323
 Fundamentals of Video Production
-MCST 334
+MCSTÂ 334
 Cultural Studies and the Media
-MCST 337
+MCSTÂ 337
 Dead White Men
-MCST 354
+MCSTÂ 354
 Blackness in the Media
-MCST 488
+MCSTÂ 488
 Advanced Topics Seminar
-MUSI 111
+MUSIÂ 111
 World Music
-MUSI 113
+MUSIÂ 113
 Theory I
-MUSI 131
+MUSIÂ 131
 African Music
-MUSI 155
+MUSIÂ 155
 Music and Freedom
-MUSI 194
+MUSIÂ 194
 33 1/3
-MUSI 213
+MUSIÂ 213
 Theory III, Form and Analysis
-MUSI 294
+MUSIÂ 294
 Language and Music
-MUSI 342
+MUSIÂ 342
 Medieval to Mozart
-MUSI 370
+MUSIÂ 370
 Conducting
-MUSI 70
+MUSIÂ 70
 Wind Ensemble
-MUSI 72
+MUSIÂ 72
 African Music Ensemble
-MUSI 74
+MUSIÂ 74
 Macalester Concert Choir
-MUSI 76
+MUSIÂ 76
 Macalester Chorale
-MUSI 78
+MUSIÂ 78
 Asian Music Ensemble
-MUSI 80
+MUSIÂ 80
 Mac Jazz Band
-MUSI 82
+MUSIÂ 82
 Jazz/Popular Music Combos
-MUSI 84
+MUSIÂ 84
 Pipe Band
-MUSI 86
+MUSIÂ 86
 Chamber Ensembles
-MUSI 88
+MUSIÂ 88
 Macalester Symphony Orchestra
-MUSI 90
+MUSIÂ 90
 Mac Early Music Ensemble
-MUSI 94
+MUSIÂ 94
 Private Studio Instruction
-NSCI 488
+NSCIÂ 488
 Neuroscience Capstone
-NEUR 300
+NEURÂ 300
 Directed Research
-PHIL 100
+PHILÂ 100
 Introduction to Philosophy
-PHIL 111
+PHILÂ 111
 Introduction to Symbolic Logic
-PHIL 121
+PHILÂ 121
 Ethics: Happiness and Philosophical Inquiry
-PHIL 200
+PHILÂ 200
 Ancient and Medieval Philosophies
-PHIL 220
+PHILÂ 220
 Bioethics
-PHIL 314
+PHILÂ 314
 Contemporary Metaphysics
-PHIL 394
+PHILÂ 394
 21st Century Continental Philosophy
-PHIL 489
+PHILÂ 489
 Senior Seminar
-PE 03
+PEÂ 03
 Beginning Social Dance
-PE 04
+PEÂ 04
 Karate I
-PE 06
+PEÂ 06
 Yoga I
-PE 07
+PEÂ 07
 Personal Health, Wellness and Mindfulness
-PE 10
+PEÂ 10
 Racquetball I
-PE 14
+PEÂ 14
 Karate II
-PE 18
+PEÂ 18
 Pilates
-PE 20
+PEÂ 20
 Weight Training
-PE 26
+PEÂ 26
 Tai Chi Chuan
-PE 28
+PEÂ 28
 Pilates II
-PE 33
+PEÂ 33
 Salsa Dance
-PE 40
+PEÂ 40
 Self Defense
-PE 41
+PEÂ 41
 Lifeguard Training
-PHYS 111
+PHYSÂ 111
 Contemporary Concepts
-PHYS 194
+PHYSÂ 194
 Rocket Science
-PHYS 226
+PHYSÂ 226
 Principles of Physics I
-PHYS 227
+PHYSÂ 227
 Principles of Physics II
-PHYS 331
+PHYSÂ 331
 Modern Physics
-PHYS 394
+PHYSÂ 394
 Condensed Matter Physics
-PHYS 443
+PHYSÂ 443
 Electromagnetic Theory
-PHYS 481
+PHYSÂ 481
 Quantum Mechanics
-PHYS 489
+PHYSÂ 489
 Physics Seminar
-POLI 100
+POLIÂ 100
 US Politics
-POLI 120
+POLIÂ 120
 International Politics
-POLI 140
+POLIÂ 140
 Comparative Politics
-POLI 141
+POLIÂ 141
 Latin America Through Women's Eyes
-POLI 160
+POLIÂ 160
 Foundations of Political Theory
-POLI 202
+POLIÂ 202
 Political Participation
-POLI 203
+POLIÂ 203
 Politics and Inequality
-POLI 221
+POLIÂ 221
 Global Governance
-POLI 223
+POLIÂ 223
 The Politics of the World Wars
-POLI 246
+POLIÂ 246
 Comparative Democratization
-POLI 269
+POLIÂ 269
 Empirical Research Methods
-POLI 270
+POLIÂ 270
 Rhetoric of Campaigns and Election
-POLI 294
+POLIÂ 294
 Politics of Protest in the US
-POLI 321
+POLIÂ 321
 International Security
-POLI 322
+POLIÂ 322
 Advanced International Theory
-POLI 400
+POLIÂ 400
 Senior Research Seminar
-POLI 404
+POLIÂ 404
 Honors Colloquium
-PORT 111
+PORTÂ 111
 Accelerated Beginning Portuguese
-PORT 331
+PORTÂ 331
 Journeys through Brazil: Oral and Written Expression
-PSYC 100
+PSYCÂ 100
 Introduction to Psychology
-PSYC 194
+PSYCÂ 194
 Applied Cognition
-PSYC 201
+PSYCÂ 201
 Research in Psychology I
-PSYC 220
+PSYCÂ 220
 Educational Psychology
-PSYC 244
+PSYCÂ 244
 Cognitive Neuroscience
-PSYC 248
+PSYCÂ 248
 Behavioral Neuroscience
-PSYC 250
+PSYCÂ 250
 Developmental Psychology
-PSYC 254
+PSYCÂ 254
 Social Psychology
-PSYC 258
+PSYCÂ 258
 Industrial/Organizational Psychology
-PSYC 264
+PSYCÂ 264
 The Psychology of Gender
-PSYC 270
+PSYCÂ 270
 Psychology of Sustainable Behavior
-PSYC 272
+PSYCÂ 272
 Health Psychology
-PSYC 301
+PSYCÂ 301
 Research in Psychology II
-PSYC 368
+PSYCÂ 368
 Psychology of/and Disability
-PSYC 374
+PSYCÂ 374
 Clinical and Counseling Psychology
-PSYC 380
+PSYCÂ 380
 Community Psychology and Public Health
-PSYC 394
+PSYCÂ 394
 Intelligence
-PSYC 401
+PSYCÂ 401
 Directed Research in Psychology
-RELI 100
+RELIÂ 100
 Introduction to Islam: Formation and Expansion
-RELI 111
+RELIÂ 111
 Introduction to Buddhism
-RELI 121
+RELIÂ 121
 Peter, Paul and Mary: The Beginnings of Christianity
-RELI 136
+RELIÂ 136
 World Religions and World Religions Discourse
-RELI 145
+RELIÂ 145
 Pagans, Christians and Jews in Classical Antiquity: Cultures in Conflict
-RELI 194
+RELIÂ 194
 Jews and Judaism in Film
-RELI 200
+RELIÂ 200
 The Qur'an (Koran)
-RELI 233
+RELIÂ 233
 Hindus and Muslims
-RELI 235
+RELIÂ 235
 Theorizing Religion
-RELI 252
+RELIÂ 252
 Martin and Malcolm: Racial Terror and the Black Freedom Struggle
-RELI 294
+RELIÂ 294
 Atheism and Humanism
-RELI 311
+RELIÂ 311
 Ritual
-RUSS 101
+RUSSÂ 101
 Elementary Russian I
-RUSS 203
+RUSSÂ 203
 Intermediate Russian I
-RUSS 272
+RUSSÂ 272
 The Post-Soviet Sphere
-RUSS 294
+RUSSÂ 294
 Art Against the State in the Communist and Post-Communist World
-RUSS 394
+RUSSÂ 394
 Advanced Russian
-SOCI 110
+SOCIÂ 110
 Introduction to Sociology
-SOCI 190
+SOCIÂ 190
 Criminal Behavior/Social Control
-SOCI 194
+SOCIÂ 194
 Environmental Sociology
-SOCI 232
+SOCIÂ 232
 Introduction to Social Entrepreneurship
-SOCI 250
+SOCIÂ 250
 Nonprofit Organizations
-SOCI 270
+SOCIÂ 270
 Interpretive Social Research
-SOCI 283
+SOCIÂ 283
 Economic Sociology
-SOCI 290
+SOCIÂ 290
 Islam and the West
-SOCI 294
+SOCIÂ 294
 Immigrant Voices
-SOCI 480
+SOCIÂ 480
 Senior Seminar
-SPAN 101
+SPANÂ 101
 Elementary Spanish I
-SPAN 102
+SPANÂ 102
 Elementary Spanish II
-SPAN 110
+SPANÂ 110
 Accelerated Beginning Spanish
-SPAN 203
+SPANÂ 203
 Intermediate Spanish I
-SPAN 204
+SPANÂ 204
 Intermediate Spanish II
-SPAN 220
+SPANÂ 220
 Accelerated Intermediate Spanish
-SPAN 305
+SPANÂ 305
 Introduction to Hispanic Studies: Oral and Written Expression
-SPAN 307
+SPANÂ 307
 Introduction to Analysis of Hispanic Texts
-SPAN 308
+SPANÂ 308
 Introduction to U.S. Latino/a Studies
-SPAN 309
+SPANÂ 309
 Introduction to Hispanic Linguistics
-SPAN 330
+SPANÂ 330
 Advanced Spanish Grammar: Meaning and Communication
-SPAN 354
+SPANÂ 354
 Here and There: Superando Limites/Crossing Boundaries
-SPAN 366
+SPANÂ 366
 Parody in the Postmodern Hispanic World
-SPAN 386
+SPANÂ 386
 Constructions of a Female Killer
-THDA 105
+THDAÂ 105
 Seeing Performance in the Twin Cities
-THDA 120
+THDAÂ 120
 Acting Theory and Performance I
-THDA 121
+THDAÂ 121
 Beginning Dance Composition
-THDA 220
+THDAÂ 220
 Voice and Speech
-THDA 235
+THDAÂ 235
 Fundamentals of Scenography
-THDA 263
+THDAÂ 263
 African American Theatre
-THDA 294
+THDAÂ 294
 Auditions
-THDA 310
+THDAÂ 310
 Theatre Methods: Shakespeare to Viewpoints
-THDA 341
+THDAÂ 341
 Intermediate Dance Composition
-THDA 21
+THDAÂ 21
 African-Based Movement I
-THDA 41
+THDAÂ 41
 Modern Dance I
-THDA 43
+THDAÂ 43
 Modern Dance III
-THDA 51
+THDAÂ 51
 Ballet I
-THDA 53
+THDAÂ 53
 Ballet III
-THDA 60
+THDAÂ 60
 Advanced African-Based Movement Ensemble
-WGSS 100
+WGSSÂ 100
 Into to WGSS-Transnational Perspectives
-WGSS 102
+WGSSÂ 102
 Gender and Sport
-WGSS 141
+WGSSÂ 141
 Latin America Through Women's Eyes
-WGSS 150
+WGSSÂ 150
 Language and Gender in Japanese Society
-WGSS 200
+WGSSÂ 200
 Feminist/Queer Theories and Methodologies
-WGSS 220
+WGSSÂ 220
 Icons, Ideas, Instruments: Feminist Re-constructions: Indian
-WGSS 229
+WGSSÂ 229
 Narrating Black Women's Resistance
-WGSS 264
+WGSSÂ 264
 The Psychology of Gender
-WGSS 294
+WGSSÂ 294
 Race, Ethnicity, Class and Gender in American Photography
-WGSS 310
+WGSSÂ 310
 Gendered, Feminist, Womanist Writings: Feminist Utopias/Dystopias
-WGSS 346
+WGSSÂ 346
 Constructions of a Female Killer

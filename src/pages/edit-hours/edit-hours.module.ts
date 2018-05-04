@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { EditHoursPage } from './edit-hours';
-import {EditHoursFormComponent} from "../../components/edit-hours-form/edit-hours-form";
+import {ComponentsModule} from "../../components/components.module";
 
 @NgModule({
   declarations: [
-    EditHoursPage,
-    EditHoursFormComponent
+    EditHoursPage
   ],
   imports: [
     IonicPageModule.forChild(EditHoursPage),
+    ComponentsModule
   ],
 })
 export class EditHoursPageModule {}
