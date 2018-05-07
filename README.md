@@ -1,7 +1,6 @@
 # Kiumi
 
-One Paragraph of project description goes here
-
+Simply put, Kiume is a crowd management e-tool for office hours at Macalester College. Aimed at streamlining communication between students and instructors (professors as well as preceptors), the app primarily features a minimalistic student queue for each office hour session. Following set-up, the roles of the 2 user groups are simple and hassle-free – the student merely check in to the queue while the instructor works with the queue thus formed. The creation/modification of office hour slots is done by instructors; the slots are then sorted and can be viewed in an organized manner by students. Powered by Google login, the Profile section allows users to track and modify their user status as well as preferred names. On the other hand, the app's Courses page allows users to add/edit/view courses they are attending/instructing; the courses are selected from an extensive list containing all courses (number and names) for the relevant semester.
 ## Getting Started
 
 ### Prerequisites
@@ -34,7 +33,7 @@ npm install
 #### Deploying locally
 To deploy the app in your browser you will have to run:
 ```
-ionic serve
+ionic lab
 ```
 When it finishes your browser should open automatically. If it doesn't, Kiumi will be running on ```http://localhost:8100``` by default.
 
@@ -43,7 +42,7 @@ First, you will need to add the desired platform to the project. You can do this
 ```
 ionic cordova platform add [platform]
 ``` 
-Where ```[platform]``` can be ```ios```, ```android``` or ```windows```. Then run
+Where ```[platform]``` can be ```ios``` (primary platform), ```android``` or ```windows```. Then run
 ```
 ionic cordova run [platform]
 ```
