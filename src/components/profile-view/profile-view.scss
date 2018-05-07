@@ -5,7 +5,7 @@ profile-view {
   }
 
   .signOut {
-    font-size: 100%;
+    font-size: 140%;
   }
 
   ion-row {
@@ -24,4 +24,15 @@ profile-view {
     border-radius: 50%;
   }
 
+  .list-md {
+    height: 10%;
+  }
+
+  .profile-list-item {
+    font-size: 85%;
+  }
+
+  .label.label-md {
+    font-size: 130%;
+  }
 }
